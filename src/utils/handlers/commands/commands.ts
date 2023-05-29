@@ -61,6 +61,6 @@ export const loadCommands = async (client: Client) => {
 			}
 		}
 	} catch (e) {
-		logger.fatal(e instanceof Error ? e.message : `${e}`);
+		logger.fatal('failed to load commands, error : ' + (e instanceof Error ? e.message : `${e}`));
 	}
 };

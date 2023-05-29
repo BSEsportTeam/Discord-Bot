@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node -r @swc-node/register -r tsconfig-paths/register ./src/index.ts",
+    "test": "ts-node src/index.ts dev"
   },
   "keywords": [],
   "author": "Arcoz0308",
@@ -25,6 +25,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@swc-node/register": "^1.6.5",
     "dayjs": "^1.11.7",
     "discord-api-types": "^0.37.42",
     "discord.js": "^14.11.0",
