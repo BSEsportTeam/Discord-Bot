@@ -1,16 +1,15 @@
-import type {Client} from '$core/Client';
-import type { CacheType, Interaction} from 'discord.js';
+import type {Client} from '$core/client';
+import type {CacheType, Interaction} from 'discord.js';
 import {ApplicationCommandType, InteractionType} from 'discord.js';
-import {disableButtons} from '$core/utils/handlers/buttons/utils';
-import {handleButton} from '$core/utils/handlers/buttons/buttons';
-import {runCommand} from '$core/utils/handlers/commands/run';
+import {handleButton} from '$core/handlers/buttons/buttons';
+import {commandRun} from '$core/handlers/commands/command_run';
 
 export const interaction = async (client: Client, interaction: Interaction<CacheType>) => {
 	switch (interaction.type) {
 	case InteractionType.ApplicationCommand:
 		switch (interaction.commandType) {
 		case ApplicationCommandType.ChatInput:
-			await runCommand(client, interaction);
+			await commandRun(interaction);
 			break;
 
 		default:

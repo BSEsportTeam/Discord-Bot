@@ -1,6 +1,6 @@
 import type {ButtonInteraction} from 'discord.js';
 import {buttonsIds} from '$core/utils/ids';
-import {announcementEventCancel, announcementEventConfirm} from '$core/utils/handlers/buttons/announcementevent';
+import {announcementEventCancel, announcementEventConfirm} from '$core/handlers/buttons/announcementevent';
 
 export const handleButton = async (interaction: ButtonInteraction) => {
 	try {

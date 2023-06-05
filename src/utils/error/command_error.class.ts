@@ -1,25 +1,15 @@
-import type {DebugValues} from '$core/utils/logger';
+import type {DebugValues} from '$core/utils/logger/';
 import type {ChatInputCommandInteraction} from 'discord.js';
-
-export interface DebuggableError {
-	debug(): DebugValues;
-}
-export interface CommandDebugsBase extends DebugValues {
-	'command options': string;
-	user: string;
-	channel: string
-	guild: string
-}
-
-export type CommandDebugs = CommandDebugsBase|Omit<CommandDebugsBase, 'channel'|'guild'>
+import type {CommandDebugs, DebuggableError} from './error.type';
+import {isDebuggableError} from 'src/utils/error/error.util';
 
 export class CommandError extends Error implements DebuggableError {
-	interaction: ChatInputCommandInteraction;
 	constructor(
 		message: string,
-		interaction: ChatInputCommandInteraction
+		public interaction: ChatInputCommandInteraction,
+		public sourceError?: Error
 	) {
-		super(message);
+		super(message.replaceAll('\n', ' '));
 		this.interaction = interaction;
 	}
 	debug(): DebugValues {
@@ -29,6 +19,7 @@ export class CommandError extends Error implements DebuggableError {
 		};
 		if (this.interaction.inGuild() && this.interaction.guild !== null) debug.guild = `${this.interaction.guild.name} (${this.interaction.guildId})`;
 		if (this.interaction.channel !== null && !this.interaction.channel.isDMBased()) debug.channel = `${this.interaction.channel.name} (${this.interaction.channelId})`;
+		if (this.sourceError !== undefined && isDebuggableError(this.sourceError)) return {...debug, ...this.sourceError.debug()};
 		return debug;
 	}
 }

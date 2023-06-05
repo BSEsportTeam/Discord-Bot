@@ -1,0 +1,34 @@
+import type {ChatInputCommandInteraction} from 'discord.js';
+import {getCommand, replyError} from '$core/handlers/commands/command_run/command_run.util';
+import {logger} from '$core/utils/logger';
+import {resultify} from 'rustic-error';
+import {effect, effectReset, forground256Color} from 'tintify';
+
+export const commandRun = async (interaction: ChatInputCommandInteraction) => {
+	const command = getCommand(interaction);
+
+	if (command === null) {
+		logger.warning('get command interaction for command that don\'t exist, command name : ' + interaction.commandName);
+		return;
+	}
+
+	if (command.preReply.enable) {
+		const result = await resultify(() => interaction.deferReply({
+			ephemeral: command.preReply.ephemeral
+		}));
+
+		if (!result.ok) {
+			await replyError(interaction, command.preReply.ephemeral, command.preReply.enable);
+			return;
+		}
+	}
+
+	const result = await command.run(interaction);
+
+	if (!result.ok) {
+		await replyError(interaction, command.preReply.ephemeral, command.preReply.enable);
+
+		logger.error(`Error with command ${effect.bold+command.builder.name.toLocaleUpperCase()+effectReset.bold} : ${forground256Color(202)}${result.error.message}`);
+		logger.debugValues(result.error.debug());
+	}
+};

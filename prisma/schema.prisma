@@ -11,17 +11,61 @@ datasource db {
 }
 
 model User {
-  id     String   @id
-  UserXP UserXP[]
+  id       String        @id
+  userXP   GuildMember[]
+  bumps    Bump[]
+  username String
+  avatar   String?
 }
 
-model UserXP {
-  userId   String
-  serverId Int
-  user     User   @relation(fields: [userId], references: [id])
-  level    Int
-  xp       Int
-  levelXp  Int
+model GuildMember {
+  Username  String?
+  avatar    String?
+  userId    String
+  guildId   String
+  guildName String  @map(name: "guild.name")
+  guild     Guild   @relation(fields: [guildId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
+  xp        Int
 
-  @@id([serverId, userId])
+  @@id([guildId, userId])
+}
+
+model Guild {
+  id           String        @id
+  name         String?
+  guildMembers GuildMember[]
+  xpMouvements XpMouvement[]
+  bumps        Bump[]
+}
+
+model Bump {
+  userId    String
+  guildId   String
+  guildName String   @map(name: "guild.name")
+  guild     Guild    @relation(fields: [guildId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  date      DateTime @default(now())
+
+  @@id([guildId, userId, date])
+}
+
+model XpMouvement {
+  id        Int              @id @default(autoincrement())
+  xp        Int
+  byUserId  String
+  forUserId String
+  date      DateTime         @default(now())
+  cause     XpMouvementCause
+  guildId   String
+  guildName String           @map(name: "guild.name")
+  guild     Guild            @relation(fields: [guildId], references: [id])
+}
+
+enum XpMouvementCause {
+  XPDROP
+  ADMINXP
+  XPIMPORT
+  PRIME
+  OTHER
 }

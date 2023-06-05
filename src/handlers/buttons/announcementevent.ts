@@ -1,6 +1,6 @@
 import type {ButtonInteraction} from 'discord.js';
-import { ChannelType} from 'discord.js';
-import {authorOnly, disableButtons} from '$core/utils/handlers/buttons/utils';
+import {ChannelType} from 'discord.js';
+import {authorOnly, disableButtons} from '$core/handlers/buttons/utils';
 import {isProd} from '$core/utils/environements';
 import {config} from '$core/config';
 import {devConfig} from '$core/config/dev.config';

@@ -1,4 +1,4 @@
-import type { ButtonInteraction} from 'discord.js';
+import type {ButtonInteraction} from 'discord.js';
 import {ActionRowBuilder, ButtonBuilder, ComponentType} from 'discord.js';
 import {colors} from '$core/config/global.config';
 

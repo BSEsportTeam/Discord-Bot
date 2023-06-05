@@ -1,6 +1,6 @@
-import type {Client} from '$core/Client';
-import {ready} from '$core/utils/handlers/events/ready';
-import {interaction} from '$core/utils/handlers/events/interaction';
+import type {Client} from '$core/client';
+import {ready} from '$core/handlers/events/ready';
+import {interaction} from '$core/handlers/events/interaction';
 
 
 export const loadEvents = (client: Client) => {

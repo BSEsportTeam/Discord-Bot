@@ -1,7 +1,7 @@
 import {Client as BClient, Collection, IntentsBitField, REST} from 'discord.js';
 import {config} from '$core/config';
-import type {BaseCommand} from '$core/commands/BaseCommand';
-import {loadEvents} from '$core/utils/handlers/events/loader';
+import type {BaseCommand} from '$core/commands/base_command.class';
+import {loadEvents} from '$core/handlers/events/loader';
 import type {Snowflake} from 'discord-api-types/globals';
 
 type CommandAliasName = `${Snowflake}-${string}`|string;

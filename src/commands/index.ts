@@ -1,6 +1,6 @@
-import {AnnounceEvent} from '$core/commands/AnnounceEvent';
-import type {BaseCommand} from '$core/commands/BaseCommand';
-import type {Client} from '$core/Client';
+import {AnnounceEvent} from '$core/commands/servers/global/announce_event/announce_event.class';
+import type {BaseCommand} from '$core/commands/base_command.class';
+import type {Client} from '$core/client';
 
 
 /* eslint-disable */
