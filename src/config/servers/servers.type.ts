@@ -1,6 +1,6 @@
 import type {Snowflake} from 'discord-api-types/globals';
 
-export type servers = 'global' | 'brawlStars'
+export type GuildName = 'global' | 'brawlStars'
 
 export type BaseServer = {
 	serverId: Snowflake;

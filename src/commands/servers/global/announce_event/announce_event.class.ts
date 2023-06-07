@@ -12,13 +12,13 @@ import {logger} from '$core/utils/logger/logger.func';
 import type {Client} from '$core/client';
 import {builder} from './announce_event.builder';
 import {getActionsRow, getMessageReference} from './announce_event.util';
-import type {CommandCreateFunc, Guilds} from '$core/commands/command.type';
+import type {CommandCreateFunc, GuildAlias} from '$core/commands/command.type';
 
 const config = commandsConfig.annonceevent;
 
 
 export class AnnounceEvent extends BaseCommand {
-	guild: Guilds = 'global';
+	guild: GuildAlias = 'global';
 	builder = builder.toJSON();
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {

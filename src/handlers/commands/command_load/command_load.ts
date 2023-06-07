@@ -4,7 +4,7 @@ import {BaseCommand} from '$core/commands/base_command.class';
 import {COMMAND_PATHS} from '$core/handlers/commands/command_load/command_load.const';
 import {existsSync, readdirSync, statSync} from 'fs';
 import {sep} from 'path';
-import type {servers} from '$core/config/servers/servers.type';
+import type {GuildName} from '$core/config/servers/servers.type';
 import {isDev} from '$core/utils/environements';
 import {Routes} from 'discord-api-types/v10';
 import {devConfig} from '$core/config/dev.config';
@@ -17,7 +17,7 @@ export const commandLoad = async () => {
 		const clientId = client.user.id;
 
 		const globalCommands: BaseCommand[] = [];
-		const serversCommands = new Map<servers, BaseCommand[]>();
+		const serversCommands = new Map<GuildName, BaseCommand[]>();
 
 		// load all commands from folders
 		for (const basePath of COMMAND_PATHS) {
