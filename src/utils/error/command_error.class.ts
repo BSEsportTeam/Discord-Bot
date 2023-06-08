@@ -4,6 +4,7 @@ import type {CommandDebugs, DebuggableError} from './error.type';
 import {isDebuggableError} from 'src/utils/error/error.util';
 
 export class CommandError extends Error implements DebuggableError {
+	name = 'CommandError';
 	constructor(
 		message: string,
 		public interaction: ChatInputCommandInteraction,
