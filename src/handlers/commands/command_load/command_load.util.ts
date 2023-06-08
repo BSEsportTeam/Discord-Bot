@@ -1,4 +1,3 @@
-import type {GuildAlias} from 'src/commands/command.type';
 import type {CommandBuilt, GuildsCommandsBuild} from 'src/handlers/commands/command_load/command_load.type';
 import {isDev} from 'src/utils/environements';
 import {resultify} from 'rustic-error';
@@ -7,14 +6,6 @@ import {Routes} from 'discord-api-types/v10';
 import {devConfig} from 'src/config/dev.config';
 import {logger} from 'src/utils/logger';
 import {getArrayMergedFromCollectionValues} from 'src/utils/function/collection/collection.util';
-
-export const serializeCommandName = (commandName: string, guild: GuildAlias, subCommand?: string, subCommandGroup?: string ): string => {
-	let command = `${guild}.${commandName}`;
-	if (subCommand) command += `.${subCommand}`;
-	if (subCommandGroup) command += `.${subCommandGroup}`;
-
-	return command;
-};
 
 export const loadCommands = async (globalCommands:  CommandBuilt[], guildCommands: GuildsCommandsBuild) => {
 	const clientId = client.user?.id || 'error';
