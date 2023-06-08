@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest';
-import {getMessageReference} from '$core/commands/servers/global/announce_event/announce_event.util';
+import {getMessageReference} from '$core/commands/guilds/global/announce_event/announce_event.util';
 
 describe('getMessageReference', () => {
 	it('should return null for invalid links', () => {
