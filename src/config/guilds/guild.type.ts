@@ -2,9 +2,9 @@ import type {Snowflake} from 'discord-api-types/globals';
 
 export type GuildName = 'global' | 'brawlStars'
 
-export type BaseServer = {
-	serverId: Snowflake;
-	name: string;
+export type BaseGuild = {
+	guildId: Snowflake;
+	name: GuildName;
 	eventAnnouncements: EventAnnouncements;
 	inviteLink: string
 }
@@ -14,8 +14,10 @@ export type EventAnnouncements = {
 	enable: boolean
 }
 
-export type BrawlStarsServer = BaseServer & {
+export type BrawlStarsGuild = BaseGuild & {
 	autoPing: {
 		roles: []
 	}
 }
+
+export type Guilds = Record<GuildName, BaseGuild>

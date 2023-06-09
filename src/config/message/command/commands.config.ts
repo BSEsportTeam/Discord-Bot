@@ -1,4 +1,4 @@
-import type {CommandsConfig} from './commands.type';
+import type {Commands} from './commands.type';
 
 export const commandsConfig = {
 	annonceevent: {
@@ -10,7 +10,7 @@ export const commandsConfig = {
 				description: 'lien ou id du message à copier'
 			}
 		},
-		messages: {
+		exec: {
 			invalidArgument: 'valeur invalide reçu dans l\'argument !',
 			invalidChannel: 'le lien du salon est invalide',
 			invalidMessage: 'Le lien ou l\'id du message est invalide'
@@ -22,4 +22,4 @@ export const commandsConfig = {
 			}
 		}
 	}
-} satisfies Record<string, CommandsConfig>;
+} satisfies Commands;

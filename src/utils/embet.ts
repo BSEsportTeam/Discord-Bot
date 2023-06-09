@@ -1,5 +1,5 @@
 import {EmbedBuilder} from 'discord.js';
-import {colors} from '$core/config/global.config';
+import {colors} from '$core/config/global/global.config';
 
 export const baseEmbed = (description: string, title?: string): EmbedBuilder => {
 	const embed = new EmbedBuilder().setDescription(description);

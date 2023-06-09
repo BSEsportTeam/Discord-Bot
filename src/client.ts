@@ -1,13 +1,9 @@
 import {Client as BClient, Collection, IntentsBitField, REST} from 'discord.js';
-import {config} from '$core/config';
-import type {BaseCommand} from '$core/commands/base_command.class';
 import {loadEvents} from '$core/handlers/events/loader';
-import type {Snowflake} from 'discord-api-types/globals';
+import type {CommandCollection} from '$core/handlers/commands/command.type';
 
-type CommandAliasName = `${Snowflake}-${string}`|string;
 export class Client extends BClient {
-	config = config;
-	commands = new Collection<CommandAliasName, BaseCommand>();
+	commands: CommandCollection = new Collection();
 	rest: REST;
 
 	constructor(token: string) {

@@ -1,6 +1,6 @@
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle} from 'discord.js';
 import {buttonsIds} from '$core/utils/ids';
-import {commandsConfig} from '$core/config/commands/commands.config';
+import {commandsConfig} from '$core/config/message/command/commands.config';
 import type {MessageReference} from '$core/commands/guilds/global/announce_event/announce_event.type';
 
 export const getActionsRow = (): [ActionRowBuilder<ButtonBuilder>] => {

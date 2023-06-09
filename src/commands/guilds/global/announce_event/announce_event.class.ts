@@ -1,9 +1,9 @@
 import {BaseCommand} from '$core/commands/base_command.class';
 import type {ChatInputCommandInteraction} from 'discord.js';
 import {ChannelType} from 'discord.js';
-import {commandsConfig} from '$core/config/commands/commands.config';
+import {commandsConfig} from '$core/config/message/command/commands.config';
 import {isProd} from '$core/utils/environements';
-import {devConfig} from '$core/config/dev.config';
+import {devConfig} from '$core/config/guilds/_dev/dev.config';
 import type {Result} from 'rustic-error';
 import {error, ok, resultify} from 'rustic-error';
 import {CommandError} from '$core/utils/error';
@@ -13,10 +13,13 @@ import type {Client} from '$core/client';
 import {builder} from './announce_event.builder';
 import {getActionsRow, getMessageReference} from './announce_event.util';
 import type {CommandCreateFunc, GuildAlias} from '$core/commands/command.type';
+import {guildsConfig} from '$core/config/guilds';
+import {globalConfig} from '$core/config/global';
+import {Dev} from '$core/utils/dev/dev.func';
 
 const config = commandsConfig.annonceevent;
 
-
+@Dev
 export class AnnounceEvent extends BaseCommand {
 	guild: GuildAlias = 'global';
 	builder = builder.toJSON();
@@ -31,7 +34,7 @@ export class AnnounceEvent extends BaseCommand {
 
 		if (messageReference === null) {
 			const result = await resultify(() => interaction.reply({
-				embeds: [errorEmbed(config.messages.invalidArgument)],
+				embeds: [errorEmbed(config.exec.invalidArgument)],
 				ephemeral: true
 			}));
 
@@ -49,7 +52,7 @@ export class AnnounceEvent extends BaseCommand {
 		if (channel === null || (channel.type !== ChannelType.GuildAnnouncement && channel.type !== ChannelType.GuildText)) {
 
 			const result = await resultify(() => interaction.reply({
-				embeds: [errorEmbed(config.messages.invalidChannel)],
+				embeds: [errorEmbed(config.exec.invalidChannel)],
 				ephemeral: true
 			}));
 
@@ -65,17 +68,17 @@ export class AnnounceEvent extends BaseCommand {
 		if (typeof message === 'undefined'|| message.content.length < 1) {
 
 			const result = await resultify(() => interaction.reply({
-				embeds: [errorEmbed(config.messages.invalidMessage)],
+				embeds: [errorEmbed(config.exec.invalidMessage)],
 				ephemeral: true
 			}));
 			if (result.ok) return ok(false);
 			else return error(new CommandError('failed to reply to interaction, DJS error : ' + result.error.message, interaction));
 
 		}
-		const guildConfig = isProd ? this.client.config.servers.global : devConfig.servers.serverSection;
+		const guildConfig = isProd ? guildsConfig.global : devConfig.guilds.guildSection;
 
 		await interaction.reply({
-			content: message.content.replace(this.client.config.global.eventAnnouncementPingReplacer, `<@&${guildConfig.eventAnnouncements.roleId}>`),
+			content: message.content.replace(globalConfig.eventAnnouncementPingReplacer, `<@&${guildConfig.eventAnnouncements.roleId}>`),
 			components: getActionsRow(),
 			allowedMentions: {
 				parse: []

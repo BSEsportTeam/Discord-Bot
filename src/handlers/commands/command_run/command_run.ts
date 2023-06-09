@@ -27,8 +27,10 @@ export const commandRun = async (interaction: ChatInputCommandInteraction) => {
 
 	if (!result.ok) {
 		await replyError(interaction, command.preReply.ephemeral, command.preReply.enable);
-
-		logger.error(`Error with command ${effect.bold+command.builder.name.toLocaleUpperCase()+effectReset.bold} : ${forground256Color(202)}${result.error.message}`);
+		const commandName = interaction.commandName +
+			(interaction.options.getSubcommandGroup() !== null ? '.' + interaction.options.getSubcommandGroup() : '' ) +
+			(interaction.options.getSubcommand(false) !== null ? '.' + interaction.options.getSubcommand(false) : '');
+		logger.error(`Error with command ${effect.bold+commandName.toLocaleUpperCase()+effectReset.bold} : ${forground256Color(202)}${result.error.message}`);
 		logger.debugValues(result.error.debug());
 	}
 };

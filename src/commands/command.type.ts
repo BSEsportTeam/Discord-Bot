@@ -1,4 +1,4 @@
-import type {GuildName} from '$core/config/servers/servers.type';
+import type {GuildName} from '$core/config/guilds/guild.type';
 import type {Client} from '$core/client';
 import type {BaseCommand} from '$core/commands/base_command.class';
 import type {ChatInputCommandInteraction} from 'discord.js';
@@ -18,7 +18,7 @@ export interface NormalCommand extends BaseCommand {
 	run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>>
 }
 export interface SubsCommand extends BaseCommand {
-	getSubCommands(): SubCommandGroup;
+	getSubCommands(): SubCommandOptions;
 }
 export interface UnknownCommand extends BaseCommand {
 	run?(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>>;
