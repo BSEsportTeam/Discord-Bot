@@ -19,14 +19,13 @@ model User {
 }
 
 model GuildMember {
-  Username  String?
-  avatar    String?
-  userId    String
-  guildId   String
-  guildName String  @map(name: "guild.name")
-  guild     Guild   @relation(fields: [guildId], references: [id])
-  user      User    @relation(fields: [userId], references: [id])
-  xp        Int
+  username String?
+  avatar   String?
+  userId   String
+  guildId  String
+  guild    Guild   @relation(fields: [guildId], references: [id])
+  user     User    @relation(fields: [userId], references: [id])
+  xp       Int
 
   @@id([guildId, userId])
 }

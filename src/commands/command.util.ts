@@ -1,5 +1,5 @@
-import type {BaseCommand} from 'src/commands/base_command.class';
-import type {NormalCommand, SubsCommand} from 'src/commands/command.type';
+import type {BaseCommand} from './base_command.class';
+import type {NormalCommand, SubsCommand} from './command.type';
 
 export const isNormalCommand = (cmd: BaseCommand): cmd is NormalCommand => {
 	return 'run' in cmd;

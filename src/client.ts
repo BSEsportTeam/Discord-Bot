@@ -1,13 +1,11 @@
 import {Client as BClient, Collection, IntentsBitField, REST} from 'discord.js';
-import {config} from '$core/config';
-import type {BaseCommand} from '$core/commands/base_command.class';
-import {loadEvents} from '$core/handlers/events/loader';
-import type {Snowflake} from 'discord-api-types/globals';
+import type {CommandCollection} from '$core/handlers/commands/command.type';
+import {eventLoad} from '$core/handlers/events/event';
+import {commandLoad} from '$core/handlers/commands/command_load';
+import {logger} from '$core/utils/logger';
 
-type CommandAliasName = `${Snowflake}-${string}`|string;
 export class Client extends BClient {
-	config = config;
-	commands = new Collection<CommandAliasName, BaseCommand>();
+	commands: CommandCollection = new Collection();
 	rest: REST;
 
 	constructor(token: string) {
@@ -17,10 +15,21 @@ export class Client extends BClient {
 				IntentsBitField.Flags.Guilds
 			]
 		});
+
 		this.rest = new REST({
 			version: '10'
 		}).setToken(token);
+
 		this.token = token;
-		loadEvents(this);
+
+		this.on('ready', () =>{
+			void this.ready();
+		});
+	}
+
+	async ready() {
+		await eventLoad();
+		await commandLoad();
+		logger.info('BSE Bot is ready !');
 	}
 }
