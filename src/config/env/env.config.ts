@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import {envDTO} from './env.tdo';
+import {envDTO} from './env.z';
 
 
 const parser = envDTO.safeParse(process.env);

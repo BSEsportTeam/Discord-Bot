@@ -43,10 +43,10 @@ export const eventLoad = async () => {
 			}
 
 			client.on(eventClass.name, (...args) => {
-				eventClass.run(args);
+				eventClass.run(...args);
 			});
 
-			loadedEvents+=1;
+			loadedEvents++;
 
 		}
 

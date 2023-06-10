@@ -1,10 +1,6 @@
 import type {BrawlStarsGuild} from '$core/config/guilds/guild.type';
 import type {Overwrite} from '$core/utils/typing/typing.type';
 
-type CustomName = {
-	name: string;
-}
-
 const devGuilds = {
 	guildMain: {
 		name: 'all',

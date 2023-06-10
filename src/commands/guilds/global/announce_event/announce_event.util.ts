@@ -1,5 +1,5 @@
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle} from 'discord.js';
-import {buttonsIds} from '$core/utils/discord/ids';
+import {buttonsIds} from '$core/handlers/buttons/button.const';
 import {commandsConfig} from '$core/config/message/command/commands.config';
 import type {MessageReference} from './announce_event.type';
 
