@@ -2,17 +2,16 @@ import {BaseCommand} from '$core/commands/base_command.class';
 import type {ChatInputCommandInteraction} from 'discord.js';
 import {ChannelType} from 'discord.js';
 import {commandsConfig} from '$core/config/message/command/commands.config';
-import {isProd} from '$core/utils/environements';
+import {isProd} from '$core/config/env';
 import {devConfig} from '$core/config/guilds/_dev/dev.config';
 import type {Result} from 'rustic-error';
 import {error, ok, resultify} from 'rustic-error';
 import {CommandError} from '$core/utils/error';
-import {errorEmbed} from '$core/utils/embet';
+import {errorEmbed} from '$core/utils/discord/embet';
 import {logger} from '$core/utils/logger/logger.func';
-import type {Client} from '$core/client';
 import {builder} from './announce_event.builder';
 import {getActionsRow, getMessageReference} from './announce_event.util';
-import type {CommandCreateFunc, GuildAlias} from '$core/commands/command.type';
+import type {GuildAlias} from '$core/commands/command.type';
 import {guildsConfig} from '$core/config/guilds';
 import {globalConfig} from '$core/config/global';
 import {Dev} from '$core/utils/dev/dev.func';
@@ -20,7 +19,7 @@ import {Dev} from '$core/utils/dev/dev.func';
 const config = commandsConfig.annonceevent;
 
 @Dev
-export class AnnounceEvent extends BaseCommand {
+export default class AnnounceEvent extends BaseCommand {
 	guild: GuildAlias = 'global';
 	builder = builder.toJSON();
 
@@ -89,6 +88,3 @@ export class AnnounceEvent extends BaseCommand {
 		return ok(true);
 	}
 }
-export const command: CommandCreateFunc = (client: Client): AnnounceEvent => {
-	return new AnnounceEvent(client);
-};

@@ -1,6 +1,10 @@
 import type {DevFacultative} from './dev.type';
 
-export const Dev = <T extends { new (...args: any[]): DevFacultative}>(target: T) => {
+type ClassDecorator<R> = {
+	new (...args: any[]): R;
+};
+
+export const Dev = <T extends ClassDecorator<DevFacultative>>(target: T) => {
 	return class extends target {
 		isEnableInDev = true;
 	};

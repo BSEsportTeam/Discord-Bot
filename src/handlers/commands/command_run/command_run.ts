@@ -3,11 +3,16 @@ import {getCommand, replyError} from '$core/handlers/commands/command_run/comman
 import {logger} from '$core/utils/logger';
 import {resultify} from 'rustic-error';
 import {effect, effectReset, forground256Color} from 'tintify';
+import {isDev} from '$core/config/env';
 
 export const commandRun = async (interaction: ChatInputCommandInteraction) => {
 	const command = getCommand(interaction);
 
 	if (command === null) {
+		if (isDev) {
+			return;
+		}
+
 		logger.warning('get command interaction for command that don\'t exist, command name : ' + interaction.commandName);
 		return;
 	}

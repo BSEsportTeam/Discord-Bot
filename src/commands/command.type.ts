@@ -1,14 +1,11 @@
 import type {GuildName} from '$core/config/guilds/guild.type';
-import type {Client} from '$core/client';
-import type {BaseCommand} from '$core/commands/base_command.class';
+import type {BaseCommand} from './base_command.class';
 import type {ChatInputCommandInteraction} from 'discord.js';
 import type {Result} from 'rustic-error';
 import type {CommandError} from 'src/utils/error';
-import type {SubCommand} from 'src/commands/sub_command.class';
+import type {SubCommand} from './sub_command.class';
 
 export type GuildAlias = 'all' | GuildName;
-
-export type CommandCreateFunc = (client: Client) => BaseCommand|SubCommand;
 
 export type SubCommandGroup = {[key: string]: SubCommand};
 

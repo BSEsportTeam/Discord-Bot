@@ -1,6 +1,6 @@
 import type {Snowflake} from 'discord-api-types/globals';
-import type {BaseGuild} from '$core/config/guilds/guild.type';
-import {guildsConfig} from '$core/config/guilds/guilds.config';
+import type {BaseGuild} from './guild.type';
+import {guildsConfig} from './guilds.config';
 
 export const getGuildWithId = (id: Snowflake): BaseGuild|null => {
 	const server = Object.values(guildsConfig).findIndex(value => value.guildId === id);

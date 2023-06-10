@@ -1,6 +1,6 @@
 import type {ChatInputCommandInteraction} from 'discord.js';
 import {client} from '$core/index';
-import {errorEmbed} from '$core/utils/embet';
+import {errorEmbed} from '$core/utils/discord/embet';
 import {messageConfig} from '$core/config/message/message.config';
 import {resultify} from 'rustic-error';
 import {logger} from '$core/utils/logger';
@@ -9,7 +9,7 @@ import type {NormalCommand} from '$core/commands/command.type';
 import type {SubCommand} from '$core/commands/sub_command.class';
 import {serializeCommandName} from '$core/handlers/commands/command.util';
 import {getGuildWithId} from '$core/config/guilds';
-import {isDev} from '$core/utils/environements';
+import {isDev} from '$core/config/env';
 
 export const getCommand = (interaction: ChatInputCommandInteraction): NormalCommand | SubCommand | null => {
 	if (isDev) {

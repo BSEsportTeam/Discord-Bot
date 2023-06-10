@@ -1,11 +1,11 @@
 import {client, mainDir} from '$core/index';
 import {logger} from '$core/utils/logger';
 import {BaseCommand} from '$core/commands/base_command.class';
-import {COMMAND_PATHS} from '$core/handlers/commands/command_load/command_load.const';
+import {COMMANDS_PATHS} from '$core/handlers/commands/command_load/command_load.const';
 import {existsSync, readdirSync, statSync} from 'fs';
 import {sep} from 'path';
 import type {GuildName} from '$core/config/guilds/guild.type';
-import {isDev} from '$core/utils/environements';
+import {isDev} from '$core/config/env';
 import {loadCommands} from '$core/handlers/commands/command_load/command_load.util';
 import type {CommandBuilt, GuildsCommandsBuild} from '$core/handlers/commands/command_load/command_load.type';
 import {Collection} from 'discord.js';
@@ -21,7 +21,7 @@ export const commandLoad = async () => {
 		const guildsCommands: GuildsCommandsBuild = new Collection<GuildName, CommandBuilt[]>();
 
 		// load all commands from folders
-		for (const basePath of COMMAND_PATHS) {
+		for (const basePath of COMMANDS_PATHS) {
 			const path = basePath(mainDir());
 			const baseFolders = readdirSync(path);
 
@@ -42,15 +42,15 @@ export const commandLoad = async () => {
 					}
 
 					const commandImport = await import(commandFilePath);
-					const command = commandImport.command;
+					const commandConstructor = commandImport.default;
 
-					if (!command || typeof command === 'undefined') {
+					if (typeof commandConstructor !== 'function') {
 						logger.fatal(`no default export found for command ${folder} !`, ['full path : ' + commandFilePath]);
 					}
 
-					const commandClass = command(client);
+					const commandClass = new commandConstructor();
 
-					if (!(commandClass instanceof BaseCommand)) {
+					if (typeof commandClass !== 'object' || !(commandClass instanceof BaseCommand)) {
 						logger.fatal(`class not extends BaseCommand for command ${folder} !`, ['full path : ' + commandFilePath]);
 					}
 
@@ -64,9 +64,9 @@ export const commandLoad = async () => {
 
 					} else {
 
-						const commandList = guildsCommands.get(command.guild) || [];
+						const commandList = guildsCommands.get(commandConstructor.guild) || [];
 						commandList.push(commandClass.builder);
-						guildsCommands.set(command.guild, commandList);
+						guildsCommands.set(commandConstructor.guild, commandList);
 
 					}
 

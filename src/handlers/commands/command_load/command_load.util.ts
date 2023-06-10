@@ -1,5 +1,5 @@
 import type {CommandBuilt, GuildsCommandsBuild} from 'src/handlers/commands/command_load/command_load.type';
-import {isDev} from 'src/utils/environements';
+import {isDev} from '$core/config/env';
 import {resultify} from 'rustic-error';
 import {client} from 'src/index';
 import {Routes} from 'discord-api-types/v10';

@@ -1,7 +1,7 @@
 import type {ButtonInteraction} from 'discord.js';
 import {ChannelType} from 'discord.js';
 import {authorOnly, disableButtons} from '$core/handlers/buttons/utils';
-import {isProd} from '$core/utils/environements';
+import {isProd} from '$core/config/env';
 import {devConfig} from '$core/config/guilds/_dev/dev.config';
 import {guildsConfig} from '$core/config/guilds';
 import {globalConfig} from '$core/config/global';
