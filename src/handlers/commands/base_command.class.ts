@@ -1,6 +1,6 @@
-import type {CommandPreReply, GuildAlias, UnknownCommand} from './command.type';
 import type {RESTPostAPIChatInputApplicationCommandsJSONBody} from 'discord-api-types/v10';
 import type {DevFacultative} from '$core/utils/dev/dev.type';
+import type {CommandPreReply, GuildAlias, UnknownCommand} from '$core/handlers/commands/command.type';
 
 
 export abstract class BaseCommand implements UnknownCommand, DevFacultative {
@@ -11,6 +11,4 @@ export abstract class BaseCommand implements UnknownCommand, DevFacultative {
 	};
 	abstract builder: RESTPostAPIChatInputApplicationCommandsJSONBody;
 	isEnableInDev = false;
-
-
 }

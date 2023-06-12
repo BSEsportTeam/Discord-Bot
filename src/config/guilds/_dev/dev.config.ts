@@ -1,5 +1,5 @@
 import type {BrawlStarsGuild} from '$core/config/guilds/guild.type';
-import type {Overwrite} from '$core/utils/typing/typing.type';
+import type {Overwrite} from '$core/utils/type/type';
 
 const devGuilds = {
 	guildMain: {

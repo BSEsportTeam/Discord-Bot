@@ -1,4 +1,4 @@
-import {BaseCommand} from '$core/commands/base_command.class';
+import {BaseCommand} from '$core/handlers/commands/base_command.class';
 import type {ChatInputCommandInteraction} from 'discord.js';
 import {ChannelType} from 'discord.js';
 import {commandsConfig} from '$core/config/message/command/commands.config';
@@ -11,7 +11,7 @@ import {errorEmbed} from '$core/utils/discord/embet';
 import {logger} from '$core/utils/logger/logger.func';
 import {builder} from './announce_event.builder';
 import {getActionsRow, getMessageReference} from './announce_event.util';
-import type {GuildAlias} from '$core/commands/command.type';
+import type {GuildAlias} from '$core/handlers/commands';
 import {guildsConfig} from '$core/config/guilds';
 import {globalConfig} from '$core/config/global';
 import {Dev} from '$core/utils/dev/dev.func';

@@ -1,6 +1,6 @@
 import type {ChatInputCommandInteraction} from 'discord.js';
 import type {Result} from 'rustic-error';
-import type {CommandError} from 'src/utils/error';
+import type {CommandError} from '$core/utils/error';
 
 export abstract class SubCommand {
 	preReply = {

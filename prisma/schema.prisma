@@ -6,62 +6,70 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id       String        @id
-  userXP   GuildMember[]
-  bumps    Bump[]
-  username String
-  avatar   String?
+  id          String        @id
+  userXP      GuildMember[]
+  bumps       Bump[]
+  username    String
+  avatar      String?
+  displayName String
+
+  @@map("users")
 }
 
 model GuildMember {
-  username String?
-  avatar   String?
-  userId   String
-  guildId  String
-  guild    Guild   @relation(fields: [guildId], references: [id])
-  user     User    @relation(fields: [userId], references: [id])
-  xp       Int
+  displayName String?
+  avatar      String?
+  userId      String
+  guildId     String
+  guild       Guild   @relation(fields: [guildId], references: [id])
+  user        User    @relation(fields: [userId], references: [id])
+  xp          Int
 
   @@id([guildId, userId])
+  @@map("guildMembers")
 }
 
 model Guild {
   id           String        @id
   name         String?
   guildMembers GuildMember[]
-  xpMouvements XpMouvement[]
+  xpMovements  XpMovement[]
   bumps        Bump[]
+
+  @@map("guilds")
 }
 
 model Bump {
-  userId    String
-  guildId   String
-  guildName String   @map(name: "guild.name")
-  guild     Guild    @relation(fields: [guildId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
-  date      DateTime @default(now())
+  userId  String
+  guildId String
+  guild   Guild    @relation(fields: [guildId], references: [id])
+  user    User     @relation(fields: [userId], references: [id])
+  date    DateTime @default(now())
 
   @@id([guildId, userId, date])
+  @@map("bumps")
 }
 
-model XpMouvement {
-  id        Int              @id @default(autoincrement())
+model XpMovement {
+  id        Int             @id @default(autoincrement())
   xp        Int
   byUserId  String
   forUserId String
-  date      DateTime         @default(now())
-  cause     XpMouvementCause
+  date      DateTime        @default(now())
+  cause     XpMovementCause
   guildId   String
-  guildName String           @map(name: "guild.name")
-  guild     Guild            @relation(fields: [guildId], references: [id])
+  guild     Guild           @relation(fields: [guildId], references: [id])
+
+  @@map("xpMovements")
 }
 
-enum XpMouvementCause {
+enum XpMovementCause {
   XPDROP
   ADMINXP
   XPIMPORT

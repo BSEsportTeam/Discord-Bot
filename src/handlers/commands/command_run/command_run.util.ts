@@ -1,7 +1,7 @@
 import type {ChatInputCommandInteraction} from 'discord.js';
 import {client} from '$core/index';
-import type {NormalCommand} from '$core/commands/command.type';
-import type {SubCommand} from '$core/commands/sub_command.class';
+import type {NormalCommand} from '$core/handlers/commands';
+import type {SubCommand} from '$core/handlers/commands/sub_command.class';
 import {serializeCommandName} from '$core/handlers/commands/command.util';
 import {getGuildWithId} from '$core/config/guilds';
 import {isDev} from '$core/config/env';
