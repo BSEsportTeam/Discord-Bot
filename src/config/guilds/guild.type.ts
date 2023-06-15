@@ -16,7 +16,8 @@ export type EventAnnouncements = {
 
 export type BrawlStarsGuild = BaseGuild & {
 	autoPing: {
-		roles: []
+		roles: Record<string, Snowflake>
+		channel: Snowflake;
 	}
 }
 

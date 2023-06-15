@@ -22,7 +22,8 @@ const devGuilds = {
 		},
 		inviteLink: 'https://discord.gg/wtFaNTsesA',
 		autoPing: {
-			roles: []
+			roles: {},
+			channel: ''
 		}
 	}
 } satisfies Record<'guildMain'|'guildSection', Overwrite<Partial<BrawlStarsGuild>, {name: string}>>;

@@ -1,13 +1,13 @@
 import type {DevFacultative} from '$core/utils/dev';
-import type {TaskInterval, TaskType} from '$core/handlers/task/task.type';
+import type {MultipleCronInterval, TaskInterval, TaskType} from '$core/handlers/task/task.type';
 import type {MaybePromise} from '$core/utils/type';
 
-export abstract class Task implements DevFacultative {
+export abstract class Task<T> implements DevFacultative {
 	abstract type: TaskType;
-	abstract interval: TaskInterval;
+	abstract interval: TaskInterval|MultipleCronInterval<T>[];
 	
 	isEnableInDev = false;
 
-	abstract onTick(): MaybePromise<void>;
+	abstract onTick(options?: T): MaybePromise<void>;
 
 }

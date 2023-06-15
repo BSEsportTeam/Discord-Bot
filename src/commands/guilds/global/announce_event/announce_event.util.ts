@@ -6,11 +6,11 @@ import type {MessageReference} from './announce_event.type';
 export const getActionsRow = (): [ActionRowBuilder<ButtonBuilder>] => {
 	return  [new ActionRowBuilder<ButtonBuilder>().addComponents(
 		new ButtonBuilder()
-			.setLabel(commandsConfig.annonceevent.other.buttons.valid)
+			.setLabel(commandsConfig.announceEvent.other.buttons.valid)
 			.setCustomId(buttonsIds.eventAnnouncements.confirm)
 			.setStyle(ButtonStyle.Success),
 		new ButtonBuilder()
-			.setLabel(commandsConfig.annonceevent.other.buttons.refuse)
+			.setLabel(commandsConfig.announceEvent.other.buttons.refuse)
 			.setCustomId(buttonsIds.eventAnnouncements.cancel)
 			.setStyle(ButtonStyle.Danger),
 	)];

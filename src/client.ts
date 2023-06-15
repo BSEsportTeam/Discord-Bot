@@ -5,6 +5,7 @@ import {commandLoad} from '$core/handlers/commands/command_load';
 import {logger} from '$core/utils/logger';
 import type {ButtonCollection} from '$core/handlers/buttons';
 import {loadButtons} from '$core/handlers/buttons';
+import {loadTask} from '$core/handlers/task';
 
 export class Client extends BClient {
 	commands: CommandCollection = new Collection();
@@ -34,6 +35,7 @@ export class Client extends BClient {
 		await eventLoad();
 		await commandLoad();
 		await loadButtons();
+		await loadTask();
 		logger.info('BSE Bot is ready !');
 	}
 }

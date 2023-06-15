@@ -65,6 +65,7 @@ model XpMovement {
   cause     XpMovementCause
   guildId   String
   guild     Guild           @relation(fields: [guildId], references: [id])
+  reason    String
 
   @@map("xpMovements")
 }

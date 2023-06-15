@@ -14,7 +14,7 @@ const cancel: ButtonHandler = {
 	autoDisable: true,
 	
 	async run(interaction: ButtonInteraction): Promise<Result<boolean, ButtonError>> {
-		const result = await resultify(() => interaction.reply({embeds: [successEmbed(commandsConfig.annonceevent.exec.button.cancel)]}));
+		const result = await resultify(() => interaction.reply({embeds: [successEmbed(commandsConfig.announceEvent.exec.button.cancel)]}));
 
 		if (result.ok) {
 			return ok(true);

@@ -15,7 +15,7 @@ export const loadTask = async () => {
 		const dirs = readdirSync(TASK_PATH(mainDir()));
 
 		for (const dir of dirs) {
-			const path = `${TASK_PATH(mainDir())}${sep}${dir}`;
+			const path = `${TASK_PATH(mainDir())}${sep}${dir}${sep}`;
 
 			if (!statSync(path).isDirectory()) {
 				continue;
@@ -65,6 +65,20 @@ export const loadTask = async () => {
 				setInterval(() => {
 					taskClass.onTick();
 				}, taskClass.interval);
+				loadedTask++;
+				break;
+
+			case TaskType.MULTIPLE_CRON_INTERVAL:
+				if (!Array.isArray(taskClass.interval)) {
+					logger.fatal(`don't get array for interval for task of type MultipleCronInterval in file ${filePath}`);
+				}
+
+				for (const interval of taskClass.interval) {
+					startCronJob(interval.interval, () => {
+						if (typeof interval.options !== 'undefined') taskClass.onTick(interval.options);
+						else taskClass.onTick();
+					});
+				}
 				loadedTask++;
 				break;
 

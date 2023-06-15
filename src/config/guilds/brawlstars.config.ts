@@ -9,7 +9,8 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 		enable: true
 	},
 	autoPing: {
-		roles: []
+		roles: {},
+		channel: ''
 	},
 	inviteLink: 'https://discord.gg/aWPCgqz'
 };

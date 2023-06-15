@@ -16,7 +16,7 @@ import {guildsConfig} from '$core/config/guilds';
 import {globalConfig} from '$core/config/global';
 import {Dev} from '$core/utils/dev/dev.func';
 
-const config = commandsConfig.annonceevent;
+const config = commandsConfig.announceEvent;
 
 @Dev
 export default class AnnounceEvent extends BaseCommand {

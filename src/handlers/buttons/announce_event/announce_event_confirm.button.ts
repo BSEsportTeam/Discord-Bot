@@ -120,7 +120,7 @@ export const confirm: ButtonHandler = {
 		if (fails.length === 0) {
 			const result = await resultify(() => interaction.editReply({
 				embeds: [successEmbed(msgParams(
-					commandsConfig.annonceevent.exec.button.success,
+					commandsConfig.announceEvent.exec.button.success,
 					[numberGuildSend]))]
 			}));
 
@@ -133,7 +133,7 @@ export const confirm: ButtonHandler = {
 
 		const result = await resultify(() => interaction.editReply({
 			embeds: [errorEmbed(msgParams(
-				commandsConfig.annonceevent.exec.button.failed,
+				commandsConfig.announceEvent.exec.button.failed,
 				[fails.join('\n- ')]))]
 		}));
 
