@@ -12,5 +12,9 @@ export const messageConfig = {
 			title: 'Non authorisé',
 			description: 'seul l\'autour de la commande peux utilisé ce bouton !'
 		}
+	},
+	xp: {
+		levelUp: '**Félicitations** {mention}, tu viens de passer au niveau {level} !',
+		roleUp: '**Félicitations** {pseudo}, tu viens d\'optenir le role **{role}** ! _**{message}**_'
 	}
 } satisfies Record<string, BaseMessage>;

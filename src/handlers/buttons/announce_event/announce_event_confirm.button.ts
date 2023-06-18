@@ -9,11 +9,11 @@ import {guildsConfig} from '$core/config/guilds';
 import {devConfig} from '$core/config/guilds/_dev/dev.config';
 import {globalConfig} from '$core/config/global';
 import {logger} from '$core/utils/logger';
-import {isValidChannel} from '$core/handlers/buttons/announce_event/annouce_event.util';
 import {msgParams} from '$core/utils/function/string';
 import {commandsConfig} from '$core/config/message/command';
 import {interactionReplyError} from '$core/handlers/buttons';
 import {errorEmbed, successEmbed} from '$core/utils/discord/embet';
+import {getMessageChannel} from '$core/utils/discord/channel';
 
 export const confirm: ButtonHandler = {
 
@@ -32,57 +32,20 @@ export const confirm: ButtonHandler = {
 				continue;
 			}
 
-			const guildResult = await resultify(() => interaction.client.guilds.fetch(guildConfig.guildId));
-
-			if (!guildResult.ok) {
-				if (numberGuildSend === 0) {
-					return error(new ButtonError(
-						`failed to fetch guild ${guildConfig.name} (${guildConfig.guildId}), error : ${guildResult.error.message}`,
-						interaction,
-						guildResult.error));
-				}
-
-				fails.push(guildConfig.name);
-				logger.warning(`[${confirm.name}] failed to fetch guild ${guildConfig.name} (${guildConfig.guildId}), error : ${guildResult.error.message}`);
-				continue;
-			}
-
-			const guild = guildResult.value;
-
-			const channelResult = await resultify(() => guild.channels.fetch(guildConfig.eventAnnouncements.channelId));
+			const channelResult = await getMessageChannel(guildConfig.guildId, guildConfig.eventAnnouncements.channelId, 'announce event send');
 
 			if (!channelResult.ok) {
 				if (numberGuildSend === 0) {
 					return error(new ButtonError(
-						`failed to fetch channel for guild ${guildConfig.name} (${guildConfig.guildId}),` +
-						`channelId : ${guildConfig.eventAnnouncements.channelId}, error : ${channelResult.error.message}`,
-						interaction,
-						channelResult.error));
+						channelResult.error.message, interaction));
 				}
 
 				fails.push(guildConfig.name);
-				logger.warning(`[${confirm.name}] failed to fetch channel for guild ${guildConfig.name} (${guildConfig.guildId}),` +
-						`channelId : ${guildConfig.eventAnnouncements.channelId}, error : ${channelResult.error.message}`);
+				logger.warning(`[${confirm.name}] ${channelResult.error.message}`);
 				continue;
 			}
 
 			const channel = channelResult.value;
-
-			if (channel === null || !isValidChannel(channel)) {
-				if (numberGuildSend === 0) {
-					return error(new ButtonError(
-						`invalid channel in config for guild ${guildConfig.name} (${guildConfig.guildId}), ` +
-						`channel id : ${guildConfig.eventAnnouncements.channelId}`,
-						interaction
-					));
-				}
-
-				fails.push(guildConfig.name);
-				logger.warning(`[${confirm.name}] invalid channel in config for guild ${guildConfig.name} (${guildConfig.guildId}), ` +
-					`channel id : ${guildConfig.eventAnnouncements.channelId}`);
-				continue;
-			}
-
 
 			const messageResult = await resultify(() => channel.send({
 				content: interaction.message.content.replaceAll(isProd ?
@@ -145,5 +108,3 @@ export const confirm: ButtonHandler = {
 
 	}
 };
-
- 

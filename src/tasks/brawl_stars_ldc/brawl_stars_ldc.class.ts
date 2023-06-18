@@ -2,6 +2,15 @@ import {Task, TaskType} from '$core/handlers/task';
 import {Dev} from '$core/utils/dev';
 import {BrawlStarsAnnouncementType} from '$core/tasks/brawl_stars_ldc/brawl_stars_ldc.type';
 import {getCurrentAnnouncementType} from '$core/tasks/brawl_stars_ldc/brawl_stars_ldc.util';
+import {tasksConfig} from '$core/config/message/task/task.config';
+import {EmbedBuilder} from 'discord.js';
+import {colors} from '$core/config/global';
+import {guildsConfig} from '$core/config/guilds';
+import {isDev} from '$core/config/env';
+import {devConfig} from '$core/config/guilds/_dev/dev.config';
+import {logger} from '$core/utils/logger';
+import {resultify} from 'rustic-error';
+import {getMessageChannel} from '$core/utils/discord/channel';
 
 @Dev
 export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
@@ -49,7 +58,35 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 			return;
 		}
 
-		
+		const guildConfig = isDev ? devConfig.guilds.guildSection : guildsConfig.brawlStars;
 
+		const channelResult = await getMessageChannel(guildConfig.guildId, guildConfig.autoPing.channel, 'brawl stars ldc ping');
+
+		if (!channelResult.ok) {
+			logger.error(channelResult.error.message);
+			return;
+		}
+
+		const channel = channelResult.value;
+
+		const options = type === BrawlStarsAnnouncementType.START_LDC ? tasksConfig.brawlStarsLdc.startLdc :
+			type === BrawlStarsAnnouncementType.END_LDC ? tasksConfig.brawlStarsLdc.endLdc :
+				tasksConfig.brawlStarsLdc.jdc;
+
+		const embed = new EmbedBuilder()
+			.setDescription(options.description)
+			.setImage(options.imageUrl)
+			.setColor(colors.bseColor2);
+
+		const roles = Object.values(guildConfig.autoPing.roles);
+
+		const result = await resultify(() => channel.send({
+			content: '<@&' + roles.join('> <@&') + '>',
+			embeds: [embed]
+		}));
+
+		if (!result.ok) {
+			logger.error(`failed to send message for brawl stars ldc, error : ${result.error.message}`);
+		}
 	}
 }

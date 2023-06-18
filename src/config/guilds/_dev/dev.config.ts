@@ -10,7 +10,15 @@ const devGuilds = {
 			roleId: '1096122857282621468',
 			enable: true
 		},
-		inviteLink: 'https://discord.gg/s5qWJku7HG'
+		inviteLink: 'https://discord.gg/s5qWJku7HG',
+		xp: {
+			enable: true,
+			levelUpRoles: {},
+			boosterRole: '',
+			xpBoostRole: '',
+			disablesChannels: [],
+			levelUpChannel: ''
+		}
 	},
 	guildSection: {
 		name: 'global',
@@ -21,9 +29,20 @@ const devGuilds = {
 			enable: true
 		},
 		inviteLink: 'https://discord.gg/wtFaNTsesA',
+		xp: {
+			enable: true,
+			levelUpRoles: {},
+			boosterRole: '',
+			xpBoostRole: '',
+			disablesChannels: [],
+			levelUpChannel: ''
+		},
 		autoPing: {
-			roles: {},
-			channel: ''
+			roles: {
+				pro: '1096123374306070622',
+				staff: '1096123374306070628'
+			},
+			channel: '1096123376965263394'
 		}
 	}
 } satisfies Record<'guildMain'|'guildSection', Overwrite<Partial<BrawlStarsGuild>, {name: string}>>;

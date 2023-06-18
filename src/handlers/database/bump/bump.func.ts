@@ -4,8 +4,9 @@ import {error, ok} from 'rustic-error';
 import {anyToError, DatabaseError} from '$core/utils/error';
 import {prisma} from '$core/handlers/database/prisma';
 import {getToday} from '$core/handlers/database/bump/bump.util';
+import type {MaybeOmit} from '$core/utils/type';
 
-export const createBump = async (data: Bump): Promise<Result<Bump, DatabaseError>> => {
+export const createBump = async (data: MaybeOmit<Bump, 'date'>): Promise<Result<Bump, DatabaseError>> => {
 	try {
 		const result = await prisma.bump.create({
 			data: data,

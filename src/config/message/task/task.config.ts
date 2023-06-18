@@ -1,6 +1,6 @@
 import type {BaseMessage} from '$core/config/message';
 
-export const tasks = {
+export const tasksConfig = {
 	brawlStarsLdc: {
 		startLdc: {
 			description: 'Bonjour les lions :lion_face:\n' +

@@ -12,5 +12,13 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 		roles: {},
 		channel: ''
 	},
-	inviteLink: 'https://discord.gg/aWPCgqz'
+	inviteLink: 'https://discord.gg/aWPCgqz',
+	xp: {
+		enable: true,
+		levelUpRoles: {},
+		boosterRole: '',
+		xpBoostRole: '',
+		disablesChannels: [],
+		levelUpChannel: ''
+	}
 };

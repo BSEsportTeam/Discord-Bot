@@ -35,8 +35,7 @@ export const commandRun = async (interaction: ChatInputCommandInteraction) => {
 		const commandName = interaction.commandName +
 			(interaction.options.getSubcommandGroup() !== null ? '.' + interaction.options.getSubcommandGroup() : '' ) +
 			(interaction.options.getSubcommand(false) !== null ? '.' + interaction.options.getSubcommand(false) : '');
-		logger.error(`Error with command ${effect.bold+commandName.toLocaleUpperCase()+effectReset.bold} : ${forground256Color(202)}${result.error.message}`);
-		logger.debugValues(result.error.debug());
+		logger.error(`Error with command ${effect.bold+commandName.toLocaleUpperCase()+effectReset.bold} : ${forground256Color(202)}${result.error.message}`, result.error.debug());
 
 		await replyError(interaction, command.preReply.ephemeral, command.preReply.enable);
 	}

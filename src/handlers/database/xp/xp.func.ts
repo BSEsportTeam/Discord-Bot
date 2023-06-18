@@ -161,7 +161,7 @@ export const getGuildPosition = async (userId: Snowflake, guildId: Snowflake): P
 };
 
 
-export const addXp = async (userId: Snowflake, guildId: Snowflake, xpAmount: number): Promise<Result<number, DatabaseError | Error>> => {
+export const addXpToMember = async (userId: Snowflake, guildId: Snowflake, xpAmount: number): Promise<Result<number, DatabaseError | Error>> => {
 	try {
 		const result = await prisma.guildMember.update({
 			where: {
