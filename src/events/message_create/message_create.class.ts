@@ -2,17 +2,20 @@ import {Event} from '$core/handlers/events';
 import {Dev} from '$core/utils/dev';
 import type {Message} from 'discord.js';
 import {cooldownCollection} from './message_create.util';
-import {getGuildWithId} from '$core/config/guilds';
+import {getDevGuildWithId, getGuildWithId} from '$core/config/guilds';
 import {
 	addXp,
 	BOOSTER_MULTIPLIER,
 	COOLDOWN_IN_SECONDS,
+	LONG_MESSAGE_MIN_LENGTH,
+	LONG_MESSAGE_MULTIPLIER,
 	MAX_XP_PER_MESSAGE,
 	MIN_XP_PER_MESSAGE,
 	XP_BOOST_MULTIPLIER
 } from '$core/utils/xp';
 import {logger} from '$core/utils/logger';
 import {isDebuggableError} from '$core/utils/error';
+import {isDev} from '$core/config/env';
 
 @Dev
 export default class MessageCreate extends Event<'messageCreate'> {
@@ -32,11 +35,13 @@ export default class MessageCreate extends Event<'messageCreate'> {
 			return;
 		}
 
+
 		//check xp
-		const xpConfig = getGuildWithId(message.guildId);
-		if (xpConfig === null || xpConfig.xp.enable) {
+		const xpConfig = isDev ? getDevGuildWithId(message.guildId) : getGuildWithId(message.guildId);
+		if (xpConfig === null || !xpConfig.xp.enable) {
 			return;
 		}
+
 
 		if (xpConfig.xp.disablesChannels.includes(message.channelId)) {
 			return;
@@ -44,7 +49,7 @@ export default class MessageCreate extends Event<'messageCreate'> {
 
 		const cooldown = cooldownCollection.get(`${message.guildId}.${message.author.id}`);
 
-		if (typeof cooldown === 'undefined' || cooldown > message.createdTimestamp) {
+		if (typeof cooldown !== 'undefined' && cooldown > message.createdTimestamp) {
 			return;
 		}
 
@@ -55,6 +60,10 @@ export default class MessageCreate extends Event<'messageCreate'> {
 
 		} else if (message.member.roles.cache.has(xpConfig.xp.boosterRole)) {
 			xpCount *= BOOSTER_MULTIPLIER;
+		}
+
+		if (message.content.length >= LONG_MESSAGE_MIN_LENGTH) {
+			xpCount *= LONG_MESSAGE_MULTIPLIER;
 		}
 
 		const result = await addXp(message.member.id, message.guildId, xpCount);

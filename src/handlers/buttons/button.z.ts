@@ -7,5 +7,6 @@ export const ButtonHandlerSchema = z.object({
 	guildOnly: z.boolean().default(true),
 	autoDisable: z.boolean().default(false),
 	preReply: z.boolean().default(false),
+	ephemeral: z.boolean().default(false),
 	run: z.function().args(z.any())
 });

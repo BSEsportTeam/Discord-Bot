@@ -44,7 +44,7 @@ export const handleButton = async (interaction: ButtonInteraction) => {
 	}
 
 	if (handler.autoDisable) {
-		await disableButtons(interaction);
+		await disableButtons(interaction.message);
 	}
 
 	const result = await handler.run(interaction);

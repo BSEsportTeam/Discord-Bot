@@ -18,7 +18,9 @@ export const builder = new SlashCommandBuilder()
 		.addIntegerOption(numberOption => numberOption
 			.setName(config.subcmds.add.options.xp.name)
 			.setDescription(config.subcmds.add.options.xp.description)
-			.setRequired(true))
+			.setRequired(true)
+			.setMinValue(1)
+			.setMaxValue(100_000_000))
 		.addStringOption(stringOption => stringOption
 			.setName(config.subcmds.add.options.reason.name)
 			.setDescription(config.subcmds.add.options.reason.description)
@@ -33,7 +35,9 @@ export const builder = new SlashCommandBuilder()
 		.addIntegerOption(numberOption => numberOption
 			.setName(config.subcmds.remove.options.xp.name)
 			.setDescription(config.subcmds.remove.options.xp.description)
-			.setRequired(true))
+			.setRequired(true)
+			.setMinValue(1)
+			.setMaxValue(100_000_000))
 		.addStringOption(stringOption => stringOption
 			.setName(config.subcmds.remove.options.reason.name)
 			.setDescription(config.subcmds.remove.options.reason.description)

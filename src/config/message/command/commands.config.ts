@@ -70,11 +70,42 @@ export const commandsConfig = {
 		},
 		exec: {
 			add: {
-
+				succes: {
+					title: 'Ajout d\'experience',
+					description: '**{xp} xp** ont été ajoutés à {user} !\n' +
+						'il est maintenant **niveau {level}** avec **{xp} xp** !',
+					reason: '\nPour la raison `{reason}`'
+				}
 			},
 			remove: {
-
+				succes: {
+					title: 'Retrait d\'experience',
+					description: '**{xp} xp** ont été retirés à {user} !\n' +
+						'il est maintenant **niveau {level}** avec **{xp} xp** !',
+					reason: '\nPour la raison `{reason}`'
+				}
 			}
+		}
+	},
+	dropXp: {
+		name: 'dropxp',
+		description: 'Envoyez un drop d\'xperience',
+		options: {
+			amount: {
+				name: 'xp',
+				description: 'Combien d\'experience voulez vous droper ?'
+			}
+		},
+		exec: {
+			drop: {
+				title: 'Oh un drop ? :eyes: Soyez le premier à le récuperer !',
+				description: 'Gagnez **{xp} xp** en cliquant sur le bouton ci-dessous.'
+			},
+			success: 'Le drop à été envoyer avec succès !',
+			claimed: 'Bravo {tag} ! Tu viens de gagner **{xp} xp** !',
+			timeout: 'Oh dommage, personne à récupérer le drop !',
+			noAuthor: 'Vous pouvez pas récupérer votre propre drop !',
+			button: 'Récupérer !'
 		}
 	}
 } satisfies Commands;

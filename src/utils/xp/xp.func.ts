@@ -9,12 +9,13 @@ import {createXpMovement} from '$core/handlers/database/xp_movement/xp_movement.
 import {logger} from '$core/utils/logger';
 import {getGuildMember} from '$core/utils/discord/member';
 import type {LevelUpRoleInfosEvolutionary} from '$core/config/guilds';
-import {getGuildWithId, LevelUpRoleType} from '$core/config/guilds';
+import {getDevGuildWithId, getGuildWithId, LevelUpRoleType} from '$core/config/guilds';
 import {client} from '$core/index';
 import {getMessageChannel} from '$core/utils/discord/channel';
 import {msgParams} from '$core/utils/function/string';
 import {messageConfig} from '$core/config/message';
 import {userMention} from 'discord.js';
+import {isDev} from '$core/config/env';
 
 const checkXpRoles = async (userId: Snowflake, guildId: Snowflake, oldLevel: number, newLevel: number) => {
 
@@ -27,7 +28,7 @@ const checkXpRoles = async (userId: Snowflake, guildId: Snowflake, oldLevel: num
 
 	const member = memberResult.value;
 
-	const config = getGuildWithId(guildId);
+	const config = isDev ? getDevGuildWithId(guildId) : getGuildWithId(guildId);
 
 	if (config === null) {
 		logger.error(`failed to find config for guild ${guildId} for send xp role message`);
@@ -60,7 +61,8 @@ const checkXpRoles = async (userId: Snowflake, guildId: Snowflake, oldLevel: num
 		rolesToAdd.push(newRole.id);
 
 		if (typeof lastRole !== 'undefined') {
-			const removeResult = await resultify(() => member.roles.remove(lastRole || '', 'xp system'));
+			const id = lastRole;
+			const removeResult = await resultify(() => member.roles.remove(id, 'xp system'));
 
 			if (!removeResult.ok) {
 				logger.error(`failed to remove roles to member ${userId} in guild ${guildId} for xp system, error : ${removeResult.error.message}`);
@@ -91,16 +93,17 @@ const checkXpRoles = async (userId: Snowflake, guildId: Snowflake, oldLevel: num
 		}
 
 	}
-	const addResult = await resultify(() => member.roles.add(rolesToAdd, 'xp system'));
+	if (rolesToAdd.length > 0 ) {
+		const addResult = await resultify(() => member.roles.add(rolesToAdd[0], 'xp system'));
 
-	if (!addResult.ok) {
-		logger.error(`failed to add roles to member ${userId} in guild ${guildId} for xp system, error : ${addResult.error.message}`);
+		if (!addResult.ok) {
+			logger.error(`failed to add roles to member ${userId} in guild ${guildId} for xp system, error : ${addResult.error.message}`);
+		}
 	}
-
 };
 
 const sendLevelUpMessage = async (userId: Snowflake, guildId: Snowflake, level: number) => {
-	const config = getGuildWithId(guildId);
+	const config = isDev ? getDevGuildWithId(guildId) : getGuildWithId(guildId);
 
 	if (config === null) {
 		logger.error(`failed to find config for guild ${guildId} for send level up message`);
@@ -154,7 +157,8 @@ export const addXp = async (
 
 	if (cause !== null) {
 		const movResult = await createXpMovement({
-			xp: amount,
+			xpAmount: amount,
+			finalXp: result.value,
 			guildId,
 			forUserId: userId,
 			byUserId: causeBy,

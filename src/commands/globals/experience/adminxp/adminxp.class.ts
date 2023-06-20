@@ -9,7 +9,6 @@ import {AdminXpRemove} from '$core/commands/globals/experience/adminxp/remove/re
 export default class AdminXp extends BaseCommand {
 	builder = builder.toJSON();
 	guild: GuildAlias = 'all';
-
 	getSubCommands(): SubCommandOptions {
 		return {
 			add: new AdminXpAdd(),

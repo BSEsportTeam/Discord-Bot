@@ -1,4 +1,4 @@
-import type {ButtonInteraction} from 'discord.js';
+import type {ButtonInteraction, Message} from 'discord.js';
 import {ActionRowBuilder, ButtonBuilder, ComponentType, EmbedBuilder} from 'discord.js';
 import {colors} from '$core/config/global/global.config';
 import {messageConfig} from '$core/config/message';
@@ -25,11 +25,11 @@ export const authorOnly = async (interaction: ButtonInteraction): Promise<boolea
 
 	return false;
 };
-export const disableButtons = async (interaction: ButtonInteraction) => {
+export const disableButtons = async (message: Message) => {
 	try {
 		const newComponents = [];
 
-		for (const componentRow of interaction.message.components) {
+		for (const componentRow of message.components) {
 
 			if (componentRow.type !== ComponentType.ActionRow) {
 				newComponents.push(componentRow);
@@ -50,7 +50,7 @@ export const disableButtons = async (interaction: ButtonInteraction) => {
 			newComponents.push(newActionRow);
 		}
 
-		await interaction.message.edit({
+		await message.edit({
 			components: newComponents
 		});
 	} catch (e) {

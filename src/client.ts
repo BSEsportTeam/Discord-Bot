@@ -16,7 +16,9 @@ export class Client extends BClient {
 		super({
 			intents: [
 				IntentsBitField.Flags.GuildScheduledEvents,
-				IntentsBitField.Flags.Guilds
+				IntentsBitField.Flags.Guilds,
+				IntentsBitField.Flags.GuildMessages,
+				IntentsBitField.Flags.MessageContent
 			]
 		});
 

@@ -183,7 +183,7 @@ export const addXpToMember = async (userId: Snowflake, guildId: Snowflake, xpAmo
 		return ok(result.xp);
 	} catch (e) {
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {
-			if (e.code === 'P2001') {
+			if (e.code === 'P2001' || e.code === 'P2025') {
 				return createGuildMember(userId, guildId, xpAmount);
 			}
 		}

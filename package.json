@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start prod": "node -r @swc-node/register -r tsconfig-paths/register ./src/index.ts",
-    "start dev": "ts-node src/index.ts dev",
-    "test": "vitest --ui"
+    "start:prod": "node -r @swc-node/register -r tsconfig-paths/register ./src/index.ts",
+    "start:dev": "ts-node src/index.ts dev",
+    "test": "vitest --ui",
+    "db:migrate": "prisma migrate dev",
+    "db:gen": "prisma generate"
   },
   "keywords": [],
   "author": "Arcoz0308",

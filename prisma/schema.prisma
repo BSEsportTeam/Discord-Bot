@@ -58,7 +58,8 @@ model Bump {
 
 model XpMovement {
   id        Int             @id @default(autoincrement())
-  xp        Int
+  xpAmount  Int
+  finalXp   Int
   byUserId  String
   forUserId String
   date      DateTime        @default(now())

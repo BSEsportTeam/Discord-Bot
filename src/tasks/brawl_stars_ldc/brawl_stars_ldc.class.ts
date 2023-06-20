@@ -3,14 +3,13 @@ import {Dev} from '$core/utils/dev';
 import {BrawlStarsAnnouncementType} from '$core/tasks/brawl_stars_ldc/brawl_stars_ldc.type';
 import {getCurrentAnnouncementType} from '$core/tasks/brawl_stars_ldc/brawl_stars_ldc.util';
 import {tasksConfig} from '$core/config/message/task/task.config';
-import {EmbedBuilder} from 'discord.js';
-import {colors} from '$core/config/global';
 import {guildsConfig} from '$core/config/guilds';
 import {isDev} from '$core/config/env';
 import {devConfig} from '$core/config/guilds/_dev/dev.config';
 import {logger} from '$core/utils/logger';
 import {resultify} from 'rustic-error';
 import {getMessageChannel} from '$core/utils/discord/channel';
+import {simpleEmbed} from '$core/utils/discord/embet';
 
 @Dev
 export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
@@ -73,10 +72,8 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 			type === BrawlStarsAnnouncementType.END_LDC ? tasksConfig.brawlStarsLdc.endLdc :
 				tasksConfig.brawlStarsLdc.jdc;
 
-		const embed = new EmbedBuilder()
-			.setDescription(options.description)
-			.setImage(options.imageUrl)
-			.setColor(colors.bseColor2);
+
+		const embed = simpleEmbed(options.description).setImage(options.imageUrl);
 
 		const roles = Object.values(guildConfig.autoPing.roles);
 

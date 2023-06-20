@@ -7,5 +7,8 @@ export abstract class SubCommand {
 		enable: false,
 		ephemeral: false
 	};
+	abstract name: string
+	groupName?: string;
+
 	abstract run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>>;
 }

@@ -12,3 +12,7 @@ export const errorEmbed = (description: string, title?: string): EmbedBuilder =>
 export const successEmbed = (description: string, title?: string): EmbedBuilder => {
 	return baseEmbed(description, title).setColor(colors.success);
 };
+
+export const simpleEmbed = (description: string, title?: string): EmbedBuilder => {
+	return baseEmbed(description, title).setColor(colors.bseColor2);
+};

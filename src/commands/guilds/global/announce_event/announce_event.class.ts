@@ -14,11 +14,10 @@ import {getActionsRow, getMessageReference} from './announce_event.util';
 import type {GuildAlias} from '$core/handlers/commands';
 import {guildsConfig} from '$core/config/guilds';
 import {globalConfig} from '$core/config/global';
-import {Dev} from '$core/utils/dev/dev.func';
 
 const config = commandsConfig.announceEvent;
 
-@Dev
+
 export default class AnnounceEvent extends BaseCommand {
 	guild: GuildAlias = 'global';
 	builder = builder.toJSON();
@@ -76,14 +75,18 @@ export default class AnnounceEvent extends BaseCommand {
 		}
 		const guildConfig = isProd ? guildsConfig.global : devConfig.guilds.guildSection;
 
-		await interaction.reply({
+		const result = await resultify(() => interaction.reply({
 			content: message.content.replace(globalConfig.eventAnnouncementPingReplacer, `<@&${guildConfig.eventAnnouncements.roleId}>`),
 			components: getActionsRow(),
 			allowedMentions: {
 				parse: []
 			},
 			files: message.attachments.toJSON()
-		});
+		}));
+
+		if (!result.ok) {
+			return error(new CommandError(`failed to reply to interaction, error : ${result.error.message}`, interaction, result.error));
+		}
 
 		return ok(true);
 	}

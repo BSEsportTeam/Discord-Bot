@@ -60,7 +60,7 @@ export const commandLoad = async () => {
 
 					if (commandClass.guild === 'all') {
 
-						globalCommands.push(commandClass);
+						globalCommands.push(commandClass.builder);
 
 					} else {
 
@@ -77,19 +77,19 @@ export const commandLoad = async () => {
 					} else if (isSubCommands(commandClass)) {
 						const subCommands = commandClass.getSubCommands();
 						
-						for (const [name, subCommandOrGroup] of Object.entries(subCommands)) {
+						for (const subCommandOrGroup of Object.values(subCommands)) {
 							if (subCommandOrGroup instanceof SubCommand) {
 								
-								client.commands.set(serializeCommandName(commandClass.builder.name, commandClass.guild, name), subCommandOrGroup);
+								client.commands.set(serializeCommandName(commandClass.builder.name, commandClass.guild, subCommandOrGroup.name), subCommandOrGroup);
 								continue;
 							}
 							
-							for (const [subName, subCommand] of Object.entries(subCommandOrGroup)) {
+							for (const subCommand of Object.values(subCommandOrGroup)) {
 								client.commands.set(serializeCommandName(
 									commandClass.builder.name,
 									commandClass.guild,
-									subName,
-									name
+									subCommand.name,
+									subCommand.groupName
 								), subCommand);
 							}
 						}

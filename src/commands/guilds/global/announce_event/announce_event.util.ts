@@ -3,8 +3,8 @@ import {buttonsIds} from '$core/handlers/buttons/button.const';
 import {commandsConfig} from '$core/config/message/command/commands.config';
 import type {MessageReference} from './announce_event.type';
 
-export const getActionsRow = (): [ActionRowBuilder<ButtonBuilder>] => {
-	return  [new ActionRowBuilder<ButtonBuilder>().addComponents(
+export const getActionsRow = (): [ActionRowBuilder<ButtonBuilder>] =>
+	[new ActionRowBuilder<ButtonBuilder>().addComponents(
 		new ButtonBuilder()
 			.setLabel(commandsConfig.announceEvent.other.buttons.valid)
 			.setCustomId(buttonsIds.eventAnnouncements.confirm)
@@ -14,7 +14,7 @@ export const getActionsRow = (): [ActionRowBuilder<ButtonBuilder>] => {
 			.setCustomId(buttonsIds.eventAnnouncements.cancel)
 			.setStyle(ButtonStyle.Danger),
 	)];
-};
+
 
 export const getMessageReference = (link: string): MessageReference|null => {
 	if (link.includes('/') && new RegExp('https:\\/\\/([a-z]*\\.|)discord\\.com\\/channels.*[0-9]+\\/[0-9]+\\/[0-9]+').test(link)) {
