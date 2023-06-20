@@ -24,6 +24,7 @@ export default class AnnounceEvent extends BaseCommand {
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
 		if (!interaction.inGuild() || interaction.guild === null || interaction.channel === null) return ok(false);
+		const guild = interaction.guild;
 
 		const link = interaction.options.getString(config.options.link.name);
 		if (!link) return error(new CommandError('No value in option link', interaction));
@@ -42,7 +43,7 @@ export default class AnnounceEvent extends BaseCommand {
 
 		const channelId = typeof messageReference.channelId !== 'undefined' ? messageReference.channelId : interaction.channelId;
 
-		const channelResult = await resultify(() => interaction.guild!.channels.fetch(channelId));
+		const channelResult = await resultify(() => guild.channels.fetch(channelId));
 		if (!channelResult.ok) return error(new CommandError('Failed to fetch channel, DJS error : ' + channelResult.error.message, interaction));
 
 		const channel = channelResult.value;
