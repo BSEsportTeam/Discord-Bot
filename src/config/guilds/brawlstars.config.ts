@@ -9,7 +9,16 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 		enable: true
 	},
 	autoPing: {
-		roles: []
+		roles: {},
+		channel: ''
 	},
-	inviteLink: 'https://discord.gg/aWPCgqz'
+	inviteLink: 'https://discord.gg/aWPCgqz',
+	xp: {
+		enable: true,
+		levelUpRoles: {},
+		boosterRole: '',
+		xpBoostRole: '',
+		disablesChannels: [],
+		levelUpChannel: ''
+	}
 };

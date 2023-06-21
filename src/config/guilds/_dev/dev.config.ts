@@ -1,9 +1,6 @@
-import type {BrawlStarsGuild} from '$core/config/guilds/guild.type';
-import type {Overwrite} from '$core/utils/typing/typing.type';
-
-type CustomName = {
-	name: string;
-}
+import type {BaseGuild, BrawlStarsGuild} from '$core/config/guilds/guild.type';
+import {LevelUpRoleType} from '$core/config/guilds/guild.type';
+import type {Overwrite} from '$core/utils/type/type';
 
 const devGuilds = {
 	guildMain: {
@@ -14,7 +11,17 @@ const devGuilds = {
 			roleId: '1096122857282621468',
 			enable: true
 		},
-		inviteLink: 'https://discord.gg/s5qWJku7HG'
+		inviteLink: 'https://discord.gg/s5qWJku7HG',
+		xp: {
+			enable: true,
+			levelUpRoles: {
+
+			},
+			boosterRole: '',
+			xpBoostRole: '1096122857244852269',
+			disablesChannels: [],
+			levelUpChannel: '1096122869626437705'
+		}
 	},
 	guildSection: {
 		name: 'global',
@@ -25,11 +32,41 @@ const devGuilds = {
 			enable: true
 		},
 		inviteLink: 'https://discord.gg/wtFaNTsesA',
+		xp: {
+			enable: true,
+			levelUpRoles: {
+				'1': {
+					name: 'mon xp',
+					id: '1096123374129905797',
+					type: LevelUpRoleType.CUMULATIVE
+				},
+				'2': {
+					name: 'lionceau',
+					id: '1096123374092161027',
+					type: LevelUpRoleType.EVOLUTIONARY,
+					message: 'Tu découvres la vie de lion, il est maintenant temps de grandir ! 👀 '
+				},
+				'3': {
+					name: 'apprenti lion',
+					id: '1096123374092161028',
+					type: LevelUpRoleType.EVOLUTIONARY,
+					message: 'Il faut continuer ainsi, c\'est que le début de ton aventure de lion !'
+				}
+			},
+			boosterRole: '',
+			xpBoostRole: '1096123374129905796',
+			disablesChannels: [],
+			levelUpChannel: '1096123377984475188'
+		},
 		autoPing: {
-			roles: []
+			roles: {
+				pro: '1096123374306070622',
+				staff: '1096123374306070628'
+			},
+			channel: '1096123376965263394'
 		}
 	}
-} satisfies Record<'guildMain'|'guildSection', Overwrite<Partial<BrawlStarsGuild>, {name: string}>>;
+} satisfies Record<'guildMain'|'guildSection', Overwrite<BrawlStarsGuild, {name: string}>|Overwrite<BaseGuild, {name: string}>>;
 
 export const devConfig = {
 	guilds: devGuilds

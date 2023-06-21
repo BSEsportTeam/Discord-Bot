@@ -2,7 +2,7 @@ import {Event} from '$core/handlers/events/event.class';
 import type {Interaction} from 'discord.js';
 import {ApplicationCommandType, InteractionType} from 'discord.js';
 import {commandRun} from '$core/handlers/commands/command_run';
-import {handleButton} from '$core/handlers/buttons/buttons';
+import {handleButton} from '$core/handlers/buttons';
 
 export default class InteractionCreate extends Event<'interactionCreate'> {
 	

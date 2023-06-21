@@ -1,1 +1,1 @@
-export {addMessageParams} from './string.util';
+export {msgParams} from './string.util';

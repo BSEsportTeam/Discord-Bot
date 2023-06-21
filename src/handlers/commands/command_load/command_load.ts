@@ -1,6 +1,6 @@
 import {client, mainDir} from '$core/index';
 import {logger} from '$core/utils/logger';
-import {BaseCommand} from '$core/commands/base_command.class';
+import {BaseCommand} from '$core/handlers/commands/base_command.class';
 import {COMMANDS_PATHS} from '$core/handlers/commands/command_load/command_load.const';
 import {existsSync, readdirSync, statSync} from 'fs';
 import {sep} from 'path';
@@ -9,9 +9,9 @@ import {isDev} from '$core/config/env';
 import {loadCommands} from '$core/handlers/commands/command_load/command_load.util';
 import type {CommandBuilt, GuildsCommandsBuild} from '$core/handlers/commands/command_load/command_load.type';
 import {Collection} from 'discord.js';
-import {isNormalCommand, isSubCommands} from '$core/commands/command.util';
-import {serializeCommandName} from '$core/handlers/commands/command.util';
-import {SubCommand} from '$core/commands/sub_command.class';
+import {isNormalCommand, isSubCommands, serializeCommandName} from '$core/handlers/commands/command.util';
+import {SubCommand} from '$core/handlers/commands/sub_command.class';
+import {anyToError} from '$core/utils/error';
 
 export const commandLoad = async () => {
 	try {
@@ -60,7 +60,7 @@ export const commandLoad = async () => {
 
 					if (commandClass.guild === 'all') {
 
-						globalCommands.push(commandClass);
+						globalCommands.push(commandClass.builder);
 
 					} else {
 
@@ -77,19 +77,19 @@ export const commandLoad = async () => {
 					} else if (isSubCommands(commandClass)) {
 						const subCommands = commandClass.getSubCommands();
 						
-						for (const [name, subCommandOrGroup] of Object.entries(subCommands)) {
+						for (const subCommandOrGroup of Object.values(subCommands)) {
 							if (subCommandOrGroup instanceof SubCommand) {
 								
-								client.commands.set(serializeCommandName(commandClass.builder.name, commandClass.guild, name), subCommandOrGroup);
+								client.commands.set(serializeCommandName(commandClass.builder.name, commandClass.guild, subCommandOrGroup.name), subCommandOrGroup);
 								continue;
 							}
 							
-							for (const [subName, subCommand] of Object.entries(subCommandOrGroup)) {
+							for (const subCommand of Object.values(subCommandOrGroup)) {
 								client.commands.set(serializeCommandName(
 									commandClass.builder.name,
 									commandClass.guild,
-									subName,
-									name
+									subCommand.name,
+									subCommand.groupName
 								), subCommand);
 							}
 						}
@@ -102,6 +102,6 @@ export const commandLoad = async () => {
 
 		await loadCommands(globalCommands, guildsCommands);
 	} catch (e) {
-		logger.fatal('failed to load commands, error : ' + (e instanceof Error ? e.message : `${e}`));
+		logger.fatal(`failed to load commands, error : ${anyToError(e).message}`);
 	}
 };

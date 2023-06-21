@@ -1,19 +1,20 @@
 import {existsSync, readdirSync, statSync} from 'fs';
-import {EVENTS_PATHS} from '$core/handlers/events/event.const';
+import {EVENTS_PATH} from '$core/handlers/events/event.const';
 import {client, mainDir} from '$core/index';
 import {sep} from 'path';
 import {logger} from '$core/utils/logger';
 import {Event} from '$core/handlers/events/event.class';
 import {isDev} from '$core/config/env';
+import {anyToError} from '$core/utils/error';
 
 export const eventLoad = async () => {
 	try {
 
 		let loadedEvents = 0;
-		const dirs = readdirSync(EVENTS_PATHS(mainDir()));
+		const dirs = readdirSync(EVENTS_PATH(mainDir()));
 
 		for (const dir of dirs) {
-			const path = `${EVENTS_PATHS(mainDir())}${sep}${dir}${sep}`;
+			const path = `${EVENTS_PATH(mainDir())}${sep}${dir}${sep}`;
 
 			if (!statSync(path).isDirectory()) {
 				continue;
@@ -22,7 +23,7 @@ export const eventLoad = async () => {
 			const filePath = path + `${dir}.class.ts`;
 
 			if (!existsSync(filePath)) {
-				logger.fatal(`class file ${filePath} not found for dir ${dir}`);
+				logger.fatal(`class file ${filePath} event not found for dir ${dir}`);
 			}
 
 			const eventImport = await import(filePath);
@@ -43,15 +44,15 @@ export const eventLoad = async () => {
 			}
 
 			client.on(eventClass.name, (...args) => {
-				eventClass.run(args);
+				eventClass.run(...args);
 			});
 
-			loadedEvents+=1;
+			loadedEvents++;
 
 		}
 
 		logger.info(`loaded ${loadedEvents} events !`);
 	} catch (e) {
-		logger.fatal('failed to load events, error : ' + (e instanceof Error ? e.message : `${e}`));
+		logger.fatal(`failed to load events, error : ${anyToError(e).message}`);
 	}
 };

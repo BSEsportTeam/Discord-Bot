@@ -5,6 +5,7 @@ export const getUserDataFromDiscordUser = (user: DiscordUser): User => {
 	return {
 		id: user.id,
 		username: user.tag,
-		avatar: user.avatar
+		avatar: user.avatar,
+		displayName: user.username
 	};
 };

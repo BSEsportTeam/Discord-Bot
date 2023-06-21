@@ -1,59 +1,36 @@
 import {describe, expect, it} from 'vitest';
-import {addMessageParams} from './string.util';
+import {msgParams} from './string.util';
 
-describe('addMessageParams', () => {
-	it('should handle a message with only one placeholder', () => {
-		const message = 'Hello, ${1}!';
-		const options = ['John'];
-		const expected = 'Hello, John!';
-		const result = addMessageParams(message, ...options);
-		expect(result).toBe(expected);
+describe('msgParams function', () => {
+	it('should correctly replace placeholders with provided words', () => {
+		expect(msgParams('Hello {name}', ['Royaume'])).toBe('Hello Royaume');
 	});
 
-	it('should handle empty message', () => {
-		const message = '';
-		const options: string[] = [];
-		const expected = '';
-		const result = addMessageParams(message, ...options);
-		expect(result).toBe(expected);
+	it('should correctly replace multiple placeholders with provided words', () => {
+		expect(msgParams('Hello {name} and {otherName}', ['TS', 'Vitest'])).toBe('Hello TS and Vitest');
 	});
 
-	it('should handle no options', () => {
-		const message = 'Hello, world!';
-		const options: string[] = [];
-		const expected = 'Hello, world!';
-		const result = addMessageParams(message, ...options);
-		expect(result).toBe(expected);
+	it('should correctly replace placeholders with provided words, ignoring duplicates', () => {
+		expect(msgParams('Hello {0} {1} {0}', ['World', 'Vitest'])).toBe('Hello World Vitest {0}');
 	});
 
-	it('should handle multiple options', () => {
-		const message = '${1} likes ${2} and ${3}';
-		const options = ['Alice', 'cats', 'dogs'];
-		const expected = 'Alice likes cats and dogs';
-		const result = addMessageParams(message, ...options);
-		expect(result).toBe(expected);
+	it('should handle cases where there are more placeholders than words', () => {
+		expect(msgParams('Hello {name}', ['World', 'Vitest'])).toBe('Hello World');
 	});
 
-	it('should replace placeholders used multiple times', () => {
-		const message = 'Hello, ${1}! ${1} is your favorite color, right ${1}?';
-		const options = ['Blue'];
-		const expected = 'Hello, Blue! Blue is your favorite color, right Blue?';
-		const result = addMessageParams(message, ...options);
-		expect(result).toBe(expected);
-	});
-	it('should handle more options than placeholders', () => {
-		const message = 'Hello, ${1}!';
-		const options = ['John', 'Doe'];
-		const expected = 'Hello, John!';
-		const result = addMessageParams(message, ...options);
-		expect(result).toBe(expected);
+	it('should handle cases where there are fewer placeholders than words', () => {
+		expect(msgParams('Hello {0} {1}', ['World'])).toBe('Hello World {1}');
 	});
 
-	it('should handle more placeholders than options', () => {
-		const message = 'Hello, ${1} and ${2}!';
-		const options = ['John'];
-		const expected = 'Hello, John and ${2}!';
-		const result = addMessageParams(message, ...options);
-		expect(result).toBe(expected);
+	it('should handle cases where there are no placeholders', () => {
+		expect(msgParams('Hello', ['World'])).toBe('Hello');
+	});
+
+	it('should handle cases where there is no text', () => {
+		expect(msgParams('', [])).toBe('');
+	});
+
+	it('should ignore extra words when there are no placeholders', () => {
+		expect(msgParams('Hello', ['Hello', 'World'])).toBe('Hello');
 	});
 });
