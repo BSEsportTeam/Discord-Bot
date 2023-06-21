@@ -6,7 +6,7 @@ import type {ButtonError} from '$core/utils/error';
 import type {Result} from 'rustic-error';
 import {error, ok, resultify} from 'rustic-error';
 import {commandsConfig} from '$core/config/message/command';
-import {successEmbed} from '$core/utils/discord/embet';
+import {successEmbed} from '$core/utils/discord/embet/embet.func';
 
 const cancel: ButtonHandler = {
 	name: 'announceEventHandler',

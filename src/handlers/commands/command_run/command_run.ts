@@ -4,7 +4,7 @@ import {logger} from '$core/utils/logger';
 import {resultify} from 'rustic-error';
 import {effect, effectReset, forground256Color} from 'tintify';
 import {isDev} from '$core/config/env';
-import {replyError} from '$core/utils/discord/interaction_error';
+import {replyError} from '$core/utils/discord/other/interaction';
 
 export const commandRun = async (interaction: ChatInputCommandInteraction) => {
 	const command = getCommand(interaction);

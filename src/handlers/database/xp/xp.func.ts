@@ -129,7 +129,7 @@ export const getGlobalPosition = async (userId: Snowflake): Promise<Result<numbe
 			},
 		});
 
-		return ok(position);
+		return ok(position+1);
 
 	} catch (e) {
 		return error(new DatabaseError(`Failed to get position for player ${userId} globally`, anyToError(e)));
@@ -153,7 +153,7 @@ export const getGuildPosition = async (userId: Snowflake, guildId: Snowflake): P
 			},
 		});
 
-		return ok(position);
+		return ok(position+1);
 
 	} catch (e) {
 		return error(new DatabaseError(`Failed to get position for player ${userId} in guild ${guildId}`, anyToError(e)));

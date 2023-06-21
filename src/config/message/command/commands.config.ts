@@ -107,5 +107,52 @@ export const commandsConfig = {
 			noAuthor: 'Vous pouvez pas récupérer votre propre drop !',
 			button: 'Récupérer !'
 		}
+	},
+	level: {
+		name: 'niveau',
+		description: 'Connaitre son niveau ou celui de quelqu\'un d\'autre',
+		options: {
+			member: {
+				name: 'membre',
+				description: 'De quel membre voulez vous connaitre le niveau ?'
+			}
+		},
+		exec: {
+			title: 'Information de {username}',
+			description: 'Niveau : **{level}**\n' +
+				'Xp Total : **{xpTotal} xp**\n' +
+				'Progression du niveau : **{curentXp}/{xpToLevelUp} xp**\n' +
+				'Position : **{rank}**',
+			noUser: 'Aucun utilisateur à été retrouver dans la base de données !',
+
+		}
+	},
+	topLevel: {
+		name: 'topniveau',
+		description: 'Options le top niveau du serveur !',
+		options: {
+			page: {
+				name: 'page',
+				description: 'Quel page faut il affiché ? (Optionel)'
+			}
+		},
+		exec: {
+			simpled: {
+				title: 'Top 3 du serveur !',
+				description: ':first_place: {mention}\n' +
+					':black_medium_square: ➥ Niveau {level} ({xp} xp)\n' +
+					':second_place: {mention}\n' +
+					':black_medium_square: ➥ Niveau {level} ({xp} xp)\n' +
+					':third_place: {mention}\n' +
+					':black_medium_square: ➥ Niveau {level} ({xp} xp)',
+				selfTop: '`#{position}` {mention}\n' +
+					':black_medium_square: ➥ Niveau {level} ({xp} xp)'
+			},
+			detailed: {
+				title: 'Classement du serveur page {page}',
+				description: '{position}. {mention}\n' +
+					'➥ Niveau {level} ({xp} xp)'
+			}
+		}
 	}
 } satisfies Commands;

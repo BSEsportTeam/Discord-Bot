@@ -4,7 +4,7 @@ import {isTake, setTake} from '$core/handlers/buttons/dropxp/dropxp.util';
 import {commandsConfig} from '$core/config/message/command';
 import {disableButtons} from '$core/handlers/buttons';
 import {resultify} from 'rustic-error';
-import {simpleEmbed} from '$core/utils/discord/embet';
+import {simpleEmbed} from '$core/utils/discord/embet/embet.func';
 import {logger} from '$core/utils/logger';
 
 export const endDrop = async (message: Message) => {

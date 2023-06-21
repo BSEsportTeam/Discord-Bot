@@ -4,7 +4,7 @@ import {client} from '$core/index';
 import {authorOnly, disableButtons} from '$core/handlers/buttons/button.util';
 import {resultify} from 'rustic-error';
 import {logger} from '$core/utils/logger';
-import {replyError} from '$core/utils/discord/interaction_error';
+import {replyError} from '$core/utils/discord/other/interaction';
 import {effect, effectReset, forground256Color} from 'tintify';
 
 export const handleButton = async (interaction: ButtonInteraction) => {

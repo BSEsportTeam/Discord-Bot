@@ -8,8 +8,8 @@ import {isDev} from '$core/config/env';
 import {devConfig} from '$core/config/guilds/_dev/dev.config';
 import {logger} from '$core/utils/logger';
 import {resultify} from 'rustic-error';
-import {getMessageChannel} from '$core/utils/discord/channel';
-import {simpleEmbed} from '$core/utils/discord/embet';
+import {getMessageChannel} from '$core/utils/discord/channel/channel.func';
+import {simpleEmbed} from '$core/utils/discord/embet/embet.func';
 
 @Dev
 export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
