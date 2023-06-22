@@ -134,11 +134,16 @@ export const commandsConfig = {
 			page: {
 				name: 'page',
 				description: 'Quel page faut il affiché ? (Optionel)'
+			},
+			global: {
+				name: 'global',
+				description: 'Classement global ? (par defaultt false)'
 			}
 		},
 		exec: {
 			simpled: {
-				title: 'Top 3 du serveur !',
+				titleGuild: 'Top 3 du serveur !',
+				titleGlobal: 'Top 3 global !',
 				description: ':first_place: {mention}\n' +
 					':black_medium_square: ➥ Niveau {level} ({xp} xp)\n' +
 					':second_place: {mention}\n' +
@@ -149,7 +154,8 @@ export const commandsConfig = {
 					':black_medium_square: ➥ Niveau {level} ({xp} xp)'
 			},
 			detailed: {
-				title: 'Classement du serveur page {page}',
+				titleGuild: 'Classement du serveur page {page}',
+				tileGlobal: 'Classement global page {page}',
 				description: '{position}. {mention}\n' +
 					'➥ Niveau {level} ({xp} xp)'
 			}
