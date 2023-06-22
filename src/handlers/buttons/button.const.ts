@@ -15,8 +15,8 @@ export const buttonsIds = {
 		base: DYNAMIC_ID + 'dxp'
 	},
 	topLevel: {
-		pages: DYNAMIC_ID + 'tlvl',
-		detailed: 'tlvl_1'
+		pages: DYNAMIC_ID + 'tlvlp',
+		detailed: DYNAMIC_ID + 'tlvld'
 	}
 } satisfies Record<string, Record<string, ButtonId>>;
 
@@ -28,6 +28,10 @@ export const buttonsDynamicIds = {
 	topLevel: {
 		construct: (page: string, type: string) => `${buttonsIds.topLevel.pages}${DYNAMIC_ID_SEPARATOR}${page}${DYNAMIC_ID_SEPARATOR}${type}`,
 		deconstruct: (id: string) => id.split(DYNAMIC_ID_SEPARATOR).slice(-2)
+	},
+	topLevelDetailed: {
+		construct: (type: string) => `${buttonsIds.topLevel.detailed}${DYNAMIC_ID_SEPARATOR}${type}`,
+		deconstruct: (id: string) => id.split(DYNAMIC_ID_SEPARATOR).slice(-1)
 	}
 } satisfies Record<string, {
 	construct: ButtonIdFunctionConstruct,
