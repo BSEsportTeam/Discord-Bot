@@ -12,4 +12,8 @@ export const builder = new SlashCommandBuilder()
 		.setDescription(config.options.page.description)
 		.setRequired(false)
 		.setMinValue(1)
-		.setMaxValue(1000));
+		.setMaxValue(1000))
+	.addBooleanOption(booleanOption => booleanOption
+		.setName(config.options.global.name)
+		.setName(config.options.global.description)
+		.setRequired(false));
