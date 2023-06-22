@@ -159,6 +159,13 @@ export const commandsConfig = {
 				description: '{position}. {mention}\n' +
 					'➥ Niveau {level} ({xp} xp)'
 			}
+		},
+		other: {
+			buttons: {
+				next: 'Page suivante',
+				before: 'Page précédente',
+				detailed: 'Classement détaillé'
+			}
 		}
 	}
 } satisfies Commands;
