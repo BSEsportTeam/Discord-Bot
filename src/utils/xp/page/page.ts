@@ -17,7 +17,9 @@ export const generatePage = (page: number, data: GuildXPTop[]|GlobalXPTop[], typ
 		const info = data[i];
 		description = `${description}\n${msgParams(config.description, [info.position, userMention(info.id), calculateLevel(info.xp), info.xp])}`;
 	}
-
+	if (description === '') {
+		description = config.empty;
+	}
 	const embed = simpleEmbed(description, msgParams(
 		type === PageTypes.GLOBAL ? config.tileGlobal : config.titleGuild,
 		[page]
@@ -26,7 +28,7 @@ export const generatePage = (page: number, data: GuildXPTop[]|GlobalXPTop[], typ
 	const nextButton = new ButtonBuilder()
 		.setLabel(buttonConfig.next)
 		.setStyle(ButtonStyle.Primary)
-		.setCustomId(buttonsDynamicIds.topLevel.construct(`${page+1}`, type))
+		.setCustomId(buttonsDynamicIds.topLevel.construct(`${page + 1}`, type))
 		.setDisabled(data.length < 11);
 	const beforeButton = new ButtonBuilder()
 		.setLabel(buttonConfig.before)
@@ -35,7 +37,7 @@ export const generatePage = (page: number, data: GuildXPTop[]|GlobalXPTop[], typ
 		.setDisabled(page === 1);
 
 	const actionRow = new ActionRowBuilder<ButtonBuilder>()
-		.addComponents(nextButton, beforeButton);
+		.addComponents(beforeButton, nextButton);
 	return {
 		embeds: [embed],
 		components: [actionRow]
