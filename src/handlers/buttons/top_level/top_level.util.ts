@@ -27,7 +27,7 @@ export const updateMessage = async (interaction: ButtonInteraction, page: number
 	const messageInfos = generatePage(page, data, type);
 
 	try {
-		await interaction.message.edit(messageInfos);
+		await interaction.update(messageInfos);
 		return ok(true);
 	} catch (e) {
 		return error(new ButtonError('Failed to edit top position', interaction, anyToError(e)));
