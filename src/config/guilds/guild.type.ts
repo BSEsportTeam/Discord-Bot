@@ -8,6 +8,7 @@ export type BaseGuild = {
 	eventAnnouncements: EventAnnouncements;
 	inviteLink: string;
 	xp: XpInfos;
+	bumpChannel: Snowflake;
 }
 
 export type EventAnnouncements = {

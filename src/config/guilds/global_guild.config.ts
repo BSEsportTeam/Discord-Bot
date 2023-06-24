@@ -16,5 +16,6 @@ export const globalGuildConfig: BaseGuild = {
 		xpBoostRole: '',
 		disablesChannels: [],
 		levelUpChannel: ''
-	}
+	},
+	bumpChannel: ''
 };
