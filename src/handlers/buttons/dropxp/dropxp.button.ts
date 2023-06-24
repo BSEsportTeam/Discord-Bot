@@ -40,7 +40,7 @@ const button: ButtonHandler = {
 
 		setTake(interaction.message.id);
 
-		const xpResult = await resultify(() => addXp(interaction.user.id, guildId, xp, XpMovementCause.XPDROP, author));
+		const xpResult = await addXp(interaction.user.id, guildId, xp, XpMovementCause.XPDROP, author);
 		if (!xpResult.ok) {
 			return error(new ButtonError(`failed to add xp to member, error : ${xpResult.error.message}`, interaction, xpResult.error));
 		}
