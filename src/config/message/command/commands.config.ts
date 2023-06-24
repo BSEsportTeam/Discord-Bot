@@ -16,7 +16,7 @@ export const commandsConfig = {
 			invalidMessage: 'Le lien ou l\'id du message est invalide',
 			button: {
 				success: '**L\'annonce à été envoyé avec succès dans {number} serveurs !**',
-				failed: '**L\'annonce à été envoyé, mais certains serveurs ont u des erreurs, voici la liste des serveurs avec erreur :** \n- {serverrors}',
+				failed: '**L\'annonce à été envoyé, mais certains serveurs ont eu des erreurs, voici la liste des serveurs avec erreur :** \n- {serverrors}',
 				cancel: '**Annulé avec succès !**'
 			}
 		},
@@ -150,14 +150,15 @@ export const commandsConfig = {
 					':black_medium_square: ➥ Niveau {level} ({xp} xp)\n' +
 					':third_place: {mention}\n' +
 					':black_medium_square: ➥ Niveau {level} ({xp} xp)',
-				selfTop: '`#{position}` {mention}\n' +
+				selfTop: '\n\n`#{position}` {mention}\n' +
 					':black_medium_square: ➥ Niveau {level} ({xp} xp)'
 			},
 			detailed: {
 				titleGuild: 'Classement du serveur page {page}',
 				tileGlobal: 'Classement global page {page}',
 				description: '{position}. {mention}\n' +
-					'➥ Niveau {level} ({xp} xp)'
+					'➥ Niveau {level} ({xp} xp)',
+				empty: 'Aucune données pour cette page'
 			}
 		},
 		other: {
