@@ -2,10 +2,10 @@ import type {Snowflake} from 'discord-api-types/globals';
 import {DatabaseError} from '$core/utils/error';
 import type {Result} from 'rustic-error';
 import {error, ok, resultify} from 'rustic-error';
-import {getUser} from '$core/utils/discord/user';
+import {getUser} from '$core/utils/discord/user/user.func';
 import {getOrCreateUser} from '$core/handlers/database/user/user.func';
 import {getUserDataFromDiscordUser} from '$core/handlers/database/user/user.util';
-import {getGuildMember} from '$core/utils/discord/member';
+import {getGuildMember} from '$core/utils/discord/member/member.func';
 import {getMemberDataFromDiscordMember} from '$core/handlers/database/member/member.util';
 import {prisma} from '$core/handlers/database/prisma';
 

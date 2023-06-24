@@ -12,3 +12,7 @@ export type GuildXPTop = {
 	id: Snowflake;
 	displayName: string;
 }
+export type PositionAndXp = {
+	position: number;
+	xp: number;
+}

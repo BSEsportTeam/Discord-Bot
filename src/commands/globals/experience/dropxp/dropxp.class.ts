@@ -1,12 +1,12 @@
 import type {CommandPreReply, GuildAlias} from '$core/handlers/commands';
-import {BaseCommand} from '$core/handlers/commands';
+import {BaseCommand, sendCommandReply} from '$core/handlers/commands';
 import {builder} from '$core/commands/globals/experience/dropxp/dropxp.builder';
 import type {Result} from 'rustic-error';
 import {error, ok, resultify} from 'rustic-error';
 import type {ChatInputCommandInteraction} from 'discord.js';
 import {CommandError} from '$core/utils/error';
 import {commandsConfig} from '$core/config/message/command';
-import {simpleEmbed} from '$core/utils/discord/embet';
+import {simpleEmbed} from '$core/utils/discord/embet/embet.func';
 import {msgParams} from '$core/utils/function/string';
 import {endDrop, getButtons} from '$core/commands/globals/experience/dropxp/dropxp.util';
 import {Dev} from '$core/utils/dev';
@@ -44,15 +44,9 @@ export default class DropXp extends BaseCommand {
 		}
 		void endDrop(messageResult.value);
 
-		const result = await resultify(() => interaction.reply({
+		return sendCommandReply(interaction, {
 			embeds: [simpleEmbed(config.exec.success)],
 			ephemeral: true
-		}));
-
-		if (!result.ok) {
-			return error(new CommandError(`failed to reply to interaction, error : ${result.error.message}`, interaction, result.error));
-		}
-
-		return ok(true);
+		}, false);
 	}
 }

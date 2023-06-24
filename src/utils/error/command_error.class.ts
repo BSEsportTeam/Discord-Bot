@@ -10,8 +10,7 @@ export class CommandError extends Error implements DebuggableError {
 		public interaction: ChatInputCommandInteraction,
 		public sourceError?: Error
 	) {
-		super(message.replaceAll('\n', ' '));
-		this.interaction = interaction;
+		super(message.replaceAll('\n', ' ' + (sourceError ? `, error : ${sourceError.message} ` : '')));
 	}
 	debug(): DebugValues {
 		const debug: CommandDebugs = {

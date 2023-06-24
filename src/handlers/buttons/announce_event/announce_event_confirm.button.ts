@@ -12,8 +12,8 @@ import {logger} from '$core/utils/logger';
 import {msgParams} from '$core/utils/function/string';
 import {commandsConfig} from '$core/config/message/command';
 import {interactionReplyError} from '$core/handlers/buttons';
-import {errorEmbed, successEmbed} from '$core/utils/discord/embet';
-import {getMessageChannel} from '$core/utils/discord/channel';
+import {errorEmbed, successEmbed} from '$core/utils/discord/embet/embet.func';
+import {getMessageChannel} from '$core/utils/discord/channel/channel.func';
 
 export const confirm: ButtonHandler = {
 

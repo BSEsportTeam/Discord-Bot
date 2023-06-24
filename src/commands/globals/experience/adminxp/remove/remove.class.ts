@@ -1,14 +1,14 @@
 import type {CommandPreReply} from '$core/handlers/commands';
-import {SubCommand} from '$core/handlers/commands';
+import {sendCommandReply, SubCommand} from '$core/handlers/commands';
 import {CommandError} from '$core/utils/error';
 import type {Result} from 'rustic-error';
-import {error, ok, resultify} from 'rustic-error';
+import {error, ok} from 'rustic-error';
 import type {ChatInputCommandInteraction} from 'discord.js';
 import {addXp} from '$core/utils/xp';
 import {XpMovementCause} from '@prisma/client';
 import {msgParams} from '$core/utils/function/string';
 import {commandsConfig} from '$core/config/message/command';
-import {simpleEmbed} from '$core/utils/discord/embet';
+import {simpleEmbed} from '$core/utils/discord/embet/embet.func';
 
 const config = commandsConfig.adminXp;
 
@@ -46,14 +46,8 @@ export class AdminXpRemove extends SubCommand {
 			iconURL: interaction.guild.iconURL()||undefined
 		});
 
-		const result = await resultify(() => interaction.reply({
+		return sendCommandReply(interaction, {
 			embeds: [embed]
-		}));
-
-		if (!result.ok) {
-			return error(new CommandError(`failed to reply to interaction, error : ${result.error.message}`, interaction, result.error));
-		}
-
-		return ok(true);
+		}, false);
 	}
 }

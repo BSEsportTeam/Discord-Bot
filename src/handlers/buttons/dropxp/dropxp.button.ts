@@ -5,7 +5,7 @@ import {ButtonError} from '$core/utils/error';
 import type {Result} from 'rustic-error';
 import {error, ok, resultify} from 'rustic-error';
 import {isTake, setTake} from '$core/handlers/buttons/dropxp/dropxp.util';
-import {baseEmbed, simpleEmbed} from '$core/utils/discord/embet';
+import {baseEmbed, simpleEmbed} from '$core/utils/discord/embet/embet.func';
 import {commandsConfig} from '$core/config/message/command';
 import {colors} from '$core/config/global';
 import {addXp} from '$core/utils/xp';
@@ -40,7 +40,7 @@ const button: ButtonHandler = {
 
 		setTake(interaction.message.id);
 
-		const xpResult = await resultify(() => addXp(interaction.user.id, guildId, xp, XpMovementCause.XPDROP, author));
+		const xpResult = await addXp(interaction.user.id, guildId, xp, XpMovementCause.XPDROP, author);
 		if (!xpResult.ok) {
 			return error(new ButtonError(`failed to add xp to member, error : ${xpResult.error.message}`, interaction, xpResult.error));
 		}

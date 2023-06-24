@@ -14,14 +14,13 @@ const devGuilds = {
 		inviteLink: 'https://discord.gg/s5qWJku7HG',
 		xp: {
 			enable: true,
-			levelUpRoles: {
-
-			},
+			levelUpRoles: {},
 			boosterRole: '',
 			xpBoostRole: '1096122857244852269',
-			disablesChannels: [],
+			disablesChannels: ['1096122870121386166'],
 			levelUpChannel: '1096122869626437705'
-		}
+		},
+		bumpChannel: '1096122869626437706'
 	},
 	guildSection: {
 		name: 'global',
@@ -64,7 +63,8 @@ const devGuilds = {
 				staff: '1096123374306070628'
 			},
 			channel: '1096123376965263394'
-		}
+		},
+		bumpChannel: '1096123377984475189'
 	}
 } satisfies Record<'guildMain'|'guildSection', Overwrite<BrawlStarsGuild, {name: string}>|Overwrite<BaseGuild, {name: string}>>;
 

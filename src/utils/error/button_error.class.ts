@@ -9,7 +9,7 @@ export class ButtonError extends Error implements DebuggableError {
 		public interaction: ButtonInteraction,
 		public sourceError?: Error
 	) {
-		super(message);
+		super(message + (sourceError ? `, error : ${sourceError.message} ` : ''));
 	}
 	debug(): DebugValues {
 		const debug: ButtonDebugs = {

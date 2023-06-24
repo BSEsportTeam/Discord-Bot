@@ -20,5 +20,6 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 		xpBoostRole: '',
 		disablesChannels: [],
 		levelUpChannel: ''
-	}
+	},
+	bumpChannel: ''
 };

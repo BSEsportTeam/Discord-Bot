@@ -5,7 +5,7 @@ import type {Snowflake} from 'discord-api-types/globals';
 import {anyToError, DatabaseError} from '$core/utils/error';
 import {Prisma} from '@prisma/client';
 import {createGuildMember} from '$core/handlers/database/xp/xp.util';
-import type {GlobalXPTop, GuildXPTop} from '$core/handlers/database/xp/xp.type';
+import type {GlobalXPTop, GuildXPTop, PositionAndXp} from '$core/handlers/database/xp/xp.type';
 
 export const getGlobalXp = async (userId: Snowflake): Promise<Result<number | null, DatabaseError>> => {
 	try {
@@ -129,7 +129,7 @@ export const getGlobalPosition = async (userId: Snowflake): Promise<Result<numbe
 			},
 		});
 
-		return ok(position);
+		return ok(position+1);
 
 	} catch (e) {
 		return error(new DatabaseError(`Failed to get position for player ${userId} globally`, anyToError(e)));
@@ -153,14 +153,65 @@ export const getGuildPosition = async (userId: Snowflake, guildId: Snowflake): P
 			},
 		});
 
-		return ok(position);
+		return ok(position + 1);
 
 	} catch (e) {
 		return error(new DatabaseError(`Failed to get position for player ${userId} in guild ${guildId}`, anyToError(e)));
 	}
 };
 
+export const getGlobalPositionAndXp = async (userId: Snowflake): Promise<Result<PositionAndXp, DatabaseError>> => {
+	try {
+		const xp = await getGlobalXp(userId);
 
+		if (!xp.ok) {
+			return error(xp.error);
+		}
+
+		const position = await prisma.guildMember.count({
+			where: {
+				xp: {
+					gt: xp.value || 0,
+				},
+			},
+		});
+
+		return ok({
+			position: position + 1,
+			xp: xp.value || 0
+		});
+
+	} catch (e) {
+		return error(new DatabaseError(`Failed to get position and xp for player ${userId} globally`, anyToError(e)));
+	}
+};
+
+export const getGuildPositionAndXp = async (userId: Snowflake, guildId: Snowflake): Promise<Result<PositionAndXp, DatabaseError>> => {
+	try {
+		const xp = await getGuildXp(userId, guildId);
+
+		if (!xp.ok) {
+			return error(xp.error);
+		}
+
+		const position = await prisma.guildMember.count({
+			where: {
+				guildId: guildId,
+				xp: {
+					gt: xp.value || 0
+				}
+			},
+		});
+
+		return ok({
+			position: position + 1,
+			xp: xp.value || 0
+		});
+
+	} catch (e) {
+		return error(new DatabaseError(`Failed to get position and xp for player ${userId} in guild ${guildId}`, anyToError(e)));
+	}
+};
 export const addXpToMember = async (userId: Snowflake, guildId: Snowflake, xpAmount: number): Promise<Result<number, DatabaseError | Error>> => {
 	try {
 		const result = await prisma.guildMember.update({

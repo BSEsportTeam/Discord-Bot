@@ -18,8 +18,11 @@ export const globalConfig = {
 		'❤️',
 		'🔜',
 		'<un:1112094976654974986>'
-	]
-
+	],
+	bumpBot: '302050872383242240',
+	bumpCommand: 'bump',
+	maxBump: 5,
+	xpPerBump: 50
 };
 
 
