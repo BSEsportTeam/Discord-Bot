@@ -11,7 +11,7 @@ import {getGlobalPositionAndXp, getGlobalTop, getGuildPositionAndXp, getGuildTop
 import {msgParams} from '$core/utils/function/string';
 import {calculateLevel} from '$core/utils/xp';
 import {simpleEmbed} from '$core/utils/discord';
-import {getButton} from '$core/commands/guilds/global/top_level/top_level.util';
+import {getButton} from '$core/commands/globals/experience/top_level/top_level.util';
 import {PageTypes} from '$core/utils/xp/page/page.type';
 import {generatePage} from '$core/utils/xp/page/page';
 
