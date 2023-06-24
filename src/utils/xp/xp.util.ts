@@ -22,5 +22,5 @@ export const getXpForLevel = (level: number): number => {
 export const getLevelProgress = (xp: number): number => {
 	const level = calculateLevel(xp);
 
-	return xp - totalXp[level];
+	return xp - (totalXp[level] || 0);
 };
