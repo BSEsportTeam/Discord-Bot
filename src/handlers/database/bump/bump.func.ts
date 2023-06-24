@@ -63,8 +63,6 @@ export const getBumpsByUserInGuildToday = async (userId: string, guildId: string
 				},
 			},
 		});
-		result[0].date;
-
 		return ok(result);
 	} catch (e) {
 		return error(
