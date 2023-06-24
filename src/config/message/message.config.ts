@@ -9,8 +9,8 @@ export const messageConfig = {
 	},
 	button: {
 		authorOnly: {
-			title: 'Non authorisé',
-			description: 'seul l\'autour de la commande peux utilisé ce bouton !'
+			title: 'Non autorisé',
+			description: 'seul l\'auteur de la commande peut utiliser ce bouton !'
 		}
 	},
 	xp: {
