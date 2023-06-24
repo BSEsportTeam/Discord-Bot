@@ -56,7 +56,7 @@ export const getDetailedGuildMember = async (userId: Snowflake, guildId: Snowfla
 	}
 };
 
-export const updateGuildUsername = async (userId: Snowflake, guildId: Snowflake, username: string ): Promise<Result<GuildMember | null, DatabaseError>> => {
+export const updateGuildUsername = async (userId: Snowflake, guildId: Snowflake, username?: string): Promise<Result<GuildMember | null, DatabaseError>> => {
 	try {
 		const member = await prisma.guildMember.update({
 			where: {
@@ -73,7 +73,7 @@ export const updateGuildUsername = async (userId: Snowflake, guildId: Snowflake,
 		return ok(member);
 	} catch (e) {
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {
-			if (e.code === 'P2001') {
+			if (e.code === 'P2001' || e.code === 'P2025') {
 				return ok(null);
 			}
 		}
@@ -82,7 +82,7 @@ export const updateGuildUsername = async (userId: Snowflake, guildId: Snowflake,
 	}
 };
 
-export const updateGuildAvatar = async (userId: Snowflake, guildId: Snowflake, avatar: string): Promise<Result<GuildMember | null, DatabaseError>> => {
+export const updateGuildAvatar = async (userId: Snowflake, guildId: Snowflake, avatar?: string): Promise<Result<GuildMember | null, DatabaseError>> => {
 	try {
 		const member = await prisma.guildMember.update({
 			where: {
@@ -99,7 +99,7 @@ export const updateGuildAvatar = async (userId: Snowflake, guildId: Snowflake, a
 		return ok(member);
 	} catch (e) {
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {
-			if (e.code === 'P2001') {
+			if (e.code === 'P2001' || e.code === 'P2025') {
 				return ok(null);
 			}
 		}
