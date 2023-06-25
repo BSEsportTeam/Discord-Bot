@@ -62,7 +62,7 @@ export enum BrawlStarsClubType {
 
 export type BrawlStarsClub = {
 	name: string;
-	id: string;
+	tag: string;
 	type: BrawlStarsClubType;
 	globalTop?: boolean;
 	localTop?: boolean;
