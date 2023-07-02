@@ -8,5 +8,14 @@ export const globalGuildConfig: BaseGuild = {
 		roleId: '',
 		enable: true
 	},
-	inviteLink: 'https://discord.gg/F2GTeYT'
+	inviteLink: 'https://discord.gg/F2GTeYT',
+	xp: {
+		enable: true,
+		levelUpRoles: {},
+		boosterRole: '',
+		xpBoostRole: '',
+		disablesChannels: [],
+		levelUpChannel: ''
+	},
+	bumpChannel: ''
 };

@@ -5,18 +5,19 @@ import type {DebugValues} from './logger.type';
 import {formatLog} from './logger.util';
 
 export const logger = {
-	fatal(message: string, debug: string[]|null = null): never {
+	fatal(message: string, debug?: DebugValues|string|string[]): never {
 		console.log(formatLog(LogLevel.FATAL, message));
-		if (debug !== null) {
-			for (const msg of debug) {
-				logger.debug(msg);
-			}
+		if (typeof debug !== 'undefined') {
+			logger.debug(debug);
 		}
 		process.exit(1);
 	},
 
-	error(message: string) {
+	error(message: string, debug?: DebugValues|string|string[]) {
 		console.log(formatLog(LogLevel.ERROR, message));
+		if (typeof debug !== 'undefined') {
+			logger.debug(debug);
+		}
 	},
 
 	warning(message: string) {
@@ -27,7 +28,23 @@ export const logger = {
 		console.log(formatLog(LogLevel.INFO, message));
 	},
 
-	debug(message: string) {
+	debug(infos: DebugValues|string|string[]) {
+		if (typeof infos === 'string') {
+			logger._debug(infos);
+		} else if (typeof infos === 'object') {
+			if (Array.isArray(infos)) {
+				for (const msg of infos) {
+					logger._debug(msg);
+				}
+			} else {
+				for (const key in infos) {
+					logger._debug(`${forground256Color(68)}${key}: ${forground256Color(247)}${infos[key]}`);
+				}
+			}
+		}
+	},
+
+	_debug(message: string) {
 		console.log(formatLog(LogLevel.DEBUG, message));
 	},
 

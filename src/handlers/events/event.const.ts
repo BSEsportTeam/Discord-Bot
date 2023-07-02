@@ -1,3 +1,3 @@
 import {sep} from 'path';
 
-export const EVENTS_PATHS = (baseDir: string) => `${baseDir}${sep}events`;
+export const EVENTS_PATH = (baseDir: string) => `${baseDir}${sep}events`;
