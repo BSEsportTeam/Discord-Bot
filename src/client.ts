@@ -21,7 +21,8 @@ export class Client extends BClient {
 				IntentsBitField.Flags.MessageContent,
 				IntentsBitField.Flags.DirectMessages,
 				IntentsBitField.Flags.GuildMembers,
-				IntentsBitField.Flags.GuildVoiceStates
+				IntentsBitField.Flags.GuildVoiceStates,
+				IntentsBitField.Flags.GuildPresences
 			]
 		});
 

@@ -64,7 +64,7 @@ export const updateUsername = async (id: Snowflake, username: string): Promise<R
 		return ok(result);
 	} catch (e) {
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {
-			if (e.code === 'P2001') {
+			if (e.code === 'P2001' || e.code === 'P2025') {
 				return ok(null);
 			}
 		}
@@ -73,7 +73,7 @@ export const updateUsername = async (id: Snowflake, username: string): Promise<R
 	}
 };
 
-export const updateAvatar = async (id: Snowflake, avatar: string): Promise<Result<User | null, DatabaseError>> => {
+export const updateAvatar = async (id: Snowflake, avatar?: string): Promise<Result<User | null, DatabaseError>> => {
 	try {
 		const result = await prisma.user.update({
 			where: {
@@ -87,7 +87,7 @@ export const updateAvatar = async (id: Snowflake, avatar: string): Promise<Resul
 		return ok(result);
 	} catch (e) {
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {
-			if (e.code === 'P2001') {
+			if (e.code === 'P2001' || e.code === 'P2025') {
 				return ok(null);
 			}
 		}
@@ -110,7 +110,7 @@ export const updateDisplayName = async (id: Snowflake, displayName: string): Pro
 		return ok(result);
 	} catch (e) {
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {
-			if (e.code === 'P2001') {
+			if (e.code === 'P2001' || e.code === 'P2025') {
 				return ok(null);
 			}
 		}

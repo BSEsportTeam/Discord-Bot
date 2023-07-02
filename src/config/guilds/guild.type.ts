@@ -44,13 +44,30 @@ export type LevelUpRoleInfosEvolutionary = {
 	type: LevelUpRoleType.EVOLUTIONARY;
 }
 
-export type LevelUpRoleInfos = LevelUpRoleInfosCumulative|LevelUpRoleInfosEvolutionary;
+export type LevelUpRoleInfos = LevelUpRoleInfosCumulative | LevelUpRoleInfosEvolutionary;
 
 export type BrawlStarsGuild = BaseGuild & {
 	autoPing: {
 		roles: Record<string, Snowflake>
 		channel: Snowflake;
-	}
+	},
+	clubs: BrawlStarsClub[];
+}
+
+export enum BrawlStarsClubType {
+	LEADER = 'Leader',
+	LDC = 'Ldc',
+	CHILL = 'Chill'
+}
+
+export type BrawlStarsClub = {
+	name: string;
+	tag: string;
+	type: BrawlStarsClubType;
+	globalTop?: boolean;
+	localTop?: boolean;
+	bestGlobal?: number;
+	bestLocal?: number;
 }
 
 export type Guilds = Record<GuildName, BaseGuild>

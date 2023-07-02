@@ -64,6 +64,7 @@ const devGuilds = {
 			},
 			channel: '1096123376965263394'
 		},
+		clubs: [],
 		bumpChannel: '1096123377984475189'
 	}
 } satisfies Record<'guildMain'|'guildSection', Overwrite<BrawlStarsGuild, {name: string}>|Overwrite<BaseGuild, {name: string}>>;

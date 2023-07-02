@@ -168,5 +168,62 @@ export const commandsConfig = {
 				detailed: 'Classement détaillé'
 			}
 		}
+	},
+	clubInfo: {
+		name: 'clubinfo',
+		description: 'Optenez des informations à propos d\'un club !',
+		options: {
+			club: {
+				name: 'club',
+				description: 'Nom du club'
+			}
+		},
+		exec: {
+			noClub: {
+				title: 'Pas de club trouvé !',
+				description: 'Le club n\'a pas été trouvé, veillez contacter Arcoz.'
+			},
+			apiError: {
+				title: 'Une erreur d\'api est apparu',
+				description: 'Une erreur d\'api est arrivé, il est possible que l\'api sois hors ligne, reessayé la commande dans 30min, et si l\'erreur se reproduit, contacter Arcoz'
+			},
+			clubInfos: {
+				title: 'Informations sur {clubName}',
+				basic: {
+					title: 'Informations basique',
+					description: 'Type de club :              __{type}__\n' +
+						'Membres :                    {curentMembers}/{MaxMembers} membres\n' +
+						'Trophées requis :        {tr} 🏆\n' +
+						'Accès :                          {access}',
+					values: {
+						types: {
+							leader: 'Leader',
+							ldc: 'LDC',
+							chill: 'Chill'
+						},
+						access: {
+							open: 'Ouvert',
+							inviteOnly: 'Sur invitation',
+							closed: 'Fermé',
+							unknown: 'Inconue'
+						}
+					}
+				},
+				rank: {
+					title: 'Classements',
+					description: 'Trophées actuel :        {tr} 🏆',
+					descriptionComplements: {
+						bestGlobal: '\nMeilleur top monde :  {rank}',
+						currentGlobal: '\nTop monde actuel :     {rank}',
+						bestLocal: '\nMeilleur top fr :            {rank}',
+						currentLocal: '\nTop fr actuel :               {rank}'
+					},
+					rankValue: {
+						noRanked: 'non classé',
+						ranked: '{top} 🎖️'
+					}
+				}
+			}
+		}
 	}
 } satisfies Commands;

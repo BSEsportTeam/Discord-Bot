@@ -10,9 +10,9 @@ export class DatabaseError extends Error implements DebuggableError {
 	}
 	
 	debug(): DebugValues {
-		const debugs: Record<string, string> = {};
+		const debugs: DebugValues = {};
 
-		debugs['origin message'] = this.origin.message;
+		debugs['db origin message'] = this.origin.message;
 
 		if (this.origin instanceof Prisma.PrismaClientKnownRequestError) {
 			debugs['database error code'] = this.origin.code;
