@@ -4,9 +4,10 @@ import type {ChatInputCommandInteraction, InteractionDeferReplyOptions, Interact
 import type {Result} from 'rustic-error';
 import {error, ok, resultify} from 'rustic-error';
 import {CommandError} from '$core/utils/error';
+import {isDev} from '$core/config/env';
 
 export const serializeCommandName = (commandName: string, guild: GuildAlias, subCommand?: string, subCommandGroup?: string ): CommandString => {
-	let command: CommandString = `${guild}.${commandName}`;
+	let command: CommandString = `${isDev ? (guild === 'all' ? 'all' : 'global') : guild}.${commandName}`;
 	if (subCommand) command += `.${subCommand}`;
 	if (subCommandGroup) command += `.${subCommandGroup}`;
 
