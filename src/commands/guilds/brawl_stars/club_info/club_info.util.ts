@@ -65,7 +65,7 @@ export const getClubConfig = (name: string): BrawlStarsClub | undefined => {
 
 export const clubTypeToString = (type: BrawlStarsClubType): string => {
 	switch (type) {
-	case BrawlStarsClubType.LEADER:
+	case BrawlStarsClubType.LADDER:
 		return commandsConfig.clubInfo.exec.clubInfos.basic.values.types.leader;
 	case BrawlStarsClubType.LDC:
 		return commandsConfig.clubInfo.exec.clubInfos.basic.values.types.ldc;

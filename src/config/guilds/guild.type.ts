@@ -55,7 +55,7 @@ export type BrawlStarsGuild = BaseGuild & {
 }
 
 export enum BrawlStarsClubType {
-	LEADER = 'Leader',
+	LADDER = 'Leader',
 	LDC = 'Ldc',
 	CHILL = 'Chill'
 }

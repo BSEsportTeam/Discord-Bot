@@ -197,7 +197,7 @@ export const commandsConfig = {
 						'Accès :                          {access}',
 					values: {
 						types: {
-							leader: 'Leader',
+							leader: 'Ladder',
 							ldc: 'LDC',
 							chill: 'Chill'
 						},

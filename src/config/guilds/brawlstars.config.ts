@@ -28,7 +28,7 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 			// leader
 			name: 'BS Immortals',
 			tag: 'UJCQVJV',
-			type: BrawlStarsClubType.LEADER,
+			type: BrawlStarsClubType.LADDER,
 			globalTop: true,
 			localTop: true,
 			bestGlobal: 15,
@@ -37,7 +37,7 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 		{
 			name: 'BS Prestige',
 			tag: 'JV820R8P',
-			type: BrawlStarsClubType.LEADER,
+			type: BrawlStarsClubType.LADDER,
 			globalTop: false,
 			localTop: true,
 			bestLocal: 93
@@ -45,27 +45,27 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 		{
 			name: 'BS Kings',
 			tag: 'E8LPCQRGV',
-			type: BrawlStarsClubType.LEADER
+			type: BrawlStarsClubType.LADDER
 		},
 		{
 			name: 'BS Assembly',
 			tag: 'UUQGLR9P',
-			type: BrawlStarsClubType.LEADER
+			type: BrawlStarsClubType.LADDER
 		},
 		{
 			name: 'BS Esport',
 			tag: '9UGGORJ',
-			type: BrawlStarsClubType.LEADER
+			type: BrawlStarsClubType.LADDER
 		},
 		{
 			name: 'BS Legends',
 			tag: 'JYOL9YG8',
-			type: BrawlStarsClubType.LEADER
+			type: BrawlStarsClubType.LADDER
 		},
 		{
 			name: 'BS Myths',
 			tag: '88QUVJ8YC',
-			type: BrawlStarsClubType.LEADER
+			type: BrawlStarsClubType.LADDER
 		},
 		// ldc
 		{
