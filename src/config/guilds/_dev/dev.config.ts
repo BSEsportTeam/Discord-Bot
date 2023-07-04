@@ -1,6 +1,7 @@
 import type {BaseGuild, BrawlStarsGuild} from '$core/config/guilds/guild.type';
 import {LevelUpRoleType} from '$core/config/guilds/guild.type';
 import type {Overwrite} from '$core/utils/type/type';
+import type {GuildAlias} from '$core/handlers/commands';
 
 const devGuilds = {
 	guildMain: {
@@ -67,7 +68,9 @@ const devGuilds = {
 		clubs: [],
 		bumpChannel: '1096123377984475189'
 	}
-} satisfies Record<'guildMain'|'guildSection', Overwrite<BrawlStarsGuild, {name: string}>|Overwrite<BaseGuild, {name: string}>>;
+} satisfies Record<'guildMain' | 'guildSection', Overwrite<BrawlStarsGuild, {
+	name: GuildAlias
+}> | Overwrite<BaseGuild, { name: GuildAlias }>>;
 
 export const devConfig = {
 	guilds: devGuilds
