@@ -17,7 +17,7 @@ import {messageConfig} from '$core/config/message';
 import {userMention} from 'discord.js';
 import {isDev} from '$core/config/env';
 
-const checkXpRoles = async (userId: Snowflake, guildId: Snowflake, oldLevel: number, newLevel: number) => {
+export const checkXpRoles = async (userId: Snowflake, guildId: Snowflake, oldLevel: number, newLevel: number, message = true) => {
 
 	const memberResult = await getGuildMember(userId, guildId);
 
@@ -69,27 +69,29 @@ const checkXpRoles = async (userId: Snowflake, guildId: Snowflake, oldLevel: num
 			}
 		}
 
-		const guild = client.guilds.cache.get(guildId);
+		if (message) {
+			const guild = client.guilds.cache.get(guildId);
 
-		if (typeof guild === 'undefined') {
-			logger.error(`failed to find cache for guild ${guildId} for send level up message`);
-			return;
-		}
+			if (typeof guild === 'undefined') {
+				logger.error(`failed to find cache for guild ${guildId} for send level up message`);
+				return;
+			}
 
-		const channelResult = await getMessageChannel(guildId, config.xp.levelUpChannel, 'xp roles');
+			const channelResult = await getMessageChannel(guildId, config.xp.levelUpChannel, 'xp roles');
 
-		if (!channelResult.ok) {
-			logger.error(channelResult.error.message);
-			return;
-		}
+			if (!channelResult.ok) {
+				logger.error(channelResult.error.message);
+				return;
+			}
 
-		const channel = channelResult.value;
-		const msg = msgParams(messageConfig.xp.roleUp, [member.displayName, newRole.name, newRole.message]);
+			const channel = channelResult.value;
+			const msg = msgParams(messageConfig.xp.roleUp, [member.displayName, newRole.name, newRole.message]);
 
-		const result = await resultify(() => channel.send(msg));
+			const result = await resultify(() => channel.send(msg));
 
-		if (!result.ok) {
-			logger.error(`failed to send message for role up in channel ${channel.id} in guild ${guildId}, error : ${result.error.message}`);
+			if (!result.ok) {
+				logger.error(`failed to send message for role up in channel ${channel.id} in guild ${guildId}, error : ${result.error.message}`);
+			}
 		}
 
 	}
