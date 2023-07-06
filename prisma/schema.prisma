@@ -36,12 +36,13 @@ model GuildMember {
 }
 
 model Guild {
-  id                 String               @id
-  name               String?
-  guildMembers       GuildMember[]
-  xpMovements        XpMovement[]
-  bumps              Bump[]
-  MessagePubInterval MessagePubInterval[]
+  id                   String        @id
+  name                 String?
+  guildMembers         GuildMember[]
+  xpMovements          XpMovement[]
+  bumps                Bump[]
+  lastPubMessageId     String
+  messagesSinceLastPub Int
 
   @@map("guilds")
 }
@@ -70,13 +71,6 @@ model XpMovement {
   reason    String
 
   @@map("xpMovements")
-}
-
-model MessagePubInterval {
-  guildId               String   @id
-  guild                 Guild    @relation(fields: [guildId], references: [id])
-  lastSend              DateTime
-  sendMessagesSinceLast Int
 }
 
 enum XpMovementCause {
