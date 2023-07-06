@@ -41,8 +41,8 @@ model Guild {
   guildMembers         GuildMember[]
   xpMovements          XpMovement[]
   bumps                Bump[]
-  lastPubMessageId     String
-  messagesSinceLastPub Int
+  lastPubMessageId     String?
+  messagesSinceLastPub Int?
 
   @@map("guilds")
 }
