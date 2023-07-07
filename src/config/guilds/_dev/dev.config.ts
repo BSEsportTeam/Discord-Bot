@@ -2,6 +2,7 @@ import type {BaseGuild, BrawlStarsGuild} from '$core/config/guilds/guild.type';
 import {LevelUpRoleType} from '$core/config/guilds/guild.type';
 import type {Overwrite} from '$core/utils/type/type';
 import type {GuildAlias} from '$core/handlers/commands';
+import {EmbedBuilder} from 'discord.js';
 
 const devGuilds = {
 	guildMain: {
@@ -24,8 +25,16 @@ const devGuilds = {
 		bumpChannel: '1096122869626437706',
 		pubMessages: {
 			enable: true,
-			channelId: '',
-			messages: []
+			channelId: '1096122863368556717',
+			messages: [
+				{
+					embed: new EmbedBuilder()
+						.setDescription('test'),
+					buttonsLinks: {
+						'Photos de Nicolas': 'https://youtu.be/dQw4w9WgXcQ'
+					}
+				}
+			]
 		},
 	},
 	guildSection: {
@@ -74,8 +83,16 @@ const devGuilds = {
 		bumpChannel: '1096123377984475189',
 		pubMessages: {
 			enable: true,
-			channelId: '',
-			messages: []
+			channelId: '1096123376340308014',
+			messages: [
+				{
+					embed: new EmbedBuilder()
+						.setDescription('test'),
+					buttonsLinks: {
+						'Photos de Nicolas': 'https://youtu.be/dQw4w9WgXcQ'
+					}
+				}
+			]
 		},
 	}
 } satisfies Record<'guildMain' | 'guildSection', Overwrite<BrawlStarsGuild, {
