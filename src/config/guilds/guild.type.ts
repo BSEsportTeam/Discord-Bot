@@ -51,10 +51,10 @@ export type LevelUpRoleInfos = LevelUpRoleInfosCumulative | LevelUpRoleInfosEvol
 export type PubMessagesGlobalConfig = {
 	enable: boolean;
 	channelId: Snowflake;
-	messages: PubMessage[];
+	messages: PubMessageConfig[];
 }
 
-export type PubMessage = {
+export type PubMessageConfig = {
 	embed: EmbedBuilder;
 	buttonsLinks?: Record<string, string>;
 }
