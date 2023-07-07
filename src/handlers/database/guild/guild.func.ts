@@ -2,32 +2,14 @@ import type {Result} from 'rustic-error';
 import {error, ok} from 'rustic-error';
 import {anyToError, DatabaseError} from '$core/utils/error';
 import {prisma} from '$core/handlers/database/prisma';
+import type {Guild} from '@prisma/client';
 
-export const getLastMessagePubId = async (): Promise<Result<string | null, DatabaseError>> => {
+export const getAllGuilds = async (): Promise<Result<Guild[], DatabaseError>> => {
 	try {
-		const guild = await prisma.guild.findFirst({
-			select: {
-				lastPubMessageId: true,
-			},
-		});
-
-		return ok(guild?.lastPubMessageId || null);
+		const guilds = await prisma.guild.findMany();
+		return ok(guilds);
 	} catch (e) {
-		return error(new DatabaseError('Failed to get last message pub ID', anyToError(e)));
-	}
-};
-
-export const getMessagesSinceLastPub = async (): Promise<Result<number, DatabaseError>> => {
-	try {
-		const guild = await prisma.guild.findFirst({
-			select: {
-				messagesSinceLastPub: true,
-			},
-		});
-
-		return ok(guild?.messagesSinceLastPub || 0);
-	} catch (e) {
-		return error(new DatabaseError('Failed to get messages since last pub', anyToError(e)));
+		return error(new DatabaseError('Failed to retrieve all guilds', anyToError(e)));
 	}
 };
 
