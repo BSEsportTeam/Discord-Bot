@@ -31,20 +31,20 @@ export const getMessagesSinceLastPub = async (): Promise<Result<number, Database
 	}
 };
 
-export const setLastMessagePubId = async (guildId: string, messageId: string): Promise<Result<null, DatabaseError>> => {
+export const setLastMessagePub = async (guildId: string, date: Date): Promise<Result<null, DatabaseError>> => {
 	try {
 		await prisma.guild.update({
 			where: {
 				id: guildId,
 			},
 			data: {
-				lastPubMessageId: messageId,
+				lastPubMessage: date
 			},
 		});
 
 		return ok(null);
 	} catch (e) {
-		return error(new DatabaseError('Failed to set last message pub ID', anyToError(e)));
+		return error(new DatabaseError('Failed to set last message pub date', anyToError(e)));
 	}
 };
 
