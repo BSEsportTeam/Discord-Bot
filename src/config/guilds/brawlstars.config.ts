@@ -23,6 +23,11 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 		levelUpChannel: ''
 	},
 	bumpChannel: '',
+	pubMessages: {
+		enable: true,
+		channelId: '',
+		messages: []
+	},
 	clubs: [
 		{
 			// leader

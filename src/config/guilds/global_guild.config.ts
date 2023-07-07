@@ -6,7 +6,7 @@ export const globalGuildConfig: BaseGuild = {
 	eventAnnouncements: {
 		channelId: '',
 		roleId: '',
-		enable: true
+		enable: false
 	},
 	inviteLink: 'https://discord.gg/F2GTeYT',
 	xp: {
@@ -17,5 +17,10 @@ export const globalGuildConfig: BaseGuild = {
 		disablesChannels: [],
 		levelUpChannel: ''
 	},
-	bumpChannel: ''
+	bumpChannel: '',
+	pubMessages: {
+		enable: true,
+		channelId: '',
+		messages: []
+	},
 };

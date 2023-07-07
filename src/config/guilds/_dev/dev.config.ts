@@ -21,7 +21,12 @@ const devGuilds = {
 			disablesChannels: ['1096122870121386166'],
 			levelUpChannel: '1096122869626437705'
 		},
-		bumpChannel: '1096122869626437706'
+		bumpChannel: '1096122869626437706',
+		pubMessages: {
+			enable: true,
+			channelId: '',
+			messages: []
+		},
 	},
 	guildSection: {
 		name: 'global',
@@ -66,7 +71,12 @@ const devGuilds = {
 			channel: '1096123376965263394'
 		},
 		clubs: [],
-		bumpChannel: '1096123377984475189'
+		bumpChannel: '1096123377984475189',
+		pubMessages: {
+			enable: true,
+			channelId: '',
+			messages: []
+		},
 	}
 } satisfies Record<'guildMain' | 'guildSection', Overwrite<BrawlStarsGuild, {
 	name: GuildAlias

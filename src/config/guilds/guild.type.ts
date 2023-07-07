@@ -1,4 +1,5 @@
 import type {Snowflake} from 'discord-api-types/globals';
+import type {EmbedBuilder} from 'discord.js';
 
 export type GuildName = 'global' | 'brawlStars'
 
@@ -9,6 +10,7 @@ export type BaseGuild = {
 	inviteLink: string;
 	xp: XpInfos;
 	bumpChannel: Snowflake;
+	pubMessages: PubMessagesGlobalConfig
 }
 
 export type EventAnnouncements = {
@@ -45,6 +47,17 @@ export type LevelUpRoleInfosEvolutionary = {
 }
 
 export type LevelUpRoleInfos = LevelUpRoleInfosCumulative | LevelUpRoleInfosEvolutionary;
+
+export type PubMessagesGlobalConfig = {
+	enable: boolean;
+	channelId: Snowflake;
+	messages: PubMessage[];
+}
+
+export type PubMessage = {
+	embed: EmbedBuilder;
+	buttonsLinks?: Record<string, string>;
+}
 
 export type BrawlStarsGuild = BaseGuild & {
 	autoPing: {
