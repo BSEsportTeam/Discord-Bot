@@ -37,12 +37,12 @@ model GuildMember {
 
 model Guild {
   id                   String        @id
-  name                 String?
+  name                 String        @default("null")
   guildMembers         GuildMember[]
   xpMovements          XpMovement[]
   bumps                Bump[]
-  lastPubMessageId     String?
-  messagesSinceLastPub Int?
+  lastPubMessage       DateTime?
+  messagesSinceLastPub Int           @default(0)
 
   @@map("guilds")
 }
