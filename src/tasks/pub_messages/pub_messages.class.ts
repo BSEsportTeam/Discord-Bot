@@ -1,6 +1,6 @@
 import {Task, TaskType} from '$core/handlers/task';
 import {Dev} from '$core/utils/dev';
-import {ActionRowBuilder, ButtonBuilder} from 'discord.js';
+import {ActionRowBuilder, ButtonBuilder, ButtonStyle} from 'discord.js';
 import type {PubMessageConfig} from '$core/config/guilds';
 import {getDevGuildWithId, getGuildWithId} from '$core/config/guilds';
 import {getMessageChannel} from '$core/utils/discord';
@@ -78,7 +78,8 @@ export default class PubMessage extends Task<PubMessageHour> {
 			for (const key in message.buttonsLinks) {
 				actionRow.addComponents(new ButtonBuilder()
 					.setLabel(key)
-					.setURL(message.buttonsLinks[key]));
+					.setURL(message.buttonsLinks[key])
+					.setStyle(ButtonStyle.Link));
 			}
 		}
 
