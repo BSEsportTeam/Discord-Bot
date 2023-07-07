@@ -23,6 +23,7 @@ import {createBump, getBumpsByUserInGuildToday} from '$core/handlers/database/bu
 import {simpleEmbed} from '$core/utils/discord';
 import {msgParams} from '$core/utils/function/string';
 import {messageCreateConfig} from '$core/config/message/event/message_create.config';
+import {addMessageSinceLastPub} from '$core/tasks/update_db_values/values/message_since_last_pub.util';
 
 @Dev
 export default class MessageCreate extends Event<'messageCreate'> {
@@ -32,6 +33,13 @@ export default class MessageCreate extends Event<'messageCreate'> {
 		//check xp
 		void this.checkXP(message);
 		void this.checkBump(message);
+
+		if (!message.author.bot && message.guildId) {
+			const config = (isDev ? getDevGuildWithId(message.guildId) : getGuildWithId(message.guildId))?.pubMessages;
+			if (config && message.channelId === config.channelId) {
+				addMessageSinceLastPub(message.guildId);
+			}
+		}
 	}
 
 	async checkXP(message: Message) {
