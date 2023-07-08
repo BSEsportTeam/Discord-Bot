@@ -41,13 +41,13 @@ export const xpConfig: XpInfos = {
 		},
 		'50': {
 			name: 'Seigneur des Pirates',
-			id: '870959036605009961',
+			id: '870958891633082429',
 			type: LevelUpRoleType.EVOLUTIONARY,
 			message: 'Tu as encore évolué dans la hiérarchie, mais quand est-ce que tu vas t\'arrêter ? ',
 		},
 		'75': {
 			name: 'Pirate Légendaire',
-			id: '870958891633082429',
+			id: '870959036605009961',
 			type: LevelUpRoleType.EVOLUTIONARY,
 			message: 'Tu deviens le boss des pirates, celui que l\'on retient à jamais même après sa mort !?',
 		}
