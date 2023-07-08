@@ -16,7 +16,7 @@ export const commandsConfig = {
 			invalidMessage: 'Le lien ou l\'ID du message est invalide',
 			button: {
 				success: '**L\'annonce a été envoyée avec succès dans {number} serveurs !**',
-				failed: '**L\'annonce a été envoyée, mais certains serveurs ont eu des erreurs, voici la liste des serveurs avec erreurs :** \n- {serverrors}',
+				failed: '**L\'annonce a été envoyée, mais certains serveurs ont eu des erreurs, voici la liste des serveurs contenant des erreurs :** \n- {serverrors}',
 				cancel: '**Annulé avec succès !**'
 			}
 		},
@@ -29,7 +29,7 @@ export const commandsConfig = {
 	},
 	adminXp: {
 		name: 'adminxp',
-		description: 'Modifie les XP des membres.',
+		description: 'Modifie l\'XP des membres.',
 		subcmds: {
 			add: {
 				name: 'ajouter',
@@ -184,7 +184,7 @@ export const commandsConfig = {
 			},
 			apiError: {
 				title: 'Une erreur d\'API est apparue',
-				description: 'Une erreur d\'API est survenue. Il est possible que l\'API soit hors ligne. Réessayez la commande dans 30 minutes, et si l\'erreur se reproduit, contactez Arcoz.'
+				description: 'Une erreur d\'API est survenue. Il est possible que l\'API soit hors ligne. Réessayez la commande dans 30 minutes et si l\'erreur se reproduit, contactez Arcoz.'
 			},
 			clubInfos: {
 				title: 'Informations sur {clubName}',
