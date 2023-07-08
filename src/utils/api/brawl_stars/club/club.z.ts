@@ -4,6 +4,8 @@ export const playerIconSchema = z.object({
 	id: z.number(),
 });
 
+export const clubType = z.enum(['open', 'inviteOnly', 'closed', 'unknown']);
+
 export const clubMemberSchema = z.object({
 	icon: playerIconSchema,
 	tag: z.string(),
