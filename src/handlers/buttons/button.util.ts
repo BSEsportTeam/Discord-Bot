@@ -7,7 +7,7 @@ import {resultify} from 'rustic-error';
 import {logger} from '$core/utils/logger';
 
 export const authorOnly = async (interaction: ButtonInteraction): Promise<boolean> => {
-	if (interaction.message.interaction?.user.id === interaction.user.id) {
+	if (interaction.message.interaction?.user.id === interaction.user.id || interaction.memberPermissions?.has('Administrator')) {
 		return true;
 	}
 		

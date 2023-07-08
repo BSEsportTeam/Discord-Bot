@@ -1,4 +1,4 @@
-import type {GuildAlias} from '$core/handlers/commands';
+import type {CommandPreReply, GuildAlias} from '$core/handlers/commands';
 import {BaseCommand, sendCommandReply} from '$core/handlers/commands';
 import {builder} from './club_info.builder';
 import type {ChatInputCommandInteraction} from 'discord.js';
@@ -25,6 +25,10 @@ const config = commandsConfig.clubInfo;
 export default class TopLevel extends BaseCommand {
 	builder = builder.toJSON();
 	guild: GuildAlias = 'brawlStars';
+	preReply: CommandPreReply = {
+		enable: true,
+		ephemeral: false
+	};
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
 		const clubName = interaction.options.getString(config.options.club.name) || 'invalid';
@@ -34,7 +38,7 @@ export default class TopLevel extends BaseCommand {
 			logger.error(`no brawl stars club fount with name ${clubName} in config`);
 			return sendCommandReply(interaction, {
 				embeds: [errorEmbed(config.exec.noClub.description, config.exec.noClub.title)]
-			}, false);
+			}, true);
 		}
 
 		const clubInfoResult = await getClubInfos(clubConfig.tag, clubConfig.localTop, clubConfig.globalTop);
@@ -43,7 +47,7 @@ export default class TopLevel extends BaseCommand {
 			logger.debugValues(clubInfoResult.error.debug());
 			return sendCommandReply(interaction, {
 				embeds: [errorEmbed(config.exec.apiError.description, config.exec.apiError.title)]
-			}, false);
+			}, true);
 		}
 
 		const exec = config.exec.clubInfos;
@@ -87,6 +91,6 @@ export default class TopLevel extends BaseCommand {
 
 		return sendCommandReply(interaction, {
 			embeds: [embed]
-		}, false);
+		}, true);
 	}
 }
