@@ -72,7 +72,7 @@ export const commandsConfig = {
 			add: {
 				succes: {
 					title: 'Ajout d\'expérience',
-					description: '**{xp} XP** ont été ajoutés à {user} !\n' +
+					description: '**{xp} XP** ont été ajoutées à {user} !\n' +
 						'Il est maintenant niveau **{level}** avec **{xp} XP** !',
 					reason: '\nPour la raison `{reason}`'
 				}
@@ -80,7 +80,7 @@ export const commandsConfig = {
 			remove: {
 				succes: {
 					title: 'Retrait d\'expérience',
-					description: '**{xp} XP** ont été retirés à {user} !\n' +
+					description: '**{xp} XP** ont été retirées à {user} !\n' +
 						'Il est maintenant niveau **{level}** avec **{xp} XP** !',
 					reason: '\nPour la raison `{reason}`'
 				}
