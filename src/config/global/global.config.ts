@@ -15,9 +15,9 @@ export const colors: Colors = {
 export const globalConfig = {
 	eventAnnouncementPingReplacer: '{ping}',
 	eventAnnouncementEmojis: [
-		'❤️',
-		'🔜',
-		'<un:1112094976654974986>'
+		'<vrif:811725679049703484>',
+		'<BSE:965618508367024150>',
+		'<tada_blue_d:979418928197550090>'
 	],
 	bumpBot: '302050872383242240',
 	bumpCommand: 'bump',
