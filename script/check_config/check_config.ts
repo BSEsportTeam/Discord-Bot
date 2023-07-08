@@ -1,7 +1,7 @@
 import type {BaseGuild, BrawlStarsGuild} from '$core/config/guilds';
+import {guildsConfig} from '$core/config/guilds';
 import {Client} from 'discord.js';
 import {env} from '$core/config/env';
-import {devConfig} from '$core/config/guilds/_dev/dev.config';
 import {blue, green, magenta, red, underline, yellow} from 'colorette';
 
 // Custom color constants
@@ -11,10 +11,8 @@ const warningColor = yellow;
 const infoColor = (text: string | number) => underline(blue(text));
 const variableColor = magenta;
 
-const config: BaseGuild | BrawlStarsGuild = devConfig.guilds.guildSection;
-
 const date = Date.now();
-console.log(successColor(`prepare check for server ${config.name}`));
+console.log(successColor('STARTING config checker...'));
 
 
 const client = new Client({
@@ -22,7 +20,9 @@ const client = new Client({
 });
 
 
-const check = async () => {
+const check = async (config: BaseGuild | BrawlStarsGuild) => {
+	console.log(successColor(`prepare check for server ${config.name}`));
+
 	const guild = client.guilds.cache.get(config.guildId);
 	if (!guild) {
 		throw new Error(errorColor(`Invalid guild id: ${variableColor(config.guildId)}`));
@@ -84,13 +84,13 @@ const check = async () => {
 		logResultChannel('club announce', config.autoPing.channel);
 	}
 
-	console.log(successColor(`\nENDED in ${Math.floor(Date.now() - date)} ms`));
-
-	client.destroy();
-
 };
-client.on('ready', () => {
-	void check();
+client.on('ready', async () => {
+	for (const guild of Object.values(guildsConfig)) {
+		await check(guild);
+	}
+	console.log(successColor(`\nENDED in ${Math.floor(Date.now() - date)} ms`));
+	client.destroy();
 });
 
 void client.login(env.TOKEN);
