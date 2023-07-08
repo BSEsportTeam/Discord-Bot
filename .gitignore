@@ -3,3 +3,6 @@ package-lock.json
 # Keep environment variables out of version control
 .env
 .idea
+pnpm-lock.yaml
+*todo.md
+testing.ts

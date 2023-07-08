@@ -1,6 +1,6 @@
 import type {LogLevel} from './logger.const';
 import {DATE_COLOR, logLevelOptions, SEPARATOR_COLOR} from './logger.const';
-import {DayJS} from '$core/utils/dayjs';
+import {DayJS} from '$core/utils/function/dayjs/dayjs';
 import {effectReset} from 'tintify';
 
 export const formatLog = (level: LogLevel, message: string): string =>  {

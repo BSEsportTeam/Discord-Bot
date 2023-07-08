@@ -1,26 +1,65 @@
-import {Client as BClient, Collection, IntentsBitField, REST} from 'discord.js';
-import {config} from '$core/config';
-import type {BaseCommand} from '$core/commands/base_command.class';
-import {loadEvents} from '$core/handlers/events/loader';
-import type {Snowflake} from 'discord-api-types/globals';
+import {ChannelType, Client as BClient, Collection, IntentsBitField, REST} from 'discord.js';
+import type {CommandCollection} from '$core/handlers/commands/command.type';
+import {eventLoad} from '$core/handlers/events/event';
+import {commandLoad} from '$core/handlers/commands/command_load';
+import {logger} from '$core/utils/logger';
+import type {ButtonCollection} from '$core/handlers/buttons';
+import {loadButtons} from '$core/handlers/buttons';
+import {loadTask} from '$core/handlers/task';
+import {setVoice} from '$core/utils/xp/voice/voice.util';
 
-type CommandAliasName = `${Snowflake}-${string}`|string;
 export class Client extends BClient {
-	config = config;
-	commands = new Collection<CommandAliasName, BaseCommand>();
+	commands: CommandCollection = new Collection();
 	rest: REST;
-
+	buttons: ButtonCollection = new Collection();
+	
 	constructor(token: string) {
 		super({
 			intents: [
 				IntentsBitField.Flags.GuildScheduledEvents,
-				IntentsBitField.Flags.Guilds
+				IntentsBitField.Flags.Guilds,
+				IntentsBitField.Flags.GuildMessages,
+				IntentsBitField.Flags.MessageContent,
+				IntentsBitField.Flags.DirectMessages,
+				IntentsBitField.Flags.GuildMembers,
+				IntentsBitField.Flags.GuildVoiceStates,
+				IntentsBitField.Flags.GuildPresences
 			]
 		});
+
 		this.rest = new REST({
 			version: '10'
 		}).setToken(token);
+
 		this.token = token;
-		loadEvents(this);
+
+		this.on('ready', () =>{
+			void this.ready();
+		});
+	}
+
+	async ready() {
+		await eventLoad();
+		await commandLoad();
+		await loadButtons();
+		await loadTask();
+		logger.info('BSE Bot is ready !');
+
+		for (const guild of this.guilds.cache.values()) {
+			const voicesState = guild.voiceStates.cache.values();
+			for (const voiceState of voicesState) {
+				if (voiceState.channel && voiceState.channel.type !== ChannelType.GuildStageVoice && voiceState.member) {
+					setVoice({
+						start: Date.now(),
+						guildId: guild.id,
+						id: voiceState.member.user.id,
+						deaf: voiceState.deaf || false,
+						mute: voiceState.mute || false,
+						lastUpdate: Date.now(),
+						channelId: voiceState.channel.id
+					});
+				}
+			}
+		}
 	}
 }
