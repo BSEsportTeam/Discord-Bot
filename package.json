@@ -6,7 +6,8 @@
   "scripts": {
     "start:prod": "node -r @swc-node/register -r tsconfig-paths/register ./src/index.ts",
     "start:dev": "ts-node src/index.ts dev",
-    "script:checkconfig": "ts-node script/check_config/check_config.ts",
+    "script:checkconfig": "ts-node script/check_config/check_config.ts script",
+    "script:addguildstodb": "ts-node script/add_guilds_to_db/add_guilds_to_db.ts script",
     "test": "vitest --ui",
     "db:migrate": "prisma migrate dev",
     "db:gen": "prisma generate"
