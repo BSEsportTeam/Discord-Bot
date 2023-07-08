@@ -1,7 +1,17 @@
 import type {Snowflake} from 'discord-api-types/globals';
 import type {EmbedBuilder} from 'discord.js';
 
-export type GuildName = 'global' | 'brawlStars'
+export type GuildName =
+	| 'global'
+	| 'brawlStars'
+	| 'clashRoyale'
+	| 'clashOfClans'
+	| 'rocketLeague'
+	| 'callOfDuty'
+	| 'fortnite'
+	| 'apexLegends'
+	| 'trackmania'
+
 
 export type BaseGuild = {
 	guildId: Snowflake;
