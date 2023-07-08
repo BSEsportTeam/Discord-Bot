@@ -3,20 +3,20 @@ import type {Commands} from './commands.type';
 export const commandsConfig = {
 	announceEvent: {
 		name: 'annonceevent',
-		description: 'Envoie l\'évent partout',
+		description: 'Envoie l\'événement partout',
 		options: {
 			link: {
 				name: 'lien',
-				description: 'Lien ou id du message à copier'
+				description: 'Lien ou ID du message à copier'
 			}
 		},
 		exec: {
-			invalidArgument: 'Valeur invalide reçu dans l\'argument !',
+			invalidArgument: 'Valeur invalide reçue dans l\'argument !',
 			invalidChannel: 'Le lien du salon est invalide',
-			invalidMessage: 'Le lien ou l\'id du message est invalide',
+			invalidMessage: 'Le lien ou l\'ID du message est invalide',
 			button: {
-				success: '**L\'annonce à été envoyé avec succès dans {number} serveurs !**',
-				failed: '**L\'annonce à été envoyé, mais certains serveurs ont eu des erreurs, voici la liste des serveurs avec erreur :** \n- {serverrors}',
+				success: '**L\'annonce a été envoyée avec succès dans {number} serveurs !**',
+				failed: '**L\'annonce a été envoyée, mais certains serveurs ont eu des erreurs, voici la liste des serveurs avec erreurs :** \n- {serverrors}',
 				cancel: '**Annulé avec succès !**'
 			}
 		},
@@ -29,41 +29,41 @@ export const commandsConfig = {
 	},
 	adminXp: {
 		name: 'adminxp',
-		description: 'Modifie les xp des membres.',
+		description: 'Modifie les XP des membres.',
 		subcmds: {
 			add: {
 				name: 'ajouter',
-				description: 'Ajouter de l\'xp à un membre',
+				description: 'Ajouter de l\'XP à un membre',
 				options: {
 					member: {
 						name: 'membre',
-						description: 'A quel membre souhaitez vous ajouter de de l\'expérience ?'
+						description: 'À quel membre souhaitez-vous ajouter de l\'expérience ?'
 					},
 					xp: {
 						name: 'experience',
-						description: 'Combien d\'expérience voulez vous lui ajouter ?'
+						description: 'Combien d\'expérience voulez-vous lui ajouter ?'
 					},
 					reason: {
 						name: 'raison',
-						description: 'Pour quel raison voulez vous ajouter de l\'expérience'
+						description: 'Pour quelle raison voulez-vous ajouter de l\'expérience ?'
 					}
 				}
 			},
 			remove: {
 				name: 'retirer',
-				description: 'Retirer de l\'xp à un membre',
+				description: 'Retirer de l\'XP à un membre',
 				options: {
 					member: {
 						name: 'membre',
-						description: 'A quel membre souhaitez vous retirer de de l\'expérience ?'
+						description: 'À quel membre souhaitez-vous retirer de l\'expérience ?'
 					},
 					xp: {
 						name: 'experience',
-						description: 'Combien d\'expérience voulez vous lui retirer ?'
+						description: 'Combien d\'expérience voulez-vous lui retirer ?'
 					},
 					reason: {
 						name: 'raison',
-						description: 'Pour quel raison voulez vous retirer de l\'expérience'
+						description: 'Pour quelle raison voulez-vous retirer de l\'expérience ?'
 					}
 				}
 			}
@@ -71,17 +71,17 @@ export const commandsConfig = {
 		exec: {
 			add: {
 				succes: {
-					title: 'Ajout d\'experience',
-					description: '**{xp} xp** ont été ajoutés à {user} !\n' +
-						'il est maintenant **niveau {level}** avec **{xp} xp** !',
+					title: 'Ajout d\'expérience',
+					description: '**{xp} XP** ont été ajoutés à {user} !\n' +
+						'Il est maintenant niveau **{level}** avec **{xp} XP** !',
 					reason: '\nPour la raison `{reason}`'
 				}
 			},
 			remove: {
 				succes: {
-					title: 'Retrait d\'experience',
-					description: '**{xp} xp** ont été retirés à {user} !\n' +
-						'il est maintenant **niveau {level}** avec **{xp} xp** !',
+					title: 'Retrait d\'expérience',
+					description: '**{xp} XP** ont été retirés à {user} !\n' +
+						'Il est maintenant niveau **{level}** avec **{xp} XP** !',
 					reason: '\nPour la raison `{reason}`'
 				}
 			}
@@ -89,55 +89,54 @@ export const commandsConfig = {
 	},
 	dropXp: {
 		name: 'dropxp',
-		description: 'Envoyez un drop d\'xperience',
+		description: 'Envoyez un drop d\'expérience',
 		options: {
 			amount: {
 				name: 'xp',
-				description: 'Combien d\'experience voulez vous droper ?'
+				description: 'Combien d\'expérience voulez-vous dropper ?'
 			}
 		},
 		exec: {
 			drop: {
-				title: 'Oh un drop ? :eyes: Soyez le premier à le récuperer !',
-				description: 'Gagnez **{xp} xp** en cliquant sur le bouton ci-dessous.'
+				title: 'Oh un drop ? :eyes: Soyez le premier à le récupérer !',
+				description: 'Gagnez **{xp} XP** en cliquant sur le bouton ci-dessous.'
 			},
-			success: 'Le drop à été envoyer avec succès !',
-			claimed: 'Bravo {tag} ! Tu viens de gagner **{xp} xp** !',
-			timeout: 'Oh dommage, personne à récupérer le drop !',
-			noAuthor: 'Vous pouvez pas récupérer votre propre drop !',
+			success: 'Le drop a été envoyé avec succès !',
+			claimed: 'Bravo {tag} ! Tu viens de gagner **{xp} XP** !',
+			timeout: 'Oh dommage, personne n\'a récupéré le drop !',
+			noAuthor: 'Vous ne pouvez pas récupérer votre propre drop !',
 			button: 'Récupérer !'
 		}
 	},
 	level: {
 		name: 'niveau',
-		description: 'Connaitre son niveau ou celui de quelqu\'un d\'autre',
+		description: 'Connaître son niveau ou celui de quelqu\'un d\'autre',
 		options: {
 			member: {
 				name: 'membre',
-				description: 'De quel membre voulez vous connaitre le niveau ?'
+				description: 'De quel membre voulez-vous connaître le niveau ?'
 			}
 		},
 		exec: {
-			title: 'Information de {username}',
+			title: 'Informations de {username}',
 			description: 'Niveau : **{level}**\n' +
-				'Xp Total : **{xpTotal} xp**\n' +
-				'Progression du niveau : **{curentXp}/{xpToLevelUp} xp**\n' +
+				'XP Total : **{xpTotal} XP**\n' +
+				'Progression du niveau : **{currentXp}/{xpToLevelUp} XP**\n' +
 				'Position : **{rank}**',
-			noUser: 'Aucun utilisateur à été retrouver dans la base de données !',
-
+			noUser: 'Aucun utilisateur n\'a été retrouvé dans la base de données !'
 		}
 	},
 	topLevel: {
 		name: 'topniveau',
-		description: 'Options le top niveau du serveur !',
+		description: 'Afficher le top niveau du serveur !',
 		options: {
 			page: {
 				name: 'page',
-				description: 'Quel page faut il affiché ? (Optionel)'
+				description: 'Quelle page faut-il afficher ? (Optionnel)'
 			},
 			global: {
 				name: 'global',
-				description: 'Classement global ? (par defaultt false)'
+				description: 'Classement global ? (par défaut false)'
 			}
 		},
 		exec: {
@@ -145,20 +144,20 @@ export const commandsConfig = {
 				titleGuild: 'Top 3 du serveur !',
 				titleGlobal: 'Top 3 global !',
 				description: ':first_place: {mention}\n' +
-					':black_medium_square: ➥ Niveau {level} ({xp} xp)\n' +
+					':black_medium_square: ➥ Niveau {level} ({xp} XP)\n' +
 					':second_place: {mention}\n' +
-					':black_medium_square: ➥ Niveau {level} ({xp} xp)\n' +
+					':black_medium_square: ➥ Niveau {level} ({xp} XP)\n' +
 					':third_place: {mention}\n' +
-					':black_medium_square: ➥ Niveau {level} ({xp} xp)',
+					':black_medium_square: ➥ Niveau {level} ({xp} XP)',
 				selfTop: '\n\n`#{position}` {mention}\n' +
-					':black_medium_square: ➥ Niveau {level} ({xp} xp)'
+					':black_medium_square: ➥ Niveau {level} ({xp} XP)'
 			},
 			detailed: {
 				titleGuild: 'Classement du serveur page {page}',
 				tileGlobal: 'Classement global page {page}',
 				description: '{position}. {mention}\n' +
-					'➥ Niveau {level} ({xp} xp)',
-				empty: 'Aucune données pour cette page'
+					'➥ Niveau {level} ({xp} XP)',
+				empty: 'Aucune donnée pour cette page'
 			}
 		},
 		other: {
@@ -171,7 +170,7 @@ export const commandsConfig = {
 	},
 	clubInfo: {
 		name: 'clubinfo',
-		description: 'Optenez des informations à propos d\'un club !',
+		description: 'Obtenez des informations à propos d\'un club !',
 		options: {
 			club: {
 				name: 'club',
@@ -181,20 +180,21 @@ export const commandsConfig = {
 		exec: {
 			noClub: {
 				title: 'Pas de club trouvé !',
-				description: 'Le club n\'a pas été trouvé, veillez contacter Arcoz.'
+				description: 'Le club n\'a pas été trouvé, veuillez contacter Arcoz.'
 			},
 			apiError: {
-				title: 'Une erreur d\'api est apparu',
-				description: 'Une erreur d\'api est arrivé, il est possible que l\'api sois hors ligne, reessayé la commande dans 30min, et si l\'erreur se reproduit, contacter Arcoz'
+				title: 'Une erreur d\'API est apparue',
+				description: 'Une erreur d\'API est survenue. Il est possible que l\'API soit hors ligne. Réessayez la commande dans 30 minutes, et si l\'erreur se reproduit, contactez Arcoz.'
 			},
 			clubInfos: {
 				title: 'Informations sur {clubName}',
 				basic: {
-					title: 'Informations basique',
-					description: 'Type de club :              __{type}__\n' +
-						'Membres :                    {curentMembers}/{MaxMembers} membres\n' +
-						'Trophées requis :        {tr} 🏆\n' +
-						'Accès :                          {access}',
+					title: 'Informations basiques',
+					description:
+						'Type de club : __{type}__\n' +
+						'Membres : {currentMembers}/{MaxMembers} membres\n' +
+						'Trophées requis : {tr} 🏆\n' +
+						'Accès : {access}',
 					values: {
 						types: {
 							leader: 'Ladder',
@@ -205,21 +205,21 @@ export const commandsConfig = {
 							open: 'Ouvert',
 							inviteOnly: 'Sur invitation',
 							closed: 'Fermé',
-							unknown: 'Inconue'
+							unknown: 'Inconnu'
 						}
 					}
 				},
 				rank: {
 					title: 'Classements',
-					description: 'Trophées actuel :        {tr} 🏆',
+					description: 'Trophées actuels : {tr} 🏆',
 					descriptionComplements: {
-						bestGlobal: '\nMeilleur top monde :  {rank}',
-						currentGlobal: '\nTop monde actuel :     {rank}',
-						bestLocal: '\nMeilleur top fr :            {rank}',
-						currentLocal: '\nTop fr actuel :               {rank}'
+						bestGlobal: '\nMeilleur top mondial : {rank}',
+						currentGlobal: '\nTop mondial actuel : {rank}',
+						bestLocal: '\nMeilleur top FR : {rank}',
+						currentLocal: '\nTop FR actuel : {rank}'
 					},
 					rankValue: {
-						noRanked: 'non classé',
+						noRanked: 'Non classé',
 						ranked: '{top} 🎖️'
 					}
 				}
