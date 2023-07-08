@@ -64,9 +64,9 @@ export const commandLoad = async () => {
 
 					} else {
 
-						const commandList = guildsCommands.get(commandConstructor.guild) || [];
+						const commandList = guildsCommands.get(commandClass.guild) || [];
 						commandList.push(commandClass.builder);
-						guildsCommands.set(commandConstructor.guild, commandList);
+						guildsCommands.set(commandClass.guild, commandList);
 
 					}
 
