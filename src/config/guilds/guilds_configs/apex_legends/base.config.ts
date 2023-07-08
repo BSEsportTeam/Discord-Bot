@@ -7,7 +7,7 @@ export const apexLegendsGuildConfig: BaseGuild = {
 	guildId: '840673242838859786',
 	eventAnnouncements: {
 		channelId: '913215408448864287',
-		roleId: '886738093779091486',
+		roleId: '850833528718753822',
 		enable: true
 	},
 	inviteLink: 'https://discord.gg/6q6eshT83k',

@@ -51,11 +51,10 @@ const guilds = [
 	'891729840028409857'
 ];
 
-const globalCount = 0;
 
 const run = async () => {
 	const usersData = new Collection<string, User>();
-	const guildMembers: GuildMember[] = [];
+	const guildMembers = new Collection<string, GuildMember>();
 
 	console.log('start script for get draftbot xp');
 
@@ -96,7 +95,7 @@ const run = async () => {
 					xp: parseInt(member.totalXp, 10)
 				};
 
-				guildMembers.push(memberData);
+				guildMembers.set(`${memberData.guildId}-${memberData.userId}`, memberData);
 			}
 			i++;
 		}
@@ -104,13 +103,13 @@ const run = async () => {
 		console.log(`found ${stats} members for guild ${guildId}`);
 	}
 
-	console.log(`found in total ${usersData.size} users and ${guildMembers.length} members`);
+	console.log(`found in total ${usersData.size} users and ${guildMembers.size} members`);
 
 	await prisma.user.createMany({
 		data: usersData.map((v) => v)
 	});
 	await prisma.guildMember.createMany({
-		data: guildMembers
+		data: guildMembers.map((g) => g)
 	});
 };
 
