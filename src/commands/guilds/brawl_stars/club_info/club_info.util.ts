@@ -1,5 +1,5 @@
 import type {BrawlStarsClub} from '$core/config/guilds';
-import {BrawlStarsClubType, brawlStarsGuildConfig} from '$core/config/guilds';
+import {BrawlStarsClubType, guildsConfig} from '$core/config/guilds';
 import type {APIApplicationCommandOptionChoice} from 'discord.js';
 import type {ClubInfos} from '$core/commands/guilds/brawl_stars/club_info/club_info.type';
 import type {Result} from 'rustic-error';
@@ -10,6 +10,8 @@ import {msgParams} from '$core/utils/function/string';
 import {getApiClub} from '$core/utils/api/brawl_stars/club/club.func';
 import {getApiClubRanking} from '$core/utils/api/brawl_stars/ranking/club_ranking.func';
 import type {BrawlStarsApiError} from '$core/utils/api/brawl_stars/brawl_stars_error.class';
+
+const brawlStarsGuildConfig = guildsConfig.brawlStars;
 
 export const getChoices = () => {
 	const choices: APIApplicationCommandOptionChoice<string>[] = [];

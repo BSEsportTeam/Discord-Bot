@@ -1,4 +1,4 @@
-import type {ClubType} from 'brawlstars';
+import type {ClubType} from '$core/utils/api/brawl_stars';
 
 export type ClubInfos = {
 	tag: string;

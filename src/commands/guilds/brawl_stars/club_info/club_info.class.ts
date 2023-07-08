@@ -82,7 +82,7 @@ export default class TopLevel extends BaseCommand {
 		{
 			name: exec.rank.title,
 			value: rankDescription,
-			inline: true
+			inline: false
 		});
 
 		return sendCommandReply(interaction, {
