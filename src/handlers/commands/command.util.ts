@@ -23,9 +23,7 @@ export const isSubCommands = (cmd: BaseCommand): cmd is SubsCommand => {
 
 export const sendCommandReply = async (interaction: ChatInputCommandInteraction, options: InteractionReplyOptions | InteractionEditReplyOptions, defer: boolean):
 	Promise<Result<boolean, CommandError>> => {
-	console.log(defer);
 	if (defer) {
-		console.log('ok');
 		const result = await resultify(() => interaction.editReply(options as InteractionEditReplyOptions));
 
 		if (!result.ok) {
