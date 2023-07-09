@@ -22,7 +22,7 @@ export const request = async <T extends z.Schema>(url: string, schema: T): Promi
 			return error(new BrawlStarsApiError('failed to request brawl stars api and invalid error return', result.error, infos.error.toString(), 'unknown'));
 		}
 
-		return error(new BrawlStarsApiError('failed to request brawl stars api', result.error, infos.data.reason, infos.data.message));
+		return error(new BrawlStarsApiError('failed to request brawl stars api', result.error, infos.data.reason || 'unknown', infos.data.message || 'unknown'));
 	}
 
 	const infos = schema.safeParse(result.value);

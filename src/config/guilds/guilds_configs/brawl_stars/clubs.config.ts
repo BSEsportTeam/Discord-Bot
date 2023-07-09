@@ -22,7 +22,7 @@ export const clubsList: BrawlStarsClub[] = [
 	},
 	{
 		name: 'BS Kings',
-		tag: 'E8LPCQRGV',
+		tag: '8LPCQRGV',
 		type: BrawlStarsClubType.LADDER
 	},
 	{
@@ -42,7 +42,7 @@ export const clubsList: BrawlStarsClub[] = [
 	},
 	{
 		name: 'BS Myths',
-		tag: '88QUVJ8YC',
+		tag: '8QUVJ8YC',
 		type: BrawlStarsClubType.LADDER
 	},
 	// ldc
@@ -63,7 +63,7 @@ export const clubsList: BrawlStarsClub[] = [
 	},
 	{
 		name: 'BS Demons',
-		tag: '2GCPQGL8JY',
+		tag: '2GPQGL8JY',
 		type: BrawlStarsClubType.LDC
 	},
 	// chills
