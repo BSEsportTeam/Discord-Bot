@@ -22,7 +22,7 @@ export const globalConfig = {
 	bumpBot: '302050872383242240',
 	bumpCommand: 'bump',
 	maxBump: 5,
-	xpPerBump: 50
+	xpPerBump: 100
 };
 
 
