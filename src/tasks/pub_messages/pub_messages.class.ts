@@ -57,7 +57,7 @@ export default class PubMessage extends Task<PubMessageHour> {
 
 			if (messageHour === PubMessageHour.Second && !isToday(guild.lastPubMessage)) {
 				if (getMinMessages(guild.lastPubMessage) <= guild.messagesSinceLastPub) {
-					setInterval(() => {
+					setTimeout(() => {
 						this.sendMessage(guild.id, guildConfig.channelId, getRandomMessage(guildConfig.messages));
 					}, 1000 * 60 * generateRandomValue(SECOND_SEND_RANGE_IN_MIN));
 					continue;
@@ -65,7 +65,7 @@ export default class PubMessage extends Task<PubMessageHour> {
 			}
 
 			if (messageHour === PubMessageHour.First && getMinMessages(guild.lastPubMessage) <= guild.messagesSinceLastPub) {
-				setInterval(() => {
+				setTimeout(() => {
 					this.sendMessage(guild.id, guildConfig.channelId, getRandomMessage(guildConfig.messages));
 				}, 1000 * 60 * generateRandomValue(FIRST_SEND_RANGE_IN_MIN));
 			}
