@@ -19,7 +19,7 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 			options: BrawlStarsAnnouncementType.START_LDC
 		},
 		{
-			interval: '0 13 * * 4',
+			interval: '0 12 * * 4',
 			options: BrawlStarsAnnouncementType.END_LDC
 		},
 		{
@@ -27,7 +27,7 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 			options: BrawlStarsAnnouncementType.START_LDC,
 		},
 		{
-			interval: '0 13 * * 6',
+			interval: '0 12 * * 6',
 			options: BrawlStarsAnnouncementType.END_LDC,
 		},
 		{
@@ -35,15 +35,15 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 			options: BrawlStarsAnnouncementType.START_LDC,
 		},
 		{
-			interval: '0 13 * * 1',
+			interval: '0 12 * * 1',
 			options: BrawlStarsAnnouncementType.END_LDC,
 		},
 		{
-			interval: '0 17 * * 2',
+			interval: '0 14 * * 2',
 			options: BrawlStarsAnnouncementType.JDC,
 		},
 		{
-			interval: '0 17 * * 6',
+			interval: '0 14 * * 6',
 			options: BrawlStarsAnnouncementType.JDC,
 		}
 	];
