@@ -3,7 +3,3 @@ export enum BrawlStarsAnnouncementType {
 	END_LDC,
 	JDC
 }
-export enum Week {
-	WEEK_A,
-	WEEK_B
-}
