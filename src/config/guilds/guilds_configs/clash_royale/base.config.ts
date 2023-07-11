@@ -6,7 +6,7 @@ export const clashRoyaleGuildConfig: BaseGuild = {
 	name: 'clashRoyale',
 	guildId: '795972160023822346',
 	eventAnnouncements: {
-		channelId: '1094658713215836281',
+		channelId: '843944880703012915',
 		roleId: '828351231243714591',
 		enable: true
 	},
