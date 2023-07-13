@@ -49,7 +49,10 @@ export const clubsList: BrawlStarsClub[] = [
 	{
 		name: 'BS Esport Pro',
 		tag: '9Y9UCUP',
-		type: BrawlStarsClubType.LDC
+		type: BrawlStarsClubType.LDC,
+		globalTop: false,
+		localTop: true,
+		bestLocal: 53
 	},
 	{
 		name: 'BS Aries',
