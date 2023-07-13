@@ -6,3 +6,4 @@ package-lock.json
 pnpm-lock.yaml
 *todo.md
 testing.ts
+/prisma/migrations
