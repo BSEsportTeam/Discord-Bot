@@ -15,6 +15,6 @@ export const messageConfig = {
 	},
 	xp: {
 		levelUp: '**Félicitations** {mention}, tu viens de passer au niveau {level} !',
-		roleUp: '**Félicitations** {pseudo}, tu viens d\'optenir le role **{role}** ! _**{message}**_'
+		roleUp: '**Félicitations** {pseudo}, tu viens d\'obtenir le rôle **{role}** ! _**{message}**_'
 	}
 } satisfies Record<string, BaseMessage>;
