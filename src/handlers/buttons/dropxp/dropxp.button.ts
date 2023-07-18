@@ -11,6 +11,7 @@ import {colors} from '$core/config/global';
 import {addXp} from '$core/utils/xp';
 import {XpMovementCause} from '@prisma/client';
 import {msgParams} from '$core/utils/function/string';
+import {logger} from '$core/utils/logger';
 
 const button: ButtonHandler = {
 	id: buttonsIds.dropXp.base,
@@ -21,7 +22,6 @@ const button: ButtonHandler = {
 		if (interaction.guildId === null) return ok(false);
 		const guildId = interaction.guildId;
 
-		if (isTake(interaction.message.id)) return ok(false);
 
 		const infos = buttonsDynamicIds.dropXp.deconstruct(interaction.customId);
 		const [author, xp] = [infos[0], parseInt(infos[1], 10)];
@@ -38,23 +38,32 @@ const button: ButtonHandler = {
 			return ok(false);
 		}
 
-		setTake(interaction.message.id);
-
-		const xpResult = await addXp(interaction.user.id, guildId, xp, XpMovementCause.XPDROP, author);
-		if (!xpResult.ok) {
-			return error(new ButtonError(`failed to add xp to member, error : ${xpResult.error.message}`, interaction, xpResult.error));
+		const result1 = await resultify(() => interaction.deferUpdate());
+		if (!result1.ok) {
+			return error(new ButtonError(`failed to deferUpdate to button interaction, error : ${result1.error.message}`, interaction, result1.error));
 		}
+
+		if (isTake(interaction.message.id)) {
+			return ok(false);
+		}
+
+		setTake(interaction.message.id);
+		void disableButtons(interaction.message);
+
 
 		const embed = simpleEmbed(
 			msgParams(commandsConfig.dropXp.exec.claimed, [interaction.user.toString(), xp])
 		);
 
-		const result = await resultify(() => interaction.reply({embeds: [embed]}));
+		const result = await resultify(() => interaction.message.reply({embeds: [embed]}));
 
 		if (!result.ok) {
-			return error(new ButtonError(`failed to reply to button interaction, error : ${result.error.message}`, interaction, result.error));
+			logger.error(`failed to reply to message, error : ${result.error.message}`);
 		}
-		void disableButtons(interaction.message);
+		const xpResult = await addXp(interaction.user.id, guildId, xp, XpMovementCause.XPDROP, author);
+		if (!xpResult.ok) {
+			logger.error(`failed to add xp to member after dropxp, error : ${xpResult.error.message}`);
+		}
 		return ok(false);
 	}
 

@@ -13,8 +13,8 @@ import {simpleEmbed} from '$core/utils/discord/';
 const config = commandsConfig.adminXp;
 export class AdminXpAdd extends SubCommand {
 	preReply: CommandPreReply = {
-		ephemeral: true,
-		enable: false
+		ephemeral: false,
+		enable: true
 	};
 	name = config.subcmds.add.name;
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
@@ -48,6 +48,6 @@ export class AdminXpAdd extends SubCommand {
 
 		return sendCommandReply(interaction, {
 			embeds: [embed]
-		}, false);
+		}, true);
 	}
 }
