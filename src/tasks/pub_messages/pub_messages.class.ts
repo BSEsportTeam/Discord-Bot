@@ -55,7 +55,7 @@ export default class PubMessage extends Task<PubMessageHour> {
 				continue;
 			}
 
-			if (messageHour === PubMessageHour.Second && !isToday(guild.lastPubMessage)) {
+			if (messageHour === PubMessageHour.Second && isToday(guild.lastPubMessage)) {
 				if (getMinMessages(guild.lastPubMessage) <= guild.messagesSinceLastPub) {
 					setTimeout(() => {
 						this.sendMessage(guild.id, guildConfig.channelId, getRandomMessage(guildConfig.messages));

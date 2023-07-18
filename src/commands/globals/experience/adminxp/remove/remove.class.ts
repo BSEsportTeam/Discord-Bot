@@ -14,8 +14,8 @@ const config = commandsConfig.adminXp;
 
 export class AdminXpRemove extends SubCommand {
 	preReply: CommandPreReply = {
-		ephemeral: true,
-		enable: false
+		ephemeral: false,
+		enable: true
 	};
 	name = config.subcmds.remove.name;
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
@@ -48,6 +48,6 @@ export class AdminXpRemove extends SubCommand {
 
 		return sendCommandReply(interaction, {
 			embeds: [embed]
-		}, false);
+		}, true);
 	}
 }
