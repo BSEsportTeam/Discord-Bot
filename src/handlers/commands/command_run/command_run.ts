@@ -30,6 +30,7 @@ export const commandRun = async (interaction: ChatInputCommandInteraction) => {
 	}
 
 	const result = await command.run(interaction);
+	
 	const commandName = interaction.commandName +
 		(interaction.options.getSubcommandGroup() !== null ? '.' + interaction.options.getSubcommandGroup() : '') +
 		(interaction.options.getSubcommand(false) !== null ? '.' + interaction.options.getSubcommand(false) : '');

@@ -52,7 +52,7 @@ export const clubsList: BrawlStarsClub[] = [
 		type: BrawlStarsClubType.LDC,
 		globalTop: false,
 		localTop: true,
-		bestLocal: 53
+		bestLocal: 13
 	},
 	{
 		name: 'BS Aries',
