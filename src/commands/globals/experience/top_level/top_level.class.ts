@@ -1,3 +1,4 @@
+import type {CommandPreReply} from '$core/handlers/commands';
 import {BaseCommand, sendCommandReply} from '$core/handlers/commands';
 import {builder} from './top_level.builder';
 import type {ChatInputCommandInteraction, InteractionReplyOptions} from 'discord.js';
@@ -20,6 +21,10 @@ const config = commandsConfig.topLevel;
 @Dev
 export default class TopLevel extends BaseCommand {
 	builder = builder.toJSON();
+	preReply: CommandPreReply = {
+		enable: true,
+		ephemeral: false
+	};
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
 		if (!interaction.inGuild() || interaction.guild === null || interaction.channel === null || interaction.member === null) return ok(false);
@@ -65,6 +70,6 @@ export default class TopLevel extends BaseCommand {
 		}
 
 
-		return sendCommandReply(interaction, message, false);
+		return sendCommandReply(interaction, message, true);
 	}
 }

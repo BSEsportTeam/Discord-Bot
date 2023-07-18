@@ -20,7 +20,7 @@ export default class DropXp extends BaseCommand {
 	builder = builder.toJSON();
 	preReply: CommandPreReply = {
 		ephemeral: true,
-		enable: false
+		enable: true
 	};
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
@@ -47,6 +47,6 @@ export default class DropXp extends BaseCommand {
 		return sendCommandReply(interaction, {
 			embeds: [simpleEmbed(config.exec.success)],
 			ephemeral: true
-		}, false);
+		}, true);
 	}
 }
