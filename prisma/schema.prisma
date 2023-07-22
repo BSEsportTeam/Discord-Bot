@@ -80,3 +80,41 @@ enum XpMovementCause {
   PRIME
   OTHER
 }
+
+model ClubInfos {
+  tag        String       @id
+  name       String
+  type       ClubType
+  globalTop  Boolean      @default(false)
+  localTop   Boolean      @default(false)
+  enable     Boolean      @default(true)
+  bestGlobal Int?
+  bestLocal  Int?
+  minTr      Int
+  staffs     ClubStaffs[]
+  index      Int          @unique @default(autoincrement())
+
+  @@map("clubInfos")
+}
+
+model ClubStaffs {
+  clubTag  String
+  username String
+  userId   String
+  role     ClubStaffRole
+  club     ClubInfos     @relation(fields: [clubTag], references: [tag])
+
+  @@id([clubTag, userId])
+  @@map("clubStaffs")
+}
+
+enum ClubType {
+  LADDER
+  LDC
+  CHILL
+}
+
+enum ClubStaffRole {
+  VICE_PRESIDENT
+  PRESIDENT
+}
