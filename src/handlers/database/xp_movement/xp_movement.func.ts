@@ -16,3 +16,16 @@ export const createXpMovement = async (data: MaybeOmit<XpMovement, 'date'|'id'>)
 		return error(new DatabaseError('Failed to create a new XpMovement.', anyToError(e)));
 	}
 };
+
+export const getXpMovement = async (id: number): Promise<Result<XpMovement | null, DatabaseError>> => {
+	try {
+		const result = await prisma.xpMovement.findUnique({
+			where: {
+				id
+			}
+		});
+		return ok(result);
+	} catch (e) {
+		return error(new DatabaseError('Failed to get a XpMovement.', anyToError(e)));
+	}
+};
