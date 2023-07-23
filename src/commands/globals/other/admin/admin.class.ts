@@ -6,7 +6,7 @@ import {ReverseXpMovement} from '$core/commands/globals/other/admin/reverse_xp_m
 import {Dev} from '$core/utils/dev';
 
 @Dev
-export default class TopLevel extends BaseCommand {
+export default class Admin extends BaseCommand {
 	builder = builder.toJSON();
 
 	getSubCommands(): SubCommandOptions {
