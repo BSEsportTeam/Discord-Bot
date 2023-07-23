@@ -33,7 +33,7 @@ export default class GuildMemberJoin extends Event<'guildMemberAdd'> {
 				member.guild.id,
 				0,
 				calculateLevel(xpInfos.value),
-				true
+				false
 			);
 		}
 
