@@ -225,5 +225,15 @@ export const commandsConfig = {
 				}
 			}
 		}
+	},
+	admin: {
+		name: 'admin',
+		description: 'Commande administrateurs',
+		subcmds: {
+			reverse_xp_movement: {
+				name: 'xpmovereverse',
+				description: 'Annule un mouvement d\'xp'
+			}
+		}
 	}
 } satisfies Commands;
