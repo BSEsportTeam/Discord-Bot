@@ -62,7 +62,12 @@ export default class GuildMemberJoin extends Event<'guildMemberAdd'> {
 			return;
 		}
 
-		const result = await resultify(() => channelResult.value.send(msgParams(messageText, [member.toString()])));
+		const result = await resultify(() => channelResult.value.send({
+			content: msgParams(messageText, [member.toString()]),
+			allowedMentions: {
+				users: []
+			}
+		}));
 
 		if (!result.ok) {
 			logger.error(`failed to send welcome message, error : ${result.error.message}`);
