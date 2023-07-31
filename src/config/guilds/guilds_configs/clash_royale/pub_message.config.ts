@@ -3,7 +3,7 @@ import {simpleEmbed} from '$core/utils/discord';
 
 export const pubMessage: PubMessagesGlobalConfig = {
 	enable: true,
-	channelId: '795972160023822349',
+	channelId: '1135349223936765983',
 	messages: [{
 		embed: simpleEmbed('**BSE a besoin de ton aide pour que l\'on puisse lancer de nouveaux projets !** :trophy: \n' +
 			'\n' +
