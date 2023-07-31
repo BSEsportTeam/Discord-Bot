@@ -58,7 +58,7 @@ export default class GuildMemberJoin extends Event<'guildMemberAdd'> {
 			return;
 		}
 
-		const channelResult = await getMessageChannel(member.guild.id, config.channelId);
+		const channelResult = await getMessageChannel(member.guild.id, config.channelId, 'welcome_message_1');
 		if (!channelResult.ok) {
 			logger.error(channelResult.error.message);
 			return;
