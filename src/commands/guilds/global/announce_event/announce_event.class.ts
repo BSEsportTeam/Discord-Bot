@@ -10,15 +10,17 @@ import {anyToError, CommandError} from '$core/utils/error';
 import {errorEmbed} from '$core/utils/discord/embet/embet.func';
 import {logger} from '$core/utils/logger/logger.func';
 import {builder} from './announce_event.builder';
-import {getActionsRow, getMessageReference} from './announce_event.util';
+import {getMessageReference} from './announce_event.util';
 import type {GuildAlias} from '$core/handlers/commands';
 import {sendCommandReply} from '$core/handlers/commands';
 import {guildsConfig} from '$core/config/guilds';
 import {globalConfig} from '$core/config/global';
+import {confirmIds, getConfirmButtons} from '$core/handlers/buttons/confirm';
+import {Dev} from '$core/utils/dev';
 
 const config = commandsConfig.announceEvent;
 
-
+@Dev
 export default class AnnounceEvent extends BaseCommand {
 	guild: GuildAlias = 'global';
 	builder = builder.toJSON();
@@ -72,7 +74,7 @@ export default class AnnounceEvent extends BaseCommand {
 
 		return sendCommandReply(interaction, {
 			content: message.content.replace(globalConfig.eventAnnouncementPingReplacer, `<@&${guildConfig.eventAnnouncements.roleId}>`),
-			components: getActionsRow(),
+			components: getConfirmButtons(confirmIds.announce_event),
 			allowedMentions: {
 				parse: []
 			},
