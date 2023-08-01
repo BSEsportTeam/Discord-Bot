@@ -240,6 +240,28 @@ export const commandsConfig = {
 					}
 				}
 			}
+		},
+		exec: {
+			reverse_xp_movement: {
+				not_found: {
+					description: 'Aucun mouvement d\'xp avec l\'identifion {id} n\'a été trouvé !',
+					tile: 'Pas trouvé'
+				},
+				infos: {
+					title: 'Information sur le mouvement d\'xp !',
+					description: 'Id: {id} \n' +
+						'nombre d\'xp : {xp}\n' +
+						'par : {mention1}\n' +
+						'pour : {mention2}\n' +
+						'dans : {guild}\n' +
+						'date : {time}\n' +
+						'cause : {cause}\n' +
+						'raison : {raison}',
+					label: 'Pour confirmer l\'annulation du mouvement d\'xp appuyer sur valider '
+
+				},
+				succes: 'le mouvement d\'xp a été annuler avec succes !'
+			}
 		}
 	}
 } satisfies Commands;
