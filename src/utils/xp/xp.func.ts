@@ -152,7 +152,7 @@ export const addXp = async (
 	const oldLevel = calculateLevel(result.value - amount);
 	const newLevel = calculateLevel(result.value);
 
-	if (newLevel > oldLevel) {
+	if (newLevel > oldLevel && cause !== 'REVERSE') {
 		await sendLevelUpMessage(userId, guildId, newLevel);
 		await checkXpRoles(userId, guildId, oldLevel, newLevel);
 	}
