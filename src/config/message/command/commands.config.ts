@@ -232,7 +232,13 @@ export const commandsConfig = {
 		subcmds: {
 			reverse_xp_movement: {
 				name: 'xpmovereverse',
-				description: 'Annule un mouvement d\'xp'
+				description: 'Annule un mouvement d\'xp',
+				options: {
+					id: {
+						name: 'id',
+						description: 'l\'identifiant du mouvement d\'xp'
+					}
+				}
 			}
 		}
 	}
