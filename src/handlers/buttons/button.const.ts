@@ -5,6 +5,8 @@ export const BUTTONS_PATH = __dirname;
 export const DYNAMIC_ID = 'd_';
 export const DYNAMIC_ID_SEPARATOR = '.';
 
+export const CONFIRM_BUTTON_DIR = 'confirm';
+
 // id start with d_ are dynamic !
 export const buttonsIds = {
 	eventAnnouncements: {
@@ -17,6 +19,10 @@ export const buttonsIds = {
 	topLevel: {
 		pages: DYNAMIC_ID + 'tlvlp',
 		detailed: DYNAMIC_ID + 'tlvld'
+	},
+	confirm: {
+		confirm: DYNAMIC_ID + 'cf',
+		cancel: DYNAMIC_ID + 'cl'
 	}
 } satisfies Record<string, Record<string, ButtonId>>;
 
@@ -32,6 +38,16 @@ export const buttonsDynamicIds = {
 	topLevelDetailed: {
 		construct: (type: string) => `${buttonsIds.topLevel.detailed}${DYNAMIC_ID_SEPARATOR}${type}`,
 		deconstruct: (id: string) => id.split(DYNAMIC_ID_SEPARATOR).slice(-1)
+	},
+	confirm_confirm: {
+		construct: (subId: string, args: string) => `${buttonsIds.confirm.confirm}${DYNAMIC_ID_SEPARATOR}${subId}${DYNAMIC_ID_SEPARATOR}` +
+			`${args}`,
+		deconstruct: (id: string) => id.split(DYNAMIC_ID_SEPARATOR).slice(-2)
+	},
+	confirm_cancel: {
+		construct: (subId: string, args: string) => `${buttonsIds.confirm.cancel}${DYNAMIC_ID_SEPARATOR}${subId}${DYNAMIC_ID_SEPARATOR}` +
+			`${args}`,
+		deconstruct: (id: string) => id.split(DYNAMIC_ID_SEPARATOR).slice(-2)
 	}
 } satisfies Record<string, {
 	construct: ButtonIdFunctionConstruct,
