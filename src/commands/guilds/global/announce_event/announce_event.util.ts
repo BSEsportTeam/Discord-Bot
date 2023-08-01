@@ -1,20 +1,4 @@
-import {ActionRowBuilder, ButtonBuilder, ButtonStyle} from 'discord.js';
-import {buttonsIds} from '$core/handlers/buttons/button.const';
-import {commandsConfig} from '$core/config/message/command/commands.config';
 import type {MessageReference} from './announce_event.type';
-
-export const getActionsRow = (): [ActionRowBuilder<ButtonBuilder>] =>
-	[new ActionRowBuilder<ButtonBuilder>().addComponents(
-		new ButtonBuilder()
-			.setLabel(commandsConfig.announceEvent.other.buttons.valid)
-			.setCustomId(buttonsIds.eventAnnouncements.confirm)
-			.setStyle(ButtonStyle.Success),
-		new ButtonBuilder()
-			.setLabel(commandsConfig.announceEvent.other.buttons.refuse)
-			.setCustomId(buttonsIds.eventAnnouncements.cancel)
-			.setStyle(ButtonStyle.Danger),
-	)];
-
 
 export const getMessageReference = (link: string): MessageReference|null => {
 	if (link.includes('/') && new RegExp('https:\\/\\/([a-z]*\\.|)discord\\.com\\/channels.*[0-9]+\\/[0-9]+\\/[0-9]+').test(link)) {

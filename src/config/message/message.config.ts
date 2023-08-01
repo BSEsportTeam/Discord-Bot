@@ -11,6 +11,11 @@ export const messageConfig = {
 		authorOnly: {
 			title: 'Non autorisé',
 			description: 'seul l\'auteur de la commande peut utiliser ce bouton !'
+		},
+		confirmSystem: {
+			cancelMessage: 'Annulé avec succes',
+			confirmButton: 'Valider',
+			cancelButton: 'Annuler'
 		}
 	},
 	xp: {

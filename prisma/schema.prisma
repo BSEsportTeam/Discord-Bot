@@ -78,5 +78,6 @@ enum XpMovementCause {
   ADMINXP
   XPIMPORT
   PRIME
+  REVERSE
   OTHER
 }
