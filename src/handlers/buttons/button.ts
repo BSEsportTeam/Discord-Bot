@@ -1,6 +1,6 @@
 import {logger} from '$core/utils/logger';
 import {readdirSync, statSync} from 'fs';
-import {BUTTONS_PATH} from '$core/handlers/buttons/button.const';
+import {BUTTONS_PATH, CONFIRM_BUTTON_DIR} from '$core/handlers/buttons/button.const';
 import {sep} from 'path';
 import {fileExistsSync} from 'tsconfig-paths/lib/filesystem';
 import {client} from '$core/index';
@@ -16,6 +16,9 @@ export const loadButtons = async () => {
 			const dirPath = BUTTONS_PATH + sep + dir;
 
 			if (!statSync(dirPath).isDirectory()) {
+				continue;
+			}
+			if (dir === CONFIRM_BUTTON_DIR) {
 				continue;
 			}
 
