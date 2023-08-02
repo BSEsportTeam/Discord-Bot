@@ -239,6 +239,10 @@ export const commandsConfig = {
 						description: 'l\'identifiant du mouvement d\'xp'
 					}
 				}
+			},
+			primeStaff: {
+				name: 'primestaff',
+				description: 'Ajoute les primes de staffs.'
 			}
 		},
 		exec: {
@@ -261,7 +265,21 @@ export const commandsConfig = {
 
 				},
 				succes: 'le mouvement d\'xp a été annuler avec succes !'
-			}
+			},
+			primeStaff: {
+				columnNotFound: 'Colonne {name} pas trouver dans le fichier excel !',
+				primeInfo: '{mention} - **{role}** ({username}) -> __{total} xp__ (_{role} xp + {asso} xp_)',
+				primeInfoTitle: 'Résumé des primes :',
+				primeDescription: 'Pour valider le give des primes, appuyer sur valider !\n' +
+					'⚠️ La dernière requete est sauvegarder en memoire ! si le fichier à été modifier depuis la commande' +
+					' il faut refaire la commande pour prendre en compte les dernières modifications !\n\n' +
+					'La présence des membres se fera après la validation de la commande, ceux qui sont pas sur le serveur' +
+					'serons afficher après avec une erreur',
+				noData: 'Aucune donnée est memorisé, cela peux etre du à un redemarrage du bot.',
+				overtime: 'Les données ont été récupéré il y a plus de 2h, refaite la commande pour reactualisé les données' +
+					' par mesure de sécurité'
+			},
+			ownerOnly: 'Seul les personnes autorisé peuvent utilisé cette commande !'
 		}
 	}
 } satisfies Commands;
