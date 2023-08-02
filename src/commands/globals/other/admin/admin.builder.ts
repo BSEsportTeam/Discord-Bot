@@ -13,4 +13,7 @@ export const builder = new SlashCommandBuilder()
 		.setDescription(config.subcmds.reverseXpMovement.description)
 		.addIntegerOption(option => option.setName(config.subcmds.reverseXpMovement.options.id.name)
 			.setDescription(config.subcmds.reverseXpMovement.options.id.description)
-			.setRequired(true)));
+			.setRequired(true)))
+	.addSubcommand(subCommand => subCommand
+		.setName(config.subcmds.primeStaff.name)
+		.setDescription(config.subcmds.primeStaff.description));
