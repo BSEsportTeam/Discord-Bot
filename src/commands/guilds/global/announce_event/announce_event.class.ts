@@ -74,7 +74,7 @@ export default class AnnounceEvent extends BaseCommand {
 
 		return sendCommandReply(interaction, {
 			content: message.content.replace(globalConfig.eventAnnouncementPingReplacer, `<@&${guildConfig.eventAnnouncements.roleId}>`),
-			components: getConfirmButtons(confirmIds.announce_event),
+			components: getConfirmButtons(confirmIds.announceEvent),
 			allowedMentions: {
 				parse: []
 			},

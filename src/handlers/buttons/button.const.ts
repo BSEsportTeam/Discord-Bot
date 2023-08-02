@@ -39,12 +39,12 @@ export const buttonsDynamicIds = {
 		construct: (type: string) => `${buttonsIds.topLevel.detailed}${DYNAMIC_ID_SEPARATOR}${type}`,
 		deconstruct: (id: string) => id.split(DYNAMIC_ID_SEPARATOR).slice(-1)
 	},
-	confirm_confirm: {
+	confirmConfirm: {
 		construct: (subId: string, args: string) => `${buttonsIds.confirm.confirm}${DYNAMIC_ID_SEPARATOR}${subId}${DYNAMIC_ID_SEPARATOR}` +
 			`${args}`,
 		deconstruct: (id: string) => id.split(DYNAMIC_ID_SEPARATOR).slice(-2)
 	},
-	confirm_cancel: {
+	confirmCancel: {
 		construct: (subId: string, args: string) => `${buttonsIds.confirm.cancel}${DYNAMIC_ID_SEPARATOR}${subId}${DYNAMIC_ID_SEPARATOR}` +
 			`${args}`,
 		deconstruct: (id: string) => id.split(DYNAMIC_ID_SEPARATOR).slice(-2)

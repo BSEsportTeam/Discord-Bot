@@ -9,8 +9,8 @@ export const builder = new SlashCommandBuilder()
 	.setDescription(config.description)
 	.setDMPermission(false)
 	.addSubcommand(subCommand => subCommand
-		.setName(config.subcmds.reverse_xp_movement.name)
-		.setDescription(config.subcmds.reverse_xp_movement.description)
-		.addIntegerOption(option => option.setName(config.subcmds.reverse_xp_movement.options.id.name)
-			.setDescription(config.subcmds.reverse_xp_movement.options.id.description)
+		.setName(config.subcmds.reverseXpMovement.name)
+		.setDescription(config.subcmds.reverseXpMovement.description)
+		.addIntegerOption(option => option.setName(config.subcmds.reverseXpMovement.options.id.name)
+			.setDescription(config.subcmds.reverseXpMovement.options.id.description)
 			.setRequired(true)));

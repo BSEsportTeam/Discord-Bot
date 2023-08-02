@@ -5,8 +5,8 @@ import {announceEvent} from '$core/handlers/buttons/confirm/confirm_buttons/anno
 
 export const confirmIds = {
 	cancel: 'cl',
-	reverse_xp_movement: 'rxm',
-	announce_event: 'ae'
+	reverseXpMovement: 'rxm',
+	announceEvent: 'ae'
 } as const satisfies Record<string, Record<string, ButtonId> | ButtonId>;
 
 

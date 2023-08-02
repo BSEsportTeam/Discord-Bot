@@ -42,7 +42,7 @@ export const reverseXpMovement: ConfirmButtonHandler = {
 		}
 
 		const msgResult = await resultify(() => interaction.editReply({
-			embeds: [simpleEmbed(commandsConfig.admin.exec.reverse_xp_movement.succes)]
+			embeds: [simpleEmbed(commandsConfig.admin.exec.reverseXpMovement.succes)]
 		}));
 		if (!msgResult.ok) {
 			return error(interactionReplyError(interaction, msgResult.error));

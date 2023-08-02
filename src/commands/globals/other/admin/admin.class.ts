@@ -11,7 +11,7 @@ export default class Admin extends BaseCommand {
 
 	getSubCommands(): SubCommandOptions {
 		return {
-			[commandsConfig.admin.subcmds.reverse_xp_movement.name]: new ReverseXpMovement()
+			[commandsConfig.admin.subcmds.reverseXpMovement.name]: new ReverseXpMovement()
 		};
 	}
 }

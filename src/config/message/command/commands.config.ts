@@ -230,7 +230,7 @@ export const commandsConfig = {
 		name: 'admin',
 		description: 'Commande administrateurs',
 		subcmds: {
-			reverse_xp_movement: {
+			reverseXpMovement: {
 				name: 'xpmovereverse',
 				description: 'Annule un mouvement d\'xp',
 				options: {
@@ -242,7 +242,7 @@ export const commandsConfig = {
 			}
 		},
 		exec: {
-			reverse_xp_movement: {
+			reverseXpMovement: {
 				not_found: {
 					description: 'Aucun mouvement d\'xp avec l\'identifion {id} n\'a été trouvé !',
 					tile: 'Pas trouvé'

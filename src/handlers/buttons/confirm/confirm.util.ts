@@ -10,7 +10,7 @@ import {messageConfig} from '$core/config/message';
 
 export const getConfirmHandler = (id: string): ButtonHandler | undefined => {
 	if (id.startsWith(buttonsIds.confirm.confirm)) {
-		const [subId, args] = buttonsDynamicIds.confirm_confirm.deconstruct(id);
+		const [subId, args] = buttonsDynamicIds.confirmConfirm.deconstruct(id);
 		if (subId in handlers) {
 			const handler = handlers[subId as Exclude<(typeof confirmIds)[keyof typeof confirmIds], 'cl'>];
 			return {
@@ -27,7 +27,7 @@ export const getConfirmHandler = (id: string): ButtonHandler | undefined => {
 			};
 		}
 	} else {
-		const [subId, args] = buttonsDynamicIds.confirm_cancel.deconstruct(id);
+		const [subId, args] = buttonsDynamicIds.confirmCancel.deconstruct(id);
 		if (subId === 'cl') {
 			return {
 				id: buttonsIds.confirm.cancel,
@@ -69,11 +69,11 @@ export const getConfirmButtons = (confirmId: string, cancelId: string | null = n
 	[new ActionRowBuilder<ButtonBuilder>().addComponents(
 		new ButtonBuilder()
 			.setLabel(messageConfig.button.confirmSystem.confirmButton)
-			.setCustomId(buttonsDynamicIds.confirm_confirm.construct(confirmId, args.join(DYNAMIC_ID_SEPARATOR)))
+			.setCustomId(buttonsDynamicIds.confirmConfirm.construct(confirmId, args.join(DYNAMIC_ID_SEPARATOR)))
 			.setStyle(ButtonStyle.Success),
 		new ButtonBuilder()
 			.setLabel(messageConfig.button.confirmSystem.cancelButton)
-			.setCustomId(buttonsDynamicIds.confirm_cancel.construct(
+			.setCustomId(buttonsDynamicIds.confirmCancel.construct(
 				cancelId !== null ? cancelId : confirmIds.cancel
 				, args.join(DYNAMIC_ID_SEPARATOR)))
 			.setStyle(ButtonStyle.Danger),

@@ -14,14 +14,14 @@ import {confirmIds, getConfirmButtons} from '$core/handlers/buttons/confirm';
 const config = commandsConfig.admin;
 
 export class ReverseXpMovement extends SubCommand {
-	name = config.subcmds.reverse_xp_movement.name;
+	name = config.subcmds.reverseXpMovement.name;
 	preReply: CommandPreReply = {
 		enable: true,
 		ephemeral: false
 	};
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
-		const id = interaction.options.getInteger(config.subcmds.reverse_xp_movement.options.id.name);
+		const id = interaction.options.getInteger(config.subcmds.reverseXpMovement.options.id.name);
 		if (!id) {
 			return error(new CommandError('No value in option id', interaction));
 		}
@@ -34,14 +34,14 @@ export class ReverseXpMovement extends SubCommand {
 		if (xpMovement.value === null) {
 			return this.sendReply(interaction, {
 				embeds: [errorEmbed(
-					config.exec.reverse_xp_movement.not_found.description,
-					config.exec.reverse_xp_movement.not_found.tile)]
+					config.exec.reverseXpMovement.not_found.description,
+					config.exec.reverseXpMovement.not_found.tile)]
 			});
 		}
 
 		return this.sendReply(interaction, {
 			embeds: [
-				simpleEmbed(msgParams(config.exec.reverse_xp_movement.infos.description, [
+				simpleEmbed(msgParams(config.exec.reverseXpMovement.infos.description, [
 					xpMovement.value.id,
 					xpMovement.value.xpAmount,
 					userMention(xpMovement.value.byUserId),
@@ -50,9 +50,9 @@ export class ReverseXpMovement extends SubCommand {
 					time(xpMovement.value.date, 'F'),
 					xpMovement.value.cause,
 					xpMovement.value.reason
-				]), config.exec.reverse_xp_movement.infos.title).setFooter({
-					text: config.exec.reverse_xp_movement.infos.label
-				})], components: getConfirmButtons(confirmIds.reverse_xp_movement, null, `${id}`)
+				]), config.exec.reverseXpMovement.infos.title).setFooter({
+					text: config.exec.reverseXpMovement.infos.label
+				})], components: getConfirmButtons(confirmIds.reverseXpMovement, null, `${id}`)
 		});
 	}
 }
