@@ -47,5 +47,8 @@
     "rustic-error": "^0.2.1",
     "tintify": "^1.0.0",
     "zod": "^3.21.4"
+  },
+  "engines": {
+    "node": "19"
   }
 }
