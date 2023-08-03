@@ -1,9 +1,10 @@
-import type {ButtonInteraction, Message} from 'discord.js';
+import type {ButtonInteraction, InteractionEditReplyOptions, InteractionReplyOptions, Message} from 'discord.js';
 import {ActionRowBuilder, ButtonBuilder, ComponentType, EmbedBuilder} from 'discord.js';
 import {colors} from '$core/config/global/global.config';
 import {messageConfig} from '$core/config/message';
 import {ButtonError} from '$core/utils/error';
-import {resultify} from 'rustic-error';
+import type {Result} from 'rustic-error';
+import {error, ok, resultify} from 'rustic-error';
 import {logger} from '$core/utils/logger';
 
 export const authorOnly = async (interaction: ButtonInteraction): Promise<boolean> => {
@@ -56,6 +57,26 @@ export const disableButtons = async (message: Message) => {
 	} catch (e) {
 		logger.error(`failed to disable buttons, error : ${e instanceof Error ? e.message : String(e)}`);
 	}
+};
+
+export const sendButtonReply = async (interaction: ButtonInteraction, options: InteractionReplyOptions | InteractionEditReplyOptions, defer: boolean):
+	Promise<Result<boolean, ButtonError>> => {
+	if (defer) {
+		const result = await resultify(() => interaction.editReply(options as InteractionEditReplyOptions));
+
+		if (!result.ok) {
+			return error(new ButtonError('failed to reply to interaction', interaction, result.error));
+		}
+
+		return ok(true);
+	}
+	const result = await resultify(() => interaction.reply(options as InteractionReplyOptions));
+
+	if (!result.ok) {
+		return error(new ButtonError('failed to reply to interaction', interaction, result.error));
+	}
+
+	return ok(true);
 };
 
 export const interactionReplyError = (interaction: ButtonInteraction, error: Error) =>

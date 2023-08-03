@@ -4,12 +4,13 @@ import type {ChatInputCommandInteraction} from 'discord.js';
 import {time, userMention} from 'discord.js';
 import {CommandError} from '$core/utils/error';
 import type {Result} from 'rustic-error';
-import {error} from 'rustic-error';
+import {error, ok} from 'rustic-error';
 import {commandsConfig} from '$core/config/message/command';
 import {getXpMovement} from '$core/handlers/database/xp_movement/xp_movement.func';
 import {errorEmbed, simpleEmbed} from '$core/utils/discord';
 import {msgParams} from '$core/utils/function/string';
 import {confirmIds, getConfirmButtons} from '$core/handlers/buttons/confirm';
+import {ownerOnly} from '$core/commands/globals/other/admin/admin.util';
 
 const config = commandsConfig.admin;
 
@@ -21,6 +22,15 @@ export class ReverseXpMovement extends SubCommand {
 	};
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
+
+		const ownerOnlyResult = await ownerOnly(interaction);
+		if (!ownerOnlyResult.ok) {
+			return error(ownerOnlyResult.error);
+		}
+		if (ownerOnlyResult.value) {
+			return ok(false);
+		}
+
 		const id = interaction.options.getInteger(config.subcmds.reverseXpMovement.options.id.name);
 		if (!id) {
 			return error(new CommandError('No value in option id', interaction));

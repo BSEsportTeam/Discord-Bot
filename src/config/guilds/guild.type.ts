@@ -77,6 +77,10 @@ export type BrawlStarsGuild = BaseGuild & {
 	clubs: BrawlStarsClub[];
 }
 
+export type GlobalGuild = BaseGuild & {
+	primeChannel: Snowflake;
+};
+
 export enum BrawlStarsClubType {
 	LADDER = 'Leader',
 	LDC = 'Ldc',

@@ -139,7 +139,7 @@ export const addXp = async (
 	cause: XpMovementCause|null = null,
 	causeBy: Snowflake|'unknown' = 'unknown',
 	reason = ''
-): Promise<Result<XpMovementResult|null, Error>> => {
+): Promise<Result<XpMovementResult, Error>> => {
 
 	if (amount === 0) {
 		return error(new Error('invalid amount of xp, get 0'));

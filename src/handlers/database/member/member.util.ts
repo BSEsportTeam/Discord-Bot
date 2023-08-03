@@ -7,6 +7,6 @@ export const getMemberDataFromDiscordMember = (member: DiscordGuildMember): Guil
 		guildId: member.guild.id,
 		xp: 0,
 		avatar: member.avatar,
-		displayName: member.nickname
+		displayName: member.displayName
 	};
 };
