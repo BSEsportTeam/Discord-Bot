@@ -1,8 +1,8 @@
-import type {BaseGuild} from '../../guild.type';
+import type {GlobalGuild} from '../../guild.type';
 import {xpConfig} from './xp.config';
 import {pubMessage} from './pub_message.config';
 
-export const globalGuildConfig: BaseGuild = {
+export const globalGuildConfig: GlobalGuild = {
 	name: 'global',
 	guildId: '346989473143455744',
 	eventAnnouncements: {
@@ -14,4 +14,5 @@ export const globalGuildConfig: BaseGuild = {
 	xp: xpConfig,
 	bumpChannel: '979400972315000852',
 	pubMessages: pubMessage,
+	primeChannel: '1083522288441368596'
 };
