@@ -65,6 +65,7 @@ export const getBumpsByUserInGuildToday = async (userId: string, guildId: string
 		});
 		return ok(result);
 	} catch (e) {
+		console.log(e);
 		return error(
 			new DatabaseError(`Failed to get bumps sent today by the user ${userId} in the guild ${guildId}.`, anyToError(e))
 		);
