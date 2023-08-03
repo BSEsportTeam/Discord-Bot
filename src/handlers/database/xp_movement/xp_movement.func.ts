@@ -5,10 +5,15 @@ import {anyToError, DatabaseError} from '$core/utils/error';
 import type {Guild, XpMovement} from '@prisma/client';
 import type {MaybeOmit} from '$core/utils/type';
 
-export const createXpMovement = async (data: MaybeOmit<XpMovement, 'date'|'id'>): Promise<Result<XpMovement, DatabaseError>> => {
+export const createXpMovement = async (data: MaybeOmit<XpMovement, 'date' | 'id'>): Promise<Result<XpMovement & {
+	guild: Guild
+}, DatabaseError>> => {
 	try {
 		const result = await prisma.xpMovement.create({
 			data: data,
+			include: {
+				guild: true
+			}
 		});
 
 		return ok(result);
