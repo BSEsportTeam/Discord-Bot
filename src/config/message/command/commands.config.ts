@@ -248,8 +248,8 @@ export const commandsConfig = {
 		exec: {
 			reverseXpMovement: {
 				not_found: {
-					description: 'Aucun mouvement d\'xp avec l\'identifion {id} n\'a été trouvé !',
-					tile: 'Pas trouvé'
+					description: 'Aucun mouvement d\'xp avec l\'identifiant {id} n\'a été trouvé !',
+					tile: 'Non trouvé'
 				},
 				infos: {
 					title: 'Information sur le mouvement d\'xp !',
@@ -264,30 +264,30 @@ export const commandsConfig = {
 					label: 'Pour confirmer l\'annulation du mouvement d\'xp appuyer sur valider '
 
 				},
-				succes: 'le mouvement d\'xp a été annuler avec succes !'
+				succes: 'le mouvement d\'xp a été annulé avec succès !'
 			},
 			primeStaff: {
-				columnNotFound: 'Colonne {name} pas trouver dans le fichier excel !',
+				columnNotFound: 'Colonne {name} pas trouvée dans le fichier excel !',
 				primeInfo: '{mention} - **{role}** ({username}) -> __{total} xp__ (_{role} xp + {asso} xp_)',
 				primeInfoTitle: 'Résumé des primes :',
 				primeDescription: 'Pour valider le give des primes, appuyer sur valider !\n' +
-					'⚠️ La dernière requete est sauvegarder en memoire ! si le fichier à été modifier depuis la commande' +
+					'⚠️ la dernière requête est sauvegardée en mémoire ! Si le fichier a été modifié depuis la commande' +
 					' il faut refaire la commande pour prendre en compte les dernières modifications !\n\n' +
-					'La présence des membres se fera après la validation de la commande, ceux qui sont pas sur le serveur' +
-					'serons afficher après avec une erreur',
-				noData: 'Aucune donnée est memorisé, cela peux etre du à un redemarrage du bot.',
-				overtime: 'Les données ont été récupéré il y a plus de 2h, refaite la commande pour reactualisé les données' +
+					'La présence des membres se fera après la validation de la commande, ceux qui ne sont pas sur le serveur' +
+					'seront affichés après avec une erreur',
+				noData: 'Aucune donnée est memorisée, cela peux etre du à un redemarrage du bot.',
+				overtime: 'Les données ont été récupérées. il y a plus de 2h, refaite la commande pour reactualiser les données' +
 					' par mesure de sécurité',
 				final: {
-					title: 'Tous les primes ont été données',
-					description: 'Les primes ont été ajouter a {count} membres avec succès !',
+					title: 'Toutes les primes ont été données',
+					description: 'Les primes ont été ajoutées à {count} membres avec succès !',
 					fields: {
 						notFound: {
-							title: 'Membre (s) pas trouver sur le serveur',
+							title: 'Membre (s) pas trouvés sur le serveur :',
 							description: '{mention} - {username} ({id})'
 						},
 						addXpError: {
-							title: 'Membre (s) avec echec lors de l\'ajout d\'xp !',
+							title: 'Membre (s) avec echec lors de l\'ajout d\'xp :',
 							description: '{mention} - {username} ({id})'
 						},
 						toMany: 'Trop d\'éléments, regarder la console !'
@@ -299,7 +299,7 @@ export const commandsConfig = {
 					}
 				}
 			},
-			ownerOnly: 'Seul les personnes autorisé peuvent utilisé cette commande !'
+			ownerOnly: 'Seules les personnes autorisées peuvent utiliser cette commande !'
 		}
 	}
 } satisfies Commands;
