@@ -277,7 +277,27 @@ export const commandsConfig = {
 					'serons afficher après avec une erreur',
 				noData: 'Aucune donnée est memorisé, cela peux etre du à un redemarrage du bot.',
 				overtime: 'Les données ont été récupéré il y a plus de 2h, refaite la commande pour reactualisé les données' +
-					' par mesure de sécurité'
+					' par mesure de sécurité',
+				final: {
+					title: 'Tous les primes ont été données',
+					description: 'Les primes ont été ajouter a {count} membres avec succès !',
+					fields: {
+						notFound: {
+							title: 'Membre (s) pas trouver sur le serveur',
+							description: '{mention} - {username} ({id})'
+						},
+						addXpError: {
+							title: 'Membre (s) avec echec lors de l\'ajout d\'xp !',
+							description: '{mention} - {username} ({id})'
+						},
+						toMany: 'Trop d\'éléments, regarder la console !'
+					},
+					message: {
+						title: 'Prime staff de {username}',
+						description: '{mention} gagne **{xp} d\'experience** ! 🎉\n' +
+							'Il est maintenant niveau **{level}** avec **{xp} XP** !'
+					}
+				}
 			},
 			ownerOnly: 'Seul les personnes autorisé peuvent utilisé cette commande !'
 		}
