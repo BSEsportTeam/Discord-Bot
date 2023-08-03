@@ -1,4 +1,4 @@
-import {ChannelType, Client as BClient, Collection, IntentsBitField, REST} from 'discord.js';
+import {ChannelType, Client as BClient, Collection, EmbedBuilder, IntentsBitField, REST} from 'discord.js';
 import type {CommandCollection} from '$core/handlers/commands/command.type';
 import {eventLoad} from '$core/handlers/events/event';
 import {commandLoad} from '$core/handlers/commands/command_load';
@@ -7,6 +7,11 @@ import type {ButtonCollection} from '$core/handlers/buttons';
 import {loadButtons} from '$core/handlers/buttons';
 import {loadTask} from '$core/handlers/task';
 import {setVoice} from '$core/utils/xp/voice/voice.util';
+import {sendBotLog} from '$core/utils/discord/webhook/webhook.util';
+import {messageConfig} from '$core/config/message';
+import {version} from '../package.json';
+import {msgParams} from '$core/utils/function/string';
+import {colors} from '$core/config/global';
 
 export class Client extends BClient {
 	commands: CommandCollection = new Collection();
@@ -61,5 +66,11 @@ export class Client extends BClient {
 				}
 			}
 		}
+
+		await sendBotLog(new EmbedBuilder()
+			.setTitle(messageConfig.logs.ready.readyTitle)
+			.setDescription(msgParams(messageConfig.logs.ready.readyDescription, [version]))
+			.setColor(colors.success)
+		);
 	}
 }
