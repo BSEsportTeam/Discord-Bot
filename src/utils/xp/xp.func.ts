@@ -14,8 +14,10 @@ import {client} from '$core/index';
 import {getMessageChannel} from '$core/utils/discord/channel/channel.func';
 import {msgParams} from '$core/utils/function/string';
 import {messageConfig} from '$core/config/message';
-import {userMention} from 'discord.js';
+import {EmbedBuilder, time, userMention} from 'discord.js';
 import {isDev} from '$core/config/env';
+import {sendBotLog} from '$core/utils/discord/webhook/webhook.util';
+import {colors} from '$core/config/global';
 
 export const checkXpRoles = async (userId: Snowflake, guildId: Snowflake, oldLevel: number, newLevel: number, message = true) => {
 
@@ -170,6 +172,20 @@ export const addXp = async (
 
 		if (!movResult.ok) {
 			logger.error('Failed to create XpMovement Log !', {...movResult.error.debug(), guildId, forUser: userId, by: causeBy});
+		} else {
+			await sendBotLog(new EmbedBuilder()
+				.setTitle(messageConfig.logs.xpMovement.title)
+				.setDescription(msgParams(messageConfig.logs.xpMovement.description, [
+					movResult.value.id,
+					movResult.value.xpAmount,
+					userMention(movResult.value.byUserId),
+					userMention(movResult.value.forUserId),
+					movResult.value.guild.name,
+					time(movResult.value.date, 'F'),
+					movResult.value.cause,
+					movResult.value.reason
+				]))
+				.setColor(colors.bseColor4));
 		}
 	}
 
