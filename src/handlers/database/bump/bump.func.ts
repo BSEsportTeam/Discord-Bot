@@ -54,6 +54,7 @@ export const getBumpsByUserToday = async (userId: string): Promise<Result<Bump[]
 
 export const getBumpsByUserInGuildToday = async (userId: string, guildId: string): Promise<Result<Bump[], DatabaseError>> => {
 	try {
+		console.log(getToday());
 		const result = await prisma.bump.findMany({
 			where: {
 				userId: userId,

@@ -12,6 +12,7 @@ import {messageConfig} from '$core/config/message';
 import {version} from '../package.json';
 import {msgParams} from '$core/utils/function/string';
 import {colors} from '$core/config/global';
+import {getBumpsByUserInGuildToday} from '$core/handlers/database/bump/bump.func';
 
 export class Client extends BClient {
 	commands: CommandCollection = new Collection();
@@ -72,5 +73,16 @@ export class Client extends BClient {
 			.setDescription(msgParams(messageConfig.logs.ready.readyDescription, [version]))
 			.setColor(colors.success)
 		);
+
+		const load = async () => {
+			const r = await getBumpsByUserInGuildToday('457144873859022858', '1096123374092161024');
+			if (!r.ok) {
+				logger.error(r.error.message);
+				return;
+			}
+			console.log(r.value);
+		};
+
+		void load();
 	}
 }
