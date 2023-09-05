@@ -1,6 +1,5 @@
 import type {VoiceInfos} from '$core/utils/xp/voice/voice.type';
-import {XP_PER_MINUTE_MUTE, XP_PER_MINUTE_UNMUTE} from '$core/utils/xp';
-import {addXpToMember} from '$core/handlers/database/xp';
+import {addXp, XP_PER_MINUTE_MUTE, XP_PER_MINUTE_UNMUTE} from '$core/utils/xp';
 import {logger} from '$core/utils/logger';
 import {isDebuggableError} from '$core/utils/error';
 import {setVoice} from '$core/utils/xp/voice/voice.util';
@@ -10,11 +9,11 @@ const calculateXp = (oldDate: number, newDate: number, mute: boolean): number =>
 
 	const xpPerMinute = mute ? XP_PER_MINUTE_MUTE : XP_PER_MINUTE_UNMUTE;
 
-	return Math.floor((xpPerMinute / 60) * seconds);
+	return Math.floor((xpPerMinute / (60 * 3)) * seconds);
 };
 
 export const addVoiceXp = async (date: number, info: VoiceInfos) => {
-	const result = await addXpToMember(info.id, info.guildId, calculateXp(
+	const result = await addXp(info.id, info.guildId, calculateXp(
 		info.lastXpGive || info.start, date, info.mute
 	));
 

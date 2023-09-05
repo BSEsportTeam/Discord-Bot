@@ -11,7 +11,7 @@ import {Dev} from '$core/utils/dev';
 @Dev
 export default class VoiceXp extends Task<null> {
 	type = TaskType.DELAY_INTERVAL;
-	interval = 60 * 1000;
+	interval = 60 * 1000 * 3;
 
 	async onTick() {
 		const voices = getVoices();
