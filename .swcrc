@@ -10,13 +10,13 @@
         },
         "target": "es2022",
         "baseUrl": "./",
-    "paths": {
-        "$core/*": ["src/*"]
+        "paths": {
+            "$core/*": ["src/*"]
 
         }
     },
     "isModule": true,
     "module": {
         "type": "commonjs"
-    },
+    }
 }

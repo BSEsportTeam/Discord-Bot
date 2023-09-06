@@ -1,11 +1,11 @@
-import type {CommandBuilt, GuildsCommandsBuild} from 'src/handlers/commands/command_load/command_load.type';
+import type {CommandBuilt, GuildsCommandsBuild} from '$core//handlers/commands/command_load/command_load.type';
 import {isDev} from '$core/config/env';
 import {resultify} from 'rustic-error';
-import {client} from 'src/index';
+import {client} from '$core/index';
 import {Routes} from 'discord-api-types/v10';
 import {devConfig} from '$core/config/guilds/_dev/dev.config';
-import {logger} from 'src/utils/logger';
-import {getArrayMergedFromCollectionValues} from 'src/utils/function/collection/collection.util';
+import {logger} from '$core/utils/logger';
+import {getArrayMergedFromCollectionValues} from '$core/utils/function/collection/collection.util';
 import {guildsConfig} from '$core/config/guilds';
 
 export const loadCommands = async (globalCommands:  CommandBuilt[], guildsCommands: GuildsCommandsBuild) => {

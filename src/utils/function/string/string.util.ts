@@ -1,4 +1,4 @@
-// code from https://github.com/Virtual-Royaume/Royaume-Discord-Bot/blob/main/src/utils/message/message.util.ts
+// code from https://github.com/Virtual-Royaume/Royaume-Discord-Bot/blob/main/$core/utils/message/message.util.ts
 export const msgParams = (message: string, params: (string | number)[]): string => {
 	const words = message.match(/{[^}]+}/g);
 
