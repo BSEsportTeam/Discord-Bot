@@ -35,7 +35,7 @@ export const commandLoad = async () => {
 						continue;
 					}
 
-					const commandFilePath = `${path}${sep}${baseFolder}${sep}${folder}${sep}${folder}.class.ts`;
+					const commandFilePath = `${path}${sep}${baseFolder}${sep}${folder}${sep}${folder}.class.` + (isDev ? 'ts' : 'js');
 
 					if (!existsSync(commandFilePath)) {
 						logger.fatal(`no base file found for command ${folder} !`, ['full path : ' + commandFilePath]);

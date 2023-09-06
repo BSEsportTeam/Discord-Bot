@@ -20,7 +20,7 @@ export const eventLoad = async () => {
 				continue;
 			}
 
-			const filePath = path + `${dir}.class.ts`;
+			const filePath = path + `${dir}.class.` + (isDev ? 'ts' : 'js');
 
 			if (!existsSync(filePath)) {
 				logger.fatal(`class file ${filePath} event not found for dir ${dir}`);

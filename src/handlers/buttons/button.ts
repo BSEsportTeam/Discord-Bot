@@ -6,6 +6,7 @@ import {fileExistsSync} from 'tsconfig-paths/lib/filesystem';
 import {client} from '$core/index';
 import {ButtonHandlerSchema} from '$core/handlers/buttons/button.z';
 import type {ButtonHandler} from '$core/handlers/buttons/button.type';
+import {isDev} from '$core/config/env';
 
 export const loadButtons = async () => {
 	try {
@@ -22,7 +23,7 @@ export const loadButtons = async () => {
 				continue;
 			}
 
-			const filePath = dirPath + sep + dir + '.button.ts';
+			const filePath = dirPath + sep + dir + '.button.' + (isDev ? 'ts' : 'js');
 			if (!fileExistsSync(filePath)) {
 				logger.fatal(`file ${filePath} not found in dir ${dirPath}`);
 			}
