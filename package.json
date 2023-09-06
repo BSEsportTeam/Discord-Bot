@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:prod": "node -r @swc-node/register -r tsconfig-paths/register ./src/index.ts",
+    "start:prod": "cd out & node index.js",
     "start:dev": "ts-node src/index.ts dev",
     "script:checkconfig": "ts-node script/check_config/check_config.ts script",
     "script:addguildstodb": "ts-node script/add_guilds_to_db/add_guilds_to_db.ts script",
@@ -13,12 +13,15 @@
     "db:migrate": "prisma migrate dev",
     "db:gen": "prisma generate",
     "lint": "eslint ./src",
-    "ts:check": "tsc --noEmit"
+    "ts:check": "tsc --noEmit",
+    "build": "swc ./src -d out"
   },
   "keywords": [],
   "author": "Arcoz0308",
   "license": "ISC",
   "devDependencies": {
+    "@swc/cli": "^0.1.55",
+    "@swc/core": "^1.2.147",
     "@faker-js/faker": "^8.0.2",
     "@types/node": "^20.3.0",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
@@ -52,3 +55,4 @@
     "node": "19"
   }
 }
+
