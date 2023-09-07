@@ -21,7 +21,7 @@ export const loadTask = async () => {
 				continue;
 			}
 
-			const filePath = path + `${dir}.class.` + (isDev ? 'ts' : 'js');
+			const filePath = path + `${dir}.class.ts`;
 
 			if (!existsSync(filePath)) {
 				logger.fatal(`class file ${filePath} event not found for dir ${dir}`);
