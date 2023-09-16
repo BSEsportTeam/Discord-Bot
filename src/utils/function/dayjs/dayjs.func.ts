@@ -11,3 +11,9 @@ export const calculateDayOfCustomWeek = (referenceDate: Dayjs, targetDate: Dayjs
 	// Calculate the position in the two-week loop based on the days difference
 	return Math.abs((daysDifference % base)) + 1;
 };
+
+export const wait = async (durationInMs: number) => {
+	return new Promise((r) => {
+		setTimeout(r, durationInMs);
+	});
+};
