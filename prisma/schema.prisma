@@ -53,6 +53,8 @@ model Bump {
   guild   Guild    @relation(fields: [guildId], references: [id])
   user    User     @relation(fields: [userId], references: [id])
   date    DateTime @default(now())
+  type    BumpType @default(DISBOARD_BUMP)
+  xp      Int      @default(100)
 
   @@id([guildId, userId, date])
   @@map("bumps")
@@ -80,4 +82,10 @@ enum XpMovementCause {
   PRIME
   REVERSE
   OTHER
+}
+
+enum BumpType {
+  DISBOARD_BUMP
+  DTOP_BUMP
+  DTOP_BOOST
 }
