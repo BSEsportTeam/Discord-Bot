@@ -225,5 +225,81 @@ export const commandsConfig = {
 				}
 			}
 		}
+	},
+	admin: {
+		name: 'admin',
+		description: 'Commande administrateurs',
+		subcmds: {
+			reverseXpMovement: {
+				name: 'xpmovereverse',
+				description: 'Annule un mouvement d\'xp',
+				options: {
+					id: {
+						name: 'id',
+						description: 'l\'identifiant du mouvement d\'xp'
+					}
+				}
+			},
+			primeStaff: {
+				name: 'primestaff',
+				description: 'Ajoute les primes de staffs.'
+			}
+		},
+		exec: {
+			reverseXpMovement: {
+				not_found: {
+					description: 'Aucun mouvement d\'xp avec l\'identifiant {id} n\'a été trouvé !',
+					tile: 'Non trouvé'
+				},
+				infos: {
+					title: 'Information sur le mouvement d\'xp !',
+					description: 'Id: {id} \n' +
+						'nombre d\'xp : {xp}\n' +
+						'par : {mention1}\n' +
+						'pour : {mention2}\n' +
+						'dans : {guild}\n' +
+						'date : {time}\n' +
+						'cause : {cause}\n' +
+						'raison : {raison}',
+					label: 'Pour confirmer l\'annulation du mouvement d\'xp appuyer sur valider '
+
+				},
+				succes: 'le mouvement d\'xp a été annulé avec succès !'
+			},
+			primeStaff: {
+				columnNotFound: 'Colonne {name} pas trouvée dans le fichier excel !',
+				primeInfo: '{mention} - **{role}** ({username}) -> __{total} xp__ (_{role} xp + {asso} xp_)',
+				primeInfoTitle: 'Résumé des primes :',
+				primeDescription: 'Pour valider le give des primes, appuyer sur valider !\n' +
+					'⚠️ la dernière requête est sauvegardée en mémoire ! Si le fichier a été modifié depuis la commande' +
+					' il faut refaire la commande pour prendre en compte les dernières modifications !\n\n' +
+					'La présence des membres se fera après la validation de la commande, ceux qui ne sont pas sur le serveur' +
+					'seront affichés après avec une erreur',
+				noData: 'Aucune donnée est memorisée, cela peux etre du à un redemarrage du bot.',
+				overtime: 'Les données ont été récupérées. il y a plus de 2h, refaite la commande pour reactualiser les données' +
+					' par mesure de sécurité',
+				final: {
+					title: 'Toutes les primes ont été données',
+					description: 'Les primes ont été ajoutées à {count} membres avec succès !',
+					fields: {
+						notFound: {
+							title: 'Membre (s) pas trouvés sur le serveur :',
+							description: '{mention} - {username} ({id})'
+						},
+						addXpError: {
+							title: 'Membre (s) avec echec lors de l\'ajout d\'xp :',
+							description: '{mention} - {username} ({id})'
+						},
+						toMany: 'Trop d\'éléments, regarder la console !'
+					},
+					message: {
+						title: 'Prime staff de {username}',
+						description: '{mention} gagne **{xp} d\'experience** ! 🎉\n' +
+							'Il est maintenant niveau **{level}** avec **{xp} XP** !'
+					}
+				}
+			},
+			ownerOnly: 'Seules les personnes autorisées peuvent utiliser cette commande !'
+		}
 	}
 } satisfies Commands;

@@ -19,10 +19,21 @@ export const globalConfig = {
 		'<BSE:965618508367024150>',
 		'<tada_blue_d:979418928197550090>'
 	],
-	bumpBot: '302050872383242240',
-	bumpCommand: 'bump',
-	maxBump: 5,
-	xpPerBump: 100
+	disboardBot: '302050872383242240',
+	DTOPBot: '1071460654839517184',
+	disboardBumpCommand: 'bump',
+	DTOPBumpCommand: 'vote',
+	DTOPBoostCommand: 'boost',
+	DTOPBumpEmoji: '🤙',
+	DTOPBoostEmoji: '\ud83d\ude80',
+	owners: [
+		'457144873859022858',
+		'712579966373724222',
+		'622389865765404684',
+		'615664538423001118',
+		'364010473559031811',
+		'276817823639273472'
+	]
 };
 
 

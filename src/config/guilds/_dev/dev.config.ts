@@ -1,4 +1,4 @@
-import type {BaseGuild, BrawlStarsGuild} from '$core/config/guilds/guild.type';
+import type {BaseGuild, BrawlStarsGuild, GlobalGuild} from '$core/config/guilds/guild.type';
 import {LevelUpRoleType} from '$core/config/guilds/guild.type';
 import type {Overwrite} from '$core/utils/type/type';
 import type {GuildAlias} from '$core/handlers/commands';
@@ -36,6 +36,7 @@ const devGuilds = {
 				}
 			]
 		},
+		primeChannel: '1096122859178426423'
 	},
 	guildSection: {
 		name: 'global',
@@ -93,9 +94,9 @@ const devGuilds = {
 					}
 				}
 			]
-		},
+		}
 	}
-} satisfies Record<'guildMain' | 'guildSection', Overwrite<BrawlStarsGuild, {
+} satisfies Record<'guildMain' | 'guildSection', Overwrite<BrawlStarsGuild & GlobalGuild, {
 	name: GuildAlias
 }> | Overwrite<BaseGuild, { name: GuildAlias }>>;
 

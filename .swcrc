@@ -1,0 +1,22 @@
+{
+    "jsc": {
+        "parser": {
+            "syntax": "typescript",
+            "tsx": false,
+            "decorators": true,
+            "dynamicImport": true,
+            "esModuleInterop": true
+
+        },
+        "target": "es2022",
+        "baseUrl": "./",
+        "paths": {
+            "$core/*": ["src/*"]
+
+        }
+    },
+    "isModule": true,
+    "module": {
+        "type": "commonjs"
+    }
+}

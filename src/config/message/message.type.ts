@@ -1,1 +1,1 @@
-export type BaseMessage = string | {[key: string]: BaseMessage}
+export type BaseMessage = string | { [key: string]: BaseMessage } | string[]

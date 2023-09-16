@@ -1,28 +1,25 @@
-import type {ButtonHandler} from '$core/handlers/buttons/button.type';
+import {interactionReplyError} from '$core/handlers/buttons';
+import type {ButtonInteraction} from 'discord.js';
 import type {Result} from 'rustic-error';
 import {error, ok, resultify} from 'rustic-error';
-import type {ButtonInteraction} from 'discord.js';
 import {ButtonError} from '$core/utils/error';
-import {buttonsIds} from '$core/handlers/buttons/button.const';
 import {isProd} from '$core/config/env';
 import {guildsConfig} from '$core/config/guilds';
 import {devConfig} from '$core/config/guilds/_dev/dev.config';
-import {globalConfig} from '$core/config/global';
+import {errorEmbed, getMessageChannel, successEmbed} from '$core/utils/discord';
 import {logger} from '$core/utils/logger';
+import {globalConfig} from '$core/config/global';
 import {msgParams} from '$core/utils/function/string';
 import {commandsConfig} from '$core/config/message/command';
-import {interactionReplyError} from '$core/handlers/buttons';
-import {errorEmbed, successEmbed} from '$core/utils/discord/embet/embet.func';
-import {getMessageChannel} from '$core/utils/discord/channel/channel.func';
+import type {ConfirmButtonHandler} from '$core/handlers/buttons/confirm';
 
-export const confirm: ButtonHandler = {
+export const announceEvent: ConfirmButtonHandler = {
 
 	name: 'AnnounceEventConfirm',
-	id: buttonsIds.eventAnnouncements.confirm,
 	autoDisable: true,
 	preReply: true,
-
-	async run(interaction: ButtonInteraction): Promise<Result<boolean, ButtonError>> {
+	cancel: null,
+	async confirm(interaction: ButtonInteraction): Promise<Result<boolean, ButtonError>> {
 
 		let numberGuildSend = 0;
 		const fails: string[] = [];
@@ -41,7 +38,7 @@ export const confirm: ButtonHandler = {
 				}
 
 				fails.push(guildConfig.name);
-				logger.warning(`[${confirm.name}] ${channelResult.error.message}`);
+				logger.warning(`[${announceEvent.name}] ${channelResult.error.message}`);
 				continue;
 			}
 
@@ -65,15 +62,15 @@ export const confirm: ButtonHandler = {
 				}
 
 				fails.push(guildConfig.name);
-				logger.warning(`[${confirm.name}] failed to send message in guild ${guildConfig.name} (${guildConfig.guildId}), ` +
-						`channel ${channel.name} (${channel.id}), error : ${messageResult.error.message}`);
+				logger.warning(`[${announceEvent.name}] failed to send message in guild ${guildConfig.name} (${guildConfig.guildId}), ` +
+					`channel ${channel.name} (${channel.id}), error : ${messageResult.error.message}`);
 				continue;
 			}
 
 			for (const emoji of globalConfig.eventAnnouncementEmojis) {
 				const result = await resultify(() => messageResult.value.react(emoji));
 				if (!result.ok) {
-					logger.warning(`${confirm.name} failed to add reaction ${emoji} in guild ${guildConfig.name}`);
+					logger.warning(`${announceEvent.name} failed to add reaction ${emoji} in guild ${guildConfig.name}`);
 				}
 			}
 
