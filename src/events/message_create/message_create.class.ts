@@ -271,10 +271,8 @@ export default class MessageCreate extends Event<'messageCreate'> {
 		switch (bumpType) {
 		case 'DISBOARD_BUMP':
 			return DISBOARD_BUMP_XP;
-			break;
 		case 'DTOP_BUMP':
 			return DTOP_BUMP_XP;
-			break;
 		case 'DTOP_BOOST':
 			return DTOP_BOOST_XP;
 		default:
