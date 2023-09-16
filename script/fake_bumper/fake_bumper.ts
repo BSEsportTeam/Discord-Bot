@@ -17,7 +17,7 @@ const baseCommand = () => new SlashCommandBuilder()
 const commands = [
 	baseCommand().setName('bumpone').toJSON(),
 	baseCommand().setName('bumptwo').toJSON(),
-	baseCommand().setName('vote').toJSON()
+	baseCommand().setName('boost').toJSON()
 ];
 client.on('ready', async () => {
 	console.log('logged in');
@@ -98,7 +98,7 @@ client.on('interactionCreate', async (interaction) => {
 			});
 		}
 		break;
-	case 'vote':
+	case 'boost':
 		if (pass) {
 			await interaction.reply({
 				embeds: [
