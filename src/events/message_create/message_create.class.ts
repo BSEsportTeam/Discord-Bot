@@ -24,12 +24,22 @@ import {simpleEmbed} from '$core/utils/discord';
 import {msgParams} from '$core/utils/function/string';
 import {messageCreateConfig} from '$core/config/message/event/message_create.config';
 import {addMessageSinceLastPub} from '$core/tasks/update_db_values/values/message_since_last_pub.util';
+import type {BumpType} from '@prisma/client';
+import {
+	DISBOARD_BUMP_XP,
+	DTOP_BOOST_XP,
+	DTOP_BUMP_XP,
+	MAX_BUMP_XP
+} from '$core/events/message_create/message_create.const';
 
 @Dev
 export default class MessageCreate extends Event<'messageCreate'> {
 	name = 'messageCreate' as const;
 
 	async run(message: Message): Promise<void> {
+		if (!message.guildId || !message.inGuild()) {
+			return;
+		}
 		//check xp
 		void this.checkXP(message);
 		void this.checkBump(message);
@@ -42,12 +52,12 @@ export default class MessageCreate extends Event<'messageCreate'> {
 		}
 	}
 
-	async checkXP(message: Message) {
+	async checkXP(message: Message<true>) {
 		if (message.author.bot) {
 			return;
 		}
 
-		if (message.guild === null || message.guildId === null || !message.inGuild() || message.member === null) {
+		if (message.member === null) {
 			return;
 		}
 
@@ -92,18 +102,10 @@ export default class MessageCreate extends Event<'messageCreate'> {
 		cooldownCollection.set(`${message.guildId}.${message.author.id}`, message.createdTimestamp + (COOLDOWN_IN_SECONDS * 1000));
 	}
 
-	async checkBump(message: Message) {
-		if (!message.guildId || !message.guild) {
-			return;
-		}
+	async checkBump(message: Message<true>) {
 		const guildId = message.guildId;
 
 		if (!message.author.bot) {
-			return;
-		}
-
-		const botId = isDev ? '742097999198683176' : globalConfig.bumpBot;
-		if (message.author.id !== botId) {
 			return;
 		}
 
@@ -114,12 +116,15 @@ export default class MessageCreate extends Event<'messageCreate'> {
 
 		const messageResult = await resultify(() => message.fetch());
 		if (!messageResult.ok) {
-			logger.error('failed to fetch message for bump check');
+			logger.error(`failed to fetch message for bump check, error: ${messageResult.error.message}`);
 			return;
 		}
-		if (!messageResult.value.interaction || messageResult.value.interaction.commandName !== globalConfig.bumpCommand) {
-			return;
+
+		const bumpType = this.getBumpType(messageResult.value);
+		if (bumpType === null || messageResult.value.interaction === null) {
+			return null;
 		}
+
 
 		const authorId = messageResult.value.interaction.user.id;
 		const bumpResult = await getBumpsByUserInGuildToday(authorId, guildId);
@@ -128,24 +133,39 @@ export default class MessageCreate extends Event<'messageCreate'> {
 			return;
 		}
 
-		const create = async () => {
+		let retry = false;
+		const create = async (xp: number) => {
 			const bumpCreate = await createBump({
 				userId: authorId,
-				guildId: guildId
+				guildId: guildId,
+				type: bumpType,
+				xp
 			});
 			if (!bumpCreate.ok) {
-				logger.error(`failed to create bump to database, error : ${bumpCreate.error.message}`, bumpCreate.error.debug());
+				if (bumpCreate.error.debug()['database error code'] === 'P2003') {
+					retry = true;
+				} else {
+					logger.error(`failed to create bump to database, error : ${bumpCreate.error.message}`, bumpCreate.error.debug());
+				}
 			}
 		};
-		void create();
+		const currentDailyXp = bumpResult.value.map((b => b.xp)).reduce((sum, num) => sum + num, 0);
+		let xpToAdd = this.getBumpXp(bumpType);
+
+		if (currentDailyXp + xpToAdd > MAX_BUMP_XP) {
+			xpToAdd = MAX_BUMP_XP - currentDailyXp;
+		}
+		void create(xpToAdd);
+
+
 
 		const replyResult = await resultify(() => message.reply({
 			embeds: [
 				simpleEmbed(msgParams(messageCreateConfig.bump.description, [
 					userMention(authorId),
-					bumpResult.value.length + 1,
-					globalConfig.maxBump,
-					globalConfig.maxBump > bumpResult.value.length ? globalConfig.xpPerBump : 0
+					currentDailyXp + xpToAdd,
+					MAX_BUMP_XP,
+					xpToAdd,
 				]), messageCreateConfig.bump.title)
 			]
 		}));
@@ -153,9 +173,113 @@ export default class MessageCreate extends Event<'messageCreate'> {
 			logger.error(`failed to send thx message for bump, error : ${replyResult.error.message}`);
 		}
 
-		if (globalConfig.maxBump <= bumpResult.value.length) {
+		if (xpToAdd <= 0) {
 			return;
 		}
-		void addXp(authorId, guildId, globalConfig.xpPerBump);
+
+		const result = await addXp(authorId, guildId, xpToAdd);
+		if (result.ok) {
+			if (retry) {
+				void create(xpToAdd);
+			}
+		} else {
+			logger.error(`failed to add xp for bump, error : ${result.error.message}`);
+		}
+	}
+
+	getBumpType(message: Message<true>): BumpType | null {
+		if (message.interaction === null) {
+			return null;
+		}
+
+		if (isDev && message.author.id === '1150832478702022726') {
+			return this.getDevBump(message);
+		}
+
+		if (message.author.id === globalConfig.disboardBot) {
+			return this.getDisboardBump(message);
+		}
+
+		if (message.author.id === globalConfig.DTOPBot) {
+			return this.getDTOPBump(message);
+		}
+
+		return null;
+	}
+
+	getDisboardBump(message: Message<true>): BumpType | null {
+		if (message.interaction === null) {
+			return null;
+		}
+
+		if (message.interaction.commandName === globalConfig.disboardBumpCommand) {
+			return 'DISBOARD_BUMP';
+		}
+
+		return null;
+	}
+
+	getDTOPBump(message: Message<true>): BumpType | null {
+		if (message.interaction === null) {
+			return null;
+		}
+
+		if (message.interaction.commandName === globalConfig.DTOPBumpCommand || message.interaction.commandName == globalConfig.DTOPBoostCommand) {
+			const embed = message.embeds[0];
+
+			if (!embed || embed.title === null) {
+				return null;
+			}
+
+			if (embed.title.startsWith(globalConfig.DTOPBumpEmoji)) {
+				return 'DTOP_BUMP';
+			}
+
+			if (embed.title.startsWith(globalConfig.DTOPBoostEmoji)) {
+				return 'DTOP_BOOST';
+			}
+		}
+		return null;
+	}
+
+	getDevBump(message: Message<true>): BumpType | null {
+		if (message.interaction === null) {
+			return null;
+		}
+		if (message.interaction.commandName === 'bumpone') {
+			return 'DISBOARD_BUMP';
+		}
+		if (message.interaction.commandName === 'bumptwo' || message.interaction.commandName === 'boost') {
+			const embed = message.embeds[0];
+
+			if (!embed || embed.title === null) {
+				return null;
+			}
+
+			if (embed.title.startsWith(globalConfig.DTOPBumpEmoji)) {
+				return 'DTOP_BUMP';
+			}
+
+			if (embed.title.startsWith(globalConfig.DTOPBoostEmoji)) {
+				return 'DTOP_BOOST';
+			}
+		}
+		return null;
+	}
+
+	getBumpXp(bumpType: BumpType): number {
+		switch (bumpType) {
+		case 'DISBOARD_BUMP':
+			return DISBOARD_BUMP_XP;
+			break;
+		case 'DTOP_BUMP':
+			return DTOP_BUMP_XP;
+			break;
+		case 'DTOP_BOOST':
+			return DTOP_BOOST_XP;
+		default:
+			return 0;
+		}
+
 	}
 }
