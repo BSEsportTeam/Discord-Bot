@@ -3,7 +3,7 @@ import {Prisma} from '@prisma/client';
 import type {Result} from 'rustic-error';
 import {error, ok} from 'rustic-error';
 import {anyToError, DatabaseError} from '$core/utils/error';
-import {prisma} from '$core/handlers/database/prisma';
+import {prisma} from '$core/manager/database/prisma';
 import type {Snowflake} from 'discord-api-types/globals';
 
 export const createGuildMember = async (data: GuildMember): Promise<Result<GuildMember, DatabaseError>> => {

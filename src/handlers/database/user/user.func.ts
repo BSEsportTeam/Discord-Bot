@@ -1,4 +1,4 @@
-import {prisma} from '$core/handlers/database/prisma';
+import {prisma} from '$core/manager/database/prisma';
 import type {Result} from 'rustic-error';
 import {error, ok} from 'rustic-error';
 import type {User} from '@prisma/client';

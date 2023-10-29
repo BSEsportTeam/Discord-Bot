@@ -1,4 +1,4 @@
-import {prisma} from '$core/handlers/database/prisma';
+import {prisma} from '$core/manager/database/prisma';
 import type {Guild} from '@prisma/client';
 import {guildsConfig} from '$core/config/guilds';
 

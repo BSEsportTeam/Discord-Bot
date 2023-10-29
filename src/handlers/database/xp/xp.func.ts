@@ -1,6 +1,6 @@
 import type {Result} from 'rustic-error';
 import {error, ok} from 'rustic-error';
-import {prisma} from '$core/handlers/database/prisma';
+import {prisma} from '$core/manager/database/prisma';
 import type {Snowflake} from 'discord-api-types/globals';
 import {anyToError, DatabaseError} from '$core/utils/error';
 import {Prisma} from '@prisma/client';

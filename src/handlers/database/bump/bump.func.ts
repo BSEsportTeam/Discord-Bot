@@ -2,7 +2,7 @@ import type {Bump} from '@prisma/client';
 import type {Result} from 'rustic-error';
 import {error, ok} from 'rustic-error';
 import {anyToError, DatabaseError} from '$core/utils/error';
-import {prisma} from '$core/handlers/database/prisma';
+import {prisma} from '$core/manager/database/prisma';
 import {getToday} from '$core/handlers/database/bump/bump.util';
 import type {MaybeOmit} from '$core/utils/type';
 

@@ -1,7 +1,7 @@
 import type {Result} from 'rustic-error';
 import {error, ok} from 'rustic-error';
 import {anyToError, DatabaseError} from '$core/utils/error';
-import {prisma} from '$core/handlers/database/prisma';
+import {prisma} from '$core/manager/database/prisma';
 import type {Guild} from '@prisma/client';
 
 export const getAllGuilds = async (): Promise<Result<Guild[], DatabaseError>> => {
