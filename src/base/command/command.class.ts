@@ -29,7 +29,7 @@ export abstract class Command<S extends Service> {
 	}
 
 	toJSON() {
-
+		return this.slashBuilder.toJSON();
 	}
 
 	protected async preRun(interaction: CommandInteraction) {
