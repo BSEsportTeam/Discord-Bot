@@ -51,7 +51,7 @@ export default class TopLevel extends BaseCommand {
 					return error(new CommandError('failed to get info user', interaction, infoResult.error));
 				}
 				description += msgParams(config.exec.simpled.selfTop,
-					[infoResult.value.position, userMention(interaction.user.id), calculateLevel(infoResult.value.xp), infoResult.value.xp]);
+					[isGlobal ? '?' : infoResult.value.position, userMention(interaction.user.id), calculateLevel(infoResult.value.xp), infoResult.value.xp]);
 			}
 
 			const embed = simpleEmbed(description, isGlobal ? config.exec.simpled.titleGlobal : config.exec.simpled.titleGuild);

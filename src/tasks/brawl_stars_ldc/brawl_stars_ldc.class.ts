@@ -2,14 +2,14 @@ import {Task, TaskType} from '$core/handlers/task';
 import {Dev} from '$core/utils/dev';
 import {BrawlStarsAnnouncementType} from '$core/tasks/brawl_stars_ldc/brawl_stars_ldc.type';
 import {getCurrentAnnouncementType} from '$core/tasks/brawl_stars_ldc/brawl_stars_ldc.util';
-import {tasksConfig} from '$core/config/message/task/task.config';
+/*import {tasksConfig} from '$core/config/message/task/task.config';
 import {guildsConfig} from '$core/config/guilds';
 import {isDev} from '$core/config/env';
 import {devConfig} from '$core/config/guilds/_dev/dev.config';
 import {logger} from '$core/utils/logger';
 import {resultify} from 'rustic-error';
 import {getMessageChannel} from '$core/utils/discord/channel/channel.func';
-import {simpleEmbed} from '$core/utils/discord/embet/embet.func';
+import {simpleEmbed} from '$core/utils/discord/embet/embet.func';*/
 
 @Dev
 export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
@@ -56,7 +56,7 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 		if (type === null || baseTick !== type) {
 			return;
 		}
-
+		/*
 		const guildConfig = isDev ? devConfig.guilds.guildSection : guildsConfig.brawlStars;
 
 		const channelResult = await getMessageChannel(guildConfig.guildId, guildConfig.autoPing.channel, 'brawl stars ldc ping');
@@ -84,6 +84,6 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 
 		if (!result.ok) {
 			logger.error(`failed to send message for brawl stars ldc, error : ${result.error.message}`);
-		}
+		}*/
 	}
 }

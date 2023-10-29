@@ -14,6 +14,10 @@ export default class VoiceStateUpdate extends Event<'voiceStateUpdate'> {
 			return;
 		}
 
+		if (member.user.bot) {
+			return;
+		}
+
 		const guild = oldState.guild;
 
 		if (newState.channel && newState.channel.type === ChannelType.GuildStageVoice) {
