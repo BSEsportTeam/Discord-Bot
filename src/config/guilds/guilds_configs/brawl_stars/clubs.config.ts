@@ -3,7 +3,6 @@ import {BrawlStarsClubType} from '$core/config/guilds/guild.type';
 
 export const clubsList: BrawlStarsClub[] = [
 	{
-		// leader
 		name: 'BS Immortals',
 		tag: 'UJCQVJV',
 		type: BrawlStarsClubType.LADDER,
@@ -45,11 +44,10 @@ export const clubsList: BrawlStarsClub[] = [
 		tag: '8QUVJ8YC',
 		type: BrawlStarsClubType.LADDER
 	},
-	// ldc
 	{
 		name: 'BS Esport Pro',
 		tag: '9Y9UCUP',
-		type: BrawlStarsClubType.LDC,
+		type: BrawlStarsClubType.LADDER,
 		globalTop: false,
 		localTop: true,
 		bestLocal: 13
@@ -57,19 +55,18 @@ export const clubsList: BrawlStarsClub[] = [
 	{
 		name: 'BS Aries',
 		tag: '2PQ9RC8UL',
-		type: BrawlStarsClubType.LDC
+		type: BrawlStarsClubType.LADDER
 	},
 	{
 		name: 'BS Esport Elite',
 		tag: 'QCJUVQV',
-		type: BrawlStarsClubType.LDC
+		type: BrawlStarsClubType.LADDER
 	},
 	{
 		name: 'BS Demons',
 		tag: '2GPQGL8JY',
-		type: BrawlStarsClubType.LDC
+		type: BrawlStarsClubType.LADDER
 	},
-	// chills
 	{
 		name: 'BS Angels',
 		tag: '89J2Y8QQ',
@@ -89,5 +86,14 @@ export const clubsList: BrawlStarsClub[] = [
 		tag: 'CG2YLR90',
 		type: BrawlStarsClubType.CHILL
 	},
-
+	{
+		name: 'BS Warriors',
+		tag: '8YLCOY2Q',
+		type: BrawlStarsClubType.CHILL
+	},
+	{
+		name: 'BS Brotherhood',
+		tag: '209J8CC2Y',
+		type: BrawlStarsClubType.LADDER
+	}
 ];
