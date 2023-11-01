@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:prod": "node -r @swc-node/register -r tsconfig-paths/register ./src/index.ts",
-    "start:dev": "ts-node src/index.ts dev",
+    "dev": "ts-node src/index.ts dev",
+    "debug": "ts-node src/index.ts dev debug",
     "script:checkconfig": "ts-node script/check_config/check_config.ts script",
     "script:addguildstodb": "ts-node script/add_guilds_to_db/add_guilds_to_db.ts script",
     "script:getdraftbotxp": "ts-node script/import_xp_from_draftbot/import_xp_from_draftbot.ts script",
