@@ -10,3 +10,5 @@ export const env = parser.data;
 
 export const isDev = process.argv.includes('dev');
 export const isProd = !process.argv.includes('dev');
+
+export const isDebug = process.argv.includes('debug');
