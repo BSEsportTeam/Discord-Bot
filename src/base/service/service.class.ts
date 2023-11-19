@@ -3,13 +3,15 @@ import {serviceHasLoad, serviceHasUnload} from '$core/base/service/service.util'
 import {logger} from '$core/utils/logger';
 import {anyToError} from '$core/utils/error';
 import type {CommandList} from '$core/base/service/service.type';
+import type {z} from 'zod';
 
-export abstract class Service {
+export abstract class Service<C extends z.Schema = z.Schema> {
 	client: Client;
 	abstract name: string;
 	reloadable = true;
 	loadCount = 0;
 	commands: CommandList<typeof this> = new Map();
+	schema: C | null = null;
 
 	protected constructor(client: Client) {
 		this.client = client;
