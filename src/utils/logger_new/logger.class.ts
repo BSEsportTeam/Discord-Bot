@@ -86,6 +86,16 @@ export class Logger {
 
 	}
 
+	private logStack(stack: string): void {
+		console.log(debugCategoryColor + `${' '.repeat(debugCategorySpaces)} Stack trace :` + effectReset.all);
+		const lines = stack.split('\n');
+		for (const line of lines) {
+			console.log(debugValueColor + `${' '.repeat(debugValueSpaces)} ↳ ${line}` + effectReset.all);
+		}
+	}
+
+
+
 	private formatLog(level: LogLevel, message: string): string {
 		const reset = effectReset.all;
 		const maxLevelTextSize = 8;
