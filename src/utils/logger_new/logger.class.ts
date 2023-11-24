@@ -38,6 +38,38 @@ export class Logger {
 			}
 		}
 	}
+	private stringifyDebugValue(value: unknown): string {
+		if (typeof value === 'string') {
+			return value;
+		}
+
+		if (typeof value === 'number') {
+			return stringifyNumber(value);
+		}
+
+		if (typeof value === 'boolean') {
+			return value ? 'true' : 'false';
+		}
+
+		if (typeof value === 'bigint') {
+			return value.toString();
+		}
+
+		if (typeof value === 'symbol') {
+			return value.toString();
+		}
+
+		if (typeof value === 'undefined') {
+			return 'undefined';
+		}
+
+		if (typeof value === 'object') {
+			return JSON.stringify(value);
+		}
+
+		return 'unknown';
+
+	}
 
 	private formatLog(level: LogLevel, message: string): string {
 		const reset = effectReset.all;
