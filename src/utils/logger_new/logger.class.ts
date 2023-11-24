@@ -38,6 +38,21 @@ export class Logger {
 			}
 		}
 	}
+
+	private logDebugValues(debugValues: DebugValues, sendCategory = true): void {
+		if (!debugValues || Object.keys(debugValues).length === 0) {
+			return;
+		}
+
+		if (sendCategory) {
+			console.log(debugCategoryColor + `${' '.repeat(debugCategorySpaces)} Debug values :` + effectReset.all);
+
+		}
+		for (const [key, value] of Object.entries(debugValues)) {
+			console.log(debugValueColor + `${' '.repeat(debugValueSpaces)} ↳ ${key} : ${this.stringifyDebugValue(value)}` + effectReset.all);
+		}
+	}
+
 	private stringifyDebugValue(value: unknown): string {
 		if (typeof value === 'string') {
 			return value;
