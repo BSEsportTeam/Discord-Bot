@@ -17,6 +17,27 @@ export class Logger {
 	constructor(public readonly name: string) {
 	}
 
+	private logErrorHistory(error: Error): void {
+		if (!error.cause || !(error.cause instanceof Error)) {
+			console.log(debugCategoryColor + `${' '.repeat(debugCategorySpaces)} Initial error message :` + effectReset.all);
+			console.log(debugValueColor + `${' '.repeat(debugValueSpaces)} ${error.message}` + effectReset.all);
+			return;
+		}
+		console.log(debugCategoryColor + `${' '.repeat(debugCategorySpaces)} Error history :` + effectReset.all);
+		console.log(debugValueColor + `${' '.repeat(debugValueSpaces)} 1. ${error.message}` + effectReset.all);
+
+		let i = 1;
+		let cause: Error | null = error.cause;
+		while (cause) {
+			i++;
+			console.log(debugValueColor + `${' '.repeat(debugValueSpaces)} ${i}. ${cause.message}` + effectReset.all);
+			if (cause.cause && cause.cause instanceof Error) {
+				cause = cause.cause;
+			} else {
+				cause = null;
+			}
+		}
+	}
 
 	private formatLog(level: LogLevel, message: string): string {
 		const reset = effectReset.all;
