@@ -4,6 +4,7 @@ import {logger} from '$core/utils/logger';
 import {anyToError} from '$core/utils/error';
 import type {CommandList} from '$core/base/service/service.type';
 import type {z} from 'zod';
+import {Logger} from '$core/utils/logger_new/logger.class';
 
 export abstract class Service<C extends z.Schema = z.Schema> {
 	client: Client;
@@ -13,8 +14,18 @@ export abstract class Service<C extends z.Schema = z.Schema> {
 	commands: CommandList<typeof this> = new Map();
 	schema: C | null = null;
 
+	private logger?: Logger;
+
 	protected constructor(client: Client) {
 		this.client = client;
+	}
+
+	get log(): Logger {
+		if (!this.logger) {
+			this.logger = new Logger(this.name);
+		}
+		return this.logger;
+
 	}
 
 	protected async reload(): Promise<boolean> {
