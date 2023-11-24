@@ -32,3 +32,9 @@ export const logLevelOptions: LogLevelOptions = {
 		textColor: forground256Color(247)
 	}
 };
+
+export const debugCategorySpaces = 70;
+export const debugValueSpaces = 90;
+
+export const debugCategoryColor = forground256Color(244);
+export const debugValueColor = forground256Color(248);
