@@ -17,6 +17,54 @@ export class Logger {
 	constructor(public readonly name: string) {
 	}
 
+	public fatal(infos: ErrorParams): never {
+		this.formatLog('fatal', infos.m);
+		if (infos.e) {
+			this.logErrorHistory(infos.e);
+			if (infos.e.stack) {
+				this.logStack(infos.e.stack);
+			}
+		}
+
+		if (infos.d) {
+			this.logDebugValues(infos.d);
+		}
+
+		process.exit(1);
+	}
+
+	public error(infos: ErrorParams): void {
+		console.log(this.formatLog('error', infos.m));
+		if (infos.e) {
+			this.logErrorHistory(infos.e);
+			if (infos.e.stack) {
+				this.logStack(infos.e.stack);
+			}
+		}
+
+		if (infos.d) {
+			this.logDebugValues(infos.d);
+		}
+	}
+
+	public warning(message: string): void {
+		console.log(this.formatLog('warning', message));
+	}
+
+	public info(message: string): void {
+		console.log(this.formatLog('info', message));
+	}
+
+	public debug(message: string): void {
+		console.log(this.formatLog('debug', message));
+	}
+
+	public debugValues(debugValues: DebugValues): void {
+		this.formatLog('debug', 'Debug values :');
+		this.logDebugValues(debugValues, false);
+	}
+
+
 	private logErrorHistory(error: Error): void {
 		if (!error.cause || !(error.cause instanceof Error)) {
 			console.log(debugCategoryColor + `${' '.repeat(debugCategorySpaces)} Initial error message :` + effectReset.all);
