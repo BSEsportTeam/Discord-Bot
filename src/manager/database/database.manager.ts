@@ -13,12 +13,12 @@ export class DatabaseManager {
     this.config = new ConfigDatabaseManager(this);
   }
 
-  async load() {
+  async load(): Promise<void> {
     await this.connect();
     await this.config.load();
   }
 
-  async connect() {
+  async connect(): Promise<void> {
     try {
       await this.db.$connect();
     } catch (error) {

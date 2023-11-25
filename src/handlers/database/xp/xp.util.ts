@@ -7,7 +7,7 @@ import { getOrCreateUser } from "$core/handlers/database/user/user.func";
 import { getUserDataFromDiscordUser } from "$core/handlers/database/user/user.util";
 import { getGuildMember } from "$core/utils/discord/member/member.func";
 import { getMemberDataFromDiscordMember } from "$core/handlers/database/member/member.util";
-import { prisma } from "$core/manager/database/prisma";
+import { prisma } from "$core/handlers/database/prisma";
 
 export const createGuildMember = async(userId: Snowflake, guildId: Snowflake, xp: number): Promise<Result<number, Error>> => {
   const discordUser = await getUser(userId);
@@ -24,7 +24,6 @@ export const createGuildMember = async(userId: Snowflake, guildId: Snowflake, xp
   if (!guildMember.ok) {
     return error(guildMember.error);
   }
-
   const data = getMemberDataFromDiscordMember(guildMember.value);
   data.xp = xp;
 
