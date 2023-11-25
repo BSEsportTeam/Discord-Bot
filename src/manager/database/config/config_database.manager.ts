@@ -1,5 +1,6 @@
 import type { DatabaseManager } from "$core/manager/database/database.manager";
 import type { ServiceConfig } from "$core/manager/database/config/config_database.type";
+import { anyToError } from "$core/utils/error";
 
 export class ConfigDatabaseManager {
 
@@ -17,7 +18,10 @@ export class ConfigDatabaseManager {
         };
       });
     } catch (error) {
-
+      this.databaseManager.client.logger.fatal({
+        m: "failed to load configs",
+        e: anyToError(error),
+      });
     }
   }
 
