@@ -65,7 +65,7 @@ export class Client extends BClient {
 						deaf: voiceState.deaf || false,
 						mute: voiceState.mute || false,
 						lastUpdate: Date.now(),
-						channelId: voiceState.channel!.id
+						channelId: voiceState.channel!.id,
 					});
 				}
 			}
@@ -81,4 +81,5 @@ export class Client extends BClient {
 	validVoiceState(voiceState: VoiceState) {
 		return voiceState.channel && voiceState.channel.type === ChannelType.GuildStageVoice && voiceState.member && !voiceState.member.user.bot;
 	}
+
 }

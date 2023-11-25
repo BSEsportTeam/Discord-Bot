@@ -29,7 +29,7 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 			'bs heroes': '885983257047478273',
 			'bs olympus': '814131091279052881',
 			'bs warriors': '885982619152551956',
-			'bs brotherhood': '712264783398830082'
+			'bs brotherhood': '712264783398830082',
 		},
 		channel: '976237938453139486',
 	},

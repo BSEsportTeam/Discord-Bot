@@ -58,34 +58,34 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 			return;
 		}
 		/*
-		const guildConfig = isDev ? devConfig.guilds.guildSection : guildsConfig.brawlStars;
+			const guildConfig = isDev ? devConfig.guilds.guildSection : guildsConfig.brawlStars;
 
-		const channelResult = await getMessageChannel(guildConfig.guildId, guildConfig.autoPing.channel, 'brawl stars ldc ping');
+			const channelResult = await getMessageChannel(guildConfig.guildId, guildConfig.autoPing.channel, 'brawl stars ldc ping');
 
-		if (!channelResult.ok) {
-			logger.error(channelResult.error.message);
-			return;
-		}
+			if (!channelResult.ok) {
+				logger.error(channelResult.error.message);
+				return;
+			}
 
-		const channel = channelResult.value;
+			const channel = channelResult.value;
 
-		const options = type === BrawlStarsAnnouncementType.START_LDC ? tasksConfig.brawlStarsLdc.startLdc
-			: type === BrawlStarsAnnouncementType.END_LDC ? tasksConfig.brawlStarsLdc.endLdc
-				: tasksConfig.brawlStarsLdc.jdc;
+			const options = type === BrawlStarsAnnouncementType.START_LDC ? tasksConfig.brawlStarsLdc.startLdc
+				: type === BrawlStarsAnnouncementType.END_LDC ? tasksConfig.brawlStarsLdc.endLdc
+					: tasksConfig.brawlStarsLdc.jdc;
 
 
-		const embed = simpleEmbed(options.description).setImage(options.imageUrl);
+			const embed = simpleEmbed(options.description).setImage(options.imageUrl);
 
-		const roles = Object.values(guildConfig.autoPing.roles);
+			const roles = Object.values(guildConfig.autoPing.roles);
 
-		const result = await resultify(() => channel.send({
-			content: '<@&' + roles.join('> <@&') + '>',
-			embeds: [embed],
-		}));
+			const result = await resultify(() => channel.send({
+				content: '<@&' + roles.join('> <@&') + '>',
+				embeds: [embed],
+			}));
 
-		if (!result.ok) {
-			logger.error(`failed to send message for brawl stars ldc, error : ${result.error.message}`);
-		}*/
+			if (!result.ok) {
+				logger.error(`failed to send message for brawl stars ldc, error : ${result.error.message}`);
+			}*/
 	}
 
 }

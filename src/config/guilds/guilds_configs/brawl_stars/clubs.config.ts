@@ -55,17 +55,17 @@ export const clubsList: BrawlStarsClub[] = [
 	{
 		name: 'BS Aries',
 		tag: '2PQ9RC8UL',
-		type: BrawlStarsClubType.LADDER
+		type: BrawlStarsClubType.LADDER,
 	},
 	{
 		name: 'BS Esport Elite',
 		tag: 'QCJUVQV',
-		type: BrawlStarsClubType.LADDER
+		type: BrawlStarsClubType.LADDER,
 	},
 	{
 		name: 'BS Demons',
 		tag: '2GPQGL8JY',
-		type: BrawlStarsClubType.LADDER
+		type: BrawlStarsClubType.LADDER,
 	},
 	{
 		name: 'BS Angels',
@@ -89,11 +89,11 @@ export const clubsList: BrawlStarsClub[] = [
 	{
 		name: 'BS Warriors',
 		tag: '8YLCOY2Q',
-		type: BrawlStarsClubType.CHILL
+		type: BrawlStarsClubType.CHILL,
 	},
 	{
 		name: 'BS Brotherhood',
 		tag: '209J8CC2Y',
-		type: BrawlStarsClubType.LADDER
-	}
+		type: BrawlStarsClubType.LADDER,
+	},
 ];

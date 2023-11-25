@@ -36,15 +36,15 @@ export default class TopLevel extends BaseCommand {
 
 
     let message: InteractionReplyOptions;
-    
-			if (!top3Result.value.find((v => v.id === interaction.user.id))) {
-				const infoResult = await (isGlobal ? getGlobalPositionAndXp(interaction.user.id) : getGuildPositionAndXp(interaction.user.id, interaction.guildId));
-				if (!infoResult.ok) {
-					return error(new CommandError('failed to get info user', interaction, infoResult.error));
-				}
-				description += msgParams(config.exec.simpled.selfTop,
-					[isGlobal ? '?' : infoResult.value.position, userMention(interaction.user.id), calculateLevel(infoResult.value.xp), infoResult.value.xp]);
-			}
+
+	  if (!top3Result.value.find((v => v.id === interaction.user.id))) {
+		  const infoResult = await (isGlobal ? getGlobalPositionAndXp(interaction.user.id) : getGuildPositionAndXp(interaction.user.id, interaction.guildId));
+		  if (!infoResult.ok) {
+			  return error(new CommandError('failed to get info user', interaction, infoResult.error));
+		  }
+		  description += msgParams(config.exec.simpled.selfTop,
+			  [isGlobal ? '?' : infoResult.value.position, userMention(interaction.user.id), calculateLevel(infoResult.value.xp), infoResult.value.xp]);
+	  }
 
     if (page === 0) {
       const top3Result = await (isGlobal ? getGlobalTop(0, 3) : getGuildTop(interaction.guildId, 0, 3));
