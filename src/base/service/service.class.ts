@@ -60,7 +60,7 @@ export abstract class Service<C extends z.Schema = z.Schema> {
     return true;
   }
 
-  protected async preUnload() {
+  protected async preUnload(): Promise<void> {
     logger.info(`unloading ${this.name}.`);
     if (serviceHasUnload(this)) {
       try {

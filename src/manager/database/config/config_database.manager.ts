@@ -8,7 +8,7 @@ export class ConfigDatabaseManager {
   constructor(private readonly databaseManager: DatabaseManager) {
   }
 
-  async load() {
+  async load(): Promise<void> {
     try {
       this.configs = (await this.databaseManager.db.config.findMany()).map(config => {
         return {
