@@ -196,3 +196,10 @@ model Config {
 
   @@map("configs")
 }
+
+model Text {
+  id    String @id
+  value String
+
+  @@map("texts")
+}
