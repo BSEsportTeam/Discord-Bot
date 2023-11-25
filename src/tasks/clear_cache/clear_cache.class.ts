@@ -4,15 +4,15 @@ import {logger} from '$core/utils/logger';
 
 export default class ClearCache extends Task<null> {
 
-	isEnableInDev = true;
+  isEnableInDev = true;
 
-	type: TaskType = TaskType.DELAY_INTERVAL;
+  type: TaskType = TaskType.DELAY_INTERVAL;
 
-	interval = 24 * 60 * 60 * 1000;
+  interval = 24 * 60 * 60 * 1000;
 
-	onTick() {
-		clearCooldown();
-		logger.info('cleared cache !');
-	}
+  onTick() {
+    clearCooldown();
+    logger.info('cleared cache !');
+  }
 
 }

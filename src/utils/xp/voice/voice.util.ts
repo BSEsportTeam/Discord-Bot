@@ -1,6 +1,6 @@
-import type { VoiceCollection, VoiceCollectionKey, VoiceInfos } from "$core/utils/xp/voice/voice.type";
-import { Collection } from "discord.js";
-import type { Snowflake } from "discord-api-types/globals";
+import type {VoiceCollection, VoiceCollectionKey, VoiceInfos} from "$core/utils/xp/voice/voice.type";
+import {Collection} from "discord.js";
+import type {Snowflake} from "discord-api-types/globals";
 
 const voicesInfos: VoiceCollection = new Collection();
 

@@ -1,5 +1,5 @@
 import type {DebugValues} from '$core/utils/logger/';
 
 export type DebuggableError = {
-	debug: () => DebugValues;
+  debug: () => DebugValues;
 } & Error

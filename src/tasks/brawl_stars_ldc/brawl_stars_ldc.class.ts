@@ -14,78 +14,78 @@ import {simpleEmbed} from '$core/utils/discord/embet/embet.func';*/
 @Dev
 export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 
-	interval = [
-		{
-			interval: '0 16 * * 3',
-			options: BrawlStarsAnnouncementType.START_LDC,
-		},
-		{
-			interval: '0 12 * * 4',
-			options: BrawlStarsAnnouncementType.END_LDC,
-		},
-		{
-			interval: '0 16 * * 5',
-			options: BrawlStarsAnnouncementType.START_LDC,
-		},
-		{
-			interval: '0 12 * * 6',
-			options: BrawlStarsAnnouncementType.END_LDC,
-		},
-		{
-			interval: '0 16 * * 0',
-			options: BrawlStarsAnnouncementType.START_LDC,
-		},
-		{
-			interval: '0 12 * * 1',
-			options: BrawlStarsAnnouncementType.END_LDC,
-		},
-		{
-			interval: '0 14 * * 2',
-			options: BrawlStarsAnnouncementType.JDC,
-		},
-		{
-			interval: '0 14 * * 6',
-			options: BrawlStarsAnnouncementType.JDC,
-		},
-	];
+  interval = [
+    {
+      interval: '0 16 * * 3',
+      options: BrawlStarsAnnouncementType.START_LDC,
+    },
+    {
+      interval: '0 12 * * 4',
+      options: BrawlStarsAnnouncementType.END_LDC,
+    },
+    {
+      interval: '0 16 * * 5',
+      options: BrawlStarsAnnouncementType.START_LDC,
+    },
+    {
+      interval: '0 12 * * 6',
+      options: BrawlStarsAnnouncementType.END_LDC,
+    },
+    {
+      interval: '0 16 * * 0',
+      options: BrawlStarsAnnouncementType.START_LDC,
+    },
+    {
+      interval: '0 12 * * 1',
+      options: BrawlStarsAnnouncementType.END_LDC,
+    },
+    {
+      interval: '0 14 * * 2',
+      options: BrawlStarsAnnouncementType.JDC,
+    },
+    {
+      interval: '0 14 * * 6',
+      options: BrawlStarsAnnouncementType.JDC,
+    },
+  ];
 
-	type = TaskType.MULTIPLE_CRON_INTERVAL;
+  type = TaskType.MULTIPLE_CRON_INTERVAL;
 
-	async onTick(baseTick: BrawlStarsAnnouncementType): Promise<void> {
-		const type = getCurrentAnnouncementType();
+  async onTick(baseTick: BrawlStarsAnnouncementType): Promise<void> {
+    const type = getCurrentAnnouncementType();
 
-		if (type === null || baseTick !== type) {
-			return;
-		}
-		/*
-			const guildConfig = isDev ? devConfig.guilds.guildSection : guildsConfig.brawlStars;
+    if (type === null || baseTick !== type) {
+      return;
+    }
+    /*
+      const guildConfig = isDev ? devConfig.guilds.guildSection : guildsConfig.brawlStars;
 
-			const channelResult = await getMessageChannel(guildConfig.guildId, guildConfig.autoPing.channel, 'brawl stars ldc ping');
+      const channelResult = await getMessageChannel(guildConfig.guildId, guildConfig.autoPing.channel, 'brawl stars ldc ping');
 
-			if (!channelResult.ok) {
-				logger.error(channelResult.error.message);
-				return;
-			}
+      if (!channelResult.ok) {
+        logger.error(channelResult.error.message);
+        return;
+      }
 
-			const channel = channelResult.value;
+      const channel = channelResult.value;
 
-			const options = type === BrawlStarsAnnouncementType.START_LDC ? tasksConfig.brawlStarsLdc.startLdc
-				: type === BrawlStarsAnnouncementType.END_LDC ? tasksConfig.brawlStarsLdc.endLdc
-					: tasksConfig.brawlStarsLdc.jdc;
+      const options = type === BrawlStarsAnnouncementType.START_LDC ? tasksConfig.brawlStarsLdc.startLdc
+        : type === BrawlStarsAnnouncementType.END_LDC ? tasksConfig.brawlStarsLdc.endLdc
+          : tasksConfig.brawlStarsLdc.jdc;
 
 
-			const embed = simpleEmbed(options.description).setImage(options.imageUrl);
+      const embed = simpleEmbed(options.description).setImage(options.imageUrl);
 
-			const roles = Object.values(guildConfig.autoPing.roles);
+      const roles = Object.values(guildConfig.autoPing.roles);
 
-			const result = await resultify(() => channel.send({
-				content: '<@&' + roles.join('> <@&') + '>',
-				embeds: [embed],
-			}));
+      const result = await resultify(() => channel.send({
+        content: '<@&' + roles.join('> <@&') + '>',
+        embeds: [embed],
+      }));
 
-			if (!result.ok) {
-				logger.error(`failed to send message for brawl stars ldc, error : ${result.error.message}`);
-			}*/
-	}
+      if (!result.ok) {
+        logger.error(`failed to send message for brawl stars ldc, error : ${result.error.message}`);
+      }*/
+  }
 
 }

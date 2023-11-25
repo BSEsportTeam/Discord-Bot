@@ -1,4 +1,4 @@
-import type { XpLevelInfo } from "$core/utils/xp/xp.type";
+import type {XpLevelInfo} from "$core/utils/xp/xp.type";
 
 export const totalXp: XpLevelInfo = {
   "1": 100,

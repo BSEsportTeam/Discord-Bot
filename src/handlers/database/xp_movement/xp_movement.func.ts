@@ -6,7 +6,7 @@ import type { Guild, XpMovement } from "@prisma/client";
 import type { MaybeOmit } from "$core/utils/type";
 
 export const createXpMovement = async(data: MaybeOmit<XpMovement, "date" | "id">): Promise<Result<XpMovement & {
-	guild: Guild;
+  guild: Guild;
 }, DatabaseError>> => {
   try {
     const result = await prisma.xpMovement.create({
@@ -23,7 +23,7 @@ export const createXpMovement = async(data: MaybeOmit<XpMovement, "date" | "id">
 };
 
 export const getXpMovement = async(id: number): Promise<Result<XpMovement & {
-	guild: Guild;
+  guild: Guild;
 } | null, DatabaseError>> => {
   try {
     const result = await prisma.xpMovement.findUnique({

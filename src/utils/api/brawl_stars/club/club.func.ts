@@ -6,5 +6,5 @@ import {URLS} from '$core/utils/api/brawl_stars/brawl_stars.const';
 import {clubSchema} from '$core/utils/api/brawl_stars/club/club.z';
 
 export const getApiClub = (tag: string): Promise<Result<Club, BrawlStarsApiError>> => {
-	return request(URLS.club(fixTag(tag)), clubSchema);
+  return request(URLS.club(fixTag(tag)), clubSchema);
 };

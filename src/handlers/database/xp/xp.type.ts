@@ -1,18 +1,18 @@
 import type { Snowflake } from "discord-api-types/globals";
 
 export type GlobalXPTop = {
-	position: number;
-	xp: number;
-	id: Snowflake;
+  position: number;
+  xp: number;
+  id: Snowflake;
 }
 
 export type GuildXPTop = {
-	position: number;
-	xp: number;
-	id: Snowflake;
-	displayName: string;
+  position: number;
+  xp: number;
+  id: Snowflake;
+  displayName: string;
 }
 export type PositionAndXp = {
-	position: number;
-	xp: number;
+  position: number;
+  xp: number;
 }

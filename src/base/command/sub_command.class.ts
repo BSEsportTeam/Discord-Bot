@@ -6,18 +6,18 @@ import type {CommandResult} from '$core/base/command/command.type';
 
 export abstract class SubCommand<S extends Service> {
 
-	readonly baseCommand: Command<S>;
+  readonly baseCommand: Command<S>;
 
-	readonly client: Client;
+  readonly client: Client;
 
-	readonly service: S;
+  readonly service: S;
 
-	protected constructor(command: Command<S>) {
-		this.baseCommand = command;
-		this.client = command.client;
-		this.service = command.service;
-	}
+  protected constructor(command: Command<S>) {
+    this.baseCommand = command;
+    this.client = command.client;
+    this.service = command.service;
+  }
 
-	abstract run(interaction: ChatInputCommandInteraction): Promise<CommandResult>;
+  abstract run(interaction: ChatInputCommandInteraction): Promise<CommandResult>;
 
 }

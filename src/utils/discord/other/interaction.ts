@@ -6,24 +6,24 @@ import {logger} from '$core/utils/logger';
 import {forground256Color} from 'tintify';
 
 export const replyError = async (interaction: Exclude<Interaction, AutocompleteInteraction>, ephemeral: boolean, preReplied: boolean) => {
-	if (preReplied) {
+  if (preReplied) {
 
-		const result = await resultify(() => interaction.editReply({
-			embeds: [errorEmbed(messageConfig.interactionHandler.error.description, messageConfig.interactionHandler.error.title)],
-		}));
+    const result = await resultify(() => interaction.editReply({
+      embeds: [errorEmbed(messageConfig.interactionHandler.error.description, messageConfig.interactionHandler.error.title)],
+    }));
 
-		if (!result.ok) {
-			logger.error('failed to interaction error editReply, error : ' + forground256Color(202) + result.error.message);
-		}
+    if (!result.ok) {
+      logger.error('failed to interaction error editReply, error : ' + forground256Color(202) + result.error.message);
+    }
 
-	} else {
-		const result = await resultify(() => interaction.reply({
-			embeds: [errorEmbed(messageConfig.interactionHandler.error.description, messageConfig.interactionHandler.error.title)],
-			ephemeral: ephemeral,
-		}));
+  } else {
+    const result = await resultify(() => interaction.reply({
+      embeds: [errorEmbed(messageConfig.interactionHandler.error.description, messageConfig.interactionHandler.error.title)],
+      ephemeral: ephemeral,
+    }));
 
-		if (!result.ok) {
-			logger.error('failed to interaction error reply, error : ' + forground256Color(202) + result.error.message);
-		}
-	}
+    if (!result.ok) {
+      logger.error('failed to interaction error reply, error : ' + forground256Color(202) + result.error.message);
+    }
+  }
 };

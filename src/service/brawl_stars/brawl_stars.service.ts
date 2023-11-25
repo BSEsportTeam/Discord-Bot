@@ -1,12 +1,12 @@
-import {Service} from '$core/base/service/service.class';
-import type {Client} from '$core/client';
+import { Service } from "$core/base/service/service.class";
+import type { Client } from "$core/client";
 
 export class BrawlStarsService extends Service {
 
-	name = 'brawl_stars';
+  name = "brawl_stars";
 
-	constructor(client: Client) {
-		super(client);
-	}
+  constructor(client: Client) {
+    super(client);
+  }
 
 }

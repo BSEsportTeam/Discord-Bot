@@ -5,19 +5,19 @@ import {Prisma} from '@prisma/client';
 export class DatabaseError extends Error implements DebuggableError {
 
 
-	constructor(message: string, public origin: Error) {
-		super(message);
-	}
+  constructor(message: string, public origin: Error) {
+    super(message);
+  }
 
-	debug(): DebugValues {
-		const debugs: DebugValues = {};
+  debug(): DebugValues {
+    const debugs: DebugValues = {};
 
-		debugs['db origin message'] = this.origin.message;
+    debugs['db origin message'] = this.origin.message;
 
-		if (this.origin instanceof Prisma.PrismaClientKnownRequestError) {
-			debugs['database error code'] = this.origin.code;
-		}
-		return debugs;
-	}
+    if (this.origin instanceof Prisma.PrismaClientKnownRequestError) {
+      debugs['database error code'] = this.origin.code;
+    }
+    return debugs;
+  }
 
 }

@@ -1,25 +1,25 @@
-import type { Snowflake } from "discord-api-types/globals";
-import type { XpMovementCause } from "@prisma/client";
-import type { Result } from "rustic-error";
-import { error, ok, resultify } from "rustic-error";
-import type { XpMovementResult } from "$core/utils/xp/xp.type";
-import { addXpToMember } from "$core/handlers/database/xp";
-import { calculateLevel } from "$core/utils/xp/xp.util";
-import { createXpMovement } from "$core/handlers/database/xp_movement/xp_movement.func";
-import { logger } from "$core/utils/logger";
-import { getGuildMember } from "$core/utils/discord/member/member.func";
-import type { LevelUpRoleInfosEvolutionary } from "$core/config/guilds";
-import { getDevGuildWithId, getGuildWithId, LevelUpRoleType } from "$core/config/guilds";
-import { client } from "$core/index";
-import { getMessageChannel } from "$core/utils/discord/channel/channel.func";
-import { msgParams } from "$core/utils/function/string";
-import { messageConfig } from "$core/config/message";
-import { EmbedBuilder, time, userMention } from "discord.js";
-import { isDev } from "$core/config/env";
-import { sendBotLog } from "$core/utils/discord/webhook/webhook.util";
-import { colors } from "$core/config/global";
+import type {Snowflake} from "discord-api-types/globals";
+import type {XpMovementCause} from "@prisma/client";
+import type {Result} from "rustic-error";
+import {error, ok, resultify} from "rustic-error";
+import type {XpMovementResult} from "$core/utils/xp/xp.type";
+import {addXpToMember} from "$core/handlers/database/xp";
+import {calculateLevel} from "$core/utils/xp/xp.util";
+import {createXpMovement} from "$core/handlers/database/xp_movement/xp_movement.func";
+import {logger} from "$core/utils/logger";
+import {getGuildMember} from "$core/utils/discord/member/member.func";
+import type {LevelUpRoleInfosEvolutionary} from "$core/config/guilds";
+import {getDevGuildWithId, getGuildWithId, LevelUpRoleType} from "$core/config/guilds";
+import {client} from "$core/index";
+import {getMessageChannel} from "$core/utils/discord/channel/channel.func";
+import {msgParams} from "$core/utils/function/string";
+import {messageConfig} from "$core/config/message";
+import {EmbedBuilder, time, userMention} from "discord.js";
+import {isDev} from "$core/config/env";
+import {sendBotLog} from "$core/utils/discord/webhook/webhook.util";
+import {colors} from "$core/config/global";
 
-export const checkXpRoles = async(userId: Snowflake, guildId: Snowflake, oldLevel: number, newLevel: number, message = true) => {
+export const checkXpRoles = async (userId: Snowflake, guildId: Snowflake, oldLevel: number, newLevel: number, message = true) => {
 
   const memberResult = await getGuildMember(userId, guildId);
 
@@ -106,7 +106,7 @@ export const checkXpRoles = async(userId: Snowflake, guildId: Snowflake, oldLeve
   }
 };
 
-const sendLevelUpMessage = async(userId: Snowflake, guildId: Snowflake, level: number) => {
+const sendLevelUpMessage = async (userId: Snowflake, guildId: Snowflake, level: number) => {
   const config = isDev ? getDevGuildWithId(guildId) : getGuildWithId(guildId);
 
   if (config === null) {
@@ -131,7 +131,7 @@ const sendLevelUpMessage = async(userId: Snowflake, guildId: Snowflake, level: n
 };
 
 
-export const addXp = async(
+export const addXp = async (
   userId: Snowflake,
   guildId: Snowflake,
   amount: number,

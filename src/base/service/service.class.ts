@@ -8,72 +8,72 @@ import {Logger} from '$core/utils/logger_new/logger.class';
 
 export abstract class Service<C extends z.Schema = z.Schema> {
 
-	client: Client;
+  client: Client;
 
-	abstract name: string;
+  abstract name: string;
 
-	reloadable = true;
+  reloadable = true;
 
-	loadCount = 0;
+  loadCount = 0;
 
-	commands: CommandList<typeof this> = new Map();
+  commands: CommandList<typeof this> = new Map();
 
-	schema: C | null = null;
+  schema: C | null = null;
 
-	private logger?: Logger;
+  private logger?: Logger;
 
-	protected constructor(client: Client) {
-		this.client = client;
-	}
+  protected constructor(client: Client) {
+    this.client = client;
+  }
 
-	get log(): Logger {
-		if (!this.logger) {
-			this.logger = new Logger(this.name);
-		}
-		return this.logger;
+  get log(): Logger {
+    if (!this.logger) {
+      this.logger = new Logger(this.name);
+    }
+    return this.logger;
 
-	}
+  }
 
-	protected async reload(): Promise<boolean> {
-		if (!this.reloadable) {
-			return false;
-		}
-		await this.preUnload();
-		return this.preLoad();
-	}
+  protected async reload(): Promise<boolean> {
+    if (!this.reloadable) {
+      return false;
+    }
+    await this.preUnload();
+    return this.preLoad();
+  }
 
-	protected async preLoad(): Promise<boolean> {
-		logger.info(`loading ${this.name}.`);
-		if (serviceHasLoad(this)) {
-			try {
-				await this.load();
-			} catch (e) {
-				logger.error(`failed to load service ${this.name}.`);
-				logger.debugValues({
-					error: anyToError(e).message,
-				});
-				return false;
-			}
-		}
-		logger.info(`loaded ${this.name}.`);
-		this.loadCount++;
-		return true;
-	}
+  protected async preLoad(): Promise<boolean> {
+    logger.info(`loading ${this.name}.`);
+    if (serviceHasLoad(this)) {
+      try {
+        await this.load();
+      } catch (e) {
+        logger.error(`failed to load service ${this.name}.`);
+        logger.debugValues({
+          error: anyToError(e).message,
+        });
+        return false;
+      }
+    }
+    logger.info(`loaded ${this.name}.`);
+    this.loadCount++;
+    return true;
+  }
 
-	protected async preUnload() {
-		logger.info(`unloading ${this.name}.`);
-		if (serviceHasUnload(this)) {
-			try {
-				await this.unload();
-			} catch (e) {
-				logger.error(`failed to unload service ${this.name}.`);
-				logger.debugValues({
-					error: anyToError(e).message,
-				});
-				return;
-			}
-		}
-		logger.info(`unloaded ${this.name}.`);
-	}
+  protected async preUnload() {
+    logger.info(`unloading ${this.name}.`);
+    if (serviceHasUnload(this)) {
+      try {
+        await this.unload();
+      } catch (e) {
+        logger.error(`failed to unload service ${this.name}.`);
+        logger.debugValues({
+          error: anyToError(e).message,
+        });
+        return;
+      }
+    }
+    logger.info(`unloaded ${this.name}.`);
+  }
 
 }

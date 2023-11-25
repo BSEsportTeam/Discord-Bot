@@ -1,3 +1,3 @@
 export type DevFacultative = {
-	isEnableInDev: boolean;
+  isEnableInDev: boolean;
 }

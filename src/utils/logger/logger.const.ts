@@ -9,7 +9,7 @@ export enum LogLevel {
   DEBUG = 'debug'
 }
 
-export const logLevelOptions: {[key in LogLevel]: LogLevelOptions} = {
+export const logLevelOptions: { [key in LogLevel]: LogLevelOptions } = {
   fatal: {
     levelText: 'FATAL',
     levelColor: forground256Color(255) + brightBackground.red,

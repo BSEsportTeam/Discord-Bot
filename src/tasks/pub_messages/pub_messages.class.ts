@@ -9,10 +9,10 @@ import {logger} from '$core/utils/logger';
 import {resultify} from 'rustic-error';
 import {PubMessageHour} from '$core/tasks/pub_messages/pub_messages.type';
 import {
-	FIRST_MESSAGE_HOUR,
-	FIRST_SEND_RANGE_IN_MIN,
-	SECOND_MESSAGE_HOUR,
-	SECOND_SEND_RANGE_IN_MIN
+  FIRST_MESSAGE_HOUR,
+  FIRST_SEND_RANGE_IN_MIN,
+  SECOND_MESSAGE_HOUR,
+  SECOND_SEND_RANGE_IN_MIN
 } from '$core/tasks/pub_messages/pub_messages.const';
 import {getAllGuilds, resetMessagesSinceLastPub, setLastMessagePub} from '$core/handlers/database/guild/guild.func';
 import {isDev} from '$core/config/env';
@@ -23,95 +23,95 @@ import {generateRandomValue} from '$core/utils/function/random/random.func';
 @Dev
 export default class PubMessage extends Task<PubMessageHour> {
 
-	type = TaskType.MULTIPLE_CRON_INTERVAL;
+  type = TaskType.MULTIPLE_CRON_INTERVAL;
 
-	interval = [
-		{
-			interval: `0 ${FIRST_MESSAGE_HOUR} * * *`,
-			options: PubMessageHour.First,
-		},
-		{
-			interval: `0 ${SECOND_MESSAGE_HOUR} * * *`,
-			options: PubMessageHour.Second,
-		},
-	];
+  interval = [
+    {
+      interval: `0 ${FIRST_MESSAGE_HOUR} * * *`,
+      options: PubMessageHour.First,
+    },
+    {
+      interval: `0 ${SECOND_MESSAGE_HOUR} * * *`,
+      options: PubMessageHour.Second,
+    },
+  ];
 
-	async onTick(messageHour: PubMessageHour) {
-		const guildsInfosResult = await getAllGuilds();
-		if (!guildsInfosResult.ok) {
-			logger.error(`failed to get all guild for send pub message, error : ${guildsInfosResult.error.message}`);
-			logger.debugValues(guildsInfosResult.error.debug());
-			return;
-		}
+  async onTick(messageHour: PubMessageHour) {
+    const guildsInfosResult = await getAllGuilds();
+    if (!guildsInfosResult.ok) {
+      logger.error(`failed to get all guild for send pub message, error : ${guildsInfosResult.error.message}`);
+      logger.debugValues(guildsInfosResult.error.debug());
+      return;
+    }
 
-		for (const guild of guildsInfosResult.value) {
-			const guildConfig = (isDev ? getDevGuildWithId(guild.id) : getGuildWithId(guild.id))?.pubMessages;
-			if (!guildConfig || !guildConfig.enable || guildConfig.messages.length < 1) {
-				continue;
-			}
+    for (const guild of guildsInfosResult.value) {
+      const guildConfig = (isDev ? getDevGuildWithId(guild.id) : getGuildWithId(guild.id))?.pubMessages;
+      if (!guildConfig || !guildConfig.enable || guildConfig.messages.length < 1) {
+        continue;
+      }
 
-			if (guild.lastPubMessage === null) {
-				setTimeout(() => {
-					this.sendMessage(guild.id, guildConfig.channelId, getRandomMessage(guildConfig.messages));
-				}, 1000 * 60 * generateRandomValue(messageHour === PubMessageHour.First ? FIRST_SEND_RANGE_IN_MIN : SECOND_SEND_RANGE_IN_MIN));
-				continue;
-			}
+      if (guild.lastPubMessage === null) {
+        setTimeout(() => {
+          this.sendMessage(guild.id, guildConfig.channelId, getRandomMessage(guildConfig.messages));
+        }, 1000 * 60 * generateRandomValue(messageHour === PubMessageHour.First ? FIRST_SEND_RANGE_IN_MIN : SECOND_SEND_RANGE_IN_MIN));
+        continue;
+      }
 
-			if (messageHour === PubMessageHour.Second && isToday(guild.lastPubMessage)) {
-				if (getMinMessages(guild.lastPubMessage) <= guild.messagesSinceLastPub) {
-					setTimeout(() => {
-						this.sendMessage(guild.id, guildConfig.channelId, getRandomMessage(guildConfig.messages));
-					}, 1000 * 60 * generateRandomValue(SECOND_SEND_RANGE_IN_MIN));
-					continue;
-				}
-			}
+      if (messageHour === PubMessageHour.Second && isToday(guild.lastPubMessage)) {
+        if (getMinMessages(guild.lastPubMessage) <= guild.messagesSinceLastPub) {
+          setTimeout(() => {
+            this.sendMessage(guild.id, guildConfig.channelId, getRandomMessage(guildConfig.messages));
+          }, 1000 * 60 * generateRandomValue(SECOND_SEND_RANGE_IN_MIN));
+          continue;
+        }
+      }
 
-			if (messageHour === PubMessageHour.First && getMinMessages(guild.lastPubMessage) <= guild.messagesSinceLastPub) {
-				setTimeout(() => {
-					this.sendMessage(guild.id, guildConfig.channelId, getRandomMessage(guildConfig.messages));
-				}, 1000 * 60 * generateRandomValue(FIRST_SEND_RANGE_IN_MIN));
-			}
-		}
-	}
+      if (messageHour === PubMessageHour.First && getMinMessages(guild.lastPubMessage) <= guild.messagesSinceLastPub) {
+        setTimeout(() => {
+          this.sendMessage(guild.id, guildConfig.channelId, getRandomMessage(guildConfig.messages));
+        }, 1000 * 60 * generateRandomValue(FIRST_SEND_RANGE_IN_MIN));
+      }
+    }
+  }
 
-	async sendMessage(guildId: Snowflake, channelId: Snowflake, message: PubMessageConfig) {
-		const actionRow = new ActionRowBuilder<ButtonBuilder>();
-		if (typeof message.buttonsLinks !== 'undefined') {
-			for (const key in message.buttonsLinks) {
-				actionRow.addComponents(new ButtonBuilder()
-					.setLabel(key)
-					.setURL(message.buttonsLinks[key])
-					.setStyle(ButtonStyle.Link));
-			}
-		}
+  async sendMessage(guildId: Snowflake, channelId: Snowflake, message: PubMessageConfig) {
+    const actionRow = new ActionRowBuilder<ButtonBuilder>();
+    if (typeof message.buttonsLinks !== 'undefined') {
+      for (const key in message.buttonsLinks) {
+        actionRow.addComponents(new ButtonBuilder()
+          .setLabel(key)
+          .setURL(message.buttonsLinks[key])
+          .setStyle(ButtonStyle.Link));
+      }
+    }
 
-		const channel = await getMessageChannel(guildId, channelId);
+    const channel = await getMessageChannel(guildId, channelId);
 
-		if (!channel.ok) {
-			logger.error(`invalid pub message channel for guild ${guildId}, error : `, channel.error.message);
-			return;
-		}
+    if (!channel.ok) {
+      logger.error(`invalid pub message channel for guild ${guildId}, error : `, channel.error.message);
+      return;
+    }
 
-		const result = await resultify(() => channel.value.send({
-			embeds: [message.embed],
-			components: actionRow.components.length > 0 ? [actionRow] : undefined,
-		}));
-		if (!result.ok) {
-			logger.error(`failed to send pub message in channel ${channelId} (guild ${guildId}, error : ${result.error}`);
-			return;
-		}
+    const result = await resultify(() => channel.value.send({
+      embeds: [message.embed],
+      components: actionRow.components.length > 0 ? [actionRow] : undefined,
+    }));
+    if (!result.ok) {
+      logger.error(`failed to send pub message in channel ${channelId} (guild ${guildId}, error : ${result.error}`);
+      return;
+    }
 
-		const resetResult = await resetMessagesSinceLastPub(guildId);
-		if (!resetResult.ok) {
-			logger.error(`failed to reset messages count for pub message, error : ${resetResult.error.message}`);
-			logger.debugValues(resetResult.error.debug());
-		}
+    const resetResult = await resetMessagesSinceLastPub(guildId);
+    if (!resetResult.ok) {
+      logger.error(`failed to reset messages count for pub message, error : ${resetResult.error.message}`);
+      logger.debugValues(resetResult.error.debug());
+    }
 
-		const setDateResult = await setLastMessagePub(guildId, result.value.createdAt);
-		if (!setDateResult.ok) {
-			logger.error(`failed to set last pub message date, error : ${setDateResult.error.message}`);
-			logger.debugValues(setDateResult.error.debug());
-		}
-	}
+    const setDateResult = await setLastMessagePub(guildId, result.value.createdAt);
+    if (!setDateResult.ok) {
+      logger.error(`failed to set last pub message date, error : ${setDateResult.error.message}`);
+      logger.debugValues(setDateResult.error.debug());
+    }
+  }
 
 }
