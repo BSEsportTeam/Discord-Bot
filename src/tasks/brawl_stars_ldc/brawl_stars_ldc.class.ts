@@ -1,7 +1,7 @@
-import {Task, TaskType} from '$core/handlers/task';
-import {Dev} from '$core/utils/dev';
-import {BrawlStarsAnnouncementType} from '$core/tasks/brawl_stars_ldc/brawl_stars_ldc.type';
-import {getCurrentAnnouncementType} from '$core/tasks/brawl_stars_ldc/brawl_stars_ldc.util';
+import {Task, TaskType} from "$core/handlers/task";
+import {Dev} from "$core/utils/dev";
+import {BrawlStarsAnnouncementType} from "$core/tasks/brawl_stars_ldc/brawl_stars_ldc.type";
+import {getCurrentAnnouncementType} from "$core/tasks/brawl_stars_ldc/brawl_stars_ldc.util";
 /*import {tasksConfig} from '$core/config/message/task/task.config';
 import {guildsConfig} from '$core/config/guilds';
 import {isDev} from '$core/config/env';
@@ -16,35 +16,35 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 
   interval = [
     {
-      interval: '0 16 * * 3',
+      interval: "0 16 * * 3",
       options: BrawlStarsAnnouncementType.START_LDC,
     },
     {
-      interval: '0 12 * * 4',
+      interval: "0 12 * * 4",
       options: BrawlStarsAnnouncementType.END_LDC,
     },
     {
-      interval: '0 16 * * 5',
+      interval: "0 16 * * 5",
       options: BrawlStarsAnnouncementType.START_LDC,
     },
     {
-      interval: '0 12 * * 6',
+      interval: "0 12 * * 6",
       options: BrawlStarsAnnouncementType.END_LDC,
     },
     {
-      interval: '0 16 * * 0',
+      interval: "0 16 * * 0",
       options: BrawlStarsAnnouncementType.START_LDC,
     },
     {
-      interval: '0 12 * * 1',
+      interval: "0 12 * * 1",
       options: BrawlStarsAnnouncementType.END_LDC,
     },
     {
-      interval: '0 14 * * 2',
+      interval: "0 14 * * 2",
       options: BrawlStarsAnnouncementType.JDC,
     },
     {
-      interval: '0 14 * * 6',
+      interval: "0 14 * * 6",
       options: BrawlStarsAnnouncementType.JDC,
     },
   ];

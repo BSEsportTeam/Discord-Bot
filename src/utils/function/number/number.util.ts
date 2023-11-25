@@ -10,6 +10,6 @@ export const inverseNumber = (num: number): number => {
 };
 
 // change 1000000 to 1 000 000
-export const stringifyNumber = (num: number, separator = ' '): string => {
+export const stringifyNumber = (num: number, separator = " "): string => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 };

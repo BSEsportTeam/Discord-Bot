@@ -1,6 +1,6 @@
-import type {DebuggableError} from './error.type';
-import type {DebugValues} from '$core/utils/logger/';
-import {Prisma} from '@prisma/client';
+import type {DebuggableError} from "./error.type";
+import type {DebugValues} from "$core/utils/logger/";
+import {Prisma} from "@prisma/client";
 
 export class DatabaseError extends Error implements DebuggableError {
 
@@ -12,10 +12,10 @@ export class DatabaseError extends Error implements DebuggableError {
   debug(): DebugValues {
     const debugs: DebugValues = {};
 
-    debugs['db origin message'] = this.origin.message;
+    debugs["db origin message"] = this.origin.message;
 
     if (this.origin instanceof Prisma.PrismaClientKnownRequestError) {
-      debugs['database error code'] = this.origin.code;
+      debugs["database error code"] = this.origin.code;
     }
     return debugs;
   }

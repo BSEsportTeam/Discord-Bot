@@ -1,4 +1,4 @@
-import type {LogLevels} from '$core/utils/logger_new/logger.enum';
+import type {LogLevels} from "$core/utils/logger_new/logger.enum";
 
 export type LogLevel = keyof typeof LogLevels;
 

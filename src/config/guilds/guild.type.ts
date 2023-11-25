@@ -1,16 +1,16 @@
-import type {Snowflake} from 'discord-api-types/globals';
-import type {EmbedBuilder} from 'discord.js';
+import type {Snowflake} from "discord-api-types/globals";
+import type {EmbedBuilder} from "discord.js";
 
 export type GuildName =
-  | 'global'
-  | 'brawlStars'
-  | 'clashRoyale'
-  | 'clashOfClans'
-  | 'rocketLeague'
-  | 'callOfDuty'
-  | 'fortnite'
-  | 'apexLegends'
-  | 'trackmania'
+  | "global"
+  | "brawlStars"
+  | "clashRoyale"
+  | "clashOfClans"
+  | "rocketLeague"
+  | "callOfDuty"
+  | "fortnite"
+  | "apexLegends"
+  | "trackmania"
 
 
 export type BaseGuild = {
@@ -82,9 +82,9 @@ export type GlobalGuild = BaseGuild & {
 };
 
 export enum BrawlStarsClubType {
-  LADDER = 'Leader',
-  LDC = 'Ldc',
-  CHILL = 'Chill'
+  LADDER = "Leader",
+  LDC = "Ldc",
+  CHILL = "Chill"
 }
 
 export type BrawlStarsClub = {

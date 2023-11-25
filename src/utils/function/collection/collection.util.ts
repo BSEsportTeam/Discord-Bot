@@ -1,4 +1,4 @@
-import type {Collection} from 'discord.js';
+import type {Collection} from "discord.js";
 
 export const getArrayMergedFromCollectionValues = <K, V>(collection: Collection<K, V[]>): V[] => {
   const values: V[] = [];

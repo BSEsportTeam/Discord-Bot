@@ -1,33 +1,33 @@
-import type {LogLevelOptions} from '$core/utils/logger_new/logger.type';
-import {brightBackground, brightForground, forground, forground256Color} from 'tintify';
+import type {LogLevelOptions} from "$core/utils/logger_new/logger.type";
+import {brightBackground, brightForground, forground, forground256Color} from "tintify";
 
 export const logLevelOptions: LogLevelOptions = {
   fatal: {
-    levelText: 'FATAL',
+    levelText: "FATAL",
     levelColor: forground256Color(255) + brightBackground.red,
     textColor: forground.red,
   },
 
   error: {
-    levelText: 'ERROR',
+    levelText: "ERROR",
     levelColor: brightForground.red,
     textColor: forground256Color(255),
   },
 
   warning: {
-    levelText: 'WARNING',
+    levelText: "WARNING",
     levelColor: forground256Color(209),
     textColor: forground256Color(255),
   },
 
   info: {
-    levelText: 'INFO',
+    levelText: "INFO",
     levelColor: brightForground.green,
     textColor: forground256Color(252),
   },
 
   debug: {
-    levelText: 'DEBUG',
+    levelText: "DEBUG",
     levelColor: forground256Color(245),
     textColor: forground256Color(247),
   },

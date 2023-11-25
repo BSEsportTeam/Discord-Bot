@@ -1,8 +1,8 @@
-import type {Command} from '$core/base/command/command.class';
-import type {Service} from '$core/base/service/service.class';
-import type {Client} from '$core/client';
-import type {ChatInputCommandInteraction} from 'discord.js';
-import type {CommandResult} from '$core/base/command/command.type';
+import type {Command} from "$core/base/command/command.class";
+import type {Service} from "$core/base/service/service.class";
+import type {Client} from "$core/client";
+import type {ChatInputCommandInteraction} from "discord.js";
+import type {CommandResult} from "$core/base/command/command.type";
 
 export abstract class SubCommand<S extends Service> {
 

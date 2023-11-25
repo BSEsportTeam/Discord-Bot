@@ -1,5 +1,5 @@
-import {totalXp} from "$core/utils/xp/const/total_xp.const";
-import {levelUpNeeded} from "$core/utils/xp/const/to_level_up.const";
+import { totalXp } from "$core/utils/xp/const/total_xp.const";
+import { levelUpNeeded } from "$core/utils/xp/const/to_level_up.const";
 
 export const calculateLevel = (xp: number): number => {
   let level = 0;

@@ -1,5 +1,5 @@
-import type {DebugValues} from '$core/utils/logger';
-import {RestRequestError} from '$core/utils/error';
+import type {DebugValues} from "$core/utils/logger";
+import {RestRequestError} from "$core/utils/error";
 
 
 export class BrawlStarsApiError extends RestRequestError {
@@ -11,8 +11,8 @@ export class BrawlStarsApiError extends RestRequestError {
   debug(): DebugValues {
     return {
       ...super.debug(),
-      'bs api reason': this.reason,
-      'bs api message': this.apiMessage,
+      "bs api reason": this.reason,
+      "bs api message": this.apiMessage,
     };
   }
 

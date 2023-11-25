@@ -1,6 +1,6 @@
-import type {DebuggableError} from '$core/utils/error/error.type';
-import type {DebugValues} from '$core/utils/logger';
-import type {Method} from '$core/utils/request/request.type';
+import type {DebuggableError} from "$core/utils/error/error.type";
+import type {DebugValues} from "$core/utils/logger";
+import type {Method} from "$core/utils/request/request.type";
 
 export class RestRequestError extends Error implements DebuggableError {
 

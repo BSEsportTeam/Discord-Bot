@@ -1,13 +1,13 @@
-import * as process from 'process';
-import {forground256Color} from 'tintify';
-import {LogLevel} from './logger.const';
-import type {DebugValues} from './logger.type';
-import {formatLog} from './logger.util';
+import * as process from "process";
+import {forground256Color} from "tintify";
+import {LogLevel} from "./logger.const";
+import type {DebugValues} from "./logger.type";
+import {formatLog} from "./logger.util";
 
 export const logger = {
   fatal(message: string, debug?: DebugValues | string | string[]): never {
     console.log(formatLog(LogLevel.FATAL, message));
-    if (typeof debug !== 'undefined') {
+    if (typeof debug !== "undefined") {
       logger.debug(debug);
     }
     process.exit(1);
@@ -15,7 +15,7 @@ export const logger = {
 
   error(message: string, debug?: DebugValues | string | string[]) {
     console.log(formatLog(LogLevel.ERROR, message));
-    if (typeof debug !== 'undefined') {
+    if (typeof debug !== "undefined") {
       logger.debug(debug);
     }
   },
@@ -29,9 +29,9 @@ export const logger = {
   },
 
   debug(infos: DebugValues | string | string[]) {
-    if (typeof infos === 'string') {
+    if (typeof infos === "string") {
       logger._debug(infos);
-    } else if (typeof infos === 'object') {
+    } else if (typeof infos === "object") {
       if (Array.isArray(infos)) {
         for (const msg of infos) {
           logger._debug(msg);

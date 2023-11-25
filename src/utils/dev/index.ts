@@ -1,2 +1,2 @@
-export * from './dev.func';
-export * from './dev.type';
+export * from "./dev.func";
+export * from "./dev.type";

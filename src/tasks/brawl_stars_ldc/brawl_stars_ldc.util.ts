@@ -1,6 +1,6 @@
-import {BrawlStarsAnnouncementType} from '$core/tasks/brawl_stars_ldc/brawl_stars_ldc.type';
-import {calculateDayOfCustomWeek, DayJS} from '$core/utils/function/dayjs';
-import {REFERENCE_DATE} from '$core/tasks/brawl_stars_ldc/brawl_stars_ldc.const';
+import {BrawlStarsAnnouncementType} from "$core/tasks/brawl_stars_ldc/brawl_stars_ldc.type";
+import {calculateDayOfCustomWeek, DayJS} from "$core/utils/function/dayjs";
+import {REFERENCE_DATE} from "$core/tasks/brawl_stars_ldc/brawl_stars_ldc.const";
 
 export const getCurrentAnnouncementType = (): BrawlStarsAnnouncementType | null => {
   const day = calculateDayOfCustomWeek(REFERENCE_DATE, DayJS(), 14);

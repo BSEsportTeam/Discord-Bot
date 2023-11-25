@@ -1,9 +1,9 @@
-import type {AutocompleteInteraction, Interaction} from 'discord.js';
-import {resultify} from 'rustic-error';
-import {errorEmbed} from '$core/utils/discord/embet/embet.func';
-import {messageConfig} from '$core/config/message';
-import {logger} from '$core/utils/logger';
-import {forground256Color} from 'tintify';
+import type {AutocompleteInteraction, Interaction} from "discord.js";
+import {resultify} from "rustic-error";
+import {errorEmbed} from "$core/utils/discord/embet/embet.func";
+import {messageConfig} from "$core/config/message";
+import {logger} from "$core/utils/logger";
+import {forground256Color} from "tintify";
 
 export const replyError = async (interaction: Exclude<Interaction, AutocompleteInteraction>, ephemeral: boolean, preReplied: boolean) => {
   if (preReplied) {
@@ -13,7 +13,7 @@ export const replyError = async (interaction: Exclude<Interaction, AutocompleteI
     }));
 
     if (!result.ok) {
-      logger.error('failed to interaction error editReply, error : ' + forground256Color(202) + result.error.message);
+      logger.error("failed to interaction error editReply, error : " + forground256Color(202) + result.error.message);
     }
 
   } else {
@@ -23,7 +23,7 @@ export const replyError = async (interaction: Exclude<Interaction, AutocompleteI
     }));
 
     if (!result.ok) {
-      logger.error('failed to interaction error reply, error : ' + forground256Color(202) + result.error.message);
+      logger.error("failed to interaction error reply, error : " + forground256Color(202) + result.error.message);
     }
   }
 };

@@ -1,5 +1,5 @@
-import {Collection} from 'discord.js';
-import type {Snowflake} from 'discord-api-types/globals';
+import {Collection} from "discord.js";
+import type {Snowflake} from "discord-api-types/globals";
 
 const messagesSinceLastPub = new Collection<Snowflake, number>();
 

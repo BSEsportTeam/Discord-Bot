@@ -1,8 +1,8 @@
-import type {ActionRowBuilder, ButtonBuilder, EmbedBuilder} from 'discord.js';
+import type {ActionRowBuilder, ButtonBuilder, EmbedBuilder} from "discord.js";
 
 export const enum PageTypes {
-  GUILD = 'guild',
-  GLOBAL = 'global'
+  GUILD = "guild",
+  GLOBAL = "global"
 }
 
 export type PageInfos = {

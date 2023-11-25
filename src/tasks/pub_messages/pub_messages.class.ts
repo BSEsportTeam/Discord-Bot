@@ -1,23 +1,23 @@
-import {Task, TaskType} from '$core/handlers/task';
-import {Dev} from '$core/utils/dev';
-import {ActionRowBuilder, ButtonBuilder, ButtonStyle} from 'discord.js';
-import type {PubMessageConfig} from '$core/config/guilds';
-import {getDevGuildWithId, getGuildWithId} from '$core/config/guilds';
-import {getMessageChannel} from '$core/utils/discord';
-import type {Snowflake} from 'discord-api-types/globals';
-import {logger} from '$core/utils/logger';
-import {resultify} from 'rustic-error';
-import {PubMessageHour} from '$core/tasks/pub_messages/pub_messages.type';
+import {Task, TaskType} from "$core/handlers/task";
+import {Dev} from "$core/utils/dev";
+import {ActionRowBuilder, ButtonBuilder, ButtonStyle} from "discord.js";
+import type {PubMessageConfig} from "$core/config/guilds";
+import {getDevGuildWithId, getGuildWithId} from "$core/config/guilds";
+import {getMessageChannel} from "$core/utils/discord";
+import type {Snowflake} from "discord-api-types/globals";
+import {logger} from "$core/utils/logger";
+import {resultify} from "rustic-error";
+import {PubMessageHour} from "$core/tasks/pub_messages/pub_messages.type";
 import {
   FIRST_MESSAGE_HOUR,
   FIRST_SEND_RANGE_IN_MIN,
   SECOND_MESSAGE_HOUR,
   SECOND_SEND_RANGE_IN_MIN
-} from '$core/tasks/pub_messages/pub_messages.const';
-import {getAllGuilds, resetMessagesSinceLastPub, setLastMessagePub} from '$core/handlers/database/guild/guild.func';
-import {isDev} from '$core/config/env';
-import {getMinMessages, getRandomMessage, isToday} from '$core/tasks/pub_messages/pub_messages.util';
-import {generateRandomValue} from '$core/utils/function/random/random.func';
+} from "$core/tasks/pub_messages/pub_messages.const";
+import {getAllGuilds, resetMessagesSinceLastPub, setLastMessagePub} from "$core/handlers/database/guild/guild.func";
+import {isDev} from "$core/config/env";
+import {getMinMessages, getRandomMessage, isToday} from "$core/tasks/pub_messages/pub_messages.util";
+import {generateRandomValue} from "$core/utils/function/random/random.func";
 
 
 @Dev
@@ -76,7 +76,7 @@ export default class PubMessage extends Task<PubMessageHour> {
 
   async sendMessage(guildId: Snowflake, channelId: Snowflake, message: PubMessageConfig) {
     const actionRow = new ActionRowBuilder<ButtonBuilder>();
-    if (typeof message.buttonsLinks !== 'undefined') {
+    if (typeof message.buttonsLinks !== "undefined") {
       for (const key in message.buttonsLinks) {
         actionRow.addComponents(new ButtonBuilder()
           .setLabel(key)

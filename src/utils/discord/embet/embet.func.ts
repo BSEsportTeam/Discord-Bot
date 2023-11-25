@@ -1,9 +1,9 @@
-import {EmbedBuilder} from 'discord.js';
-import {colors} from '$core/config/global/global.config';
+import {EmbedBuilder} from "discord.js";
+import {colors} from "$core/config/global/global.config";
 
 export const baseEmbed = (description: string, title?: string): EmbedBuilder => {
   const embed = new EmbedBuilder().setDescription(description);
-  if (typeof title !== 'undefined') embed.setTitle(title);
+  if (typeof title !== "undefined") embed.setTitle(title);
   return embed;
 };
 export const errorEmbed = (description: string, title?: string): EmbedBuilder => {

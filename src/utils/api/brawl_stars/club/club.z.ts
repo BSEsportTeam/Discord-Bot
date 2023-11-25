@@ -1,10 +1,10 @@
-import {z} from 'zod';
+import {z} from "zod";
 
 export const playerIconSchema = z.object({
   id: z.number(),
 });
 
-export const clubType = z.enum(['open', 'inviteOnly', 'closed', 'unknown']);
+export const clubType = z.enum(["open", "inviteOnly", "closed", "unknown"]);
 
 export const clubMemberSchema = z.object({
   icon: playerIconSchema,
@@ -22,6 +22,6 @@ export const clubSchema = z.object({
   trophies: z.number(),
   requiredTrophies: z.number(),
   members: z.array(clubMemberSchema),
-  type: z.enum(['open', 'inviteOnly', 'closed', 'unknown']),
+  type: z.enum(["open", "inviteOnly", "closed", "unknown"]),
   badgeId: z.number(),
 });
