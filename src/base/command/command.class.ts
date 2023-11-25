@@ -2,6 +2,7 @@ import type { Client } from "$core/client";
 import type { Service } from "$core/base/service/service.class";
 import type { CommandResult, GuildAlias, SubCommandGroups, SubCommands } from "$core/base/command/command.type";
 import type { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import type { RESTPostAPIChatInputApplicationCommandsJSONBody } from "discord-api-types/v10";
 
 export abstract class Command<S extends Service> {
 
@@ -38,7 +39,7 @@ export abstract class Command<S extends Service> {
 
   }
 
-  toJSON(): unknown {
+  toJSON(): RESTPostAPIChatInputApplicationCommandsJSONBody {
     return this.slashBuilder.toJSON();
   }
 
