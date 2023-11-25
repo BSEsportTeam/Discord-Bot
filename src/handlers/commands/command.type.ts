@@ -11,16 +11,16 @@ export type SubCommandGroup = {[key: string]: SubCommand};
 
 export type SubCommandOptions = {[key: string]: SubCommand|SubCommandGroup};
 
-export interface NormalCommand extends BaseCommand {
-	run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>>
-}
-export interface SubsCommand extends BaseCommand {
-	getSubCommands(): SubCommandOptions;
-}
-export interface UnknownCommand extends BaseCommand {
-	run?(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>>;
-	getSubCommands?(): SubCommandOptions;
-}
+export type NormalCommand = {
+	run: (interaction: ChatInputCommandInteraction) => Promise<Result<boolean, CommandError>>;
+} & BaseCommand
+export type SubsCommand = {
+	getSubCommands: () => SubCommandOptions;
+} & BaseCommand
+export type UnknownCommand = {
+	run?: (interaction: ChatInputCommandInteraction) => Promise<Result<boolean, CommandError>>;
+	getSubCommands?: () => SubCommandOptions;
+} & BaseCommand
 
 export type CommandPreReply = {
 	enable: boolean;

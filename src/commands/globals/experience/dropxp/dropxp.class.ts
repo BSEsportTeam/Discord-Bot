@@ -16,11 +16,14 @@ const config = commandsConfig.dropXp;
 
 @Dev
 export default class DropXp extends BaseCommand {
+
 	guild: GuildAlias = 'all';
+
 	builder = builder.toJSON();
+
 	preReply: CommandPreReply = {
 		ephemeral: true,
-		enable: true
+		enable: true,
 	};
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
@@ -36,7 +39,7 @@ export default class DropXp extends BaseCommand {
 
 		const messageResult = await resultify(() => channel.send({
 			embeds: [embed],
-			components: [buttons]
+			components: [buttons],
 		}));
 
 		if (!messageResult.ok) {
@@ -46,7 +49,8 @@ export default class DropXp extends BaseCommand {
 
 		return sendCommandReply(interaction, {
 			embeds: [simpleEmbed(config.exec.success)],
-			ephemeral: true
+			ephemeral: true,
 		}, true);
 	}
+
 }

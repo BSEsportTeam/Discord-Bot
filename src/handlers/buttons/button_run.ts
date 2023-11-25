@@ -43,7 +43,7 @@ export const handleButton = async (interaction: ButtonInteraction) => {
 	if (handler.preReply) {
 		const ephemeral = handler.ephemeral || false;
 		const result = await resultify(() => interaction.deferReply({
-			ephemeral
+			ephemeral,
 		}));
 
 		if (!result.ok) {
@@ -59,7 +59,7 @@ export const handleButton = async (interaction: ButtonInteraction) => {
 	const result = await handler.run(interaction);
 
 	if (!result.ok) {
-		logger.error(`Error with command ${effect.bold+handler.name+effectReset.bold} : ${forground256Color(202)}${result.error.message}`, result.error.debug());
+		logger.error(`Error with command ${effect.bold + handler.name + effectReset.bold} : ${forground256Color(202)}${result.error.message}`, result.error.debug());
 
 		await replyError(interaction, handler.ephemeral || false, handler.preReply || false);
 	}

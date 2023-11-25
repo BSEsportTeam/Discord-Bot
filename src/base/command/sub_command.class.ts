@@ -5,8 +5,11 @@ import type {ChatInputCommandInteraction} from 'discord.js';
 import type {CommandResult} from '$core/base/command/command.type';
 
 export abstract class SubCommand<S extends Service> {
+
 	readonly baseCommand: Command<S>;
+
 	readonly client: Client;
+
 	readonly service: S;
 
 	protected constructor(command: Command<S>) {
@@ -16,4 +19,5 @@ export abstract class SubCommand<S extends Service> {
 	}
 
 	abstract run(interaction: ChatInputCommandInteraction): Promise<CommandResult>;
+
 }

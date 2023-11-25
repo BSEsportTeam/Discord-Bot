@@ -11,8 +11,8 @@ import {RestRequestError} from '$core/utils/error';
 export const request = async <T extends z.Schema>(url: string, schema: T): Promise<Result<z.infer<T>, BrawlStarsApiError>> => {
 	const result = await jsonRestRequest('get', BASE_URL + url, {
 		headers: {
-			'Authorization': `Bearer ${env.BRAWL_STARS_TOKEN}`
-		}
+			'Authorization': `Bearer ${env.BRAWL_STARS_TOKEN}`,
+		},
 	});
 
 	if (!result.ok) {
@@ -29,7 +29,8 @@ export const request = async <T extends z.Schema>(url: string, schema: T): Promi
 	if (!infos.success) {
 		return error(new BrawlStarsApiError('failed to parse response',
 			new RestRequestError('', 200, BASE_URL + url, 'get'),
-			infos.error.toString(), 'unknown'));
+			infos.error.toString(),
+			'unknown'));
 	}
 
 	return ok(infos.data);

@@ -23,7 +23,7 @@ export const getConfirmHandler = (id: string): ButtonHandler | undefined => {
 				authorOnly: handler.authorOnly,
 				guildOnly: handler.guildOnly,
 				preReply: handler.preReply,
-				ephemeral: handler.ephemeral
+				ephemeral: handler.ephemeral,
 			};
 		}
 	} else {
@@ -39,7 +39,7 @@ export const getConfirmHandler = (id: string): ButtonHandler | undefined => {
 				authorOnly: false,
 				guildOnly: false,
 				preReply: false,
-				ephemeral: false
+				ephemeral: false,
 			};
 		}
 
@@ -58,23 +58,23 @@ export const getConfirmHandler = (id: string): ButtonHandler | undefined => {
 				authorOnly: handler.authorOnly,
 				guildOnly: handler.guildOnly,
 				preReply: handler.preReply,
-				ephemeral: handler.ephemeral
+				ephemeral: handler.ephemeral,
 			};
 		}
 	}
 	return;
 };
 
-export const getConfirmButtons = (confirmId: string, cancelId: string | null = null, ...args: string[]) =>
-	[new ActionRowBuilder<ButtonBuilder>().addComponents(
-		new ButtonBuilder()
-			.setLabel(messageConfig.button.confirmSystem.confirmButton)
-			.setCustomId(buttonsDynamicIds.confirmConfirm.construct(confirmId, args.join(DYNAMIC_ID_SEPARATOR)))
-			.setStyle(ButtonStyle.Success),
-		new ButtonBuilder()
-			.setLabel(messageConfig.button.confirmSystem.cancelButton)
-			.setCustomId(buttonsDynamicIds.confirmCancel.construct(
-				cancelId !== null ? cancelId : confirmIds.cancel
-				, args.join(DYNAMIC_ID_SEPARATOR)))
-			.setStyle(ButtonStyle.Danger),
-	)];
+export const getConfirmButtons = (confirmId: string, cancelId: string | null = null, ...args: string[]) => [new ActionRowBuilder<ButtonBuilder>().addComponents(
+	new ButtonBuilder()
+		.setLabel(messageConfig.button.confirmSystem.confirmButton)
+		.setCustomId(buttonsDynamicIds.confirmConfirm.construct(confirmId, args.join(DYNAMIC_ID_SEPARATOR)))
+		.setStyle(ButtonStyle.Success),
+	new ButtonBuilder()
+		.setLabel(messageConfig.button.confirmSystem.cancelButton)
+		.setCustomId(buttonsDynamicIds.confirmCancel.construct(
+			cancelId !== null ? cancelId : confirmIds.cancel
+			, args.join(DYNAMIC_ID_SEPARATOR)
+		))
+		.setStyle(ButtonStyle.Danger)
+)];

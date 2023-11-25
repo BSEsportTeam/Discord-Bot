@@ -7,6 +7,7 @@ import type {GuildMember} from 'discord.js';
 
 @Dev
 export default class UserUpdate extends Event<'guildMemberUpdate'> {
+
 	name = 'guildMemberUpdate' as const;
 
 	async run(oldMember: GuildMember, newMember: GuildMember) {
@@ -23,4 +24,5 @@ export default class UserUpdate extends Event<'guildMemberUpdate'> {
 			}
 		}
 	}
+
 }

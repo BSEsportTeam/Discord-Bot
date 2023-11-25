@@ -8,10 +8,10 @@ export const clashRoyaleGuildConfig: BaseGuild = {
 	eventAnnouncements: {
 		channelId: '843944880703012915',
 		roleId: '828351231243714591',
-		enable: true
+		enable: true,
 	},
 	inviteLink: 'https://discord.gg/yvKtPw7GCr',
 	xp: xpConfig,
 	bumpChannel: '1006679096077602977',
-	pubMessages: pubMessage
+	pubMessages: pubMessage,
 };

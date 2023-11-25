@@ -9,7 +9,7 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 	eventAnnouncements: {
 		channelId: '796114514290540595',
 		roleId: '799747893451161631',
-		enable: true
+		enable: true,
 	},
 	autoPing: {
 		roles: {
@@ -31,11 +31,11 @@ export const brawlStarsGuildConfig: BrawlStarsGuild = {
 			//'bs warriors': '885982619152551956',
 			//'bs brotherhood': '712264783398830082'
 		},
-		channel: '976237938453139486'
+		channel: '976237938453139486',
 	},
 	inviteLink: 'https://discord.gg/aWPCgqz',
 	xp: xpConfig,
 	bumpChannel: '1006678429300695121',
 	pubMessages: pubMessage,
-	clubs: clubsList
+	clubs: clubsList,
 };

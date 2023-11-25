@@ -7,6 +7,8 @@ type ClassDecorator<R> = {
 
 export const Dev = <T extends ClassDecorator<DevFacultative>>(target: T) => {
 	return class extends target {
+
 		isEnableInDev = true;
+
 	};
 };

@@ -22,7 +22,9 @@ const config = commandsConfig.announceEvent;
 
 @Dev
 export default class AnnounceEvent extends BaseCommand {
+
 	guild: GuildAlias = 'global';
+
 	builder = builder.toJSON();
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
@@ -37,7 +39,7 @@ export default class AnnounceEvent extends BaseCommand {
 		if (messageReference === null) {
 			return sendCommandReply(interaction, {
 				embeds: [errorEmbed(config.exec.invalidArgument)],
-				ephemeral: true
+				ephemeral: true,
 			}, false);
 		}
 
@@ -54,7 +56,7 @@ export default class AnnounceEvent extends BaseCommand {
 
 			return sendCommandReply(interaction, {
 				embeds: [errorEmbed(config.exec.invalidChannel)],
-				ephemeral: true
+				ephemeral: true,
 			}, false);
 
 		}
@@ -63,10 +65,10 @@ export default class AnnounceEvent extends BaseCommand {
 			return undefined;
 		});
 
-		if (typeof message === 'undefined'|| message.content.length < 1) {
+		if (typeof message === 'undefined' || message.content.length < 1) {
 			return sendCommandReply(interaction, {
 				embeds: [errorEmbed(config.exec.invalidMessage)],
-				ephemeral: true
+				ephemeral: true,
 			}, false);
 
 		}
@@ -76,9 +78,10 @@ export default class AnnounceEvent extends BaseCommand {
 			content: message.content.replace(globalConfig.eventAnnouncementPingReplacer, `<@&${guildConfig.eventAnnouncements.roleId}>`),
 			components: getConfirmButtons(confirmIds.announceEvent),
 			allowedMentions: {
-				parse: []
+				parse: [],
 			},
-			files: message.attachments.toJSON()
+			files: message.attachments.toJSON(),
 		}, false);
 	}
+
 }

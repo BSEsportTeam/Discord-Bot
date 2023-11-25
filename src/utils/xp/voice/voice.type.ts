@@ -1,5 +1,5 @@
-import type {Snowflake} from 'discord-api-types/globals';
-import type {Collection} from 'discord.js';
+import type { Snowflake } from "discord-api-types/globals";
+import type { Collection } from "discord.js";
 
 export type VoiceInfos = {
 	start: number;

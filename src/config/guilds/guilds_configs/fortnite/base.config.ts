@@ -8,7 +8,7 @@ export const fortniteGuildConfig: BaseGuild = {
 	eventAnnouncements: {
 		channelId: '913214792423055410',
 		roleId: '886738721381158962',
-		enable: true
+		enable: true,
 	},
 	inviteLink: 'https://discord.gg/UHtb89ZkHh',
 	xp: xpConfig,

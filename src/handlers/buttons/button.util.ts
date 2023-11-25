@@ -11,13 +11,13 @@ export const authorOnly = async (interaction: ButtonInteraction): Promise<boolea
 	if (interaction.message.interaction?.user.id === interaction.user.id || interaction.memberPermissions?.has('Administrator')) {
 		return true;
 	}
-		
-	const result =  await resultify(() => interaction.reply({
+
+	const result = await resultify(() => interaction.reply({
 		embeds: [new EmbedBuilder()
 			.setTitle(messageConfig.button.authorOnly.title)
 			.setDescription(messageConfig.button.authorOnly.description)
 			.setColor(colors.notAllowed)],
-		ephemeral: true
+		ephemeral: true,
 	}));
 
 	if (!result.ok) {
@@ -52,7 +52,7 @@ export const disableButtons = async (message: Message) => {
 		}
 
 		await message.edit({
-			components: newComponents
+			components: newComponents,
 		});
 	} catch (e) {
 		logger.error(`failed to disable buttons, error : ${e instanceof Error ? e.message : String(e)}`);
@@ -79,5 +79,4 @@ export const sendButtonReply = async (interaction: ButtonInteraction, options: I
 	return ok(true);
 };
 
-export const interactionReplyError = (interaction: ButtonInteraction, error: Error) =>
-	new ButtonError(`failed to editReply to interaction, error : ${error.message}`, interaction, error);
+export const interactionReplyError = (interaction: ButtonInteraction, error: Error) => new ButtonError(`failed to editReply to interaction, error : ${error.message}`, interaction, error);

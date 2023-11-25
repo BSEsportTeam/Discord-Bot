@@ -8,7 +8,7 @@ export const clashOfClansGuildConfig: BaseGuild = {
 	eventAnnouncements: {
 		channelId: '843946679924818000',
 		roleId: '863154928792764447',
-		enable: true
+		enable: true,
 	},
 	inviteLink: 'https://discord.gg/EpPXjK7',
 	xp: xpConfig,

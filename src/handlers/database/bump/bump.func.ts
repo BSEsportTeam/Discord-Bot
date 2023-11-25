@@ -24,7 +24,7 @@ export const getBumpsInGuildToday = async (guildId: string): Promise<Result<Bump
 			where: {
 				guildId: guildId,
 				date: {
-					gte: getToday()
+					gte: getToday(),
 				},
 			},
 		});
@@ -41,7 +41,7 @@ export const getBumpsByUserToday = async (userId: string): Promise<Result<Bump[]
 			where: {
 				userId: userId,
 				date: {
-					gte: getToday()
+					gte: getToday(),
 				},
 			},
 		});
@@ -59,7 +59,7 @@ export const getBumpsByUserInGuildToday = async (userId: string, guildId: string
 				userId: userId,
 				guildId: guildId,
 				date: {
-					gte: getToday()
+					gte: getToday(),
 				},
 			},
 		});

@@ -7,7 +7,7 @@ export type Command = Base & {
 	subcmds?: Record<string, SubCommand>;
 	options?: Record<string, Base>;
 	exec?: Record<string, BaseMessage>;
-	other?: Record<string, OtherOption>
+	other?: Record<string, OtherOption>;
 };
 
 export type SubCommandGroup = Base & {

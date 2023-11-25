@@ -9,7 +9,7 @@ export const colors: Colors = {
 	bseColor2: '#0153A0',
 	bseColor3: '#003156',
 	bseColor4: '#020162',
-	bseColor5: '#A9A9AA'
+	bseColor5: '#A9A9AA',
 };
 
 export const globalConfig = {
@@ -17,7 +17,7 @@ export const globalConfig = {
 	eventAnnouncementEmojis: [
 		'<vrif:811725679049703484>',
 		'<BSE:965618508367024150>',
-		'<tada_blue_d:979418928197550090>'
+		'<tada_blue_d:979418928197550090>',
 	],
 	disboardBot: '302050872383242240',
 	DTOPBot: '1071460654839517184',
@@ -32,12 +32,6 @@ export const globalConfig = {
 		'622389865765404684',
 		'615664538423001118',
 		'364010473559031811',
-		'276817823639273472'
-	]
+		'276817823639273472',
+	],
 };
-
-
-
-
-
-

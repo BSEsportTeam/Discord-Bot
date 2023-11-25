@@ -8,12 +8,14 @@ import {PrimeStaff} from '$core/commands/globals/other/admin/prime_staff/prime_s
 
 @Dev
 export default class Admin extends BaseCommand {
+
 	builder = builder.toJSON();
 
 	getSubCommands(): SubCommandOptions {
 		return {
 			[commandsConfig.admin.subcmds.reverseXpMovement.name]: new ReverseXpMovement(),
-			[commandsConfig.admin.subcmds.primeStaff.name]: new PrimeStaff()
+			[commandsConfig.admin.subcmds.primeStaff.name]: new PrimeStaff(),
 		};
 	}
+
 }

@@ -22,16 +22,18 @@ import {generateRandomValue} from '$core/utils/function/random/random.func';
 
 @Dev
 export default class PubMessage extends Task<PubMessageHour> {
+
 	type = TaskType.MULTIPLE_CRON_INTERVAL;
+
 	interval = [
 		{
 			interval: `0 ${FIRST_MESSAGE_HOUR} * * *`,
-			options: PubMessageHour.First
+			options: PubMessageHour.First,
 		},
 		{
 			interval: `0 ${SECOND_MESSAGE_HOUR} * * *`,
-			options: PubMessageHour.Second
-		}
+			options: PubMessageHour.Second,
+		},
 	];
 
 	async onTick(messageHour: PubMessageHour) {
@@ -92,7 +94,7 @@ export default class PubMessage extends Task<PubMessageHour> {
 
 		const result = await resultify(() => channel.value.send({
 			embeds: [message.embed],
-			components: actionRow.components.length > 0 ? [actionRow] : undefined
+			components: actionRow.components.length > 0 ? [actionRow] : undefined,
 		}));
 		if (!result.ok) {
 			logger.error(`failed to send pub message in channel ${channelId} (guild ${guildId}, error : ${result.error}`);
@@ -111,4 +113,5 @@ export default class PubMessage extends Task<PubMessageHour> {
 			logger.debugValues(setDateResult.error.debug());
 		}
 	}
+
 }

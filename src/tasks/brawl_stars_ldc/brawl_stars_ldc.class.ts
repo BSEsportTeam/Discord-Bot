@@ -13,14 +13,15 @@ import {simpleEmbed} from '$core/utils/discord/embet/embet.func';
 
 @Dev
 export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
+
 	interval = [
 		{
 			interval: '0 16 * * 3',
-			options: BrawlStarsAnnouncementType.START_LDC
+			options: BrawlStarsAnnouncementType.START_LDC,
 		},
 		{
 			interval: '0 12 * * 4',
-			options: BrawlStarsAnnouncementType.END_LDC
+			options: BrawlStarsAnnouncementType.END_LDC,
 		},
 		{
 			interval: '0 16 * * 5',
@@ -45,7 +46,7 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 		{
 			interval: '0 14 * * 6',
 			options: BrawlStarsAnnouncementType.JDC,
-		}
+		},
 	];
 
 	type = TaskType.MULTIPLE_CRON_INTERVAL;
@@ -68,9 +69,9 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 
 		const channel = channelResult.value;
 
-		const options = type === BrawlStarsAnnouncementType.START_LDC ? tasksConfig.brawlStarsLdc.startLdc :
-			type === BrawlStarsAnnouncementType.END_LDC ? tasksConfig.brawlStarsLdc.endLdc :
-				tasksConfig.brawlStarsLdc.jdc;
+		const options = type === BrawlStarsAnnouncementType.START_LDC ? tasksConfig.brawlStarsLdc.startLdc
+			: type === BrawlStarsAnnouncementType.END_LDC ? tasksConfig.brawlStarsLdc.endLdc
+				: tasksConfig.brawlStarsLdc.jdc;
 
 
 		const embed = simpleEmbed(options.description).setImage(options.imageUrl);
@@ -79,11 +80,12 @@ export default class BrawlStarsLdc extends Task<BrawlStarsAnnouncementType> {
 
 		const result = await resultify(() => channel.send({
 			content: '<@&' + roles.join('> <@&') + '>',
-			embeds: [embed]
+			embeds: [embed],
 		}));
 
 		if (!result.ok) {
 			logger.error(`failed to send message for brawl stars ldc, error : ${result.error.message}`);
 		}
 	}
+
 }

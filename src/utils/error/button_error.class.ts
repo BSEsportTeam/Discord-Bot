@@ -4,6 +4,7 @@ import type {DebugValues} from '$core/utils/logger/';
 import {isDebuggableError} from '$core/utils/error/error.util';
 
 export class ButtonError extends Error implements DebuggableError {
+
 	constructor(
 		message: string,
 		public interaction: ButtonInteraction,
@@ -11,10 +12,11 @@ export class ButtonError extends Error implements DebuggableError {
 	) {
 		super(message + (sourceError ? `, error : ${sourceError.message} ` : ''));
 	}
+
 	debug(): DebugValues {
 		const debug: DebugValues = {
 			user: `${this.interaction.user.tag} (${this.interaction.user.id})`,
-			customId: this.interaction.customId
+			customId: this.interaction.customId,
 		};
 		if (this.interaction.inGuild() && this.interaction.guild !== null) debug.guild = `${this.interaction.guild.name} (${this.interaction.guildId})`;
 		if (this.interaction.channel !== null && !this.interaction.channel.isDMBased()) debug.channel = `${this.interaction.channel.name} (${this.interaction.channelId})`;
@@ -22,4 +24,5 @@ export class ButtonError extends Error implements DebuggableError {
 		if (this.sourceError !== undefined && isDebuggableError(this.sourceError)) return {...debug, ...this.sourceError.debug()};
 		return debug;
 	}
+
 }

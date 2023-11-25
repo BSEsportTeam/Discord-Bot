@@ -33,13 +33,13 @@ export const generatePage = (page: number, data: GuildXPTop[]|GlobalXPTop[], typ
 	const beforeButton = new ButtonBuilder()
 		.setLabel(buttonConfig.before)
 		.setStyle(ButtonStyle.Primary)
-		.setCustomId(buttonsDynamicIds.topLevel.construct(`${page-1}`, type))
+		.setCustomId(buttonsDynamicIds.topLevel.construct(`${page - 1}`, type))
 		.setDisabled(page === 1);
 
 	const actionRow = new ActionRowBuilder<ButtonBuilder>()
 		.addComponents(beforeButton, nextButton);
 	return {
 		embeds: [embed],
-		components: [actionRow]
+		components: [actionRow],
 	};
 };

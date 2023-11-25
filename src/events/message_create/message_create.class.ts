@@ -34,6 +34,7 @@ import {
 
 @Dev
 export default class MessageCreate extends Event<'messageCreate'> {
+
 	name = 'messageCreate' as const;
 
 	async run(message: Message): Promise<void> {
@@ -79,7 +80,7 @@ export default class MessageCreate extends Event<'messageCreate'> {
 			return;
 		}
 
-		let xpCount = Math.floor(Math.random() * (MAX_XP_PER_MESSAGE - MIN_XP_PER_MESSAGE + 1))+MIN_XP_PER_MESSAGE;
+		let xpCount = Math.floor(Math.random() * (MAX_XP_PER_MESSAGE - MIN_XP_PER_MESSAGE + 1)) + MIN_XP_PER_MESSAGE;
 
 		if (message.member.roles.cache.has(xpConfig.xp.xpBoostRole)) {
 			xpCount *= XP_BOOST_MULTIPLIER;
@@ -139,7 +140,7 @@ export default class MessageCreate extends Event<'messageCreate'> {
 				userId: authorId,
 				guildId: guildId,
 				type: bumpType,
-				xp
+				xp,
 			});
 			if (!bumpCreate.ok) {
 				if (bumpCreate.error.debug()['database error code'] === 'P2003') {
@@ -158,7 +159,6 @@ export default class MessageCreate extends Event<'messageCreate'> {
 		void create(xpToAdd);
 
 
-
 		const replyResult = await resultify(() => message.reply({
 			embeds: [
 				simpleEmbed(msgParams(messageCreateConfig.bump.description, [
@@ -166,8 +166,8 @@ export default class MessageCreate extends Event<'messageCreate'> {
 					currentDailyXp + xpToAdd,
 					MAX_BUMP_XP,
 					xpToAdd,
-				]), messageCreateConfig.bump.title)
-			]
+				]), messageCreateConfig.bump.title),
+			],
 		}));
 		if (!replyResult.ok) {
 			logger.error(`failed to send thx message for bump, error : ${replyResult.error.message}`);
@@ -280,4 +280,5 @@ export default class MessageCreate extends Event<'messageCreate'> {
 		}
 
 	}
+
 }

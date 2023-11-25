@@ -18,7 +18,7 @@ const getIndexes = (header: string[]): Record<keyof PrimeInfos, number> | string
 		'Poste': header.findIndex(v => v === 'Poste'),
 		'TOTAL Sans Bonus': header.findIndex(v => v === 'TOTAL Sans Bonus'),
 		'Idd': header.findIndex(v => v === 'Idd'),
-		'Pseudo': header.findIndex(v => v === 'Pseudo')
+		'Pseudo': header.findIndex(v => v === 'Pseudo'),
 	};
 	let msg = '';
 	for (const [key, value] of Object.entries(baseIndexes)) {
@@ -36,7 +36,7 @@ const getIndexes = (header: string[]): Record<keyof PrimeInfos, number> | string
 		role: baseIndexes.Poste,
 		totalPrime: baseIndexes['TOTAL Sans Bonus'],
 		userId: baseIndexes.Idd,
-		username: baseIndexes.Pseudo
+		username: baseIndexes.Pseudo,
 	};
 };
 
@@ -44,24 +44,24 @@ export const getPrimes = async (): Promise<Result<PrimeInfos[] | string, Error>>
 	try {
 		const auth = new google.auth.GoogleAuth({
 			scopes: [
-				'https://www.googleapis.com/auth/spreadsheets'
+				'https://www.googleapis.com/auth/spreadsheets',
 			],
 			credentials: {
 				private_key: env.GOOGLE_PRIVATE_KEY.split(String.raw`\n`).join('\n'),
-				client_email: env.GOOGLE_MAIL
-			}
+				client_email: env.GOOGLE_MAIL,
+			},
 		});
 		const sheets = google.sheets({
 			version: 'v4',
-			auth: auth
+			auth: auth,
 		});
 		const res = await sheets.spreadsheets.values.get({
 			spreadsheetId: env.GOOGLE_SHEETS_ID,
-			range: 'Registre Staff!A:I'
+			range: 'Registre Staff!A:I',
 		});
 
-		if (res.data.values === null || typeof res.data.values === 'undefined' ||
-			res.data.values.length === 0 || res.data.values[0].length === 0) {
+		if (res.data.values === null || typeof res.data.values === 'undefined'
+			|| res.data.values.length === 0 || res.data.values[0].length === 0) {
 
 			return error(new Error('No rows gets'));
 		}
@@ -79,7 +79,7 @@ export const getPrimes = async (): Promise<Result<PrimeInfos[] | string, Error>>
 				role: row[indexes.role],
 				totalPrime: parseInt(row[indexes.totalPrime], 10),
 				userId: row[indexes.userId],
-				username: row[indexes.username]
+				username: row[indexes.username],
 			};
 			if (!Object.values(prime).includes('')) {
 				primes.push(prime);
@@ -91,5 +91,3 @@ export const getPrimes = async (): Promise<Result<PrimeInfos[] | string, Error>>
 		return error(new Error(`failed to get prime staff infos, error : ${anyToError(e).message}`));
 	}
 };
-
-

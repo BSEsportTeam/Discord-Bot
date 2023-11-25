@@ -10,11 +10,11 @@ export const cancel = {
 	async run(interaction: ButtonInteraction, ephemeral: boolean): Promise<Result<boolean, ButtonError>> {
 		const result = await resultify(() => interaction.reply({
 			embeds: [successEmbed(messageConfig.button.confirmSystem.cancelMessage)],
-			ephemeral
+			ephemeral,
 		}));
 		if (result.ok) {
 			return ok(true);
 		}
 		return error(interactionReplyError(interaction, result.error));
-	}
+	},
 };

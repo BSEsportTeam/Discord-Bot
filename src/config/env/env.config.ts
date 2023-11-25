@@ -4,7 +4,7 @@ import {envDTO} from './env.z';
 
 const parser = envDTO.safeParse(process.env);
 
-if (!parser.success) throw Error('Missing environment variable', { cause: parser.error.message });
+if (!parser.success) throw Error('Missing environment variable', {cause: parser.error.message});
 
 export const env = parser.data;
 

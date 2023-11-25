@@ -17,11 +17,14 @@ const config = commandsConfig.level;
 
 @Dev
 export default class Level extends BaseCommand {
+
 	builder = builder.toJSON();
+
 	preReply: CommandPreReply = {
 		enable: true,
-		ephemeral: false
+		ephemeral: false,
 	};
+
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
 		if (!interaction.inGuild() || interaction.guild === null || interaction.channel === null || interaction.member === null) return ok(false);
 
@@ -64,7 +67,8 @@ export default class Level extends BaseCommand {
 		).setThumbnail(member.avatarURL() || member.user.avatarURL() || member.user.defaultAvatarURL);
 
 		return sendCommandReply(interaction, {
-			embeds: [embed]
+			embeds: [embed],
 		}, true);
 	}
+
 }

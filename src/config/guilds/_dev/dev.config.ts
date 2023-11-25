@@ -11,7 +11,7 @@ const devGuilds = {
 		eventAnnouncements: {
 			channelId: '1096131124109000824',
 			roleId: '1096122857282621468',
-			enable: true
+			enable: true,
 		},
 		inviteLink: 'https://discord.gg/s5qWJku7HG',
 		xp: {
@@ -20,7 +20,7 @@ const devGuilds = {
 			boosterRole: '',
 			xpBoostRole: '1096122857244852269',
 			disablesChannels: ['1096122870121386166'],
-			levelUpChannel: '1096122869626437705'
+			levelUpChannel: '1096122869626437705',
 		},
 		bumpChannel: '1096122869626437706',
 		pubMessages: {
@@ -31,12 +31,12 @@ const devGuilds = {
 					embed: new EmbedBuilder()
 						.setDescription('test'),
 					buttonsLinks: {
-						'Photos de Nicolas': 'https://youtu.be/dQw4w9WgXcQ'
-					}
-				}
-			]
+						'Photos de Nicolas': 'https://youtu.be/dQw4w9WgXcQ',
+					},
+				},
+			],
 		},
-		primeChannel: '1096122859178426423'
+		primeChannel: '1096122859178426423',
 	},
 	guildSection: {
 		name: 'global',
@@ -44,7 +44,7 @@ const devGuilds = {
 		eventAnnouncements: {
 			channelId: '1096123377611178009',
 			roleId: '1096123374234763313',
-			enable: true
+			enable: true,
 		},
 		inviteLink: 'https://discord.gg/wtFaNTsesA',
 		xp: {
@@ -53,32 +53,32 @@ const devGuilds = {
 				'1': {
 					name: 'mon xp',
 					id: '1096123374129905797',
-					type: LevelUpRoleType.CUMULATIVE
+					type: LevelUpRoleType.CUMULATIVE,
 				},
 				'2': {
 					name: 'lionceau',
 					id: '1096123374092161027',
 					type: LevelUpRoleType.EVOLUTIONARY,
-					message: 'Tu découvres la vie de lion, il est maintenant temps de grandir ! 👀 '
+					message: 'Tu découvres la vie de lion, il est maintenant temps de grandir ! 👀 ',
 				},
 				'3': {
 					name: 'apprenti lion',
 					id: '1096123374092161028',
 					type: LevelUpRoleType.EVOLUTIONARY,
-					message: 'Il faut continuer ainsi, c\'est que le début de ton aventure de lion !'
-				}
+					message: 'Il faut continuer ainsi, c\'est que le début de ton aventure de lion !',
+				},
 			},
 			boosterRole: '',
 			xpBoostRole: '1096123374129905796',
 			disablesChannels: [],
-			levelUpChannel: '1096123377984475188'
+			levelUpChannel: '1096123377984475188',
 		},
 		autoPing: {
 			roles: {
 				pro: '1096123374306070622',
-				staff: '1096123374306070628'
+				staff: '1096123374306070628',
 			},
-			channel: '1096123376965263394'
+			channel: '1096123376965263394',
 		},
 		clubs: [],
 		bumpChannel: '1096123377984475189',
@@ -90,16 +90,16 @@ const devGuilds = {
 					embed: new EmbedBuilder()
 						.setDescription('test'),
 					buttonsLinks: {
-						'Photos de Nicolas': 'https://youtu.be/dQw4w9WgXcQ'
-					}
-				}
-			]
-		}
-	}
+						'Photos de Nicolas': 'https://youtu.be/dQw4w9WgXcQ',
+					},
+				},
+			],
+		},
+	},
 } satisfies Record<'guildMain' | 'guildSection', Overwrite<BrawlStarsGuild & GlobalGuild, {
-	name: GuildAlias
+	name: GuildAlias;
 }> | Overwrite<BaseGuild, { name: GuildAlias }>>;
 
 export const devConfig = {
-	guilds: devGuilds
+	guilds: devGuilds,
 };

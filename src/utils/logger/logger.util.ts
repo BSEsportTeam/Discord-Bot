@@ -11,6 +11,5 @@ export const formatLog = (level: LogLevel, message: string): string =>  {
 	const prefix = `${DATE_COLOR}[${date}] ${options.levelColor}${options.levelText}`;
 	const separator = `${reset}${SEPARATOR_COLOR} ${'-'.repeat(maxLevelTextSize - options.levelText.length)} » `;
 	const msg = `${reset}${options.textColor}${message}${reset}`;
-	return prefix+separator+msg;
+	return prefix + separator + msg;
 };
-

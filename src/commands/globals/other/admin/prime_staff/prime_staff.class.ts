@@ -14,10 +14,12 @@ import {confirmIds, getConfirmButtons} from '$core/handlers/buttons/confirm';
 const config = commandsConfig.admin.exec.primeStaff;
 
 export class PrimeStaff extends SubCommand {
+
 	name = commandsConfig.admin.subcmds.primeStaff.name;
+
 	preReply = {
 		enable: true,
-		ephemeral: false
+		ephemeral: false,
 	};
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
@@ -46,7 +48,7 @@ export class PrimeStaff extends SubCommand {
 				prime.username,
 				prime.totalPrime,
 				prime.prime,
-				prime.associationPrime
+				prime.associationPrime,
 			]));
 		}
 
@@ -61,7 +63,7 @@ export class PrimeStaff extends SubCommand {
 		}
 
 		const replyResult = await this.sendReply(interaction, {
-			embeds: [embeds[0].setTitle(config.primeInfoTitle)]
+			embeds: [embeds[0].setTitle(config.primeInfoTitle)],
 		});
 		if (!replyResult.ok) {
 			return error(replyResult.error);
@@ -69,7 +71,7 @@ export class PrimeStaff extends SubCommand {
 
 		for (const embed of embeds.slice(1)) {
 			const result = await resultify(() => interaction.followUp({
-				embeds: [embed]
+				embeds: [embed],
 			}));
 			if (!result.ok) {
 				return error(new CommandError('failed to followUp interaction', interaction, result.error));
@@ -78,7 +80,7 @@ export class PrimeStaff extends SubCommand {
 
 		const result = await resultify(() => interaction.followUp({
 			embeds: [simpleEmbed(config.primeDescription)],
-			components: getConfirmButtons(confirmIds.primeStaff)
+			components: getConfirmButtons(confirmIds.primeStaff),
 		}));
 		if (!result.ok) {
 			return error(new CommandError('failed to followUp interaction', interaction, result.error));
@@ -86,4 +88,5 @@ export class PrimeStaff extends SubCommand {
 		return ok(true);
 
 	}
+
 }

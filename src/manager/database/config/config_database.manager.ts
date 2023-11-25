@@ -13,11 +13,12 @@ export class ConfigDatabaseManager {
 			this.configs = (await this.databaseManager.db.config.findMany()).map(config => {
 				return {
 					name: config.service,
-					value: config.value
+					value: config.value,
 				};
 			});
 		} catch (error) {
 
 		}
 	}
+
 }

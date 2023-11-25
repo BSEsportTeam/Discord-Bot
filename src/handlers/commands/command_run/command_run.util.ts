@@ -12,7 +12,7 @@ export const getCommand = (interaction: ChatInputCommandInteraction): NormalComm
 			interaction.commandName,
 			'all',
 			interaction.options.getSubcommand(false) || undefined,
-			interaction.options.getSubcommandGroup() || undefined,
+			interaction.options.getSubcommandGroup() || undefined
 		));
 
 		if (typeof command === 'undefined') {
@@ -20,7 +20,7 @@ export const getCommand = (interaction: ChatInputCommandInteraction): NormalComm
 				interaction.commandName,
 				'global',
 				interaction.options.getSubcommand(false) || undefined,
-				interaction.options.getSubcommandGroup() || undefined,
+				interaction.options.getSubcommandGroup() || undefined
 			));
 		}
 
@@ -32,7 +32,7 @@ export const getCommand = (interaction: ChatInputCommandInteraction): NormalComm
 			interaction.commandName,
 			getGuildWithId(interaction.guild.id)?.name || 'all',
 			interaction.options.getSubcommand(false) || undefined,
-			interaction.options.getSubcommandGroup() || undefined,
+			interaction.options.getSubcommandGroup() || undefined
 		));
 
 		if (typeof command === 'undefined') {
@@ -40,7 +40,7 @@ export const getCommand = (interaction: ChatInputCommandInteraction): NormalComm
 				interaction.commandName,
 				'all',
 				interaction.options.getSubcommand(false) || undefined,
-				interaction.options.getSubcommandGroup() || undefined,
+				interaction.options.getSubcommandGroup() || undefined
 			));
 		}
 
@@ -53,7 +53,7 @@ export const getCommand = (interaction: ChatInputCommandInteraction): NormalComm
 			interaction.commandName,
 			'all',
 			interaction.options.getSubcommand(false) || undefined,
-			interaction.options.getSubcommandGroup() || undefined,
+			interaction.options.getSubcommandGroup() || undefined
 		));
 		if (typeof command !== 'undefined') {
 			return command;

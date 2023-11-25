@@ -35,7 +35,10 @@ export const getGuildMember = async (userId: Snowflake, guildId: Snowflake): Pro
 	}
 };
 
-export const getDetailedGuildMember = async (userId: Snowflake, guildId: Snowflake ): Promise<Result<GuildMember & { guild: Guild; user: User } | null, DatabaseError>> => {
+export const getDetailedGuildMember = async (userId: Snowflake, guildId: Snowflake): Promise<Result<GuildMember & {
+	guild: Guild;
+	user: User
+} | null, DatabaseError>> => {
 	try {
 		const member = await prisma.guildMember.findUnique({
 			where: {

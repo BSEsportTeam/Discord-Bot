@@ -23,11 +23,14 @@ import {Dev} from '$core/utils/dev';
 const config = commandsConfig.clubInfo;
 @Dev
 export default class TopLevel extends BaseCommand {
+
 	builder = builder.toJSON();
+
 	guild: GuildAlias = 'brawlStars';
+
 	preReply: CommandPreReply = {
 		enable: true,
-		ephemeral: false
+		ephemeral: false,
 	};
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
@@ -37,7 +40,7 @@ export default class TopLevel extends BaseCommand {
 		if (!clubConfig) {
 			logger.error(`no brawl stars club fount with name ${clubName} in config`);
 			return sendCommandReply(interaction, {
-				embeds: [errorEmbed(config.exec.noClub.description, config.exec.noClub.title)]
+				embeds: [errorEmbed(config.exec.noClub.description, config.exec.noClub.title)],
 			}, true);
 		}
 
@@ -46,7 +49,7 @@ export default class TopLevel extends BaseCommand {
 			logger.error(`Api Brawl stars error for fetching club info with tag ${clubConfig.tag} (${clubName}) error : ${clubInfoResult.error.message}`);
 			logger.debugValues(clubInfoResult.error.debug());
 			return sendCommandReply(interaction, {
-				embeds: [errorEmbed(config.exec.apiError.description, config.exec.apiError.title)]
+				embeds: [errorEmbed(config.exec.apiError.description, config.exec.apiError.title)],
 			}, true);
 		}
 
@@ -74,23 +77,24 @@ export default class TopLevel extends BaseCommand {
 			.setColor(colors.bseColor1);
 
 		embed.addFields({
-			name: exec.basic.title,
-			value: msgParams(exec.basic.description, [
-				clubTypeToString(clubConfig.type),
-				clubInfoResult.value.memberCount, MAX_MEMBER,
-				clubInfoResult.value.requiredTrophies,
-				exec.basic.values.access[clubInfoResult.value.type] || exec.basic.values.access.unknown
-			]),
-			inline: false
-		},
-		{
-			name: exec.rank.title,
-			value: rankDescription,
-			inline: false
-		});
+				name: exec.basic.title,
+				value: msgParams(exec.basic.description, [
+					clubTypeToString(clubConfig.type),
+					clubInfoResult.value.memberCount, MAX_MEMBER,
+					clubInfoResult.value.requiredTrophies,
+					exec.basic.values.access[clubInfoResult.value.type] || exec.basic.values.access.unknown,
+				]),
+				inline: false,
+			},
+			{
+				name: exec.rank.title,
+				value: rankDescription,
+				inline: false,
+			});
 
 		return sendCommandReply(interaction, {
-			embeds: [embed]
+			embeds: [embed],
 		}, true);
 	}
+
 }

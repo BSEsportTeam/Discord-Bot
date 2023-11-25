@@ -20,8 +20,7 @@ export type ButtonHandler = {
 	preReply?: boolean;
 	/** @default false*/
 	ephemeral?: boolean;
-	run(interaction: ButtonInteraction): Promise<Result<boolean, ButtonError>>;
+	run: (interaction: ButtonInteraction) => Promise<Result<boolean, ButtonError>>;
 }
 
 export type ButtonCollection = Collection<ButtonId, ButtonHandler>;
-

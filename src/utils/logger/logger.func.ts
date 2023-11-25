@@ -5,7 +5,7 @@ import type {DebugValues} from './logger.type';
 import {formatLog} from './logger.util';
 
 export const logger = {
-	fatal(message: string, debug?: DebugValues|string|string[]): never {
+	fatal(message: string, debug?: DebugValues | string | string[]): never {
 		console.log(formatLog(LogLevel.FATAL, message));
 		if (typeof debug !== 'undefined') {
 			logger.debug(debug);
@@ -13,7 +13,7 @@ export const logger = {
 		process.exit(1);
 	},
 
-	error(message: string, debug?: DebugValues|string|string[]) {
+	error(message: string, debug?: DebugValues | string | string[]) {
 		console.log(formatLog(LogLevel.ERROR, message));
 		if (typeof debug !== 'undefined') {
 			logger.debug(debug);
@@ -28,7 +28,7 @@ export const logger = {
 		console.log(formatLog(LogLevel.INFO, message));
 	},
 
-	debug(infos: DebugValues|string|string[]) {
+	debug(infos: DebugValues | string | string[]) {
 		if (typeof infos === 'string') {
 			logger._debug(infos);
 		} else if (typeof infos === 'object') {
@@ -52,5 +52,5 @@ export const logger = {
 		for (const key in values) {
 			logger.debug(`${forground256Color(68)}${key}: ${forground256Color(247)}${values[key]}`);
 		}
-	}
+	},
 };

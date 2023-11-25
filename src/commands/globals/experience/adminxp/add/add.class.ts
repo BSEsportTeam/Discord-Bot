@@ -12,11 +12,14 @@ import {simpleEmbed} from '$core/utils/discord/';
 
 const config = commandsConfig.adminXp;
 export class AdminXpAdd extends SubCommand {
+
 	preReply: CommandPreReply = {
 		ephemeral: false,
-		enable: true
+		enable: true,
 	};
+
 	name = config.subcmds.add.name;
+
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
 		if (!interaction.inGuild() || interaction.guild === null || interaction.channel === null) return ok(false);
 
@@ -39,15 +42,16 @@ export class AdminXpAdd extends SubCommand {
 
 
 		const embed = simpleEmbed(
-			msgParams(config.exec.add.succes.description, [xp, user.toString(), xpResult.value.level, xpResult.value.xp]) +
-			(reason !== 'unknown' ? msgParams(config.exec.add.succes.reason, [reason]) :'')
+			msgParams(config.exec.add.succes.description, [xp, user.toString(), xpResult.value.level, xpResult.value.xp])
+			+ (reason !== 'unknown' ? msgParams(config.exec.add.succes.reason, [reason]) : '')
 		).setAuthor({
 			name: config.exec.add.succes.title,
-			iconURL: interaction.guild.iconURL()||undefined
+			iconURL: interaction.guild.iconURL() || undefined,
 		});
 
 		return sendCommandReply(interaction, {
-			embeds: [embed]
+			embeds: [embed],
 		}, true);
 	}
+
 }

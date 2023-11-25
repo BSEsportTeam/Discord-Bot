@@ -8,7 +8,7 @@ export const trackmaniaGuildConfig: BaseGuild = {
 	eventAnnouncements: {
 		channelId: '891771594115022938',
 		roleId: '891776200945565716',
-		enable: true
+		enable: true,
 	},
 	inviteLink: 'https://discord.gg/SB6ZhAmjVQ',
 	xp: xpConfig,

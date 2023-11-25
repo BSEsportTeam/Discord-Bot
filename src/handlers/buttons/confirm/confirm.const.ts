@@ -8,23 +8,23 @@ export const confirmIds = {
 	cancel: 'cl',
 	reverseXpMovement: 'rxm',
 	announceEvent: 'ae',
-	primeStaff: 'ps'
+	primeStaff: 'ps',
 } as const satisfies Record<string, Record<string, ButtonId> | ButtonId>;
 
 
 export const handlers = {
 	rxm: reverseXpMovement,
 	ae: announceEvent,
-	ps: primeStaff
+	ps: primeStaff,
 } satisfies Record<Exclude<(typeof confirmIds)[keyof typeof confirmIds], 'cl'>, ConfirmButtonHandler>;
 
 
 export const confirmArgs = {
 	reverse_xp_movement: {
 		construct: (id: string) => id,
-		deconstruct: (args: string) => [args]
-	}
+		deconstruct: (args: string) => [args],
+	},
 } satisfies Record<string, {
-	construct: ButtonIdFunctionConstruct,
-	deconstruct: ButtonIdFunctionDeconstruct
+	construct: ButtonIdFunctionConstruct;
+	deconstruct: ButtonIdFunctionDeconstruct;
 }>;

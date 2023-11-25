@@ -20,7 +20,7 @@ export type BaseGuild = {
 	inviteLink: string;
 	xp: XpInfos;
 	bumpChannel: Snowflake;
-	pubMessages: PubMessagesGlobalConfig
+	pubMessages: PubMessagesGlobalConfig;
 }
 
 export type EventAnnouncements = {
@@ -31,7 +31,7 @@ export type EventAnnouncements = {
 
 export type XpInfos = {
 	enable: boolean;
-	levelUpRoles: Record<number, LevelUpRoleInfos>
+	levelUpRoles: Record<number, LevelUpRoleInfos>;
 	boosterRole: Snowflake;
 	xpBoostRole: Snowflake;
 	disablesChannels: Snowflake[];
@@ -71,9 +71,9 @@ export type PubMessageConfig = {
 
 export type BrawlStarsGuild = BaseGuild & {
 	autoPing: {
-		roles: Record<string, Snowflake>
+		roles: Record<string, Snowflake>;
 		channel: Snowflake;
-	},
+	};
 	clubs: BrawlStarsClub[];
 }
 

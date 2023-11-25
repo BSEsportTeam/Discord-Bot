@@ -3,7 +3,9 @@ import {PrismaClient} from '@prisma/client';
 import {ConfigDatabaseManager} from '$core/manager/database/config/config_database.manager';
 
 export class DatabaseManager {
+
 	public readonly db: PrismaClient;
+
 	public readonly config: ConfigDatabaseManager;
 
 	constructor(public readonly client: Client) {
@@ -23,4 +25,5 @@ export class DatabaseManager {
 			console.error(error);
 		}
 	}
+
 }

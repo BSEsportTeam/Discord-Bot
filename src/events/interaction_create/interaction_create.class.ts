@@ -5,10 +5,11 @@ import {commandRun} from '$core/handlers/commands/command_run';
 import {handleButton} from '$core/handlers/buttons';
 
 export default class InteractionCreate extends Event<'interactionCreate'> {
-	
+
 	name = 'interactionCreate' as const;
+
 	isEnableInDev = true; //Always enable in dev
-	
+
 	run(interaction: Interaction): void {
 
 		switch (interaction.type) {
@@ -35,4 +36,5 @@ export default class InteractionCreate extends Event<'interactionCreate'> {
 			return;
 		}
 	}
+
 }

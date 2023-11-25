@@ -17,7 +17,7 @@ import {logger} from '$core/utils/logger';
 import {msgParams} from '$core/utils/function/string';
 import {addXp} from '$core/utils/xp';
 import {colors} from '$core/config/global';
-import {setTimeout,} from 'timers/promises';
+import {setTimeout} from 'timers/promises';
 
 const config = commandsConfig.admin.exec.primeStaff;
 export const primeStaff: ConfirmButtonHandler = {
@@ -60,14 +60,13 @@ export const primeStaff: ConfirmButtonHandler = {
 				notInServer.push(msgParams(config.final.fields.notFound.description, [
 					userMention(prime.userId),
 					prime.username,
-					prime.userId
+					prime.userId,
 				]));
 				continue;
 			}
 
-			const addResult = await addXp(prime.userId, guildId, prime.totalPrime,
-				'PRIME', interaction.user.id, `prime for role ${prime.role} (${prime.prime} xp)` +
-				(prime.associationPrime > 0 ? `and for association (${prime.associationPrime}) xp` : ''));
+			const addResult = await addXp(prime.userId, guildId, prime.totalPrime, 'PRIME', interaction.user.id, `prime for role ${prime.role} (${prime.prime} xp)`
+				+ (prime.associationPrime > 0 ? `and for association (${prime.associationPrime}) xp` : ''));
 
 			if (!addResult.ok) {
 				logger.error(`failed to add xp for member ${prime.userId} (${prime.username}), error : ${addResult.error}`);
@@ -78,7 +77,7 @@ export const primeStaff: ConfirmButtonHandler = {
 				addXpError.push(msgParams(config.final.fields.addXpError.description, [
 					userMention(prime.userId),
 					prime.username,
-					prime.userId
+					prime.userId,
 				]));
 				continue;
 			}
@@ -89,8 +88,8 @@ export const primeStaff: ConfirmButtonHandler = {
 						memberResult.value.toString(),
 						prime.totalPrime,
 						addResult.value.level,
-						addResult.value.xp
-					]), msgParams(config.final.message.title, [memberResult.value.displayName]))]
+						addResult.value.xp,
+					]), msgParams(config.final.message.title, [memberResult.value.displayName]))],
 			}));
 			if (!result.ok) {
 				logger.error(`failed to send prime message, error : ${result.error.message}`);
@@ -108,7 +107,7 @@ export const primeStaff: ConfirmButtonHandler = {
 			const text = notInServer.join('\n');
 			embed.addFields({
 				name: config.final.fields.notFound.title,
-				value: text.length < 2000 ? text : config.final.fields.toMany
+				value: text.length < 2000 ? text : config.final.fields.toMany,
 			});
 			if (text.length >= 2000) {
 				console.error('To many notFound, member list in debugs');
@@ -119,7 +118,7 @@ export const primeStaff: ConfirmButtonHandler = {
 			const text = addXpError.join('\n');
 			embed.addFields({
 				name: config.final.fields.addXpError.title,
-				value: text.length < 2000 ? text : config.final.fields.toMany
+				value: text.length < 2000 ? text : config.final.fields.toMany,
 			});
 			if (text.length >= 2000) {
 				console.error('To many errors, member list in debugs');
@@ -129,6 +128,6 @@ export const primeStaff: ConfirmButtonHandler = {
 
 
 		return sendButtonReply(interaction, {embeds: [embed]}, true);
-	}
+	},
 
 };

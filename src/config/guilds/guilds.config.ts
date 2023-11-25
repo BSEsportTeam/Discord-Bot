@@ -18,5 +18,5 @@ export const guildsConfig = {
 	fortnite: fortniteGuildConfig,
 	global: globalGuildConfig,
 	rocketLeague: rocketLeagueGuildConfig,
-	trackmania: trackmaniaGuildConfig
+	trackmania: trackmaniaGuildConfig,
 } satisfies Guilds;

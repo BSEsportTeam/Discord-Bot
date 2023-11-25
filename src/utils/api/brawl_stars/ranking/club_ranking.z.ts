@@ -12,5 +12,5 @@ export const clubRankingSchema = z.object({
 export const clubRankingListSchema = z.array(clubRankingSchema);
 
 export const requestClubRankingListSchema = z.object({
-	items: clubRankingListSchema
+	items: clubRankingListSchema,
 });

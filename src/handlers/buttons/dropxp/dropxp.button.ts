@@ -29,7 +29,7 @@ const button: ButtonHandler = {
 		if (interaction.user.id === author) {
 			const result = await resultify(() => interaction.reply({
 				ephemeral: true,
-				embeds: [baseEmbed(commandsConfig.dropXp.exec.noAuthor).setColor(colors.notAllowed)]
+				embeds: [baseEmbed(commandsConfig.dropXp.exec.noAuthor).setColor(colors.notAllowed)],
 			}));
 
 			if (!result.ok) {
@@ -65,10 +65,10 @@ const button: ButtonHandler = {
 			logger.error(`failed to add xp to member after dropxp, error : ${xpResult.error.message}`);
 		}
 		return ok(false);
-	}
+	},
 
 };
 
 export default [
-	button
+	button,
 ];

@@ -8,7 +8,7 @@ export const rocketLeagueGuildConfig: BaseGuild = {
 	eventAnnouncements: {
 		channelId: '834540080995237888',
 		roleId: '815254897200463872',
-		enable: true
+		enable: true,
 	},
 	inviteLink: 'https://discord.gg/ADPKAzt5hz',
 	xp: xpConfig,

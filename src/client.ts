@@ -14,10 +14,13 @@ import {msgParams} from '$core/utils/function/string';
 import {colors} from '$core/config/global';
 
 export class Client extends BClient {
+
 	commands: CommandCollection = new Collection();
+
 	rest: REST;
+
 	buttons: ButtonCollection = new Collection();
-	
+
 	constructor(token: string) {
 		super({
 			intents: [
@@ -28,17 +31,17 @@ export class Client extends BClient {
 				IntentsBitField.Flags.DirectMessages,
 				IntentsBitField.Flags.GuildMembers,
 				IntentsBitField.Flags.GuildVoiceStates,
-				IntentsBitField.Flags.GuildPresences
-			]
+				IntentsBitField.Flags.GuildPresences,
+			],
 		});
 
 		this.rest = new REST({
-			version: '10'
+			version: '10',
 		}).setToken(token);
 
 		this.token = token;
 
-		this.on('ready', () =>{
+		this.on('ready', () => {
 			void this.ready();
 		});
 	}
@@ -61,7 +64,7 @@ export class Client extends BClient {
 						deaf: voiceState.deaf || false,
 						mute: voiceState.mute || false,
 						lastUpdate: Date.now(),
-						channelId: voiceState.channel.id
+						channelId: voiceState.channel.id,
 					});
 				}
 			}
@@ -70,7 +73,7 @@ export class Client extends BClient {
 		await sendBotLog(new EmbedBuilder()
 			.setTitle(messageConfig.logs.ready.readyTitle)
 			.setDescription(msgParams(messageConfig.logs.ready.readyDescription, [version]))
-			.setColor(colors.success)
-		);
+			.setColor(colors.success));
 	}
+
 }

@@ -5,7 +5,7 @@ import {error, ok, resultify} from 'rustic-error';
 import {client} from '$core/index';
 import {isMessageChannel} from './channel.util';
 
-export const getMessageChannel = async (guildId: Snowflake, channelId: Snowflake, system = 'unknown'): Promise<Result<TextChannel|NewsChannel, Error>> => {
+export const getMessageChannel = async (guildId: Snowflake, channelId: Snowflake, system = 'unknown'): Promise<Result<TextChannel | NewsChannel, Error>> => {
 	const guild = client.guilds.cache.get(guildId);
 
 	if (typeof guild === 'undefined') {

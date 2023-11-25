@@ -19,7 +19,7 @@ export const getChoices = () => {
 	for (const club of brawlStarsGuildConfig.clubs) {
 		choices.push({
 			name: club.name,
-			value: club.name
+			value: club.name,
 		});
 	}
 	return choices;
@@ -38,7 +38,7 @@ export const getClubInfos = async (tag: string, localTop = false, globalTop = fa
 		requiredTrophies: clubResult.value.requiredTrophies,
 		trophies: clubResult.value.trophies,
 		memberCount: clubResult.value.members.length,
-		type: clubResult.value.type
+		type: clubResult.value.type,
 	};
 
 	if (localTop) {

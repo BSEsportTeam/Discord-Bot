@@ -20,7 +20,7 @@ export const commandRun = async (interaction: ChatInputCommandInteraction) => {
 
 	if (command.preReply.enable) {
 		const result = await resultify(() => interaction.deferReply({
-			ephemeral: command.preReply.ephemeral
+			ephemeral: command.preReply.ephemeral,
 		}));
 
 		if (!result.ok) {
@@ -30,10 +30,10 @@ export const commandRun = async (interaction: ChatInputCommandInteraction) => {
 	}
 
 	const result = await command.run(interaction);
-	
-	const commandName = interaction.commandName +
-		(interaction.options.getSubcommandGroup() !== null ? '.' + interaction.options.getSubcommandGroup() : '') +
-		(interaction.options.getSubcommand(false) !== null ? '.' + interaction.options.getSubcommand(false) : '');
+
+	const commandName = interaction.commandName
+		+ (interaction.options.getSubcommandGroup() !== null ? '.' + interaction.options.getSubcommandGroup() : '')
+		+ (interaction.options.getSubcommand(false) !== null ? '.' + interaction.options.getSubcommand(false) : '');
 	if (!result.ok) {
 		logger.error(`Error with command ${effect.bold + commandName.toLocaleUpperCase() + effectReset.bold} : ${forground256Color(202)}${result.error.message}`, result.error.debug());
 

@@ -8,7 +8,7 @@ export const callOfDutyGuildConfig: BaseGuild = {
 	eventAnnouncements: {
 		channelId: '913215137933045781',
 		roleId: '886737608162570311',
-		enable: true
+		enable: true,
 	},
 	inviteLink: 'https://discord.gg/USZ3DEZU2c',
 	xp: xpConfig,

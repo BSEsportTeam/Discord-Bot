@@ -16,9 +16,10 @@ import type {Snowflake} from 'discord-api-types/globals';
 
 @Dev
 export default class GuildMemberJoin extends Event<'guildMemberAdd'> {
+
 	name = 'guildMemberAdd' as const;
 
-	private welcomesMessageIndex = new Map<Snowflake, number>;
+	private welcomesMessageIndex = new Map<Snowflake, number>();
 
 	async run(member: GuildMember) {
 
@@ -53,7 +54,7 @@ export default class GuildMemberJoin extends Event<'guildMemberAdd'> {
 		if (!messageText) {
 			logger.error('get undefined for welcome message text');
 			logger.debugValues({
-				messages: guildMemberJoinConfig.welcome.join(', ')
+				messages: guildMemberJoinConfig.welcome.join(', '),
 			});
 			return;
 		}
@@ -67,8 +68,8 @@ export default class GuildMemberJoin extends Event<'guildMemberAdd'> {
 		const result = await resultify(() => channelResult.value.send({
 			content: msgParams(messageText, [member.toString()]),
 			allowedMentions: {
-				users: []
-			}
+				users: [],
+			},
 		}));
 
 		if (!result.ok) {
@@ -89,4 +90,5 @@ export default class GuildMemberJoin extends Event<'guildMemberAdd'> {
 		this.welcomesMessageIndex.set(guildId, i);
 		return messages[i];
 	}
+
 }

@@ -143,7 +143,6 @@ export class Logger {
 	}
 
 
-
 	private formatLog(level: LogLevel, message: string): string {
 		const reset = effectReset.all;
 		const maxLevelTextSize = 8;
@@ -159,4 +158,5 @@ export class Logger {
 
 		return prefix + separator + msg;
 	}
+
 }

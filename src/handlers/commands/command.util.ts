@@ -6,7 +6,7 @@ import {error, ok, resultify} from 'rustic-error';
 import {CommandError} from '$core/utils/error';
 import {isDev} from '$core/config/env';
 
-export const serializeCommandName = (commandName: string, guild: GuildAlias, subCommand?: string, subCommandGroup?: string ): CommandString => {
+export const serializeCommandName = (commandName: string, guild: GuildAlias, subCommand?: string, subCommandGroup?: string): CommandString => {
 	let command: CommandString = `${isDev ? (guild === 'all' ? 'all' : 'global') : guild}.${commandName}`;
 	if (subCommand) command += `.${subCommand}`;
 	if (subCommandGroup) command += `.${subCommandGroup}`;
@@ -35,7 +35,7 @@ export const sendCommandReply = async (interaction: ChatInputCommandInteraction,
 	const result = await resultify(() => interaction.reply(options as InteractionReplyOptions));
 
 	if (!result.ok) {
-		return error(new CommandError('failed to reply to interaction' , interaction, result.error));
+		return error(new CommandError('failed to reply to interaction', interaction, result.error));
 	}
 
 	return ok(true);

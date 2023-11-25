@@ -8,11 +8,11 @@ export const globalGuildConfig: GlobalGuild = {
 	eventAnnouncements: {
 		channelId: '782687067674771467',
 		roleId: '849734730596483092',
-		enable: false
+		enable: false,
 	},
 	inviteLink: 'https://discord.gg/F2GTeYT',
 	xp: xpConfig,
 	bumpChannel: '979400972315000852',
 	pubMessages: pubMessage,
-	primeChannel: '1083522288441368596'
+	primeChannel: '1083522288441368596',
 };

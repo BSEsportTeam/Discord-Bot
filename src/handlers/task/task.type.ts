@@ -11,4 +11,3 @@ export type MultipleCronInterval<T> = {
 }
 
 export type TaskInterval = string|number;
-

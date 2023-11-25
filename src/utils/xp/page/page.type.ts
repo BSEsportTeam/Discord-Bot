@@ -6,7 +6,6 @@ export const enum PageTypes {
 }
 
 export type PageInfos = {
-	embeds: EmbedBuilder[],
-	components: ActionRowBuilder<ButtonBuilder>[]
+	embeds: EmbedBuilder[];
+	components: ActionRowBuilder<ButtonBuilder>[];
 }
-

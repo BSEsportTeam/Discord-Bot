@@ -12,7 +12,7 @@ export const getGuildWithId = (id: Snowflake): BaseGuild|null => {
 };
 
 export const getDevGuildWithId = (id: Snowflake): Overwrite<BrawlStarsGuild, {
-	name: GuildAlias
+	name: GuildAlias;
 }> | Overwrite<BaseGuild, { name: GuildAlias }> | null => {
 	if (id === devConfig.guilds.guildMain.guildId) return devConfig.guilds.guildMain;
 	if (id === devConfig.guilds.guildSection.guildId) return devConfig.guilds.guildSection;

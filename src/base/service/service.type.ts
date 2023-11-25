@@ -1,12 +1,12 @@
 import type {Service} from './service.class';
 import type {Command} from '$core/base/command/command.class';
 
-export interface ServiceLoad extends Service {
-	load(): Promise<void>;
-}
+export type ServiceLoad = {
+	load: () => Promise<void>;
+} & Service
 
-export interface ServiceUnload extends Service {
-	unload(): Promise<void>;
-}
+export type ServiceUnload = {
+	unload: () => Promise<void>;
+} & Service
 
 export type CommandList<S extends Service> = Map<string, Command<S>>

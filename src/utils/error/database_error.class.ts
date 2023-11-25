@@ -5,10 +5,10 @@ import {Prisma} from '@prisma/client';
 export class DatabaseError extends Error implements DebuggableError {
 
 
-	constructor(message: string, public  origin: Error) {
+	constructor(message: string, public origin: Error) {
 		super(message);
 	}
-	
+
 	debug(): DebugValues {
 		const debugs: DebugValues = {};
 
@@ -19,4 +19,5 @@ export class DatabaseError extends Error implements DebuggableError {
 		}
 		return debugs;
 	}
+
 }

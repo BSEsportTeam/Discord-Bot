@@ -8,11 +8,11 @@ import {logger} from '$core/utils/logger';
 import {getArrayMergedFromCollectionValues} from '$core/utils/function/collection/collection.util';
 import {guildsConfig} from '$core/config/guilds';
 
-export const loadCommands = async (globalCommands:  CommandBuilt[], guildsCommands: GuildsCommandsBuild) => {
+export const loadCommands = async (globalCommands: CommandBuilt[], guildsCommands: GuildsCommandsBuild) => {
 	const clientId = client.user?.id || 'error';
 	if (isDev) {
 		const result = await resultify(() => client.rest.put(Routes.applicationGuildCommands(clientId, devConfig.guilds.guildMain.guildId), {
-			body: globalCommands
+			body: globalCommands,
 		}));
 
 		if (!result.ok) {
@@ -24,7 +24,7 @@ export const loadCommands = async (globalCommands:  CommandBuilt[], guildsComman
 		const commands: CommandBuilt[] = getArrayMergedFromCollectionValues(guildsCommands);
 
 		const result2 = await resultify(() => client.rest.put(Routes.applicationGuildCommands(clientId, devConfig.guilds.guildSection.guildId), {
-			body: commands
+			body: commands,
 		}));
 
 		if (!result2.ok) {
@@ -35,7 +35,7 @@ export const loadCommands = async (globalCommands:  CommandBuilt[], guildsComman
 	} else {
 
 		const result = await resultify(() => client.rest.put(Routes.applicationCommands(clientId), {
-			body: globalCommands
+			body: globalCommands,
 		}));
 
 		if (!result.ok) {
@@ -46,7 +46,7 @@ export const loadCommands = async (globalCommands:  CommandBuilt[], guildsComman
 
 		for (const [name, guildCommands] of guildsCommands.entries()) {
 			const result2 = await resultify(() => client.rest.put(Routes.applicationGuildCommands(clientId, guildsConfig[name].guildId), {
-				body: guildCommands
+				body: guildCommands,
 			}));
 
 			if (!result2.ok) {
@@ -58,4 +58,3 @@ export const loadCommands = async (globalCommands:  CommandBuilt[], guildsComman
 
 	}
 };
-

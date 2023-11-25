@@ -71,19 +71,19 @@ export const commandLoad = async () => {
 					}
 
 					if (isNormalCommand(commandClass)) {
-						
+
 						client.commands.set(serializeCommandName(commandClass.builder.name, commandClass.guild), commandClass);
-						
+
 					} else if (isSubCommands(commandClass)) {
 						const subCommands = commandClass.getSubCommands();
-						
+
 						for (const subCommandOrGroup of Object.values(subCommands)) {
 							if (subCommandOrGroup instanceof SubCommand) {
-								
+
 								client.commands.set(serializeCommandName(commandClass.builder.name, commandClass.guild, subCommandOrGroup.name), subCommandOrGroup);
 								continue;
 							}
-							
+
 							for (const subCommand of Object.values(subCommandOrGroup)) {
 								client.commands.set(serializeCommandName(
 									commandClass.builder.name,

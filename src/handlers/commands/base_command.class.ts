@@ -8,12 +8,16 @@ import {CommandError} from '$core/utils/error';
 
 
 export abstract class BaseCommand implements UnknownCommand, DevFacultative {
+
 	guild: GuildAlias = 'all';
+
 	preReply: CommandPreReply = {
 		enable: false,
-		ephemeral: false
+		ephemeral: false,
 	};
+
 	abstract builder: RESTPostAPIChatInputApplicationCommandsJSONBody;
+
 	isEnableInDev = false;
 
 	async sendReply(interaction: ChatInputCommandInteraction, options: InteractionReplyOptions | InteractionEditReplyOptions):
@@ -35,4 +39,5 @@ export abstract class BaseCommand implements UnknownCommand, DevFacultative {
 
 		return ok(true);
 	}
+
 }

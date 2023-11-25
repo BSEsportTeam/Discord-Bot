@@ -7,6 +7,6 @@ export type ConfirmFunc = (interaction: ButtonInteraction, ...args: string[]) =>
 export type CancelFunc = ConfirmFunc | null;
 
 export type ConfirmButtonHandler = {
-	confirm: ConfirmFunc,
-	cancel: CancelFunc
+	confirm: ConfirmFunc;
+	cancel: CancelFunc;
 } & Omit<ButtonHandler, 'run' | 'id'>

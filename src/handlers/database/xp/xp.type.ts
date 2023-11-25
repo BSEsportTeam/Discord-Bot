@@ -1,8 +1,8 @@
-import type {Snowflake} from 'discord-api-types/globals';
+import type { Snowflake } from "discord-api-types/globals";
 
 export type GlobalXPTop = {
 	position: number;
-	xp: number
+	xp: number;
 	id: Snowflake;
 }
 

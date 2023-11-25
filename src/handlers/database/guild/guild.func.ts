@@ -20,7 +20,7 @@ export const setLastMessagePub = async (guildId: string, date: Date): Promise<Re
 				id: guildId,
 			},
 			data: {
-				lastPubMessage: date
+				lastPubMessage: date,
 			},
 		});
 

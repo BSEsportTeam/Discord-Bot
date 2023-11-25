@@ -9,7 +9,7 @@ export const replyError = async (interaction: Exclude<Interaction, AutocompleteI
 	if (preReplied) {
 
 		const result = await resultify(() => interaction.editReply({
-			embeds: [errorEmbed(messageConfig.interactionHandler.error.description, messageConfig.interactionHandler.error.title)]
+			embeds: [errorEmbed(messageConfig.interactionHandler.error.description, messageConfig.interactionHandler.error.title)],
 		}));
 
 		if (!result.ok) {
@@ -19,7 +19,7 @@ export const replyError = async (interaction: Exclude<Interaction, AutocompleteI
 	} else {
 		const result = await resultify(() => interaction.reply({
 			embeds: [errorEmbed(messageConfig.interactionHandler.error.description, messageConfig.interactionHandler.error.title)],
-			ephemeral: ephemeral
+			ephemeral: ephemeral,
 		}));
 
 		if (!result.ok) {

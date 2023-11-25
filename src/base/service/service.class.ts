@@ -7,11 +7,17 @@ import type {z} from 'zod';
 import {Logger} from '$core/utils/logger_new/logger.class';
 
 export abstract class Service<C extends z.Schema = z.Schema> {
+
 	client: Client;
+
 	abstract name: string;
+
 	reloadable = true;
+
 	loadCount = 0;
+
 	commands: CommandList<typeof this> = new Map();
+
 	schema: C | null = null;
 
 	private logger?: Logger;
@@ -44,7 +50,7 @@ export abstract class Service<C extends z.Schema = z.Schema> {
 			} catch (e) {
 				logger.error(`failed to load service ${this.name}.`);
 				logger.debugValues({
-					error: anyToError(e).message
+					error: anyToError(e).message,
 				});
 				return false;
 			}
@@ -62,7 +68,7 @@ export abstract class Service<C extends z.Schema = z.Schema> {
 			} catch (e) {
 				logger.error(`failed to unload service ${this.name}.`);
 				logger.debugValues({
-					error: anyToError(e).message
+					error: anyToError(e).message,
 				});
 				return;
 			}

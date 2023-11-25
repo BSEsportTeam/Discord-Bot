@@ -15,10 +15,12 @@ import {ownerOnly} from '$core/commands/globals/other/admin/admin.util';
 const config = commandsConfig.admin;
 
 export class ReverseXpMovement extends SubCommand {
+
 	name = config.subcmds.reverseXpMovement.name;
+
 	preReply: CommandPreReply = {
 		enable: true,
-		ephemeral: false
+		ephemeral: false,
 	};
 
 	async run(interaction: ChatInputCommandInteraction): Promise<Result<boolean, CommandError>> {
@@ -45,7 +47,8 @@ export class ReverseXpMovement extends SubCommand {
 			return this.sendReply(interaction, {
 				embeds: [errorEmbed(
 					config.exec.reverseXpMovement.not_found.description,
-					config.exec.reverseXpMovement.not_found.tile)]
+					config.exec.reverseXpMovement.not_found.tile
+				)],
 			});
 		}
 
@@ -59,10 +62,11 @@ export class ReverseXpMovement extends SubCommand {
 					xpMovement.value.guild.name,
 					time(xpMovement.value.date, 'F'),
 					xpMovement.value.cause,
-					xpMovement.value.reason
+					xpMovement.value.reason,
 				]), config.exec.reverseXpMovement.infos.title).setFooter({
-					text: config.exec.reverseXpMovement.infos.label
-				})], components: getConfirmButtons(confirmIds.reverseXpMovement, null, `${id}`)
+					text: config.exec.reverseXpMovement.infos.label,
+				})], components: getConfirmButtons(confirmIds.reverseXpMovement, null, `${id}`),
 		});
 	}
+
 }
