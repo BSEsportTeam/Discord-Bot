@@ -1,7 +1,7 @@
-import {describe, expect, it} from "vitest";
-import {Collection} from "discord.js";
+import { describe, expect, it } from "vitest";
+import { Collection } from "discord.js";
 
-import {getArrayMergedFromCollectionValues} from "./collection.util";
+import { getArrayMergedFromCollectionValues } from "./collection.util";
 
 describe("getArrayMergedFromCollectionValues", () => {
   it("returns an empty array if the collection is empty", () => {

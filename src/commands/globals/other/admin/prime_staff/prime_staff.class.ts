@@ -37,7 +37,7 @@ export class PrimeStaff extends SubCommand {
     }
 
     if (typeof primeResult.value === "string") {
-      return this.sendReply(interaction, { embeds: [errorEmbed(primeResult.value)] });
+      return this.sendReply(interaction, {embeds: [errorEmbed(primeResult.value)]});
     }
 
     const infos: string[] = [];

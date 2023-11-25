@@ -77,20 +77,20 @@ export default class TopLevel extends BaseCommand {
       .setColor(colors.bseColor1);
 
     embed.addFields({
-      name: exec.basic.title,
-      value: msgParams(exec.basic.description, [
-        clubTypeToString(clubConfig.type),
-        clubInfoResult.value.memberCount, MAX_MEMBER,
-        clubInfoResult.value.requiredTrophies,
-        exec.basic.values.access[clubInfoResult.value.type] || exec.basic.values.access.unknown,
-      ]),
-      inline: false,
-    },
-    {
-      name: exec.rank.title,
-      value: rankDescription,
-      inline: false,
-    });
+        name: exec.basic.title,
+        value: msgParams(exec.basic.description, [
+          clubTypeToString(clubConfig.type),
+          clubInfoResult.value.memberCount, MAX_MEMBER,
+          clubInfoResult.value.requiredTrophies,
+          exec.basic.values.access[clubInfoResult.value.type] || exec.basic.values.access.unknown,
+        ]),
+        inline: false,
+      },
+      {
+        name: exec.rank.title,
+        value: rankDescription,
+        inline: false,
+      });
 
     return sendCommandReply(interaction, {
       embeds: [embed],

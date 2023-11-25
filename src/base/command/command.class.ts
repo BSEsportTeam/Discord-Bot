@@ -1,7 +1,7 @@
-import type {Client} from "$core/client";
-import type {Service} from "$core/base/service/service.class";
-import type {CommandResult, GuildAlias, SubCommandGroups, SubCommands} from "$core/base/command/command.type";
-import type {ChatInputCommandInteraction, SlashCommandBuilder} from "discord.js";
+import type { Client } from "$core/client";
+import type { Service } from "$core/base/service/service.class";
+import type { CommandResult, GuildAlias, SubCommandGroups, SubCommands } from "$core/base/command/command.type";
+import type { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 
 export abstract class Command<S extends Service> {
 
@@ -38,13 +38,13 @@ export abstract class Command<S extends Service> {
 
   }
 
-  toJSON() {
+  toJSON(): unknown {
     return this.slashBuilder.toJSON();
   }
 
   abstract run(interaction: ChatInputCommandInteraction): Promise<CommandResult>;
 
-  protected async preRun(interaction: ChatInputCommandInteraction) {
+  protected async preRun(interaction: ChatInputCommandInteraction): Promise<void> {
     if (this.cooldown > 0) {
       const now = Date.now();
       const cooldown = this.cooldowns.get(interaction.user.id);
@@ -63,7 +63,8 @@ export abstract class Command<S extends Service> {
       if (infos.pass) {
         this.svc.log.info(`${interaction.user.username} executed ${this.name} command with success.`);
       } else {
-        this.svc.log.info(`${interaction.user.username} executed ${this.name} command, but failed, code : ${infos.failedRaison} ${infos.detailed ? "(" + infos.detailed + ")" : ""}`);
+        this.svc.log.info(`${interaction.user.username} executed ${this.name} command, but failed, code :`
+          + ` ${infos.failedRaison} ${infos.detailed ? "(" + infos.detailed + ")" : ""}`);
       }
     }
   }

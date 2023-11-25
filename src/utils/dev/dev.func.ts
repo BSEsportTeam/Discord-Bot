@@ -1,4 +1,4 @@
-import type {DevFacultative} from "./dev.type";
+import type { DevFacultative } from "./dev.type";
 
 type ClassDecorator<R> = {
   /* eslint-disable  @typescript-eslint/no-explicit-any */

@@ -1,5 +1,5 @@
-import type {CronCommand} from "cron";
-import {CronJob} from "cron";
+import type { CronCommand } from "cron";
+import { CronJob } from "cron";
 
 
 export const startCronJob = (interval: string, execute: CronCommand) => {

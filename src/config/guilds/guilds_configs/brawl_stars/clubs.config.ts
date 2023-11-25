@@ -1,5 +1,5 @@
-import type {BrawlStarsClub} from "$core/config/guilds";
-import {BrawlStarsClubType} from "$core/config/guilds/guild.type";
+import type { BrawlStarsClub } from "$core/config/guilds";
+import { BrawlStarsClubType } from "$core/config/guilds/guild.type";
 
 export const clubsList: BrawlStarsClub[] = [
   {

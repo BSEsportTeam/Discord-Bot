@@ -1,6 +1,6 @@
-import type {DebuggableError} from "./error.type";
-import type {DebugValues} from "$core/utils/logger/";
-import {Prisma} from "@prisma/client";
+import type { DebuggableError } from "./error.type";
+import type { DebugValues } from "$core/utils/logger/";
+import { Prisma } from "@prisma/client";
 
 export class DatabaseError extends Error implements DebuggableError {
 

@@ -1,9 +1,9 @@
-import type {AutocompleteInteraction, Interaction} from "discord.js";
-import {resultify} from "rustic-error";
-import {errorEmbed} from "$core/utils/discord/embet/embet.func";
-import {messageConfig} from "$core/config/message";
-import {logger} from "$core/utils/logger";
-import {forground256Color} from "tintify";
+import type { AutocompleteInteraction, Interaction } from "discord.js";
+import { resultify } from "rustic-error";
+import { errorEmbed } from "$core/utils/discord/embet/embet.func";
+import { messageConfig } from "$core/config/message";
+import { logger } from "$core/utils/logger";
+import { forground256Color } from "tintify";
 
 export const replyError = async (interaction: Exclude<Interaction, AutocompleteInteraction>, ephemeral: boolean, preReplied: boolean) => {
   if (preReplied) {

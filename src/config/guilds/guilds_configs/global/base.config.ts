@@ -1,6 +1,6 @@
-import type {GlobalGuild} from "../../guild.type";
-import {xpConfig} from "./xp.config";
-import {pubMessage} from "./pub_message.config";
+import type { GlobalGuild } from "../../guild.type";
+import { xpConfig } from "./xp.config";
+import { pubMessage } from "./pub_message.config";
 
 export const globalGuildConfig: GlobalGuild = {
   name: "global",

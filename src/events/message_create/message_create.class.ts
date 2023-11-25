@@ -134,7 +134,7 @@ export default class MessageCreate extends Event<"messageCreate"> {
     }
 
     let retry = false;
-    const create = async(xp: number) => {
+    const create = async (xp: number) => {
       const bumpCreate = await createBump({
         userId: authorId,
         guildId: guildId,

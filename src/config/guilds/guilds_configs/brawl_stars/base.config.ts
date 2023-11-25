@@ -1,7 +1,7 @@
-import type {BrawlStarsGuild} from "../../guild.type";
-import {clubsList} from "./clubs.config";
-import {xpConfig} from "./xp.config";
-import {pubMessage} from "./pub_message.config";
+import type { BrawlStarsGuild } from "../../guild.type";
+import { clubsList } from "./clubs.config";
+import { xpConfig } from "./xp.config";
+import { pubMessage } from "./pub_message.config";
 
 export const brawlStarsGuildConfig: BrawlStarsGuild = {
   name: "brawlStars",

@@ -19,7 +19,7 @@ import { isDev } from "$core/config/env";
 import { sendBotLog } from "$core/utils/discord/webhook/webhook.util";
 import { colors } from "$core/config/global";
 
-export const checkXpRoles = async(userId: Snowflake, guildId: Snowflake, oldLevel: number, newLevel: number, message = true) => {
+export const checkXpRoles = async (userId: Snowflake, guildId: Snowflake, oldLevel: number, newLevel: number, message = true) => {
 
   const memberResult = await getGuildMember(userId, guildId);
 
@@ -106,7 +106,7 @@ export const checkXpRoles = async(userId: Snowflake, guildId: Snowflake, oldLeve
   }
 };
 
-const sendLevelUpMessage = async(userId: Snowflake, guildId: Snowflake, level: number) => {
+const sendLevelUpMessage = async (userId: Snowflake, guildId: Snowflake, level: number) => {
   const config = isDev ? getDevGuildWithId(guildId) : getGuildWithId(guildId);
 
   if (config === null) {
@@ -131,7 +131,7 @@ const sendLevelUpMessage = async(userId: Snowflake, guildId: Snowflake, level: n
 };
 
 
-export const addXp = async(
+export const addXp = async (
   userId: Snowflake,
   guildId: Snowflake,
   amount: number,

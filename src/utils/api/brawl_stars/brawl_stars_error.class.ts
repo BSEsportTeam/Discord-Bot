@@ -1,5 +1,5 @@
-import type {DebugValues} from "$core/utils/logger";
-import {RestRequestError} from "$core/utils/error";
+import type { DebugValues } from "$core/utils/logger";
+import { RestRequestError } from "$core/utils/error";
 
 
 export class BrawlStarsApiError extends RestRequestError {

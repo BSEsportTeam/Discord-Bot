@@ -1,5 +1,5 @@
-import type {LogLevelOptions} from "$core/utils/logger/logger.type";
-import {brightBackground, brightForground, forground, forground256Color} from "tintify";
+import type { LogLevelOptions } from "$core/utils/logger/logger.type";
+import { brightBackground, brightForground, forground, forground256Color } from "tintify";
 
 export enum LogLevel {
   FATAL = "fatal",

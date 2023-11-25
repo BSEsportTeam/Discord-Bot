@@ -1,7 +1,7 @@
-import {Task, TaskType} from "$core/handlers/task";
-import {Dev} from "$core/utils/dev";
-import {BrawlStarsAnnouncementType} from "$core/tasks/brawl_stars_ldc/brawl_stars_ldc.type";
-import {getCurrentAnnouncementType} from "$core/tasks/brawl_stars_ldc/brawl_stars_ldc.util";
+import { Task, TaskType } from "$core/handlers/task";
+import { Dev } from "$core/utils/dev";
+import { BrawlStarsAnnouncementType } from "$core/tasks/brawl_stars_ldc/brawl_stars_ldc.type";
+import { getCurrentAnnouncementType } from "$core/tasks/brawl_stars_ldc/brawl_stars_ldc.util";
 /*import {tasksConfig} from '$core/config/message/task/task.config';
 import {guildsConfig} from '$core/config/guilds';
 import {isDev} from '$core/config/env';

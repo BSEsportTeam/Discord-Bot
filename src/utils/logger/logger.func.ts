@@ -1,8 +1,8 @@
 import * as process from "process";
-import {forground256Color} from "tintify";
-import {LogLevel} from "./logger.const";
-import type {DebugValues} from "./logger.type";
-import {formatLog} from "./logger.util";
+import { forground256Color } from "tintify";
+import { LogLevel } from "./logger.const";
+import type { DebugValues } from "./logger.type";
+import { formatLog } from "./logger.util";
 
 export const logger = {
   fatal(message: string, debug?: DebugValues | string | string[]): never {

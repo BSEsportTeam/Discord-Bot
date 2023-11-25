@@ -1,6 +1,6 @@
-import type {BaseGuild} from "../../guild.type";
-import {xpConfig} from "./xp.config";
-import {pubMessage} from "./pub_message.config";
+import type { BaseGuild } from "../../guild.type";
+import { xpConfig } from "./xp.config";
+import { pubMessage } from "./pub_message.config";
 
 export const rocketLeagueGuildConfig: BaseGuild = {
   name: "rocketLeague",

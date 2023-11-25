@@ -1,5 +1,5 @@
-import type {PubMessagesGlobalConfig} from "$core/config/guilds";
-import {simpleEmbed} from "$core/utils/discord";
+import type { PubMessagesGlobalConfig } from "$core/config/guilds";
+import { simpleEmbed } from "$core/utils/discord";
 
 export const pubMessage: PubMessagesGlobalConfig = {
   enable: true,

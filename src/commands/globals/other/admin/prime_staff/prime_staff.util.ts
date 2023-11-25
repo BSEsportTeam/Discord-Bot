@@ -40,7 +40,7 @@ const getIndexes = (header: string[]): Record<keyof PrimeInfos, number> | string
   };
 };
 
-export const getPrimes = async(): Promise<Result<PrimeInfos[] | string, Error>> => {
+export const getPrimes = async (): Promise<Result<PrimeInfos[] | string, Error>> => {
   try {
     const auth = new google.auth.GoogleAuth({
       scopes: [

@@ -1,4 +1,4 @@
-import type {Colors} from "./global.type";
+import type { Colors } from "./global.type";
 
 
 export const colors: Colors = {

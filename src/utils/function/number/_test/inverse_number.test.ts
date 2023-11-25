@@ -1,5 +1,5 @@
-import {assert, describe, it} from "vitest";
-import {inverseNumber} from "../number.util";
+import { assert, describe, it } from "vitest";
+import { inverseNumber } from "../number.util";
 
 describe("inverseNumber", () => {
   it("should return 0 when input is 0", () => {

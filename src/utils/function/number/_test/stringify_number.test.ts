@@ -1,5 +1,5 @@
-import {assert, describe, it} from "vitest";
-import {stringifyNumber} from "$core/utils/function/number";
+import { assert, describe, it } from "vitest";
+import { stringifyNumber } from "$core/utils/function/number";
 
 describe("stringifyNumber", () => {
   it("should return 1 000 000", () => {

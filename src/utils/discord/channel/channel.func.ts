@@ -1,9 +1,9 @@
-import type {NewsChannel, TextChannel} from "discord.js";
-import type {Snowflake} from "discord-api-types/globals";
-import type {Result} from "rustic-error";
-import {error, ok, resultify} from "rustic-error";
-import {client} from "$core/index";
-import {isMessageChannel} from "./channel.util";
+import type { NewsChannel, TextChannel } from "discord.js";
+import type { Snowflake } from "discord-api-types/globals";
+import type { Result } from "rustic-error";
+import { error, ok, resultify } from "rustic-error";
+import { client } from "$core/index";
+import { isMessageChannel } from "./channel.util";
 
 export const getMessageChannel = async (guildId: Snowflake, channelId: Snowflake, system = "unknown"): Promise<Result<TextChannel | NewsChannel, Error>> => {
   const guild = client.guilds.cache.get(guildId);

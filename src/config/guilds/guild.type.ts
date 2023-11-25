@@ -1,5 +1,5 @@
-import type {Snowflake} from "discord-api-types/globals";
-import type {EmbedBuilder} from "discord.js";
+import type { Snowflake } from "discord-api-types/globals";
+import type { EmbedBuilder } from "discord.js";
 
 export type GuildName =
   | "global"

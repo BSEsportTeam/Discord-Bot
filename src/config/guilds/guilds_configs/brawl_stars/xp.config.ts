@@ -1,5 +1,5 @@
-import type {XpInfos} from "$core/config/guilds";
-import {LevelUpRoleType} from "$core/config/guilds";
+import type { XpInfos } from "$core/config/guilds";
+import { LevelUpRoleType } from "$core/config/guilds";
 
 export const xpConfig: XpInfos = {
   enable: true,

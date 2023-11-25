@@ -1,4 +1,4 @@
-import type {Dayjs} from "dayjs";
+import type { Dayjs } from "dayjs";
 
 export const calculateDayOfCustomWeek = (referenceDate: Dayjs, targetDate: Dayjs, base = 7): number => {
   // Normalize the dates to start from the same time (midnight)

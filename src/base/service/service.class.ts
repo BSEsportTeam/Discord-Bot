@@ -1,10 +1,10 @@
-import type {Client} from "$core/client";
-import {serviceHasLoad, serviceHasUnload} from "$core/base/service/service.util";
-import {logger} from "$core/utils/logger";
-import {anyToError} from "$core/utils/error";
-import type {CommandList} from "$core/base/service/service.type";
-import type {z} from "zod";
-import {Logger} from "$core/utils/logger_new/logger.class";
+import type { Client } from "$core/client";
+import { serviceHasLoad, serviceHasUnload } from "$core/base/service/service.util";
+import { logger } from "$core/utils/logger";
+import { anyToError } from "$core/utils/error";
+import type { CommandList } from "$core/base/service/service.type";
+import type { z } from "zod";
+import { Logger } from "$core/utils/logger_new/logger.class";
 
 export abstract class Service<C extends z.Schema = z.Schema> {
 

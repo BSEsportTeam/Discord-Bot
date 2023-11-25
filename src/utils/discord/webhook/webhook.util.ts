@@ -1,9 +1,9 @@
-import type {EmbedBuilder} from "discord.js";
-import {WebhookClient} from "discord.js";
-import {env} from "$core/config/env";
-import {client} from "$core/index";
-import {logger} from "$core/utils/logger";
-import {anyToError} from "$core/utils/error";
+import type { EmbedBuilder } from "discord.js";
+import { WebhookClient } from "discord.js";
+import { env } from "$core/config/env";
+import { client } from "$core/index";
+import { logger } from "$core/utils/logger";
+import { anyToError } from "$core/utils/error";
 
 const webhookClient = new WebhookClient({url: env.WEBHOOK_DISCORD_URL}, {allowedMentions: {parse: []}});
 

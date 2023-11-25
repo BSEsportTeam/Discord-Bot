@@ -1,5 +1,5 @@
-import type {LogLevelOptions} from "$core/utils/logger_new/logger.type";
-import {brightBackground, brightForground, forground, forground256Color} from "tintify";
+import type { LogLevelOptions } from "$core/utils/logger_new/logger.type";
+import { brightBackground, brightForground, forground, forground256Color } from "tintify";
 
 export const logLevelOptions: LogLevelOptions = {
   fatal: {

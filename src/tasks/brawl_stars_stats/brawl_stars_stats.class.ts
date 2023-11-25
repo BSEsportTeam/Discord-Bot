@@ -1,4 +1,4 @@
-import {Task, TaskType} from "$core/handlers/task";
+import { Task, TaskType } from "$core/handlers/task";
 
 export class BrawlStarsStaff extends Task<null> {
 

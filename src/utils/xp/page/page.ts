@@ -1,12 +1,12 @@
-import type {PageInfos} from "$core/utils/xp/page/page.type";
-import {PageTypes} from "$core/utils/xp/page/page.type";
-import type {GlobalXPTop, GuildXPTop} from "$core/handlers/database/xp";
-import {ActionRowBuilder, ButtonBuilder, ButtonStyle, userMention} from "discord.js";
-import {simpleEmbed} from "$core/utils/discord";
-import {commandsConfig} from "$core/config/message/command";
-import {msgParams} from "$core/utils/function/string";
-import {calculateLevel} from "$core/utils/xp";
-import {buttonsDynamicIds} from "$core/handlers/buttons";
+import type { PageInfos } from "$core/utils/xp/page/page.type";
+import { PageTypes } from "$core/utils/xp/page/page.type";
+import type { GlobalXPTop, GuildXPTop } from "$core/handlers/database/xp";
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, userMention } from "discord.js";
+import { simpleEmbed } from "$core/utils/discord";
+import { commandsConfig } from "$core/config/message/command";
+import { msgParams } from "$core/utils/function/string";
+import { calculateLevel } from "$core/utils/xp";
+import { buttonsDynamicIds } from "$core/handlers/buttons";
 
 export const generatePage = (page: number, data: GuildXPTop[] | GlobalXPTop[], type: PageTypes): PageInfos => {
   const config = commandsConfig.topLevel.exec.detailed;

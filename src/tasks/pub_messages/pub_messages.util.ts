@@ -1,11 +1,11 @@
-import {DayJS} from "$core/utils/function/dayjs";
+import { DayJS } from "$core/utils/function/dayjs";
 import {
   MIN_MESSAGES_ONE_DAY,
   MIN_MESSAGES_SAME_DAY,
   MIN_MESSAGES_THREE_DAYS,
   MIN_MESSAGES_TWO_DAYS
 } from "$core/tasks/pub_messages/pub_messages.const";
-import type {PubMessageConfig} from "$core/config/guilds";
+import type { PubMessageConfig } from "$core/config/guilds";
 
 export const getMinMessages = (lastSend: Date): number => {
   if (DayJS().diff(DayJS(lastSend), "day") === 0) {

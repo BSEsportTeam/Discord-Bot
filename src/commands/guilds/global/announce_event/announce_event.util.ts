@@ -5,8 +5,8 @@ export const getMessageReference = (link: string): MessageReference | null => {
     const split = link.split("/");
 
     if (!isValidSnowflake(split[5]) || !isValidSnowflake(split[6])) return null;
-    return { channelId: split[5], messageId: split[6] };
-  } else if (isValidSnowflake(link)) return { messageId: link };
+    return {channelId: split[5], messageId: split[6]};
+  } else if (isValidSnowflake(link)) return {messageId: link};
   else return null;
 };
 

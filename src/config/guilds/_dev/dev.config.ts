@@ -1,8 +1,8 @@
-import type {BaseGuild, BrawlStarsGuild, GlobalGuild} from "$core/config/guilds/guild.type";
-import {LevelUpRoleType} from "$core/config/guilds/guild.type";
-import type {Overwrite} from "$core/utils/type/type";
-import type {GuildAlias} from "$core/handlers/commands";
-import {EmbedBuilder} from "discord.js";
+import type { BaseGuild, BrawlStarsGuild, GlobalGuild } from "$core/config/guilds/guild.type";
+import { LevelUpRoleType } from "$core/config/guilds/guild.type";
+import type { Overwrite } from "$core/utils/type/type";
+import type { GuildAlias } from "$core/handlers/commands";
+import { EmbedBuilder } from "discord.js";
 
 const devGuilds = {
   guildMain: {

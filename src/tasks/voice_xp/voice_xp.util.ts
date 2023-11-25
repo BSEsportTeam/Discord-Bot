@@ -1,8 +1,8 @@
-import type {VoiceInfos} from "$core/utils/xp/voice/voice.type";
-import {addXp, XP_PER_MINUTE_MUTE, XP_PER_MINUTE_UNMUTE} from "$core/utils/xp";
-import {logger} from "$core/utils/logger";
-import {isDebuggableError} from "$core/utils/error";
-import {setVoice} from "$core/utils/xp/voice/voice.util";
+import type { VoiceInfos } from "$core/utils/xp/voice/voice.type";
+import { addXp, XP_PER_MINUTE_MUTE, XP_PER_MINUTE_UNMUTE } from "$core/utils/xp";
+import { logger } from "$core/utils/logger";
+import { isDebuggableError } from "$core/utils/error";
+import { setVoice } from "$core/utils/xp/voice/voice.util";
 
 const calculateXp = (oldDate: number, newDate: number, mute: boolean): number => {
   const seconds = Math.floor(newDate / 1000) - Math.floor(oldDate / 1000);

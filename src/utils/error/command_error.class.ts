@@ -1,7 +1,7 @@
-import type {DebugValues} from "$core/utils/logger/";
-import type {ChatInputCommandInteraction} from "discord.js";
-import type {DebuggableError} from "./error.type";
-import {isDebuggableError} from "./error.util";
+import type { DebugValues } from "$core/utils/logger/";
+import type { ChatInputCommandInteraction } from "discord.js";
+import type { DebuggableError } from "./error.type";
+import { isDebuggableError } from "./error.util";
 
 export class CommandError extends Error implements DebuggableError {
 

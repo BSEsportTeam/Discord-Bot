@@ -1,7 +1,7 @@
-import type {GuildName} from "$core/config/guilds";
-import type {CommandError} from "$core/utils/error";
-import type {Service} from "$core/base/service/service.class";
-import type {SubCommand} from "$core/base/command/sub_command.class";
+import type { GuildName } from "$core/config/guilds";
+import type { CommandError } from "$core/utils/error";
+import type { Service } from "$core/base/service/service.class";
+import type { SubCommand } from "$core/base/command/sub_command.class";
 
 export type CommandResultInfosPassed = {
   pass: true;

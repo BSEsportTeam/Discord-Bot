@@ -1,9 +1,9 @@
-import {describe, expect, it} from "vitest";
-import {formatLog} from "./logger.util";
-import {DayJS} from "$core/utils/function/dayjs/dayjs";
-import type {LogLevel} from "$core/utils/logger/logger.const";
-import {DATE_COLOR, logLevelOptions, SEPARATOR_COLOR} from "$core/utils/logger/logger.const";
-import {effectReset} from "tintify";
+import { describe, expect, it } from "vitest";
+import { formatLog } from "./logger.util";
+import { DayJS } from "$core/utils/function/dayjs/dayjs";
+import type { LogLevel } from "$core/utils/logger/logger.const";
+import { DATE_COLOR, logLevelOptions, SEPARATOR_COLOR } from "$core/utils/logger/logger.const";
+import { effectReset } from "tintify";
 
 describe("formatLog", () => {
   const currentDate = DayJS().format("YYYY-MM-DD HH:mm:ss");

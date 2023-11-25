@@ -1,6 +1,6 @@
-import {describe, expect, it} from "vitest";
-import {calculateDayOfCustomWeek} from "./dayjs.func";
-import {DayJS} from "./dayjs";
+import { describe, expect, it } from "vitest";
+import { calculateDayOfCustomWeek } from "./dayjs.func";
+import { DayJS } from "./dayjs";
 
 describe("calculateTwoWeekPosition", () => {
   it("returns the correct position when target date is ahead of reference date (base = 7)", () => {

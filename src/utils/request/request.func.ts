@@ -1,7 +1,7 @@
-import type {Method, RequestParams} from "$core/utils/request/request.type";
-import {RestRequestError} from "$core/utils/error";
-import type {Result} from "rustic-error";
-import {error, ok} from "rustic-error";
+import type { Method, RequestParams } from "$core/utils/request/request.type";
+import { RestRequestError } from "$core/utils/error";
+import type { Result } from "rustic-error";
+import { error, ok } from "rustic-error";
 
 export const restRequest = async (method: Method, url: string, options: RequestParams = {}): Promise<Result<Response, RestRequestError>> => {
   const response = await fetch(url, {...options, method: method});

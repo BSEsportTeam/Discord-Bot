@@ -25,7 +25,7 @@ export const getChoices = () => {
   return choices;
 };
 
-export const getClubInfos = async(tag: string, localTop = false, globalTop = false): Promise<Result<ClubInfos, BrawlStarsApiError>> => {
+export const getClubInfos = async (tag: string, localTop = false, globalTop = false): Promise<Result<ClubInfos, BrawlStarsApiError>> => {
   const clubResult = await getApiClub(tag);
   if (!clubResult.ok) {
     return error(clubResult.error);

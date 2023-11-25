@@ -1,6 +1,6 @@
-import {Task, TaskType} from "$core/handlers/task";
-import {clearCooldown} from "$core/events/message_create/message_create.util";
-import {logger} from "$core/utils/logger";
+import { Task, TaskType } from "$core/handlers/task";
+import { clearCooldown } from "$core/events/message_create/message_create.util";
+import { logger } from "$core/utils/logger";
 
 export default class ClearCache extends Task<null> {
 
