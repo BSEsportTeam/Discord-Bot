@@ -13,6 +13,7 @@ import { messageConfig } from "$core/config/message";
 import { version } from "../package.json";
 import { msgParams } from "$core/utils/function/string";
 import { colors } from "$core/config/global";
+import { Logger } from "$core/utils/logger_new/logger.class";
 
 export class Client extends BClient {
 
@@ -21,6 +22,8 @@ export class Client extends BClient {
   rest: REST;
 
   buttons: ButtonCollection = new Collection();
+
+  readonly logger = new Logger("main");
 
   constructor(token: string) {
     super({
@@ -47,7 +50,7 @@ export class Client extends BClient {
     });
   }
 
-  async ready() {
+  async ready(): Promise<void> {
     await eventLoad();
     await commandLoad();
     await loadButtons();
@@ -78,7 +81,7 @@ export class Client extends BClient {
   }
 
 
-  validVoiceState(voiceState: VoiceState) {
+  validVoiceState(voiceState: VoiceState): boolean|null {
     return voiceState.channel && voiceState.channel.type === ChannelType.GuildStageVoice && voiceState.member && !voiceState.member.user.bot;
   }
 
