@@ -1,21 +1,27 @@
 import type { Client } from "$core/client";
 import { PrismaClient } from "@prisma/client";
 import { ConfigDatabaseManager } from "$core/manager/database/config/config_database.manager";
+import { TextManager } from "$core/manager/database/text/text.manager";
 
 export class DatabaseManager {
 
-  public readonly db: PrismaClient;
+  readonly db: PrismaClient;
 
-  public readonly config: ConfigDatabaseManager;
+  readonly config: ConfigDatabaseManager;
+
+  readonly text: TextManager;
 
   constructor(public readonly client: Client) {
     this.db = new PrismaClient();
     this.config = new ConfigDatabaseManager(this);
+    this.text = new TextManager(this);
   }
 
   async load(): Promise<void> {
     await this.connect();
+
     await this.config.load();
+    await this.text.load();
   }
 
   async connect(): Promise<void> {
