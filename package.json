@@ -14,7 +14,9 @@
     "test": "vitest --ui",
     "db:migrate": "prisma migrate dev",
     "db:gen": "prisma generate",
+    "db:seed": "ts-node prisma/seeder/text.seeder.ts",
     "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
     "ts:check": "tsc --noEmit",
     "build": "swc ./src -d out"
   },
