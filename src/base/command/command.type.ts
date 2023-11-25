@@ -15,8 +15,8 @@ export type CommandResultInfos = CommandResultInfosPassed | CommandResultInfoFai
 
 export type FailsReasons = 'NO_PERMS' | 'VALUE_NOT_FOUND';
 
-export type CommandResultErr = [CommandError, null];
-export type CommandResultOk = [null, CommandResultInfos];
+export type CommandResultErr = [false, CommandError];
+export type CommandResultOk = [true, CommandResultInfos];
 export type CommandResult = CommandResultErr | CommandResultOk;
 
 export type GuildAlias = 'all' | GuildName;
