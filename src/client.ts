@@ -1,3 +1,4 @@
+import type {VoiceState} from 'discord.js';
 import {ChannelType, Client as BClient, Collection, EmbedBuilder, IntentsBitField, REST} from 'discord.js';
 import type {CommandCollection} from '$core/handlers/commands/command.type';
 import {eventLoad} from '$core/handlers/events/event';
@@ -56,15 +57,15 @@ export class Client extends BClient {
 		for (const guild of this.guilds.cache.values()) {
 			const voicesState = guild.voiceStates.cache.values();
 			for (const voiceState of voicesState) {
-				if (voiceState.channel && voiceState.channel.type !== ChannelType.GuildStageVoice && voiceState.member) {
+				if (this.validVoiceState(voiceState)) {
 					setVoice({
 						start: Date.now(),
 						guildId: guild.id,
-						id: voiceState.member.user.id,
+						id: voiceState.member!.user.id,
 						deaf: voiceState.deaf || false,
 						mute: voiceState.mute || false,
 						lastUpdate: Date.now(),
-						channelId: voiceState.channel.id,
+						channelId: voiceState.channel!.id
 					});
 				}
 			}
@@ -76,4 +77,8 @@ export class Client extends BClient {
 			.setColor(colors.success));
 	}
 
+
+	validVoiceState(voiceState: VoiceState) {
+		return voiceState.channel && voiceState.channel.type === ChannelType.GuildStageVoice && voiceState.member && !voiceState.member.user.bot;
+	}
 }

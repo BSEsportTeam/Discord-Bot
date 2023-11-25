@@ -10,9 +10,8 @@ import {
 	COOLDOWN_IN_SECONDS,
 	LONG_MESSAGE_MIN_LENGTH,
 	LONG_MESSAGE_MULTIPLIER,
-	MAX_XP_PER_MESSAGE,
-	MIN_XP_PER_MESSAGE,
-	XP_BOOST_MULTIPLIER
+	XP_BOOST_MULTIPLIER,
+	XP_PER_MESSAGE
 } from '$core/utils/xp';
 import {logger} from '$core/utils/logger';
 import {isDebuggableError} from '$core/utils/error';
@@ -80,7 +79,7 @@ export default class MessageCreate extends Event<'messageCreate'> {
 			return;
 		}
 
-		let xpCount = Math.floor(Math.random() * (MAX_XP_PER_MESSAGE - MIN_XP_PER_MESSAGE + 1)) + MIN_XP_PER_MESSAGE;
+		let xpCount = XP_PER_MESSAGE;
 
 		if (message.member.roles.cache.has(xpConfig.xp.xpBoostRole)) {
 			xpCount *= XP_BOOST_MULTIPLIER;
