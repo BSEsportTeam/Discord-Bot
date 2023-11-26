@@ -12,8 +12,9 @@ import type { RESTPostAPIChatInputApplicationCommandsJSONBody } from "discord-ap
 import { anyToError, CommandError } from "$core/utils/error";
 import { getMessage } from "$core/utils/function/string/string.util";
 import { colors } from "$core/config/global";
+import type { DevFacultative } from "$core/utils/dev";
 
-export abstract class Command<S extends Service> {
+export abstract class Command<S extends Service> implements DevFacultative {
 
   readonly client: Client;
 
@@ -37,6 +38,7 @@ export abstract class Command<S extends Service> {
 
   cooldowns: Map<string, number> = new Map();
 
+  isEnableInDev: boolean = false;
 
   protected constructor(client: Client, service: S) {
     this.client = client;
