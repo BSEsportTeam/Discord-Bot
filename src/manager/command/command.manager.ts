@@ -2,7 +2,7 @@ import type { Client } from "$core/client";
 import type { Command } from "$core/base/command/";
 import type { Service } from "$core/base/service";
 import { anyToError } from "$core/utils/error";
-import { commandMapToAPIArray } from "$core/manager/command/command.util";
+import { commandMapToAPIArray, getApplicationCommandManager } from "$core/manager/command/command.util";
 import { isDev } from "$core/config/env";
 import { devConfig } from "$core/config/dev/dev.config";
 import type { ApplicationCommand } from "discord.js";
@@ -50,18 +50,8 @@ export class CommandManager {
     }
     try {
       if (isDev) {
-        const manager = this.client.guilds.cache.get(devConfig.guilds.all.id)?.commands;
-        if (!manager) {
-          this.client.logger.fatal({
-            m: "failed to load global commands",
-            e: new Error("manager not found"),
-            d: {
-              commands: commands,
-              botId: this.client.user?.id,
-            },
-          });
-          return;
-        }
+        const manager = getApplicationCommandManager(this.client, devConfig.guilds.all.id);
+
         const applicationCommands = await manager.set(commands);
         this.setIds(applicationCommands.map(cmd => cmd));
 
@@ -105,18 +95,7 @@ export class CommandManager {
         if (commands.length === 0) {
           return;
         }
-        const manager = this.client.guilds.cache.get(devConfig.guilds.section.id)?.commands;
-        if (!manager) {
-          this.client.logger.fatal({
-            m: "failed to load guild commands",
-            e: new Error("manager not found"),
-            d: {
-              commands: commands,
-              botId: this.client.user?.id,
-            },
-          });
-          return;
-        }
+        const manager = getApplicationCommandManager(this.client, devConfig.guilds.section.id);
 
         const applicationCommands = await manager.set(commands);
         this.setIds(applicationCommands.map(cmd => cmd));
@@ -130,18 +109,7 @@ export class CommandManager {
             continue;
           }
 
-          const manager = this.client.guilds.cache.get(guildId)?.commands;
-          if (!manager) {
-            this.client.logger.error({
-              m: "failed to load guild commands",
-              e: new Error("manager not found"),
-              d: {
-                commands: commandsArray,
-                botId: this.client.user?.id,
-              },
-            });
-            continue;
-          }
+          const manager = getApplicationCommandManager(this.client, guildId);
 
           const applicationCommands = await manager.set(commandsArray);
           this.setIds(applicationCommands.map(cmd => cmd));
