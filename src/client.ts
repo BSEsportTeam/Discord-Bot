@@ -2,7 +2,6 @@ import type { VoiceState } from "discord.js";
 import { ChannelType, Client as BClient, Collection, EmbedBuilder, IntentsBitField, REST } from "discord.js";
 import type { CommandCollection } from "$core/handlers/commands/command.type";
 import { eventLoad } from "$core/handlers/events/event";
-import { commandLoad } from "$core/handlers/commands/command_load";
 import type { ButtonCollection } from "$core/handlers/buttons";
 import { loadButtons } from "$core/handlers/buttons";
 import { loadTask } from "$core/handlers/task";
@@ -14,10 +13,13 @@ import { msgParams } from "$core/utils/function/string";
 import { colors } from "$core/config/global";
 import { Logger } from "$core/utils/logger_new/logger.class";
 import { DatabaseManager } from "$core/manager/database/database.manager";
+import { CommandManager } from "$core/manager/command/command.manager";
 
 export class Client extends BClient {
 
   commands: CommandCollection = new Collection();
+
+  commandManager = new CommandManager(this);
 
   rest: REST;
 
@@ -54,7 +56,7 @@ export class Client extends BClient {
 
   async ready(): Promise<void> {
     await eventLoad();
-    await commandLoad();
+    await this.commandManager.loadCommands();
     await loadButtons();
     await loadTask();
     this.logger.info("the bot is ready");
