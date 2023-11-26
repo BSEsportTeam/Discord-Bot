@@ -1,4 +1,3 @@
-import type { GuildName } from "$core/config/guilds";
 import type { CommandError } from "$core/utils/error";
 import type { Service } from "$core/base/service/service.class";
 import type { SubCommand } from "$core/base/command/sub_command.class";
@@ -25,7 +24,7 @@ export type CommandResultErr = [false, CommandError];
 export type CommandResultOk = [true, CommandResultInfos];
 export type CommandResult = CommandResultErr | CommandResultOk;
 
-export type GuildAlias = "all" | GuildName;
+export type GuildAlias = "all" | `${bigint}`;
 
 export type SubCommandGroups<S extends Service> = Map<string, SubCommands<S>>
 export type SubCommands<S extends Service> = Map<string, SubCommand<S>>
