@@ -1,10 +1,17 @@
 import type { Client } from "$core/client";
 import type { Service } from "$core/base/service/service.class";
 import type { CommandResult, GuildAlias, SubCommandGroups, SubCommands } from "$core/base/command/command.type";
-import type { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import type {
+  ChatInputCommandInteraction,
+  InteractionEditReplyOptions,
+  InteractionReplyOptions,
+  SlashCommandBuilder
+} from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import type { RESTPostAPIChatInputApplicationCommandsJSONBody } from "discord-api-types/v10";
-import { anyToError } from "$core/utils/error";
+import { anyToError, CommandError } from "$core/utils/error";
 import { getMessage } from "$core/utils/function/string/string.util";
+import { colors } from "$core/config/global";
 
 export abstract class Command<S extends Service> {
 
@@ -75,9 +82,11 @@ export abstract class Command<S extends Service> {
     if (ok) {
       if (infos.pass) {
         this.service.log.info(`${interaction.user.username} executed ${this.name} command with success.`);
+
       } else {
         this.service.log.info(`${interaction.user.username} executed ${this.name} command, but failed, code :`
           + ` ${infos.failedRaison} ${infos.detailed ? "(" + infos.detailed + ")" : ""}`);
+
       }
     } else {
       this.service.log.error({
@@ -85,6 +94,38 @@ export abstract class Command<S extends Service> {
         e: infos,
         d: infos.debug(),
       });
+
+      try {
+        await interaction.reply({
+          content: getMessage("command.error"),
+          embeds: [
+            new EmbedBuilder()
+              .setTitle(getMessage("command.error.title"))
+              .setDescription(getMessage("command.error.description"))
+              .setColor(colors.error),
+          ],
+          ephemeral: true,
+        });
+
+      } catch (error) {
+        this.service.log.error({
+          m: "failed to send error message",
+          e: anyToError(error),
+        });
+      }
+    }
+  }
+
+  private async sendReply(interaction: ChatInputCommandInteraction, options:  InteractionReplyOptions | InteractionEditReplyOptions): Promise<CommandResult> {
+    try {
+      if (this.preReply) {
+        await interaction.editReply(options as InteractionEditReplyOptions);
+        return [true, { pass: true }];
+      }
+      await interaction.reply({ ...{ ephemeral: this.ephemeral }, ...options as InteractionReplyOptions });
+      return [true, { pass: true }];
+    } catch (error) {
+      return [false, new CommandError("failed to send reply", interaction, anyToError(error))];
     }
   }
 
