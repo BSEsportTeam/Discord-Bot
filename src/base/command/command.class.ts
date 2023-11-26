@@ -3,6 +3,8 @@ import type { Service } from "$core/base/service/service.class";
 import type { CommandResult, GuildAlias, SubCommandGroups, SubCommands } from "$core/base/command/command.type";
 import type { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 import type { RESTPostAPIChatInputApplicationCommandsJSONBody } from "discord-api-types/v10";
+import { anyToError } from "$core/utils/error";
+import { getMessage } from "$core/utils/function/string/string.util";
 
 export abstract class Command<S extends Service> {
 
@@ -46,7 +48,9 @@ export abstract class Command<S extends Service> {
       const cooldown = this.cooldowns.get(interaction.user.id);
       if (cooldown && cooldown > now) {
         await interaction.reply({
-          content: "You are on cooldown., need to wait " + Math.ceil((cooldown - now) / 1000) + " seconds.",
+          content: getMessage("command.cooldown", [
+            Math.ceil((cooldown - now) / 1000),
+          ]),
           ephemeral: true,
         });
         return;
@@ -54,6 +58,19 @@ export abstract class Command<S extends Service> {
       const msCooldown = this.cooldown * 1000;
       this.cooldowns.set(interaction.user.id, now + msCooldown);
     }
+
+    if (this.preReply) {
+      try {
+        await interaction.deferReply({ ephemeral: this.ephemeral });
+      } catch (error) {
+        this.service.log.error({
+          m: "failed to defer reply",
+          e: anyToError(error),
+        });
+      }
+      return;
+    }
+
     const [ok, infos] = await this.run(interaction);
     if (ok) {
       if (infos.pass) {
