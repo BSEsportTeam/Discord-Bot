@@ -79,6 +79,12 @@ export abstract class Command<S extends Service> {
         this.service.log.info(`${interaction.user.username} executed ${this.name} command, but failed, code :`
           + ` ${infos.failedRaison} ${infos.detailed ? "(" + infos.detailed + ")" : ""}`);
       }
+    } else {
+      this.service.log.error({
+        m: `${interaction.user.username} failed to execute ${this.name} command`,
+        e: infos,
+        d: infos.debug(),
+      });
     }
   }
 
