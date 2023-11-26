@@ -12,6 +12,8 @@ export class TextManager {
     try {
       const texts = await this.databaseManager.db.text.findMany();
       this.texts = new Map(texts.map(text => [text.id, text.value]));
+
+      this.databaseManager.client.logger.info(`loaded with success ${texts.length} texts`);
     } catch (error) {
       this.databaseManager.client.logger.fatal({
         m: "failed to load texts",
@@ -29,6 +31,7 @@ export class TextManager {
       const texts = await this.databaseManager.db.text.findMany();
       this.texts = new Map(texts.map(text => [text.id, text.value]));
 
+      this.databaseManager.client.logger.info("reloaded with success texts");
       return true;
     } catch (error) {
       this.databaseManager.client.logger.error({
