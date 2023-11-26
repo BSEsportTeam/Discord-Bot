@@ -5,7 +5,9 @@ import type {
   ChatInputCommandInteraction,
   InteractionEditReplyOptions,
   InteractionReplyOptions,
-  SlashCommandBuilder
+  SlashCommandBuilder,
+  SlashCommandOptionsOnlyBuilder,
+  SlashCommandSubcommandsOnlyBuilder
 } from "discord.js";
 import { EmbedBuilder } from "discord.js";
 import type { RESTPostAPIChatInputApplicationCommandsJSONBody } from "discord-api-types/v10";
@@ -24,7 +26,7 @@ export abstract class Command<S extends Service> implements DevFacultative {
 
   abstract name: string;
 
-  abstract slashBuilder: SlashCommandBuilder;
+  abstract slashBuilder: SlashCommandBuilder|SlashCommandSubcommandsOnlyBuilder|SlashCommandOptionsOnlyBuilder;
 
   subCommandGroups: SubCommandGroups<S> = new Map();
 
