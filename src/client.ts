@@ -14,12 +14,15 @@ import { colors } from "$core/config/global";
 import { Logger } from "$core/utils/logger_new/logger.class";
 import { DatabaseManager } from "$core/manager/database/database.manager";
 import { CommandManager } from "$core/manager/command/command.manager";
+import { ButtonManager } from "$core/manager/button/button.manager";
 
 export class Client extends BClient {
 
   commands: CommandCollection = new Collection();
 
   commandManager = new CommandManager(this);
+
+  buttonManager = new ButtonManager(this);
 
   rest: REST;
 
