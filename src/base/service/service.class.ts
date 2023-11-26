@@ -38,6 +38,12 @@ export abstract class Service<C extends z.Schema = z.Schema> {
     if (!this.reloadable) {
       return false;
     }
+
+    const configReload = await this.client.database.config.reloadConfig(this.name);
+    if (!configReload) {
+      return false;
+    }
+
     await this.preUnload();
     return this.preLoad();
   }
