@@ -34,11 +34,6 @@ export abstract class Command<S extends Service> {
     this.service = service;
   }
 
-  get svc(): S {
-    return this.service;
-
-  }
-
   toJSON(): RESTPostAPIChatInputApplicationCommandsJSONBody {
     return this.slashBuilder.toJSON();
   }
@@ -62,9 +57,9 @@ export abstract class Command<S extends Service> {
     const [ok, infos] = await this.run(interaction);
     if (ok) {
       if (infos.pass) {
-        this.svc.log.info(`${interaction.user.username} executed ${this.name} command with success.`);
+        this.service.log.info(`${interaction.user.username} executed ${this.name} command with success.`);
       } else {
-        this.svc.log.info(`${interaction.user.username} executed ${this.name} command, but failed, code :`
+        this.service.log.info(`${interaction.user.username} executed ${this.name} command, but failed, code :`
           + ` ${infos.failedRaison} ${infos.detailed ? "(" + infos.detailed + ")" : ""}`);
       }
     }
