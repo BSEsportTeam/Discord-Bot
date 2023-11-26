@@ -5,6 +5,8 @@ import { CancelButton } from "$core/base/button/util/cancel_button.class";
 import type { Interaction } from "discord.js";
 import { ApplicationCommandType, ComponentType, InteractionType } from "discord.js";
 import { ID_SEPARATOR } from "$core/base/button/button.const";
+import { mainConfig } from "$core/service/main/main.tdo";
+import type { z } from "zod";
 
 // admin commands
 export class MainService extends Service implements ServiceLoad {
@@ -13,10 +15,32 @@ export class MainService extends Service implements ServiceLoad {
 
   reloadable = false;
 
+  schema = mainConfig;
+
+  config: z.infer<typeof this.schema>;
 
   constructor(client: Client) {
     super(client);
     this.buttons.set("cancel", new CancelButton(this));
+
+    const baseConfig = this.client.database.config.get(this.name);
+    if (!baseConfig) {
+      this.log.fatal({
+        m: "failed to load config, not found !",
+      });
+      process.exit(1);
+    }
+
+    const result = this.schema.safeParse(baseConfig);
+    if (!result.success) {
+      this.log.fatal({
+        m: "failed to load config",
+        e: result.error,
+      });
+      process.exit(1);
+    }
+
+    this.config = result.data;
   }
 
   load(): void {
