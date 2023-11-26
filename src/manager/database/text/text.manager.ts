@@ -5,7 +5,10 @@ export class TextManager {
 
   private texts: Map<string, string> = new Map();
 
+  static instance: TextManager;
+
   constructor(private readonly databaseManager: DatabaseManager) {
+    TextManager.instance = this;
   }
 
   async load(): Promise<void> {
@@ -22,8 +25,8 @@ export class TextManager {
     }
   }
 
-  get(id: string): string {
-    return this.texts.get(id) || "no text found";
+  static get(id: string): string {
+    return this.instance?.texts?.get(id) || "no text found";
   }
 
   async reload(): Promise<boolean> {
