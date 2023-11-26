@@ -20,7 +20,7 @@ export abstract class Button<S extends Service> {
 
   autoDisable = true;
 
-  protected constructor(protected readonly service: S) {
+  constructor(protected readonly service: S) {
   }
 
   abstract run(interaction: ButtonInteraction): Promise<ButtonResult>;
@@ -39,7 +39,7 @@ export abstract class Button<S extends Service> {
     }
   }
 
-  protected async preRun(interaction: ButtonInteraction): Promise<void> {
+  async preRun(interaction: ButtonInteraction): Promise<void> {
     if (this.authorOnly) {
       const result = await authorOnly(interaction);
       if (!result) {
