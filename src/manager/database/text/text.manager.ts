@@ -26,7 +26,7 @@ export class TextManager {
   }
 
   static get(id: string): string {
-    return this.instance?.texts?.get(id) || "no text found";
+    return this.instance?.texts?.get(id) || "no text found with id " + id;
   }
 
   async reload(): Promise<boolean> {
