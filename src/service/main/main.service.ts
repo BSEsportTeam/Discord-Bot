@@ -60,8 +60,16 @@ export class MainService extends Service implements ServiceLoad {
             void button.preRun(interaction);
             break;
           }
+
+          default: {
+            return;
+          }
         }
         break;
+      }
+
+      default: {
+        return;
       }
     }
   }
