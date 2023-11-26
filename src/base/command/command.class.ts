@@ -42,7 +42,7 @@ export abstract class Command<S extends Service> implements DevFacultative {
 
   isEnableInDev: boolean = false;
 
-  protected constructor(client: Client, service: S) {
+  constructor(client: Client, service: S) {
     this.client = client;
     this.service = service;
   }
@@ -53,7 +53,7 @@ export abstract class Command<S extends Service> implements DevFacultative {
 
   abstract run(interaction: ChatInputCommandInteraction): Promise<CommandResult>;
 
-  protected async preRun(interaction: ChatInputCommandInteraction): Promise<void> {
+  async preRun(interaction: ChatInputCommandInteraction): Promise<void> {
     if (this.cooldown > 0) {
       const now = Date.now();
       const cooldown = this.cooldowns.get(interaction.user.id);
