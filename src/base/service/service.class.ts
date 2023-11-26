@@ -52,7 +52,7 @@ export abstract class Service<C extends z.Schema = z.Schema> {
   }
 
   protected async preLoad(): Promise<boolean> {
-    logger.info(`loading ${this.name}.`);
+    this.client.logger.info(`loading ${this.name}.`);
     if (serviceHasLoad(this)) {
       try {
         await this.load();
@@ -75,13 +75,13 @@ export abstract class Service<C extends z.Schema = z.Schema> {
       }
     }
 
-    logger.info(`loaded ${this.name}.`);
+    this.client.logger.info(`loaded ${this.name}.`);
     this.loadCount++;
     return true;
   }
 
   protected async preUnload(): Promise<void> {
-    logger.info(`unloading ${this.name}.`);
+    this.client.logger.info(`unloading ${this.name}.`);
     if (serviceHasUnload(this)) {
       try {
         await this.unload();
@@ -93,7 +93,7 @@ export abstract class Service<C extends z.Schema = z.Schema> {
         return;
       }
     }
-    logger.info(`unloaded ${this.name}.`);
+    this.client.logger.info(`unloaded ${this.name}.`);
   }
 
 }
