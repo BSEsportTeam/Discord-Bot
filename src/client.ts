@@ -13,6 +13,7 @@ import { version } from "../package.json";
 import { msgParams } from "$core/utils/function/string";
 import { colors } from "$core/config/global";
 import { Logger } from "$core/utils/logger_new/logger.class";
+import { DatabaseManager } from "$core/manager/database/database.manager";
 
 export class Client extends BClient {
 
@@ -23,6 +24,8 @@ export class Client extends BClient {
   buttons: ButtonCollection = new Collection();
 
   readonly logger = new Logger("main");
+
+  database = new DatabaseManager(this);
 
   constructor(token: string) {
     super({
