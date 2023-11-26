@@ -116,7 +116,8 @@ export abstract class Command<S extends Service> {
     }
   }
 
-  private async sendReply(interaction: ChatInputCommandInteraction, options:  InteractionReplyOptions | InteractionEditReplyOptions): Promise<CommandResult> {
+  async sendReply(interaction: ChatInputCommandInteraction, options:  InteractionReplyOptions | InteractionEditReplyOptions):
+    Promise<CommandResult> {
     try {
       if (this.preReply) {
         await interaction.editReply(options as InteractionEditReplyOptions);
