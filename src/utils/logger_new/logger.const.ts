@@ -38,3 +38,6 @@ export const debugValueSpaces = 90;
 
 export const debugCategoryColor = forground256Color(244);
 export const debugValueColor = forground256Color(248);
+
+export const DATE_COLOR = forground.white;
+export const SEPARATOR_COLOR = forground256Color(240);
