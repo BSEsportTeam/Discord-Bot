@@ -2,6 +2,7 @@ import type { Client } from "$core/client";
 import { PrismaClient } from "@prisma/client";
 import { ConfigDatabaseManager } from "$core/manager/database/config/config_database.manager";
 import { TextManager } from "$core/manager/database/text/text.manager";
+import { anyToError } from "$core/utils/error";
 
 export class DatabaseManager {
 
@@ -27,8 +28,12 @@ export class DatabaseManager {
   async connect(): Promise<void> {
     try {
       await this.db.$connect();
+      this.client.logger.info("connected to database");
     } catch (error) {
-      console.error(error);
+      this.client.logger.fatal({
+        m: "failed to connect to database",
+        e: anyToError(error),
+      });
     }
   }
 
