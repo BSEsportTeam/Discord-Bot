@@ -5,6 +5,7 @@ import { anyToError } from "$core/utils/error";
 import type { CommandList } from "$core/base/service/service.type";
 import type { z } from "zod";
 import { Logger } from "$core/utils/logger_new/logger.class";
+import type { Button } from "$core/base/button/button.class";
 
 export abstract class Service<C extends z.Schema = z.Schema> {
 
@@ -17,6 +18,8 @@ export abstract class Service<C extends z.Schema = z.Schema> {
   loadCount = 0;
 
   commands: CommandList<typeof this> = new Map();
+
+  buttons: Map<string, Button<typeof this>> = new Map();
 
   schema: C | null = null;
 
@@ -61,6 +64,17 @@ export abstract class Service<C extends z.Schema = z.Schema> {
         return false;
       }
     }
+
+    if (this.loadCount === 0) {
+      for (const command of this.commands.values()) {
+        this.client.commandManager.addCommand(command);
+      }
+
+      for (const button of this.buttons.values()) {
+        this.client.buttonManager.add(button);
+      }
+    }
+
     logger.info(`loaded ${this.name}.`);
     this.loadCount++;
     return true;
