@@ -21,7 +21,6 @@ export class MainService extends Service implements ServiceLoad {
 
   constructor(client: Client) {
     super(client);
-    this.buttons.set("cancel", new CancelButton(this));
 
     const baseConfig = this.client.database.config.get(this.name);
     if (!baseConfig) {
@@ -31,7 +30,7 @@ export class MainService extends Service implements ServiceLoad {
       process.exit(1);
     }
 
-    const result = this.schema.safeParse(baseConfig);
+    const result = this.schema.safeParse(JSON.parse(baseConfig));
     if (!result.success) {
       this.log.fatal({
         m: "failed to load config",
@@ -41,6 +40,8 @@ export class MainService extends Service implements ServiceLoad {
     }
 
     this.config = result.data;
+
+    this.buttons.set("cancel", new CancelButton(this));
   }
 
   load(): void {
