@@ -38,6 +38,8 @@ export abstract class Command<S extends Service> implements DevFacultative {
 
   cooldowns: Map<string, number> = new Map();
 
+  id: string | undefined;
+
   isEnableInDev: boolean = false;
 
   protected constructor(client: Client, service: S) {
