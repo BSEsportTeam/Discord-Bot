@@ -4,8 +4,8 @@ import type { Service } from "$core/base/service";
 import { anyToError } from "$core/utils/error";
 import { commandMapToAPIArray } from "$core/manager/command/command.util";
 import { isDev } from "$core/config/env";
-import { Routes } from "discord-api-types/v10";
 import { devConfig } from "$core/config/dev/dev.config";
+import type { ApplicationCommand } from "discord.js";
 
 export class CommandManager {
 
@@ -50,14 +50,39 @@ export class CommandManager {
     }
     try {
       if (isDev) {
-        await this.client.rest.put(Routes.applicationGuildCommands(this.client.user?.id ?? "error", devConfig.guilds.all.id), {
-          body: commands,
-        });
+        const manager = this.client.guilds.cache.get(devConfig.guilds.all.id)?.commands;
+        if (!manager) {
+          this.client.logger.fatal({
+            m: "failed to load global commands",
+            e: new Error("manager not found"),
+            d: {
+              commands: commands,
+              botId: this.client.user?.id,
+            },
+          });
+          return;
+        }
+        const applicationCommands = await manager.set(commands);
+        this.setIds(applicationCommands.map(cmd => cmd));
 
       } else {
-        await this.client.rest.put(Routes.applicationCommands(this.client.user?.id ?? "error"), {
-          body: commands,
-        });
+
+        const manager = this.client.application?.commands;
+        if (!manager) {
+          this.client.logger.fatal({
+            m: "failed to load global commands",
+            e: new Error("manager not found"),
+            d: {
+              commands: commands,
+              botId: this.client.user?.id,
+            },
+          });
+          return;
+        }
+
+        const applicationCommands = await manager.set(commands);
+        this.setIds(applicationCommands.map(cmd => cmd));
+
 
         this.client.logger.info(`register ${commands.length} globals commands with success`);
       }
@@ -80,10 +105,21 @@ export class CommandManager {
         if (commands.length === 0) {
           return;
         }
+        const manager = this.client.guilds.cache.get(devConfig.guilds.section.id)?.commands;
+        if (!manager) {
+          this.client.logger.fatal({
+            m: "failed to load guild commands",
+            e: new Error("manager not found"),
+            d: {
+              commands: commands,
+              botId: this.client.user?.id,
+            },
+          });
+          return;
+        }
 
-        await this.client.rest.put(Routes.applicationGuildCommands(this.client.user?.id ?? "error", devConfig.guilds.section.id), {
-          body: commands,
-        });
+        const applicationCommands = await manager.set(commands);
+        this.setIds(applicationCommands.map(cmd => cmd));
 
         this.client.logger.info(`register ${commands.length} section commands (in dev) with success`);
 
@@ -94,9 +130,21 @@ export class CommandManager {
             continue;
           }
 
-          await this.client.rest.put(Routes.applicationGuildCommands(this.client.user?.id ?? "error", guildId), {
-            body: commandsArray,
-          });
+          const manager = this.client.guilds.cache.get(guildId)?.commands;
+          if (!manager) {
+            this.client.logger.error({
+              m: "failed to load guild commands",
+              e: new Error("manager not found"),
+              d: {
+                commands: commandsArray,
+                botId: this.client.user?.id,
+              },
+            });
+            continue;
+          }
+
+          const applicationCommands = await manager.set(commandsArray);
+          this.setIds(applicationCommands.map(cmd => cmd));
 
           this.client.logger.info(`register ${commandsArray.length} section commands for server ${guildId} with success`);
         }
@@ -109,6 +157,17 @@ export class CommandManager {
           botId: this.client.user?.id,
         },
       });
+    }
+  }
+
+
+  private setIds(commands: ApplicationCommand[]): void {
+    for (const command of commands) {
+      const commandRun = this.commandsRun.get(command.name);
+      if (!commandRun) {
+        continue;
+      }
+      commandRun.id = command.id;
     }
   }
 
