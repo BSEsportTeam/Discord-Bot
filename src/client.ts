@@ -3,7 +3,6 @@ import { ChannelType, Client as BClient, Collection, EmbedBuilder, IntentsBitFie
 import type { CommandCollection } from "$core/handlers/commands/command.type";
 import { eventLoad } from "$core/handlers/events/event";
 import { commandLoad } from "$core/handlers/commands/command_load";
-import { logger } from "$core/utils/logger";
 import type { ButtonCollection } from "$core/handlers/buttons";
 import { loadButtons } from "$core/handlers/buttons";
 import { loadTask } from "$core/handlers/task";
@@ -55,7 +54,7 @@ export class Client extends BClient {
     await commandLoad();
     await loadButtons();
     await loadTask();
-    logger.info("BSE Bot is ready !");
+    this.logger.info("the bot is ready");
 
     for (const guild of this.guilds.cache.values()) {
       const voicesState = guild.voiceStates.cache.values();
