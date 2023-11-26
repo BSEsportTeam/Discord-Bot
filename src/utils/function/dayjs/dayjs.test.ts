@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { calculateDayOfCustomWeek } from "./dayjs.func";
+import { calculateDayOfCustomWeek } from "./dayjs.util";
 import { DayJS } from "./dayjs";
 
 describe("calculateTwoWeekPosition", () => {

@@ -12,7 +12,7 @@ export const calculateDayOfCustomWeek = (referenceDate: Dayjs, targetDate: Dayjs
   return Math.abs((daysDifference % base)) + 1;
 };
 
-export const wait = async (durationInMs: number) => {
+export const wait = async(durationInMs: number): Promise<void> => {
   return new Promise((r) => {
     setTimeout(r, durationInMs);
   });
