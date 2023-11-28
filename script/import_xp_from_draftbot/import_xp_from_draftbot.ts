@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import type {GuildMember, User} from '@prisma/client';
-import {prisma} from '$core/handlers/database/prisma';
+import {prisma} from '$core/manager/database/prisma';
 import {Collection} from 'discord.js';
 
 const guildSchema = z.object({

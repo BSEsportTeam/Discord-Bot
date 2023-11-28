@@ -1,0 +1,33 @@
+{
+  "command.cooldown": "La commande a un cooldown, veillez patienter {seconds} secondes.",
+  "command.error.title": "Erreur",
+  "command.error.description": "Une erreur est survenue lors de l'exécution de la commande.",
+  "command.unauthorized": "Vous n'êtes pas autorisé à exécuter cette commande.",
+
+  "logs.ready.readyTitle": "Bot connecté !",
+  "logs.ready.readyDescription": "Le bot à été lancé avec succès avec la version **{version} !**",
+  "logs.xpMovement.title": "Un nouveau mouvement d'xp à été fait",
+  "logs.xpMovement.description": "Id: {id} \nnombre d'xp : {xp}\npar : {mention1}\npour : {mention2}\ndans : {guild}\ndate : {time}\ncause : {cause}\nraison : {raison}",
+
+  "button.authorOnly.title": "Non autorisé",
+  "button.authorOnly.description": "seul l'auteur de la commande peut utiliser ce bouton !",
+  "button.confirmSystem.cancelMessage": "Annulé avec succes",
+  "button.confirmSystem.confirmButton": "Valider",
+  "button.confirmSystem.cancelButton": "Annuler",
+  "button.error.title": "Erreur",
+  "button.error.description": "Une erreur est survenue lors de l'exécution du bouton.",
+
+  "xp.levelUp": "**Félicitations** {mention}, tu viens de passer au niveau {level} !",
+  "xp.roleUp": "**Félicitations** {pseudo}, tu viens d'obtenir le rôle **{role}** ! _**{message}**_",
+
+  "welcomes": "🦁 Bienvenue à {mention} ! Nous sommes ravis d'accueillir un nouveau lion sauvage parmi nous. Installe-toi confortablement et prépare-toi à explorer notre serveur discord ! 🦁;\uD83C\uDF89 Hourra ! {mention} a rejoint notre fière meute ! Un rugissement de bienvenue pour ce lion sauvage plein de promesses. Faisons de cette aventure un véritable festin pour les sens ! 🎊;\uD83C\uDF1F Bienvenue à {mention}, notre nouvelle étoile étincelante ! En tant que lion sauvage, tu trouveras ici un lieu où rugir, discuter et t'épanouir. Laisse briller ta lumière parmi nous ! ✨🦁;\uD83C\uDF34 Bienvenue, {mention}, dans notre jungle virtuelle ! En tant que lion sauvage, tu apportes ta force et ta grâce à notre serveur. Laisse libre cours à ta nature et explore sans limites ! 🌿🦁;🎉 Bienvenue à {mention}, notre nouvel ami à crinière ! En tant que lion sauvage, tu peux exprimer ta puissance et ta sagesse parmi nous. Nous sommes impatients de découvrir tout ce que tu as à offrir ! 🔥🦁;✨ Bienvenue à {mention}, notre nouvelle étoile étincelante ! En tant que lion sauvage, tu trouveras ici un lieu où rugir, discuter et t'épanouir. Laisse briller ta lumière parmi nous ! ✨🦁;🌿 Bienvenue, {mention}, dans notre jungle virtuelle ! En tant que lion sauvage, tu apportes ta force et ta grâce à notre serveur. Laisse libre cours à ta nature et explore sans limites ! 🌿🦁;🔥 Bienvenue à {mention}, notre nouvel ami à crinière ! En tant que lion sauvage, tu peux exprimer ta puissance et ta sagesse parmi nous. Nous sommes impatients de découvrir tout ce que tu as à offrir ! 🔥🦁",
+
+  "bump.title": "Merci du bump ! 🎉",
+  "bump.description": "Merci à {mention} d'avoir bump/boost le serveur ! N'hésitez pas à revenir dans 1-2h pour bumper le serveur à nouveau !\n\nxp journaliers : **{curentXp}/{maxXp}**\nRécompense : **{xp} XP !**",
+
+  "main.command.admin.name": "admin",
+  "main.command.admin.description": "Commandes d'administration",
+  "main.command.admin.sub.status.name": "status",
+  "main.command.admin.sub.status.description": "Affiche les status du bot"
+
+}

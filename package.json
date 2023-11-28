@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:prod": "node -r @swc-node/register -r tsconfig-paths/register ./src/index.ts",
-    "start:dev": "ts-node src/index.ts dev",
+    "dev": "ts-node src/index.ts dev",
+    "debug": "ts-node src/index.ts dev debug",
     "script:checkconfig": "ts-node script/check_config/check_config.ts script",
     "script:addguildstodb": "ts-node script/add_guilds_to_db/add_guilds_to_db.ts script",
     "script:getdraftbotxp": "ts-node script/import_xp_from_draftbot/import_xp_from_draftbot.ts script",
@@ -13,7 +14,9 @@
     "test": "vitest --ui",
     "db:migrate": "prisma migrate dev",
     "db:gen": "prisma generate",
+    "db:seed": "ts-node prisma/seeder/text.seeder.ts",
     "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
     "ts:check": "tsc --noEmit",
     "build": "swc ./src -d out"
   },
@@ -21,9 +24,10 @@
   "author": "Arcoz0308",
   "license": "ISC",
   "devDependencies": {
+    "@arcoz/eslint-config": "^1.1.0",
+    "@faker-js/faker": "^8.0.2",
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.147",
-    "@faker-js/faker": "^8.0.2",
     "@types/node": "^20.3.0",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@vitest/ui": "^0.31.4",
@@ -33,27 +37,26 @@
     "vitest": "^0.31.4"
   },
   "dependencies": {
-    "tsconfig-paths": "^4.2.0",
-    "colorette": "^2.0.20",
-    "prisma": "^4.15.0",
-    "discord-api-types": "^0.37.43",
     "@google-cloud/local-auth": "2.1.0",
     "@prisma/client": "^4.15.0",
     "@swc-node/register": "^1.6.5",
+    "colorette": "^2.0.20",
     "cron": "^2.4.0",
     "dayjs": "^1.11.8",
+    "discord-api-types": "^0.37.43",
     "discord.js": "^14.12.1",
     "dotenv": "^16.1.4",
     "google-auth-library": "^9.0.0",
     "googleapis": "105",
     "i": "^0.3.7",
     "npm": "^9.7.1",
+    "prisma": "^4.15.0",
     "rustic-error": "^0.2.1",
     "tintify": "^1.0.0",
+    "tsconfig-paths": "^4.2.0",
     "zod": "^3.21.4"
   },
   "engines": {
     "node": "19"
   }
 }
-

@@ -1,3 +1,3 @@
-export interface DevFacultative {
-	isEnableInDev: boolean
+export type DevFacultative = {
+  isEnableInDev: boolean;
 }

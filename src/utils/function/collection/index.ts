@@ -1,1 +1,1 @@
-export {getArrayMergedFromCollectionValues } from './collection.util';
+export { getArrayMergedFromCollectionValues } from "./collection.util";

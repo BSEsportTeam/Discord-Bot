@@ -1,3 +1,2 @@
-export * from './channel.util';
-export * from './channel.func';
-
+export * from "./channel.util";
+export * from "./channel.func";

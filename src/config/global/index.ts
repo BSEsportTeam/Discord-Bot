@@ -1,2 +1,2 @@
-export * from './global.type';
-export * from './global.config';
+export * from "./global.type";
+export * from "./global.config";

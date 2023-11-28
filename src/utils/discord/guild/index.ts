@@ -1,1 +1,1 @@
-export * from './guild.func';
+export * from "./guild.func";

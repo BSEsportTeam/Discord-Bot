@@ -1,2 +1,2 @@
-export * from './commands.config';
-export * from './commands.type';
+export * from "./commands.config";
+export * from "./commands.type";

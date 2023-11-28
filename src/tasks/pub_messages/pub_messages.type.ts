@@ -1,4 +1,4 @@
 export enum PubMessageHour {
-	First,
-	Second
+  First,
+  Second
 }

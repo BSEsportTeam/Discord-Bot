@@ -89,3 +89,117 @@ enum BumpType {
   DTOP_BUMP
   DTOP_BOOST
 }
+
+model BSClubInfo {
+  tag        String            @id
+  name       String
+  type       BSClubType
+  globalTop  Boolean           @default(false)
+  localTop   Boolean           @default(false)
+  enable     Boolean           @default(true)
+  bestGlobal Int?
+  bestLocal  Int?
+  minTr      Int
+  staffs     BSClubStaff[]
+  index      Int               @unique @default(autoincrement())
+  members    BSClubMember[]
+  dailyInfos BSClubDailyInfo[]
+
+  @@map("clubInfos")
+}
+
+model BSClubStaff {
+  clubTag  String
+  username String
+  userId   String
+  role     BSClubStaffRole
+  club     BSClubInfo      @relation(fields: [clubTag], references: [tag])
+
+  @@id([clubTag, userId])
+  @@map("clubStaffs")
+}
+
+enum BSClubType {
+  LADDER
+  LDC
+  CHILL
+}
+
+enum BSClubStaffRole {
+  VICE_PRESIDENT
+  PRESIDENT
+}
+
+model BSClubMember {
+  tag               String                     @id
+  username          String
+  role              BSClubRole
+  clubTag           String?
+  club              BSClubInfo?                @relation(fields: [clubTag], references: [tag])
+  dailyInfos        BSClubMemberDailyInfo[]
+  modificationsLogs BSClubMemberModification[]
+
+  @@map("clubMembers")
+}
+
+model BSClubDailyInfo {
+  id        Int        @id @default(autoincrement())
+  date      DateTime
+  tag       String
+  club      BSClubInfo @relation(fields: [tag], references: [tag])
+  members   Int
+  totalTr   Int
+  globalTop Int?
+  localTop  Int?
+
+  @@map("clubDailyInfos")
+}
+
+model BSClubMemberDailyInfo {
+  id         Int          @id @default(autoincrement())
+  date       DateTime
+  tag        String
+  member     BSClubMember @relation(fields: [tag], references: [tag])
+  currentTr  Int
+  curentClub String
+
+  @@map("clubMemberDailyInfos")
+}
+
+model BSClubMemberModification {
+  id          Int          @id @default(autoincrement())
+  date        DateTime
+  tag         String
+  member      BSClubMember @relation(fields: [tag], references: [tag])
+  oldClub     String?
+  newClub     String?
+  oldRole     BSClubRole?
+  newRole     BSClubRole?
+  oldUsername String?
+  newUsername String?
+
+  @@map("clubMemberModifications")
+}
+
+enum BSClubRole {
+  NOT_MEMBER
+  MEMBER
+  SENIOR
+  VICE_PRESIDENT
+  PRESIDENT
+  UNKNOWN
+}
+
+model Config {
+  service String @id
+  value   String
+
+  @@map("configs")
+}
+
+model Text {
+  id    String @id
+  value String
+
+  @@map("texts")
+}

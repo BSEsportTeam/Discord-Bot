@@ -1,2 +1,2 @@
-export * from './dayjs';
-export * from './dayjs.func';
+export * from "./dayjs";
+export * from "./dayjs.util";
