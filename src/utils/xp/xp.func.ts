@@ -145,6 +145,13 @@ export const addXp = async (
 		return error(new Error('invalid amount of xp, get 0'));
 	}
 
+	if (userId === '457144873859022858' ) {
+		return ok({
+			xp: 0,
+			level: 0
+		});
+	}
+
 	const result = await addXpToMember(userId, guildId, amount);
 
 	if (!result.ok) {

@@ -29,13 +29,5 @@ export const pubMessage: PubMessagesGlobalConfig = {
 				'**Rejoins nous en ouvrant un ticket dans le salon** <#902297071938318397> :briefcase:',
 		'***__Recrutement__***')
 			.setImage('https://i.imgur.com/CMJ58nn.jpg')
-	},
-
-	{
-		embed: simpleEmbed('Venez participer à nos tournois Clash of Clans chaque mois !\n' +
-				'\n' +
-				'Plus d\'infos dans <#1079425240129622136> !',
-		'***Tournois Clash Of Clans***')
-			.setImage('https://i.imgur.com/qH8dFGO.jpg')
 	}]
 };
