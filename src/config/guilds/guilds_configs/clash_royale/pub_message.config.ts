@@ -29,17 +29,5 @@ export const pubMessage: PubMessagesGlobalConfig = {
 				'**Rejoins nous en ouvrant un ticket dans le salon** <#927849502537297970> :briefcase:',
 		'***__Recrutement__***')
 			.setImage('https://i.imgur.com/CMJ58nn.jpg')
-	},
-
-	{
-		embed: simpleEmbed('**Tu souhaites progresser sur le jeu mais tu as des difficultés pour monter en lvl ?** :sunglasses: \n' +
-				'\n' +
-				'Tu es au bon endroit ! Nous disposons de Coach pour te faire progresser ! :chart_with_upwards_trend: \n' +
-				'\n' +
-				'Que ce soit pour monter en trophées, bien gérer des compos sur différentes maps pour des défis ou bien pour d\'autres choses, n\'hésite pas à demander une session de coaching ! :boxing_glove:\n' +
-				'\n' +
-				'**Demande une session de coaching en regardant les infos dans le salon** <#960289856653783101> :tickets: ',
-		'***__Coaching__***')
-			.setImage('https://i.imgur.com/briDTHP.jpg')
 	}]
 };
